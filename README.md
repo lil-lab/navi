@@ -16,7 +16,7 @@ To compile Navi use: `ant dist`. The output jar file will be in the `dist` direc
     <experiments>
         Experiments including data (see details below).  
     <lib>  
-        External libraries, including Tiny.  
+        External libraries, including UW SPF.  
     <navi>  
         Source code (an Eclipse project).  
     <resources>
@@ -41,7 +41,7 @@ The output logs will be dumped into logging directories under the executed exper
 
 ## Understanding the code
 
-Navi experiments use the Tiny experiment platform. The best way to start understanding the code and the various features is to first understand the Tiny experiment platform (documented in Tiny) and then use the experiment files as a starting point to explore the code. 
+Navi experiments use the [UW SPF](http://yoavartzi.com/spf) experiment platform. The best way to start understanding the code and the various features is to first understand the SPF experiment platform (documented in SPF) and then use the experiment files as a starting point to explore the code. 
 
 ## Included Experiments
 
