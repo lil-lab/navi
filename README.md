@@ -1,32 +1,28 @@
 # _**Navi**_
 
-[Weakly Supervised Learning of Semantic Parsers for Mapping Instructions to Actions](http://yoavartzi.com/pub/az-tacl.2013.pdf)
-Yoav Artzi and Luke Zettlemoyer
-To appear in Transactions of the Association for Computational Linguistics (TACL), 2013.
+Yoav Artzi and Luke Zettlemoyer. [Weakly Supervised Learning of Semantic Parsers for Mapping Instructions to Actions](http://yoavartzi.com/pub/az-tacl.2013.pdf). In Transactions of the Association for Computational Linguistics (TACL), 2013.
 
 ## Building
 
-To compile Navi use:
-	`ant dist`
-The output jar file will be in the `dist` directory. 
+To compile Navi use: `ant dist`. The output jar file will be in the `dist` directory. 
 
 ## Package root file structure
 
-README.md
-	This README file.
-build.xml
-build.properites
-	ANT build files.
-<experiments>
-	Experiments including data (see details below).
-<lib>
-	External libraries, including Tiny.
-<navi>
-	Source code (an Eclipse project).
-<resources>
-	Various resource files, such as: ontology, type files, seed lexicon and maps.
-<resource-test>
-	Unit tests resources.
+    README.md
+        This README file.  
+    build.xml
+    build.properites
+    	ANT build files.
+    <experiments>
+        Experiments including data (see details below).  
+    <lib>  
+        External libraries, including Tiny.  
+    <navi>  
+        Source code (an Eclipse project).  
+    <resources>
+        Various resource files, such as: ontology, type files, seed lexicon and maps.  
+    <resource-test>
+        Unit tests resources.  
 
 ## Data
 
@@ -49,47 +45,52 @@ Navi experiments use the Tiny experiment platform. The best way to start underst
 
 ## Included Experiments
 
-dev.cross
-	**Development experiment**
-	Cross validation experiment on the Oracle development set. Folds were randomly sampled over instruction sequences. 
-	Experiment files:
-		experiments/dev.cross/dev.fold0.exp
-		experiments/dev.cross/dev.fold1.exp
-		experiments/dev.cross/dev.fold2.exp
-		experiments/dev.cross/dev.fold3.exp
-		experiments/dev.cross/dev.fold4.exp
+### Development cross validation (dev.cross)
+
+Cross validation experiment on the Oracle development set. Folds were randomly sampled over instruction sequences.  
+
+Experiment files:  
+`experiments/dev.cross/dev.fold0.exp`  
+`experiments/dev.cross/dev.fold1.exp`  
+`experiments/dev.cross/dev.fold2.exp`  
+`experiments/dev.cross/dev.fold3.exp`  
+`experiments/dev.cross/dev.fold4.exp`  
 								
-dev.abimp.cross
-	**Development experiment**
-	Cross validation experiment on the Oracle development set without the ability to infer implicit actions. The folds are the same as in dev.cross.
-	Experiment files:
-		experiments/dev.abimp.cross/dev.fold0.exp
-		experiments/dev.abimp.cross/dev.fold1.exp
-		experiments/dev.abimp.cross/dev.fold2.exp
-		experiments/dev.abimp.cross/dev.fold3.exp
-		experiments/dev.abimp.cross/dev.fold4.exp
+### Implicit actions development cross validation (dev.abimp.cross)
 
-eval
-	**Evaluation experiment**
-	Held-out evaluation experiment on the Oracle corpus. Training is done on the entire development set. 
-	Experiment file:
-		experiments/eval/eval.exp
+Cross validation experiment on the Oracle development set without the ability to infer implicit actions. The folds are the same as in dev.cross.
 
-dev.chen.cross
-	**Development experiment**
-	Cross validation experiment on development set on the SAIL corpus from Chen and Mooney (2011). Folds were split according to the map used. The development set was created by removing all instructions sequences in the Oracle evaluation set.
-	Experiment files:
-		experiments/dev.chen.cross/fold-grid.exp
-		experiments/dev.chen.cross/fold-jelly.exp
-		experiments/dev.chen.cross/fold-l.exp
+Experiment files:  
+`experiments/dev.abimp.cross/dev.fold0.exp`  
+`experiments/dev.abimp.cross/dev.fold1.exp`  
+`experiments/dev.abimp.cross/dev.fold2.exp`  
+`experiments/dev.abimp.cross/dev.fold3.exp`  
+`experiments/dev.abimp.cross/dev.fold4.exp`  
+
+### Held-out evaluation (eval)
+
+Held-out evaluation experiment on the Oracle corpus. Training is done on the entire development set.  
+
+Experiment file:  
+`experiments/eval/eval.exp`
+
+### Development cross validation SAIL experiment (dev.chen.cross)
+
+Cross validation experiment on development set on the SAIL corpus from Chen and Mooney (2011). Folds were split according to the map used. The development set was created by removing all instructions sequences in the Oracle evaluation set.
+
+Experiment files:  
+`experiments/dev.chen.cross/fold-grid.exp`  
+`experiments/dev.chen.cross/fold-jelly.exp`  
+`experiments/dev.chen.cross/fold-l.exp`  
 						
-eval.chen.cross
-	**Evaluation experiment**
-	Cross validation experiment on the entire SAIL corpus from Chen and Mooney (2011). Folds were split according to the map used. 
-	Experiment files:
-		experiments/eval.chen.cross/fold-grid.exp
-		experiments/eval.chen.cross/fold-jelly.exp
-		experiments/eval.chen.cross/fold-l.exp
+### Evaluation cross validation SAIL experiment (eval.chen.cross)
+
+Cross validation experiment on the entire SAIL corpus from Chen and Mooney (2011). Folds were split according to the map used. 
+
+Experiment files:  
+`experiments/eval.chen.cross/fold-grid.exp`  
+`experiments/eval.chen.cross/fold-jelly.exp`  
+`experiments/eval.chen.cross/fold-l.exp`  
 
 
 
