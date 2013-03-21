@@ -32,7 +32,7 @@ Navi includes two corpora: SAIL and Oracle, as described in the paper. SAIL expe
 
 ## Running Experiments
 
-Experiments are defined by `.exp` files. To run an experiment `file.exp` use:
+Experiments are defined by `.exp` files. To run an experiment `file.exp` use:  
 	`java -Xmx8g -jar navi-1.0.jar /path/to/exp/dir/file.exp` 
 
 It's best to allocate as much memory as possible. However, the code will probably run with less than 8GB (and will benefit from more).
