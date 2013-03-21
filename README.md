@@ -1,16 +1,16 @@
-_**Navi**_
+# _**Navi**_
 
 [Weakly Supervised Learning of Semantic Parsers for Mapping Instructions to Actions](http://yoavartzi.com/pub/az-tacl.2013.pdf)
 Yoav Artzi and Luke Zettlemoyer
 To appear in Transactions of the Association for Computational Linguistics (TACL), 2013.
 
-# Building
+## Building
 
 To compile Navi use:
 	`ant dist`
 The output jar file will be in the `dist` directory. 
 
-# Package root file structure
+## Package root file structure
 
 README.md
 	This README file.
@@ -28,13 +28,13 @@ build.properites
 <resource-test>
 	Unit tests resources.
 
-# Data
+## Data
 
 Navi includes two corpora: SAIL and Oracle, as described in the paper. SAIL experiments use cross-validation across the three environment maps. Each instruction sequence in SAIL is annotated with an execution trace segmented by sentences. The Oracle corpus includes similar annotation. In addition, randomly sampled subsets of the Oracle evaluation and development datasets were annotated with complete logical forms, in addition to execution traces. 
 
 **Note:** All experiment data files have both `.settrc` and `.ccgsettrc` versions. The `.settrc` version includes segmented instruction sequences paired with traces. The `.ccgsettrc` files additionally include the logical forms. However, in most cases `.ccgsettrc` files include a dummy logical form for file formatting compatibility. The dummy logical form is **never** used in training or evaluation and doesn't describe the language.
 
-# Running Experiments
+## Running Experiments
 
 Experiments are defined by `.exp` files. To run an experiment `file.exp` use:
 	`java -Xmx8g -jar navi-1.0.jar /path/to/exp/dir/file.exp` 
@@ -43,11 +43,11 @@ It's best to allocate as much memory as possible. However, the code will probabl
 
 The output logs will be dumped into logging directories under the executed experiment directory. The data of each experiment is also located under the experiment directory, usually in a directory called `data`.
 
-# Understanding the code
+## Understanding the code
 
 Navi experiments use the Tiny experiment platform. The best way to start understanding the code and the various features is to first understand the Tiny experiment platform (documented in Tiny) and then use the experiment files as a starting point to explore the code. 
 
-# Included Experiments
+## Included Experiments
 
 dev.cross
 	**Development experiment**
