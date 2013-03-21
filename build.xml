@@ -1,0 +1,61 @@
+<project name="navi" default="dist" basedir=".">
+	<description>
+        Navi build file
+    </description>
+	<!-- set global properties for this build -->
+	<property file="build.properties" />
+	<property name="version" value="1.0" />
+	<property name="build" location="build" />
+	<property name="build.src" location="build.src" />
+	<property name="dist" location="dist" />
+	<property name="lib" location="lib" />
+
+	<path id="classpath">
+		<fileset dir="${lib}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp />
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}" />
+		<mkdir dir="${build.src}" />
+		<copy todir="${build.src}" >
+			<fileset dir="${src.navi}" includes="**/*.java" />
+		</copy>
+	</target>
+
+	<target name="compile" depends="init" description="compile the source ">
+		<!-- Compile the java code from ${src} into ${build} -->
+		<javac debug="true" srcdir="${build.src}" destdir="${build}" includeantruntime="false">
+			<classpath refid="classpath" />
+			<compilerarg value="-Xlint"/>
+		</javac>
+	</target>
+
+	<target name="dist" depends="compile" description="generate the distribution">
+		<!-- Create the distribution directory -->
+		<mkdir dir="${dist}" />
+		<delete file="MANIFEST.MF" />
+		<manifest file="MANIFEST.MF">
+			<attribute name="Main-Class" value="${mainclass}" />
+		</manifest>
+
+		<jar jarfile="${dist}/${ant.project.name}-${version}.jar" manifest="MANIFEST.MF">
+			<fileset dir="${build}" />
+			<fileset dir="${build.src}" />
+			<zipgroupfileset dir="${lib}" includes="*.jar" />
+		</jar>
+		
+		<delete file="MANIFEST.MF" />
+	</target>
+
+	<target name="clean" description="clean up">
+		<!-- Delete the ${build} and ${dist} directory trees -->
+		<delete dir="${build}" />
+		<delete dir="${build.src}" />
+		<delete dir="${dist}" />
+	</target>
+</project>

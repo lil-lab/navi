@@ -1,0 +1,10 @@
+(
+
+c				// Special type for coordinators
+m				// Meta entity
+a				// action (davidsonian event)
+(ps e)			// a set of positions
+(n m)			// number
+(dir m)			// direction
+
+)

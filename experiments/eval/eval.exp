@@ -1,0 +1,19 @@
+include=../default.params
+include=eval.params
+outputDir=logs
+globalLog=logs/global.log
+
+# Resources
+include=../default.include.model.exp
+include=../default.include.genlex.exp
+## Training and testing sets
+type=data.settrc id=trainSet file=data/train.settrc genlex=genlex
+type=data.trc id=train sets=trainSet
+type=data.ccgsettrc id=testSet file=data/eval.ccgsettrc genlex=genlex
+type=data.ccgtrc id=test sets=testSet
+type=data.ccgsettrc id=testSetLF file=data/eval.lf.ccgsettrc genlex=genlex
+type=data.ccgtrc id=testLF sets=testSetLF
+include=../default.include.learn.exp
+
+# Jobs
+include=../default.include.jobs.exp

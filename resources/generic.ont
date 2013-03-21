@@ -1,0 +1,31 @@
+(
+
+// Coordination
+conj:c
+disj:c
+
+// Arrays
+i:<a[],<ind,a>>
+0:ind
+1:ind
+2:ind
+3:ind
+4:ind
+5:ind
+
+// Wrappers
+PRE_STATE_WRAPPER:<a,<t,t>>
+POST_STATE_WRAPPER:<a,<t,t>>
+
+// Common predicates
+exists:<<e,t>,t>				// Existensial quantifier
+exists:<<a,t>,t>				
+eq:<e,<e,t>>
+eq:<a,<a,t>>
+not:<t,t>
+
+// Determiners
+a:<<e,t>,e>			// Indefinite article
+io:<<e,t>,e>		// Definite article
+
+)

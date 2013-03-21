@@ -1,0 +1,8 @@
+## Data folds
+[XX=0-4] type=data.ccgsettrc id=foldXXSetCCG file=data/foldXX.ccgsettrc genlex=genlex
+[XX=0-4] type=data.ccgtrc id=foldXXCCG sets=foldXXSetCCG
+[XX=0-4] type=data.settrc id=foldXXSet file=data/foldXX.settrc genlex=genlex
+[XX=0-4] type=data.trc id=foldXX sets=foldXXSet
+## LF annotated data
+type=data.ccgsettrc id=testLFSet file=data/lfs.ccgsettrc genlex=genlex
+type=data.ccgtrc id=testLF sets=testLFSet

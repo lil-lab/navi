@@ -1,0 +1,101 @@
+(
+
+// Various entity predicate
+argmax:<<e,t>,<<e,n>,e>>		// Returns the entity from arg0 that has the maximum value according to the function arg1
+argmin:<<e,t>,<<e,n>,e>>		// Returns the entity from arg0 that has the minimum value according to the function arg1
+
+// Numbers
+0:n
+1:n
+2:n
+3:n
+4:n
+5:n
+6:n
+7:n
+8:n
+9:n
+
+// Directions
+left:dir
+right:dir
+forward:dir
+back:dir
+
+/////////////////////////
+// Events (actions)
+/////////////////////////
+
+// Types
+turn:<a,t>
+move:<a,t>
+
+// Descriptors
+len:<a,<n,t>>
+dir:<a,<dir,t>>
+pass:<a,<ps,t>>
+to:<a,<ps,t>>
+pre:<a,<ps,t>>
+pre:<a,<t,t>>
+post:<a,<t,t>>
+while:<a,<ps,t>>
+
+// Ordering
+bef:<a,<a,t>>
+
+/////////////////////////
+// Positions
+/////////////////////////
+
+// Map structures
+hall:<ps,t>
+intersection:<ps,t>
+corner:<ps,t>
+wall:<ps,t>
+deadend:<ps,t>
+t_intersection:<ps,t>
+
+// Wallpapers
+butterfly_w:<ps,t>
+eiffel_w:<ps,t>
+fish_w:<ps,t>
+
+// Floor patterns
+rose:<ps,t>
+wood:<ps,t>
+blue:<ps,t>
+stone:<ps,t>
+brick:<ps,t>
+grass:<ps,t>
+honeycomb:<ps,t>
+cement:<ps,t>
+
+// Furniture
+easel:<ps,t>
+sofa:<ps,t>
+hatrack:<ps,t>
+empty:<ps,t>
+chair:<ps,t>
+lamp:<ps,t>
+barstool:<ps,t>
+furniture:<ps,t>
+
+// Relative positions
+order:<<ps,t>,<<ps,n>,<n,ps>>>	// Returns the positions that are in the arg2 place according the ordering by arg1 of arg0
+distance:<ps,<ps,<n,t>>>	// Return true:t iff the minimum distance between arg0 and arg1 is arg2
+front:<ps,<ps,t>>		// Return true:t iff arg1 is infront of arg0
+middle:<ps,<ps,t>>		// Return true:t iff arg1 surrounds arg0 on at least two sides (left-right or front-back)
+intersect:<ps,<ps,t>>	// Return true:t iff the intersection of the two sets is not empty, approximates containment
+end:<ps,<ps,t>>			// Return true:t iff arg0 is the end of arg1, relatively to the agent position.
+
+// Special positions
+you:ps					// Agent position when execution of an action starts, may be different for actions in a sequence. Includes agent orientation, meaning: it's a singleton.
+x:ps					// Goal position
+y:ps					// Initial position
+orient:<ps,<dir,ps>>	// Return the oriented position arg0 according to the direction in arg1
+
+// Quantitative measures of positions
+frontdist:<ps,n>		// The distance of arg0 from the agent, only if arg0 is in front of the agent, otherwise infinity
+dist:<ps,n>				// The distance of arg0 from the agent
+
+)

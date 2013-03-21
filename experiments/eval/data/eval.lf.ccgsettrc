@@ -1,0 +1,369 @@
+TJS_Grid0_7_4_Dirs_1
+map=grid	efficiency=(0.44464275,0.2807776707337809)	implicit=True	numFollowers=4	confidence=(5.0,1.7320508075688772)	directionRating=(3.75,1.299038105676658)	x=4	annotated=True	targetFound=(0.75,0.4330127018922193)	y=7	valid=True	correct=True
+take a left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+LEFT(1,9,0);(1, 9, 270)
+take the blue hall to the grassy hall
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (while:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (blue:<ps,t> $1) (hall:<ps,t> $1))))) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (grass:<ps,t> $2) (hall:<ps,t> $2)))))))
+FORWARD[I](1,9,270);RIGHT[I](0,9,270);FORWARD(0,9,0);FORWARD(0,8,0);FORWARD(0,7,0);FORWARD(0,6,0);(0, 5, 0)
+then the grassy hall to the yellow hall until they intersect
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (while:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (grass:<ps,t> $1) (hall:<ps,t> $1))))) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (honeycomb:<ps,t> $2) (hall:<ps,t> $2)))))))
+RIGHT[I](0,5,0);FORWARD(0,5,90);FORWARD(1,5,90);FORWARD(2,5,90);(3, 5, 90)
+
+EDA_L0_6_3_Dirs_1
+map=l	efficiency=(1.0,0.0)	implicit=False	numFollowers=7	confidence=(5.857142857142857,0.3499271061118826)	directionRating=(5.857142857142857,0.3499271061118826)	x=3	annotated=True	targetFound=(1.0,0.0)	y=6	valid=True	correct=True
+turn to face the black corridor with the fish on either sides of the walls and an easel at the end
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (stone:<ps,t> $1) (hall:<ps,t> $1) (intersect:<ps,<ps,t>> (io:<<e,t>,e> fish_w:<ps,t>) $1)))))) (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (a:<<e,t>,e> (lambda $2:e (and:<t*,t> (easel:<ps,t> $2) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $3:e (end:<ps,<ps,t>> $3 (a:<<e,t>,e> hall:<ps,t>)))) $2))))))))
+LEFT(22,23,0);(22, 23, 270)
+walk forward once
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+FORWARD(22,23,270);(21, 23, 270)
+turn left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+LEFT(21,23,270);(21, 23, 180)
+walk forward once
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+FORWARD(21,23,180);(21, 24, 180)
+turn right
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+RIGHT(21,24,180);(21, 24, 270)
+walk forward twice
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 2:n)))
+FORWARD(21,24,270);FORWARD(20,24,270);(19, 24, 270)
+turn right
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+RIGHT(19,24,270);(19, 24, 0)
+walk forward once
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+FORWARD(19,24,0);(19, 23, 0)
+
+EDA_L0_2_6_Dirs_1
+map=l	efficiency=(0.75,0.4330127018922193)	implicit=False	numFollowers=4	confidence=(4.5,2.0615528128088303)	directionRating=(5.25,1.299038105676658)	x=6	annotated=True	targetFound=(0.75,0.4330127018922193)	y=2	valid=True	correct=True
+turn to face the long black hallway with the lamp at the end
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 (argmax:<<e,t>,<<e,n>,e>> (lambda $2:e (end:<ps,<ps,t>> $2 (a:<<e,t>,e> (lambda $3:e (and:<t*,t> (stone:<ps,t> $3) (hall:<ps,t> $3) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $4:e (and:<t*,t> (lamp:<ps,t> $4) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $5:e (end:<ps,<ps,t>> $5 (a:<<e,t>,e> hall:<ps,t>)))) $4)))) $3)))))) dist:<ps,n>))))))))
+RIGHT(21,23,0);(21, 23, 90)
+walk forward once
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+FORWARD(21,23,90);(22, 23, 90)
+
+KLS_L0_3_5_Dirs_1
+map=l	efficiency=(0.7692308,0.38920341040972395)	implicit=True	numFollowers=5	confidence=(5.8,0.4)	directionRating=(5.4,0.48989794855663565)	x=5	annotated=True	targetFound=(0.8,0.4)	y=3	valid=True	correct=True
+go until hall ends
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (to:<a,<ps,t>> $0 (a:<<e,t>,e> (lambda $1:e (end:<ps,<ps,t>> $1 (a:<<e,t>,e> hall:<ps,t>)))))))
+LEFT[I](19,23,0);LEFT[I](19,23,270);FORWARD(19,23,180);(19, 24, 180)
+take left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+LEFT(19,24,180);(19, 24, 90)
+take left again when hall ends
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir) (pre:<a,<ps,t>> $0 (a:<<e,t>,e> (lambda $1:e (end:<ps,<ps,t>> $1 (a:<<e,t>,e> hall:<ps,t>)))))))
+FORWARD[I](19,24,90);FORWARD[I](20,24,90);LEFT(21,24,90);(21, 24, 0)
+take a right at the first intersection
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir) (pre:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 (order:<<ps,t>,<<ps,n>,<n,ps>>> intersection:<ps,t> frontdist:<ps,n> 1:n)))))))
+FORWARD[I](21,24,0);RIGHT(21,23,0);(21, 23, 90)
+follow the black path until you come to an intersection of the red brick path
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (while:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (stone:<ps,t> $1) (hall:<ps,t> $1))))) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (a:<<e,t>,e> (lambda $2:e (and:<t*,t> (intersection:<ps,t> $2) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $3:e (and:<t*,t> (brick:<ps,t> $3) (hall:<ps,t> $3)))) $2)))) you:ps))))
+FORWARD(21,23,90);FORWARD(22,23,90);(23, 23, 90)
+take a left onto the red brick and go a ways down until you come to the section with the butterflies on the wall
+(lambda $0:a[] (and:<t*,t> (turn:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 0:ind) left:dir) (post:<a,<t,t>> (i:<a[],<ind,a>> $0 0:ind) (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (brick:<ps,t> $1) (hall:<ps,t> $1)))))) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (move:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) forward:dir) (post:<a,<t,t>> (i:<a[],<ind,a>> $0 1:ind) (intersect:<ps,<ps,t>> (io:<<e,t>,e> butterfly_w:<ps,t>) you:ps))))
+LEFT(23,23,90);FORWARD(23,23,0);FORWARD(23,22,0);FORWARD(23,21,0);FORWARD(23,20,0);(23, 19, 0)
+position x is the first section after you pass the lamp
+(and:<t*,t> (intersect:<ps,<ps,t>> (io:<<e,t>,e> intersection:<ps,t>) x:ps) (front:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps back:dir) (io:<<e,t>,e> lamp:<ps,t>)))
+FORWARD[I](23,19,0);(23, 18, 0)
+
+EMWC_Jelly0_1_4_Dirs_1
+map=jelly	efficiency=(0.8,0.0)	implicit=False	numFollowers=5	confidence=(6.0,0.0)	directionRating=(5.6,0.4898979485566356)	x=4	annotated=True	targetFound=(1.0,0.0)	y=1	valid=True	correct=True
+place your back to the wall of the t intersection
+(lambda $0:a (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (wall:<ps,t> $1) (intersect:<ps,<ps,t>> (io:<<e,t>,e> t_intersection:<ps,t>) $1)))) (orient:<ps,<dir,ps>> you:ps back:dir))))
+LEFT(19,16,0);LEFT(19,16,270);LEFT(19,16,180);LEFT(19,16,90);(19, 16, 0)
+turn right
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+RIGHT(19,16,0);(19, 16, 90)
+go forward one segment to the end of the hall
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (end:<ps,<ps,t>> $1 (io:<<e,t>,e> hall:<ps,t>)))))))
+FORWARD(19,16,90);(20, 16, 90)
+turn right
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+RIGHT(20,16,90);(20, 16, 180)
+go forward two segments to the blue-tiled hall
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 2:n) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (blue:<ps,t> $1) (hall:<ps,t> $1)))))))
+FORWARD(20,16,180);FORWARD(20,17,180);(20, 18, 180)
+turn right
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+RIGHT(20,18,180);(20, 18, 270)
+go forward to the intersection with the yellow-tiled hall
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (intersection:<ps,t> $1) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (honeycomb:<ps,t> $2) (hall:<ps,t> $2)))) $1)))))))
+FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+this intersection contains a hatrack
+(intersect:<ps,<ps,t>> (a:<<e,t>,e> hatrack:<ps,t>) (io:<<e,t>,e> intersection:<ps,t>))
+(15, 18, 270)
+turn left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+LEFT(15,18,270);(15, 18, 180)
+go forward two segments to the end of the hall
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 2:n) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (end:<ps,<ps,t>> $1 (io:<<e,t>,e> hall:<ps,t>)))))))
+FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+this is position x
+(intersect:<ps,<ps,t>> you:ps x:ps)
+(15, 20, 180)
+
+EMWC_Jelly0_5_7_Dirs_1
+map=jelly	efficiency=(0.8,0.4)	implicit=True	numFollowers=5	confidence=(4.2,1.9390719429665317)	directionRating=(3.6,1.4966629547095764)	x=7	annotated=True	targetFound=(0.8,0.4)	y=5	valid=True	correct=True
+face the easel
+(lambda $0:a (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> easel:<ps,t>))))
+LEFT(21,17,0);(21, 17, 270)
+go forward one segment
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+FORWARD(21,17,270);(20, 17, 270)
+turn left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+LEFT(20,17,270);(20, 17, 180)
+go forward one segment to the intersection with the blue-tiled hall
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (intersection:<ps,t> $1) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (blue:<ps,t> $2) (hall:<ps,t> $2)))) $1)))))))
+FORWARD(20,17,180);(20, 18, 180)
+turn right
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+RIGHT(20,18,180);(20, 18, 270)
+you will follow the blue-tiled hall past the intersection with the pink-flowered carpet hall
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (while:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (blue:<ps,t> $1) (hall:<ps,t> $1))))) (pass:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (intersection:<ps,t> $2) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $3:e (and:<t*,t> (rose:<ps,t> $3) (hall:<ps,t> $3)))) $2)))))))
+FORWARD(20,18,270);FORWARD(19,18,270);(18, 18, 270)
+to your right there will be a bare concrete hall
+(front:<ps,<ps,t>> (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (cement:<ps,t> $1) (hall:<ps,t> $1)))) (orient:<ps,<dir,ps>> you:ps right:dir))
+FORWARD[I](18,18,270);(17, 18, 270)
+one segment away there will be an intersection containing a stool in a stone hall
+(distance:<ps,<ps,<n,t>>> you:ps (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (intersection:<ps,t> $1) (intersect:<ps,<ps,t>> (a:<<e,t>,e> (lambda $2:e (and:<t*,t> (barstool:<ps,t> $2) (intersect:<ps,<ps,t>> (a:<<e,t>,e> (lambda $3:e (and:<t*,t> (stone:<ps,t> $3) (hall:<ps,t> $3)))) $2)))) $1)))) 1:n)
+(17, 18, 270)
+this is position x
+(intersect:<ps,<ps,t>> you:ps x:ps)
+(17, 18, 270)
+
+EDA_L0_2_3_Dirs_1
+map=l	efficiency=(0.8,0.4)	implicit=False	numFollowers=5	confidence=(5.0,2.0)	directionRating=(4.8,1.9390719429665317)	x=3	annotated=True	targetFound=(0.8,0.4)	y=2	valid=True	correct=True
+turn so to face the short yellow floored hallway
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 (argmin:<<e,t>,<<e,n>,e>> (lambda $2:e (end:<ps,<ps,t>> $2 (a:<<e,t>,e> (lambda $3:e (and:<t*,t> (honeycomb:<ps,t> $3) (hall:<ps,t> $3)))))) dist:<ps,n>))))))))
+LEFT(21,23,0);LEFT(21,23,270);(21, 23, 180)
+walk forward once
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+FORWARD(21,23,180);(21, 24, 180)
+there should be only once choice , to turn right , do so and walk forward twice
+(lambda $0:a[] (and:<t*,t> (turn:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 0:ind) right:dir) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (move:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) forward:dir) (len:<a,<n,t>> (i:<a[],<ind,a>> $0 1:ind) 2:n)))
+RIGHT(21,24,180);FORWARD(21,24,270);FORWARD(20,24,270);(19, 24, 270)
+again no choice but to turn right , do so and walk forward once
+(lambda $0:a[] (and:<t*,t> (turn:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 0:ind) right:dir) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (move:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) forward:dir) (len:<a,<n,t>> (i:<a[],<ind,a>> $0 1:ind) 1:n)))
+RIGHT(19,24,270);FORWARD(19,24,0);(19, 23, 0)
+
+EMWC_L0_2_4_Dirs_1
+map=l	efficiency=(0.4,0.48989794855663565)	implicit=False	numFollowers=5	confidence=(5.0,2.0)	directionRating=(5.0,2.0)	x=4	annotated=True	targetFound=(0.4,0.48989794855663565)	y=2	valid=True	correct=True
+orient yourself along the stone hall with your back away from the end of the hall containing the easel
+(lambda  $0:a (and:<t*,t> (turn:<a,t> $0) (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (stone:<ps,t> $1) (hall:<ps,t> $1)))))) (post:<a,<t,t>> $0 (front:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps back:dir) (io:<<e,t>,e> (lambda $3:e (and:<t*,t> (end:<ps,<ps,t>> $3 (io:<<e,t>,e> hall:<ps,t>)) (intersect:<ps,<ps,t>> (io:<<e,t>,e> easel:<ps,t>) $3))))))))
+RIGHT(21,23,0);(21, 23, 90)
+go forward three segments to the intersection with the blue-tiled hall
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 3:n) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (intersection:<ps,t> $1) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (blue:<ps,t> $2) (hall:<ps,t> $2)))) $1)))))))
+FORWARD(21,23,90);FORWARD(22,23,90);FORWARD(23,23,90);(24, 23, 90)
+there is a lamp in this interesection
+(exists:<<e,t>,t> (lambda $0:e (and:<t*,t> (lamp:<ps,t> $0) (intersect:<ps,<ps,t>> (io:<<e,t>,e> intersection:<ps,t>) $0))))
+(24, 23, 90)
+turn left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+LEFT(24,23,90);(24, 23, 0)
+go forward two segments , passing the chair , to the intersection with the pink-flowered carpet hall
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 2:n) (pass:<a,<ps,t>> $0 (io:<<e,t>,e> chair:<ps,t>)) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (intersection:<ps,t> $1) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (rose:<ps,t> $2) (hall:<ps,t> $2)))) $1)))))))
+FORWARD(24,23,0);FORWARD(24,22,0);(24, 21, 0)
+there is a bench two segments farther down the hall
+(distance:<ps,<ps,<n,t>>> you:ps (a:<<e,t>,e> sofa:<ps,t>) 2:n)
+(24, 21, 0)
+this is position x
+(intersect:<ps,<ps,t>> you:ps x:ps)
+(24, 21, 0)
+
+KXP_L0_5_3_Dirs_1
+map=l	efficiency=(0.0,0.0)	xalt=(21,24,180)	implicit=True	numFollowers=5	confidence=(3.8,1.9390719429665317)	directionRating=(3.2,1.7204650534085255)	x=3	annotated=True	targetFound=(0.0,0.0)	y=5	valid=True	correct=False
+make a left toward the longer end of the hallway
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir) (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $2:e (eq:<e,<e,t>> $2 (argmax:<<e,t>,<<e,n>,e>> (lambda $1:e (end:<ps,<ps,t>> $1 (io:<<e,t>,e> hall:<ps,t>))) dist:<ps,n>))))))))
+LEFT(23,18,0);LEFT(23,18,270);(23, 18, 180)
+make a right at the pink floored area to your right
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir) (pre:<a,<t,t>> $0 (front:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps right:dir) (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (rose:<ps,t> $1) (hall:<ps,t> $1))))))))
+FORWARD(23,18,180);FORWARD(23,19,180);FORWARD(23,20,180);RIGHT(23,21,180);(23, 21, 270)
+go forward then make a left
+(lambda $0:a[] (and:<t*,t> (move:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 0:ind) forward:dir) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (turn:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) left:dir)))
+FORWARD(23,21,270);FORWARD[I](22,21,270);LEFT(21,21,270);(21, 21, 180)
+keep going down this hallway to you get to the end
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (while:<a,<ps,t>> $0 (io:<<e,t>,e> hall:<ps,t>)) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $1:e (end:<ps,<ps,t>> $1 (a:<<e,t>,e> hall:<ps,t>)))) you:ps))))
+FORWARD(21,21,180);FORWARD(21,22,180);FORWARD(21,23,180);(21, 24, 180)
+
+KLS_Grid0_7_4_Dirs_1
+map=grid	efficiency=(0.8,0.4000000000000001)	implicit=False	numFollowers=5	confidence=(5.6,0.7999999999999999)	directionRating=(5.6,0.7999999999999999)	x=4	annotated=True	targetFound=(0.8,0.4000000000000001)	y=7	valid=True	correct=True
+take the red brick path straight towards the lamp and all the way until the end of the hall
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (while:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (brick:<ps,t> $1) (hall:<ps,t> $1))))) (dir:<a,<dir,t>> $0 forward:dir) (pre:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> lamp:<ps,t>))) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $2:e (end:<ps,<ps,t>> $2 (io:<<e,t>,e> hall:<ps,t>)))))))
+FORWARD(1,9,0);FORWARD(1,8,0);FORWARD(1,7,0);FORWARD(1,6,0);(1, 5, 0)
+at the intersection with the green path , take a right and again , go to the end of the hall where the corner meets with the yellow path
+(lambda $0:a[] (and:<t*,t> (pre:<a,<ps,t>> (i:<a[],<ind,a>> $0 0:ind) (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (intersection:<ps,t> $1) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (grass:<ps,t> $2) (hall:<ps,t> $2)))) $1))))) (turn:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 0:ind) right:dir) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (move:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (to:<a,<ps,t>> (i:<a[],<ind,a>> $0 1:ind) (io:<<e,t>,e> (lambda $3:e (and:<t*,t> (end:<ps,<ps,t>> $3 (io:<<e,t>,e> hall:<ps,t>)) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $4:e (and:<t*,t> (corner:<ps,t> $4) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $5:e (and:<t*,t> (honeycomb:<ps,t> $5) (hall:<ps,t> $5)))) $4)))) $3)))))))
+RIGHT(1,5,0);FORWARD(1,5,90);FORWARD(2,5,90);(3, 5, 90)
+this is position x
+(intersect:<ps,<ps,t>> you:ps x:ps)
+(3, 5, 90)
+
+EMWC_Jelly0_7_3_Dirs_1
+map=jelly	efficiency=(1.0,0.0)	implicit=False	numFollowers=6	confidence=(5.833333333333333,0.37267799624996495)	directionRating=(5.333333333333333,0.7453559924999298)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=7	x=3	correct=True
+place your back to the wall of the t intersection
+(lambda $0:a (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (wall:<ps,t> $1) (intersect:<ps,<ps,t>> (io:<<e,t>,e> t_intersection:<ps,t>) $1)))) (orient:<ps,<dir,ps>> you:ps back:dir))))
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+go forward one segment to the intersection with the blue-tiled hall
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (intersection:<ps,t> $1) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (blue:<ps,t> $2) (hall:<ps,t> $2)))) $1)))))))
+FORWARD(17,17,180);(17, 18, 180)
+this contains a chair
+(intersect:<ps,<ps,t>> (a:<<e,t>,e> chair:<ps,t>) you:ps)
+(17, 18, 180)
+turn right
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+RIGHT(17,18,180);(17, 18, 270)
+go forward one segment
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+FORWARD(17,18,270);(16, 18, 270)
+this is position x
+(intersect:<ps,<ps,t>> you:ps x:ps)
+(16, 18, 270)
+
+KXP_L0_4_7_Dirs_1
+map=l	efficiency=(0.8,0.4)	implicit=True	numFollowers=5	confidence=(4.8,0.9797958971132712)	directionRating=(4.4,0.8)	x=7	annotated=True	targetFound=(0.8,0.4)	y=4	valid=True	correct=True
+follow the pink floored area toward the fish walled area
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (while:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (rose:<ps,t> $1) (hall:<ps,t> $1))))) (pre:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> fish_w:<ps,t>)))))
+LEFT[I](24,21,0);FORWARD(24,21,270);(23, 21, 270)
+stop when the first fish hallway to your left appears
+(intersect:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps left:dir) (io:<<e,t>,e> (lambda $0:e (and:<t*,t> (fish_w:<ps,t> $0) (hall:<ps,t> $0)))))
+FORWARD[I](23,21,270);FORWARD[I](22,21,270);(21, 21, 270)
+
+EDA_Grid0_6_4_Dirs_1
+map=grid	efficiency=(1.0,0.0)	implicit=False	numFollowers=6	confidence=(5.5,0.5)	directionRating=(5.0,0.5773502691896257)	x=4	annotated=True	targetFound=(1.0,0.0)	y=6	valid=True	correct=True
+turn so the wall is on your back
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps back:dir) (a:<<e,t>,e> wall:<ps,t>)))))
+LEFT(2,7,0);LEFT(2,7,270);LEFT(2,7,180);LEFT(2,7,90);(2, 7, 0)
+walk forward twice
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 2:n)))
+FORWARD(2,7,0);FORWARD(2,6,0);(2, 5, 0)
+turn right
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+RIGHT(2,5,0);(2, 5, 90)
+walk forward once
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+FORWARD(2,5,90);(3, 5, 90)
+
+EMWC_Jelly0_2_1_Dirs_1
+map=jelly	efficiency=(0.9,0.1224744871391589)	implicit=True	numFollowers=5	confidence=(6.0,0.0)	directionRating=(6.0,0.0)	x=1	annotated=True	targetFound=(1.0,0.0)	y=2	valid=True	correct=True
+face the hatrack
+(lambda $0:a (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> hatrack:<ps,t>))))
+LEFT(23,16,0);LEFT(23,16,270);LEFT(23,16,180);LEFT(23,16,90);(23, 16, 0)
+go forward one segment to the intersection with the grassy hall
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (intersection:<ps,t> $2) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $3:e (and:<t*,t> (grass:<ps,t> $3) (hall:<ps,t> $3)))) $2)))))))
+FORWARD(23,16,0);(23, 15, 0)
+turn left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+LEFT(23,15,0);(23, 15, 270)
+go forward down the hall until a hall opens to your left
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (while:<a,<ps,t>> $0 (io:<<e,t>,e> hall:<ps,t>)) (post:<a,<t,t>> $0 (front:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps left:dir) (a:<<e,t>,e> hall:<ps,t>)))))
+FORWARD(23,15,270);FORWARD(22,15,270);FORWARD(21,15,270);FORWARD(20,15,270);(19, 15, 270)
+go forward one segment
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+LEFT[I](19,15,270);FORWARD(19,15,180);(19, 16, 180)
+there will be butterfly pictures to your left and eiffel tower pictures to your right
+(and:<t*,t> (intersect:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps left:dir) (a:<<e,t>,e> butterfly_w:<ps,t>)) (intersect:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps right:dir) (a:<<e,t>,e> eiffel_w:<ps,t>)))
+(19, 16, 180)
+this is position x
+(intersect:<ps,<ps,t>> you:ps x:ps)
+(19, 16, 180)
+
+KLS_Jelly0_2_3_Dirs_1
+map=jelly	efficiency=(0.8051948571428572,0.3381614712493885)	implicit=True	numFollowers=7	confidence=(5.857142857142857,0.3499271061118826)	directionRating=(5.571428571428571,0.7284313590846834)	x=3	annotated=True	targetFound=(0.8571428571428571,0.3499271061118826)	y=2	valid=True	correct=True
+go towards the lamp and at the corner , take a left
+(lambda $0:a[] (and:<t*,t> (move:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (pre:<a,<t,t>> (i:<a[],<ind,a>> $0 0:ind) (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> lamp:<ps,t>))) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (pre:<a,<ps,t>> (i:<a[],<ind,a>> $0 1:ind) (io:<<e,t>,e> corner:<ps,t>)) (turn:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) left:dir)))
+LEFT[I](23,16,0);FORWARD(23,16,270);LEFT(22,16,270);(22, 16, 180)
+go straight again , and at the next corner , take a right onto the wood path
+(lambda $0:a[] (and:<t*,t> (move:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (pre:<a,<ps,t>> (i:<a[],<ind,a>> $0 1:ind) (io:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 (order:<<ps,t>,<<ps,n>,<n,ps>>> corner:<ps,t> frontdist:<ps,n> 1:n))))) (turn:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) right:dir) (post:<a,<t,t>> (i:<a[],<ind,a>> $0 1:ind) (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (wood:<ps,t> $2) (hall:<ps,t> $2))))))))
+FORWARD(22,16,180);RIGHT(22,17,180);(22, 17, 270)
+go down to the easel , and take a left
+(lambda $0:a[] (and:<t*,t> (move:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 0:ind) forward:dir) (to:<a,<ps,t>> (i:<a[],<ind,a>> $0 0:ind) (io:<<e,t>,e> easel:<ps,t>)) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (turn:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) left:dir)))
+FORWARD(22,17,270);FORWARD(21,17,270);LEFT(20,17,270);(20, 17, 180)
+follow this path straight until you see the blue path
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (while:<a,<ps,t>> $0 (io:<<e,t>,e> hall:<ps,t>)) (dir:<a,<dir,t>> $0 forward:dir) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (blue:<ps,t> $1) (hall:<ps,t> $1)))) you:ps))))
+FORWARD(20,17,180);(20, 18, 180)
+take a right onto the blue path and go straight towards the coat rack
+(lambda $0:a[] (and:<t*,t> (turn:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 0:ind) right:dir) (post:<a,<t,t>> (i:<a[],<ind,a>> $0 0:ind) (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (blue:<ps,t> $1) (hall:<ps,t> $1)))))) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (move:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) forward:dir) (pre:<a,<t,t>> (i:<a[],<ind,a>> $0 1:ind) (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> hatrack:<ps,t>)))))
+RIGHT(20,18,180);FORWARD(20,18,270);(19, 18, 270)
+one intersection before the coat rack will be x
+(and:<t*,t> (distance:<ps,<ps,<n,t>>> (io:<<e,t>,e> hatrack:<ps,t>) x:ps 1:n) (front:<ps,<ps,t>> (io:<<e,t>,e> hatrack:<ps,t>) x:ps))
+(19, 18, 270)
+
+WLH_L0_4_2_Dirs_1
+map=l	efficiency=(0.66361425,0.2265171990957585)	implicit=True	numFollowers=4	confidence=(5.75,0.4330127018922193)	directionRating=(3.5,0.8660254037844386)	x=2	annotated=True	targetFound=(1.0,0.0)	y=4	valid=True	correct=True
+with your back to the wall move forward to the hatrack
+(lambda $0:a (and:<t*,t> (pre:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (a:<<e,t>,e> wall:<ps,t>) (orient:<ps,<dir,ps>> you:ps back:dir))) (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (to:<a,<ps,t>> $0 (io:<<e,t>,e> hatrack:<ps,t>))))
+LEFT[I](24,21,0);FORWARD(24,21,270);(23, 21, 270)
+turn left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+LEFT(23,21,270);(23, 21, 180)
+move along the brick alley til you reach the alley with the stone floor
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (while:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (brick:<ps,t> $1) (hall:<ps,t> $1))))) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $3:e (and:<t*,t> (intersection:<ps,t> $3) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (hall:<ps,t> $2) (stone:<ps,t> $2)))) $3)))) you:ps))))
+FORWARD(23,21,180);FORWARD(23,22,180);(23, 23, 180)
+turn left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+LEFT(23,23,180);(23, 23, 90)
+move along the stone floor till you reach the alley with green octagon carpet
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (while:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (stone:<ps,t> $1) (hall:<ps,t> $1))))) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (intersection:<ps,t> $2) (intersect:<ps,<ps,t>> (a:<<e,t>,e> (lambda $3:e (and:<t*,t> (honeycomb:<ps,t> $3) (hall:<ps,t> $3)))) $2)))) you:ps))))
+LEFT[I](23,23,90);LEFT[I](23,23,0);FORWARD(23,23,270);FORWARD(22,23,270);(21, 23, 270)
+there should be an easel one block in front of you
+(exists:<<e,t>,t> (lambda $0:e (eq:<e,<e,t>> $0 (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (easel:<ps,t> $1) (distance:<ps,<ps,<n,t>>> you:ps $1 1:n) (front:<ps,<ps,t>> you:ps $1)))))))
+(21, 23, 270)
+this is x
+(intersect:<ps,<ps,t>> you:ps x:ps)
+(21, 23, 270)
+
+KLS_Grid0_5_2_Dirs_1
+map=grid	efficiency=(0.968254,0.07776150137439478)	implicit=True	numFollowers=7	confidence=(5.428571428571429,1.3997084244475304)	directionRating=(5.285714285714286,0.8806305718527109)	x=2	annotated=True	targetFound=(1.0,0.0)	y=5	valid=True	correct=True
+go towards the coat rack
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (pre:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> hatrack:<ps,t>)))))
+LEFT[I](1,11,0);FORWARD(1,11,270);(0, 11, 270)
+at the coat rack , take a right onto the blue path
+(lambda $0:a (and:<t*,t> (pre:<a,<ps,t>> $0 (io:<<e,t>,e> hatrack:<ps,t>)) (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir) (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (blue:<ps,t> $1) (hall:<ps,t> $1))))))))
+RIGHT(0,11,270);(0, 11, 0)
+follow the blue path to the black path intersection and go right onto the black path
+(lambda $0:a[] (and:<t*,t> (while:<a,<ps,t>> (i:<a[],<ind,a>> $0 0:ind) (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (blue:<ps,t> $1) (hall:<ps,t> $1))))) (move:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (to:<a,<ps,t>> (i:<a[],<ind,a>> $0 0:ind) (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (intersection:<ps,t> $2) (intersect:<ps,<ps,t>> (a:<<e,t>,e> (lambda $4:e (and:<t*,t> (stone:<ps,t> $4) (hall:<ps,t> $4)))) $2))))) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (turn:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) right:dir) (post:<a,<t,t>> (i:<a[],<ind,a>> $0 1:ind) (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $3:e (and:<t*,t> (stone:<ps,t> $3) (hall:<ps,t> $3))))))))
+FORWARD(0,11,0);FORWARD(0,10,0);FORWARD(0,9,0);RIGHT(0,8,0);(0, 8, 90)
+go all the way down until you get to a black easel
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (a:<<e,t>,e> easel:<ps,t>) you:ps))))
+FORWARD(0,8,90);FORWARD(1,8,90);FORWARD(2,8,90);(3, 8, 90)
+this is x
+(intersect:<ps,<ps,t>> you:ps x:ps)
+(3, 8, 90)
+
+EDA_Jelly0_1_3_Dirs_1
+map=jelly	efficiency=(1.0,0.0)	implicit=False	numFollowers=5	confidence=(4.8,1.6)	directionRating=(4.8,1.6)	x=3	annotated=True	targetFound=(1.0,0.0)	y=1	valid=True	correct=True
+turn so that the wall is on your left side
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps left:dir) (a:<<e,t>,e> wall:<ps,t>)))))
+LEFT(19,16,0);(19, 16, 270)
+walk forward once
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+FORWARD(19,16,270);(18, 16, 270)
+turn left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+LEFT(18,16,270);(18, 16, 180)
+walk forward once
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+FORWARD(18,16,180);(18, 17, 180)
+turn right
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+RIGHT(18,17,180);(18, 17, 270)
+walk forward once
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+FORWARD(18,17,270);(17, 17, 270)
+turn left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+LEFT(17,17,270);(17, 17, 180)
+walk forward once
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+FORWARD(17,17,180);(17, 18, 180)
+turn right
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+RIGHT(17,18,180);(17, 18, 270)
+walk forward once
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+FORWARD(17,18,270);(16, 18, 270)
+

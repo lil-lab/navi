@@ -1,0 +1,17 @@
+include=../default.params
+include=dev.params
+outputDir=logs3
+globalLog=global.log
+
+# Resources
+include=../default.include.model.exp
+include=../default.include.genlex.exp
+include=dev.include.data.exp
+## Training and testing sets
+type=data.composite.trc id=train sets=fold0,fold1,fold2,fold4
+type=data.composite.ccgtrc id=test sets=fold3CCG
+type=data.composite.ccgsettrc id=testSet sets=fold3SetCCG
+include=../default.include.learn.exp
+
+# Jobs
+include=../default.include.jobs.exp

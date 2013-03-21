@@ -1,0 +1,17 @@
+include=../default.params
+include=params
+outputDir=logs-jelly
+globalLog=logs-jelly/global.log
+
+# Resources
+include=../default.include.model.exp
+include=../default.include.genlex.exp
+include=include.data.exp
+## Training and testing sets
+type=data.composite.trc id=train sets=fold-grid,fold-l
+type=data.composite.ccgtrc id=test sets=fold-jellyCCG
+type=data.composite.ccgsettrc id=testSet sets=fold-jellySetCCG
+include=../default.include.learn.exp
+
+# Jobs
+include=../default.include.jobs.exp

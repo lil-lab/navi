@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<map name="L" xplus="90" xminus="270" yplus="180" yminus="0">
+	<node x="19" y="23" id="3" item="" />
+	<node x="19" y="24" item="barstool" />
+	<node x="20" y="21" item="" />
+	<node x="20" y="22" item="" />
+	<node x="20" y="23" item="easel" />
+	<node x="20" y="24" item="chair" />
+	<node x="21" y="17" item="hatrack" />
+	<node x="21" y="21" id="7" item="" />
+	<node x="21" y="22" item="" />
+	<node x="21" y="23" id="2" item="" />
+	<node x="21" y="24" item="" />
+	<node x="22" y="17" id="1" item="sofa" />
+	<node x="22" y="18" item="" />
+	<node x="22" y="21" item="" />
+	<node x="22" y="22" item="" />
+	<node x="22" y="23" id="6" item="" />
+	<node x="22" y="24" item="sofa" />
+	<node x="23" y="16" item="" />
+	<node x="23" y="17" item="" />
+	<node x="23" y="18" id="5" item="" />
+	<node x="23" y="19" item="lamp" />
+	<node x="23" y="20" item="" />
+	<node x="23" y="21" item="hatrack" />
+	<node x="23" y="22" item="" />
+	<node x="23" y="23" item="" />
+	<node x="23" y="24" item="" />
+	<node x="24" y="17" item="" />
+	<node x="24" y="18" item="" />
+	<node x="24" y="19" item="sofa" />
+	<node x="24" y="20" item="" />
+	<node x="24" y="21" id="4" item="" />
+	<node x="24" y="22" item="chair" />
+	<node x="24" y="23" item="lamp" />
+	<node x="24" y="24" item="" />      
+
+	<edge node1="19,23" node2="19,24" wall="fish" floor="concrete" />
+	<edge node1="21,21" node2="21,22" wall="fish" floor="yellow" />
+	<edge node1="21,22" node2="21,23" wall="fish" floor="yellow" />
+	<edge node1="21,23" node2="21,24" wall="fish" floor="yellow" />     
+	<edge node1="22,17" node2="22,18" wall="butterfly" floor="concrete" />
+	<edge node1="22,22" node2="22,23" wall="fish" floor="concrete" />
+	<edge node1="22,23" node2="22,24" wall="fish" floor="concrete" />
+	<edge node1="23,16" node2="23,17" wall="butterfly" floor="brick" />
+	<edge node1="23,17" node2="23,18" wall="butterfly" floor="brick" />
+	<edge node1="23,18" node2="23,19" wall="butterfly" floor="brick" />
+	<edge node1="23,19" node2="23,20" wall="tower" floor="brick" />
+	<edge node1="23,20" node2="23,21" wall="tower" floor="brick" />
+	<edge node1="23,21" node2="23,22" wall="tower" floor="brick" />
+	<edge node1="23,22" node2="23,23" wall="tower" floor="brick" />
+	<edge node1="23,23" node2="23,24" wall="tower" floor="brick" />    
+	<edge node1="24,19" node2="24,20" wall="tower" floor="blue" />
+	<edge node1="24,20" node2="24,21" wall="tower" floor="blue" />
+	<edge node1="24,21" node2="24,22" wall="tower" floor="blue" />
+	<edge node1="24,22" node2="24,23" wall="tower" floor="blue" />
+	<edge node1="24,23" node2="24,24" wall="tower" floor="blue" />
+	<edge node1="21,17" node2="22,17" wall="butterfly" floor="wood" />
+	<edge node1="22,17" node2="23,17" wall="butterfly" floor="wood" />
+	<edge node1="23,17" node2="24,17" wall="butterfly" floor="wood" />            
+	<edge node1="23,18" node2="24,18" wall="butterfly" floor="concrete" />
+	<edge node1="23,19" node2="24,19" wall="tower" floor="concrete" />
+	<edge node1="20,21" node2="21,21" wall="fish" floor="flower" />
+	<edge node1="21,21" node2="22,21" wall="fish" floor="flower" />
+	<edge node1="22,21" node2="23,21" wall="tower" floor="flower" />
+	<edge node1="23,21" node2="24,21" wall="tower" floor="flower" />
+	<edge node1="20,22" node2="21,22" wall="fish" floor="grass" />
+	<edge node1="21,22" node2="22,22" wall="fish" floor="grass" />
+	<edge node1="22,22" node2="23,22" wall="fish" floor="grass" />
+	<edge node1="23,22" node2="24,22" wall="tower" floor="grass" />
+	<edge node1="20,23" node2="21,23" wall="fish" floor="gravel" />
+	<edge node1="21,23" node2="22,23" wall="fish" floor="gravel" />
+	<edge node1="22,23" node2="23,23" wall="fish" floor="gravel" />
+	<edge node1="23,23" node2="24,23" wall="tower" floor="gravel" />
+	<edge node1="19,24" node2="20,24" wall="fish" floor="concrete" />
+	<edge node1="20,24" node2="21,24" wall="fish" floor="concrete" />
+	<edge node1="23,24" node2="24,24" wall="tower" floor="concrete" />      
+</map>

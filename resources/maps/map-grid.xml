@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<map name="Grid" xplus="90" xminus="270" yminus="0" yplus="180">
+	<node x="0" y="5" item="" />
+	<node x="0" y="6" item="" />
+	<node x="0" y="7" item="chair" />
+	<node x="0" y="8" item="barstool" />
+	<node x="0" y="9" id="3" item="" />
+	<node x="0" y="10" item="sofa" />
+	<node x="0" y="11" item="hatrack" />
+	<node x="0" y="12" item="" />
+	<node x="1" y="5" item="hatrack" />
+	<node x="1" y="6" id="1" item="easel" />
+	<node x="1" y="7" item="lamp" />
+	<node x="1" y="8" item="" />
+	<node x="1" y="9" id="7" item="" />
+	<node x="1" y="10" item="chair" />
+	<node x="1" y="11" id="5" item="" />
+	<node x="1" y="12" item="" />
+	<node x="2" y="5" item="" />
+	<node x="2" y="6" item="" />
+	<node x="2" y="7" id="6" item="" />
+	<node x="2" y="8" item="" />
+	<node x="2" y="9" item="" />
+	<node x="2" y="10" item="" />
+	<node x="3" y="5" id="4" item="" />
+	<node x="3" y="6" item="sofa" />
+	<node x="3" y="7" item="" />
+	<node x="3" y="8" id="2" item="easel" />
+	<node x="4" y="7" item="" />
+	<node x="4" y="8" item="lamp" />
+
+	<edge node1="0,5" node2="0,6" wall="fish" floor="blue" />
+	<edge node1="0,6" node2="0,7" wall="fish" floor="blue" />
+	<edge node1="0,7" node2="0,8" wall="butterfly" floor="blue" />
+	<edge node1="0,8" node2="0,9" wall="butterfly" floor="blue" />
+	<edge node1="0,9" node2="0,10" wall="butterfly" floor="blue" />
+	<edge node1="0,10" node2="0,11" wall="butterfly" floor="blue" />
+	<edge node1="0,11" node2="0,12" wall="butterfly" floor="blue" />
+	<edge node1="1,5" node2="1,6" wall="fish" floor="brick" />
+	<edge node1="1,6" node2="1,7" wall="fish" floor="brick" />
+	<edge node1="1,7" node2="1,8" wall="tower" floor="brick" />
+	<edge node1="1,8" node2="1,9" wall="butterfly" floor="brick" />
+	<edge node1="1,9" node2="1,10" wall="butterfly" floor="brick" />
+	<edge node1="1,11" node2="1,12" wall="butterfly" floor="concrete" />
+	<edge node1="2,5" node2="2,6" wall="fish" floor="concrete" />
+	<edge node1="2,6" node2="2,7" wall="fish" floor="concrete" />
+	<edge node1="2,8" node2="2,9" wall="tower" floor="concrete" />
+	<edge node1="2,9" node2="2,10" wall="tower" floor="concrete" />
+	<edge node1="3,5" node2="3,6" wall="fish" floor="yellow" />
+	<edge node1="3,6" node2="3,7" wall="fish" floor="yellow" />
+	<edge node1="3,7" node2="3,8" wall="tower" floor="yellow" />
+	<edge node1="4,7" node2="4,8" wall="tower" floor="concrete" />
+	<edge node1="0,5" node2="1,5" wall="fish" floor="grass" />
+	<edge node1="1,5" node2="2,5" wall="fish" floor="grass" />
+	<edge node1="2,5" node2="3,5" wall="fish" floor="grass" />
+	<edge node1="0,6" node2="1,6" wall="fish" floor="flower" />
+	<edge node1="1,6" node2="2,6" wall="fish" floor="flower" />
+	<edge node1="2,6" node2="3,6" wall="fish" floor="flower" />
+	<edge node1="0,7" node2="1,7" wall="fish" floor="wood" />
+	<edge node1="1,7" node2="2,7" wall="tower" floor="wood" />
+	<edge node1="2,7" node2="3,7" wall="tower" floor="wood" />
+	<edge node1="0,8" node2="1,8" wall="butterfly" floor="gravel" />
+	<edge node1="1,8" node2="2,8" wall="tower" floor="gravel" />
+	<edge node1="2,8" node2="3,8" wall="tower" floor="gravel" />
+	<edge node1="3,8" node2="4,8" wall="tower" floor="gravel" />
+	<edge node1="0,9" node2="1,9" wall="butterfly" floor="concrete" />
+	<edge node1="1,9" node2="2,9" wall="tower" floor="concrete" />
+	<edge node1="0,10" node2="1,10" wall="butterfly" floor="concrete" />
+	<edge node1="1,10" node2="2,10" wall="butterfly" floor="concrete" />
+	<edge node1="0,11" node2="1,11" wall="butterfly" floor="concrete" />
+	<edge node1="0,12" node2="1,12" wall="butterfly" floor="concrete" />
+</map>

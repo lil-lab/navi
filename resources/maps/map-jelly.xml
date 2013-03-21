@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<map name="Jelly" xplus="90" xminus="270" yplus="180" yminus="0">
+	<node x="14" y="18" item="" />
+	<node x="14" y="19" item="lamp" />
+	<node x="14" y="20" item="" />
+	<node x="15" y="17" item="" />
+	<node x="15" y="18" item="hatrack" />
+	<node x="15" y="19" item="" />
+	<node x="15" y="20" id="4" item="" />
+	<node x="16" y="17" item="" />
+	<node x="16" y="18" id="3" item="" />
+	<node x="16" y="19" item="" />
+	<node x="17" y="15" item="" />
+	<node x="17" y="16" item="" />
+	<node x="17" y="17" id="7" item="barstool" />
+	<node x="17" y="18" item="chair" />
+	<node x="17" y="19" item="" />
+	<node x="18" y="15" item="" />
+	<node x="18" y="16" item="sofa" />
+	<node x="18" y="17" item="sofa" />
+	<node x="18" y="18" item="" />
+	<node x="18" y="19" id="6" item="" />
+	<node x="19" y="15" item="chair" />
+	<node x="19" y="16" id="1" item="" />
+	<node x="19" y="17" item="" />
+	<node x="19" y="18" item="" />
+	<node x="19" y="19" item="" />
+	<node x="19" y="20" item="easel" />
+	<node x="19" y="21" item="" />
+	<node x="20" y="15" item="" />
+	<node x="20" y="16" item="" />
+	<node x="20" y="17" item="easel" />
+	<node x="20" y="18" item="" />
+	<node x="21" y="15" item="" />
+	<node x="21" y="17" id="5" item="" />
+	<node x="22" y="15" item="" />
+	<node x="22" y="16" item="lamp" />
+	<node x="22" y="17" item="" />
+	<node x="23" y="15" item="hatrack" />
+	<node x="23" y="16" id="2" item="" />
+
+	<edge node1="14,19" node2="14,20" wall="fish" floor="concrete" />
+	<edge node1="15,17" node2="15,18" wall="fish" floor="yellow" />
+	<edge node1="15,18" node2="15,19" wall="fish" floor="yellow" />
+	<edge node1="15,19" node2="15,20" wall="fish" floor="yellow" />     
+	<edge node1="16,18" node2="16,19" wall="fish" floor="concrete" />
+	<edge node1="17,15" node2="17,16" wall="tower" floor="concrete" />
+	<edge node1="17,17" node2="17,18" wall="tower" floor="concrete" />
+	<edge node1="17,18" node2="17,19" wall="fish" floor="concrete" />
+	<edge node1="18,16" node2="18,17" wall="tower" floor="concrete" />
+	<edge node1="19,15" node2="19,16" wall="butterfly" floor="concrete" />
+	<edge node1="19,18" node2="19,19" wall="tower" floor="flower" />
+	<edge node1="19,19" node2="19,20" wall="tower" floor="flower" />
+	<edge node1="19,20" node2="19,21" wall="tower" floor="flower" />               
+	<edge node1="20,16" node2="20,17" wall="butterfly" floor="concrete" />
+	<edge node1="20,17" node2="20,18" wall="tower" floor="concrete" />
+	<edge node1="22,16" node2="22,17" wall="butterfly" floor="concrete" />
+	<edge node1="23,15" node2="23,16" wall="butterfly" floor="concrete" />
+	<edge node1="18,15" node2="19,15" wall="butterfly" floor="grass" />
+	<edge node1="19,15" node2="20,15" wall="butterfly" floor="grass" />
+	<edge node1="20,15" node2="21,15" wall="butterfly" floor="grass" />
+	<edge node1="21,15" node2="22,15" wall="butterfly" floor="grass" />
+	<edge node1="22,15" node2="23,15" wall="butterfly" floor="grass" />          
+	<edge node1="17,16" node2="18,16" wall="tower" floor="brick" />
+	<edge node1="18,16" node2="19,16" wall="tower" floor="brick" />
+	<edge node1="19,16" node2="20,16" wall="butterfly" floor="brick" />
+	<edge node1="22,16" node2="23,16" wall="butterfly" floor="concrete" />
+	<edge node1="15,17" node2="16,17" wall="fish" floor="gravel" />
+	<edge node1="16,17" node2="17,17" wall="fish" floor="gravel" />
+	<edge node1="17,17" node2="18,17" wall="tower" floor="gravel" />
+	<edge node1="19,17" node2="20,17" wall="tower" floor="wood" />
+	<edge node1="20,17" node2="21,17" wall="butterfly" floor="wood" />
+	<edge node1="21,17" node2="22,17" wall="butterfly" floor="wood" />
+	<edge node1="14,18" node2="15,18" wall="fish" floor="blue" />
+	<edge node1="15,18" node2="16,18" wall="fish" floor="blue" />
+	<edge node1="16,18" node2="17,18" wall="fish" floor="blue" />
+	<edge node1="17,18" node2="18,18" wall="tower" floor="blue" />
+	<edge node1="18,18" node2="19,18" wall="tower" floor="blue" />
+	<edge node1="19,18" node2="20,18" wall="tower" floor="blue" />
+	<edge node1="14,19" node2="15,19" wall="fish" floor="concrete" />
+	<edge node1="16,19" node2="17,19" wall="fish" floor="concrete" />
+	<edge node1="18,19" node2="19,19" wall="tower" floor="concrete" />     
+</map>

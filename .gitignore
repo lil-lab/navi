@@ -1,0 +1,14 @@
+.DS_Store
+*.pyc
+run.*
+
+bin/
+dist/
+build/
+build.src/
+
+# /navi/
+experiments/*/*/*.out
+experiments/*/*/*.log
+experiments/*/model
+

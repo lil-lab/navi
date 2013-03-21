@@ -1,0 +1,668 @@
+EDA_Jelly0_2_5_Dirs_1
+map=jelly	efficiency=(1.0,0.0)	implicit=False	numFollowers=6	confidence=(4.833333333333333,1.8633899812498247)	directionRating=(5.333333333333333,0.7453559924999298)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=2	x=5	correct=True
+turn so that the wall is facing your left and back
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (post:<a,<t,t>> $0 (and:<t*,t> (intersect:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps left:dir) (io:<<e,t>,e> wall:<ps,t>)) (intersect:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps back:dir) (io:<<e,t>,e> wall:<ps,t>))))))
+// turn :- S : turn:<a,t>
+// so that :- AP/S : (lambda $0:t (lambda $1:a (post:<a,<t,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// wall :- N : wall:<ps,t>
+// is facing :- S\NP/NP : intersect:<ps,<ps,t>>
+// your :- NP/NP : (lambda $0:m (orient:<ps,<dir,ps>> you:ps $0))
+// left :- NP : left:dir
+// and :- C : conj:c
+// back :- NP : back:dir
+LEFT(23,16,0);(23, 16, 270)
+walk forward once
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+// walk :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (move:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// forward :- NP : forward:dir
+// once :- AP : (lambda $0:a (len:<a,<n,t>> $0 1:n))
+FORWARD(23,16,270);(22, 16, 270)
+turn left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// left :- NP : left:dir
+LEFT(22,16,270);(22, 16, 180)
+walk forward once
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+// walk :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (move:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// forward :- NP : forward:dir
+// once :- AP : (lambda $0:a (len:<a,<n,t>> $0 1:n))
+FORWARD(22,16,180);(22, 17, 180)
+turn right
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// right :- NP : right:dir
+RIGHT(22,17,180);(22, 17, 270)
+walk forward once
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+// walk :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (move:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// forward :- NP : forward:dir
+// once :- AP : (lambda $0:a (len:<a,<n,t>> $0 1:n))
+FORWARD(22,17,270);(21, 17, 270)
+
+EDA_Jelly0_6_4_Dirs_1
+map=jelly	efficiency=(1.0,0.0)	implicit=True	numFollowers=4	confidence=(6.0,0.0)	directionRating=(5.0,1.224744871391589)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=6	x=4	correct=True
+only one direction to go
+(intersect:<ps,<ps,t>> you:ps (a:<<e,t>,e> deadend:<ps,t>))
+// only one direction :- N : deadend:<ps,t>
+// to go :- S\N : (lambda $0:<e,t> (intersect:<ps,<ps,t>> you:ps (a:<<e,t>,e> $0)))
+(18, 19, 0)
+walk forward once
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+// walk :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (move:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// forward :- NP : forward:dir
+// once :- AP : (lambda $0:a (len:<a,<n,t>> $0 1:n))
+RIGHT[I](18,19,0);FORWARD(18,19,90);(19, 19, 90)
+turn left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// left :- NP : left:dir
+LEFT(19,19,90);(19, 19, 0)
+walk forward once
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n)))
+// walk :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (move:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// forward :- NP : forward:dir
+// once :- AP : (lambda $0:a (len:<a,<n,t>> $0 1:n))
+FORWARD(19,19,0);(19, 18, 0)
+turn left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// left :- NP : left:dir
+LEFT(19,18,0);(19, 18, 270)
+walk forward about four times until you reach the yellow floors
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 4:n) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (honeycomb:<ps,t> $1)))) you:ps))))
+// walk :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (move:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// forward :- NP : forward:dir
+// about :- NP/NP : (lambda $0:m $0)
+// four :- NP : 4:n
+// times :- AP\NP : (lambda $0:m (lambda $1:a (len:<a,<n,t>> $1 $0)))
+// until :- AP/S : (lambda $0:t (lambda $1:a (post:<a,<t,t>> $1 $0)))
+// you :- NP : you:ps
+// reach :- S\NP/NP : intersect:<ps,<ps,t>>
+// the :- NP/N : io:<<e,t>,e>
+// yellow :- ADJ : honeycomb:<ps,t>
+// floors :- N : hall:<ps,t>
+FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+turn left at the yellow floors and walk to the end of the hall
+(lambda $0:a[] (and:<t*,t> (turn:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 0:ind) left:dir) (pre:<a,<ps,t>> (i:<a[],<ind,a>> $0 0:ind) (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (hall:<ps,t> $2) (honeycomb:<ps,t> $2))))) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (move:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (to:<a,<ps,t>> (i:<a[],<ind,a>> $0 1:ind) (io:<<e,t>,e> (lambda $1:e (end:<ps,<ps,t>> $1 (io:<<e,t>,e> hall:<ps,t>)))))))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// left :- NP : left:dir
+// at :- AP/NP : (lambda $0:e (lambda $1:a (pre:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// yellow :- ADJ : honeycomb:<ps,t>
+// floors :- N : hall:<ps,t>
+// and :- S\S/S : (lambda $0:<a,t> (lambda $1:<a,t> (lambda $2:a[] (and:<t*,t> ($1 (i:<a[],<ind,a>> $2 0:ind)) (bef:<a,<a,t>> (i:<a[],<ind,a>> $2 0:ind) (i:<a[],<ind,a>> $2 1:ind)) ($0 (i:<a[],<ind,a>> $2 1:ind))))))
+// walk :- S : move:<a,t>
+// to :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// end of :- N/NP : (lambda $0:e (lambda $1:e (end:<ps,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// hall :- N : hall:<ps,t>
+LEFT(15,18,270);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+EMWC_Jelly0_3_2_Dirs_1
+map=jelly	efficiency=(0.5,0.5)	implicit=False	numFollowers=4	confidence=(4.5,2.0615528128088303)	directionRating=(5.25,1.299038105676658)	annotated=True	targetFound=(0.5,0.5)	valid=True	y=3	x=2	correct=True
+place your back against the wall of the t intersection
+(lambda $0:a (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (wall:<ps,t> $1) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $2:e (t_intersection:<ps,t> $2))) $1)))) (orient:<ps,<dir,ps>> you:ps back:dir))))
+// place :- S/PP/NP : (lambda $0:e (lambda $1:<e,t> (lambda $2:a (post:<a,<t,t>> $2 ($1 $0)))))
+// your :- NP/NP : (lambda $0:m (orient:<ps,<dir,ps>> you:ps $0))
+// back :- NP : back:dir
+// against :- PP/NP : intersect:<ps,<ps,t>>
+// the :- NP/N : io:<<e,t>,e>
+// wall :- N : wall:<ps,t>
+// of :- PP/NP : intersect:<ps,<ps,t>>
+// the :- NP/N : io:<<e,t>,e>
+// t intersection :- N : t_intersection:<ps,t>
+LEFT(16,18,0);LEFT(16,18,270);(16, 18, 180)
+turn left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// left :- NP : left:dir
+LEFT(16,18,180);(16, 18, 90)
+go to the far end of the hall
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 (argmax:<<e,t>,<<e,n>,e>> (lambda $2:e (end:<ps,<ps,t>> $2 (io:<<e,t>,e> hall:<ps,t>))) dist:<ps,n>)))))))
+// go :- S : move:<a,t>
+// to :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// far :- N/N : (lambda $0:<e,t> (lambda $1:e (eq:<e,<e,t>> $1 (argmax:<<e,t>,<<e,n>,e>> $0 dist:<ps,n>))))
+// end of :- N/NP : (lambda $0:e (lambda $1:e (end:<ps,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// hall :- N : hall:<ps,t>
+FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// left :- NP : left:dir
+LEFT(20,18,90);(20, 18, 0)
+go forward one segment to the intersection with the wooden-floored hall
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (intersection:<ps,t> $1) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (wood:<ps,t> $2) (hall:<ps,t> $2)))) $1)))))))
+// go :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (move:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// forward :- NP : forward:dir
+// one :- NP : 1:n
+// segment :- AP\NP : (lambda $0:m (lambda $1:a (len:<a,<n,t>> $1 $0)))
+// to :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// intersection :- N : intersection:<ps,t>
+// with :- PP/NP : intersect:<ps,<ps,t>>
+// the :- NP/N : io:<<e,t>,e>
+// wooden-floored :- ADJ : wood:<ps,t>
+// hall :- N : hall:<ps,t>
+FORWARD(20,18,0);(20, 17, 0)
+this intersection contains an easel
+(intersect:<ps,<ps,t>> (a:<<e,t>,e> easel:<ps,t>) (io:<<e,t>,e> intersection:<ps,t>))
+// this :- NP/N : io:<<e,t>,e>
+// intersection :- N : intersection:<ps,t>
+// contains :- S\NP/NP : intersect:<ps,<ps,t>>
+// an :- NP/N : a:<<e,t>,e>
+// easel :- N : easel:<ps,t>
+(20, 17, 0)
+turn right
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// right :- NP : right:dir
+RIGHT(20,17,0);(20, 17, 90)
+go forward two segments to the end of the hall
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 2:n) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (end:<ps,<ps,t>> $1 (io:<<e,t>,e> hall:<ps,t>)))))))
+// go :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (move:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// forward :- NP : forward:dir
+// two :- NP : 2:n
+// segments :- AP\NP : (lambda $0:m (lambda $1:a (len:<a,<n,t>> $1 $0)))
+// to :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// end of :- N/NP : (lambda $0:e (lambda $1:e (end:<ps,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// hall :- N : hall:<ps,t>
+FORWARD(20,17,90);FORWARD(21,17,90);(22, 17, 90)
+turn left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// left :- NP : left:dir
+LEFT(22,17,90);(22, 17, 0)
+go forward one segment to the intersection containing the lamp
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (intersection:<ps,t> $1) (intersect:<ps,<ps,t>> (io:<<e,t>,e> lamp:<ps,t>) $1)))))))
+// go :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (move:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// forward :- NP : forward:dir
+// one :- NP : 1:n
+// segment :- AP\NP : (lambda $0:m (lambda $1:a (len:<a,<n,t>> $1 $0)))
+// to :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// intersection :- N : intersection:<ps,t>
+// containing :- PP/NP : intersect:<ps,<ps,t>>
+// the :- NP/N : io:<<e,t>,e>
+// lamp :- N : lamp:<ps,t>
+FORWARD(22,17,0);(22, 16, 0)
+turn right
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// right :- NP : right:dir
+RIGHT(22,16,0);(22, 16, 90)
+go forward one segment to the empty corner
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (corner:<ps,t> $1) (empty:<ps,t> $1)))))))
+// go :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (move:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// forward :- NP : forward:dir
+// one :- NP : 1:n
+// segment :- AP\NP : (lambda $0:m (lambda $1:a (len:<a,<n,t>> $1 $0)))
+// to :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// empty :- ADJ : empty:<ps,t>
+// corner :- N : corner:<ps,t>
+FORWARD(22,16,90);(23, 16, 90)
+this is position x
+(intersect:<ps,<ps,t>> x:ps (io:<<e,t>,e> (lambda $0:e true:t)))
+// this :- NP : (io:<<e,t>,e> (lambda $0:e true:t))
+// is :- S\NP/NP : intersect:<ps,<ps,t>>
+// position x :- NP : x:ps
+(23, 16, 90)
+
+EMWC_L0_4_3_Dirs_1
+map=l	efficiency=(0.8,0.4)	implicit=False	numFollowers=5	confidence=(5.0,2.0)	directionRating=(5.2,1.6)	annotated=True	targetFound=(0.8,0.4)	valid=True	y=4	x=3	correct=True
+face the pink-flowered carpet hallway
+(lambda $0:a (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (rose:<ps,t> $1) (hall:<ps,t> $1)))))))
+// face :- S/NP : (lambda $0:e (lambda $1:a (post:<a,<t,t>> $1 (front:<ps,<ps,t>> you:ps $0))))
+// the :- NP/N : io:<<e,t>,e>
+// pink-flowered :- ADJ : rose:<ps,t>
+// carpet hallway :- N : hall:<ps,t>
+LEFT(24,21,0);(24, 21, 270)
+go forward three segments to the intersection with the yellow-tiled hallway , passing the hatrack
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 3:n) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (intersection:<ps,t> $1) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (honeycomb:<ps,t> $2) (hall:<ps,t> $2)))) $1))))) (pass:<a,<ps,t>> $0 (io:<<e,t>,e> hatrack:<ps,t>))))
+// go :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (move:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// forward :- NP : forward:dir
+// three :- NP : 3:n
+// segments :- AP\NP : (lambda $0:m (lambda $1:a (len:<a,<n,t>> $1 $0)))
+// to :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// intersection :- N : intersection:<ps,t>
+// with :- PP/NP : intersect:<ps,<ps,t>>
+// the :- NP/N : io:<<e,t>,e>
+// yellow-tiled:- ADJ : honeycomb:<ps,t>
+// hallway :- N : hall:<ps,t>
+// , :- AP : (lambda $0:a true:t)
+// passing :- AP/NP : (lambda $0:e (lambda $1:a (pass:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// hatrack :- N : hatrack:<ps,t>
+FORWARD(24,21,270);FORWARD(23,21,270);FORWARD(22,21,270);(21, 21, 270)
+turn left
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// left :- NP : left:dir
+LEFT(21,21,270);(21, 21, 180)
+go forward three segments along the yellow-tiled hall to the intersection with a bare concrete floor
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 3:n) (while:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (honeycomb:<ps,t> $1) (hall:<ps,t> $1))))) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (intersection:<ps,t> $2) (intersect:<ps,<ps,t>> (a:<<e,t>,e> (lambda $3:e (and:<t*,t> (cement:<ps,t> $3) (hall:<ps,t> $3)))) $2)))))))
+// go :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (move:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// forward :- NP : forward:dir
+// three :- NP : 3:n
+// segments :- AP\NP : (lambda $0:m (lambda $1:a (len:<a,<n,t>> $1 $0)))
+// along :- AP/NP : (lambda $0:e (lambda $1:a (while:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// yellow-tiled:- ADJ : honeycomb:<ps,t>
+// hall :- N : hall:<ps,t>
+// to :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// intersection :- N : intersection:<ps,t>
+// with :- PP/NP : intersect:<ps,<ps,t>>
+// a :- NP/N : a:<<e,t>,e>
+// bare concrete :- ADJ : cement:<ps,t>
+// floor :- N : hall:<ps,t>
+FORWARD(21,21,180);FORWARD(21,22,180);FORWARD(21,23,180);(21, 24, 180)
+turn right
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// right :- NP : right:dir
+RIGHT(21,24,180);(21, 24, 270)
+go forward two segments to the intersection containing the stool , passing the chair
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 2:n) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (intersection:<ps,t> $1) (intersect:<ps,<ps,t>> (io:<<e,t>,e> barstool:<ps,t>) $1))))) (pass:<a,<ps,t>> $0 (io:<<e,t>,e> chair:<ps,t>))))
+// go :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (move:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// forward :- NP : forward:dir
+// two :- NP : 2:n
+// segments :- AP\NP : (lambda $0:m (lambda $1:a (len:<a,<n,t>> $1 $0)))
+// to :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// intersection :- N : intersection:<ps,t>
+// containing :- PP/NP : intersect:<ps,<ps,t>>
+// the :- NP/N : io:<<e,t>,e>
+// stool :- N : barstool:<ps,t>
+// , :- AP : (lambda $0:a true:t)
+// passing :- AP/NP : (lambda $0:e (lambda $1:a (pass:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// chair :- N : chair:<ps,t>
+FORWARD(21,24,270);FORWARD(20,24,270);(19, 24, 270)
+turn right
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// right :- NP : right:dir
+RIGHT(19,24,270);(19, 24, 0)
+go forward one segment to the dead end
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 1:n) (to:<a,<ps,t>> $0 (io:<<e,t>,e> deadend:<ps,t>))))
+// go :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (move:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// forward :- NP : forward:dir
+// one :- NP : 1:n
+// segment :- AP\NP : (lambda $0:m (lambda $1:a (len:<a,<n,t>> $1 $0)))
+// to :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// dead end :- N : deadend:<ps,t>
+FORWARD(19,24,0);(19, 23, 0)
+this is position x
+(intersect:<ps,<ps,t>> x:ps (io:<<e,t>,e> (lambda $0:e true:t)))
+// this :- NP : (io:<<e,t>,e> (lambda $0:e true:t))
+// is :- S\NP/NP : intersect:<ps,<ps,t>>
+// position x :- NP : x:ps
+(19, 23, 0)
+
+KLS_L0_5_6_Dirs_1
+map=l	efficiency=(0.9375,0.10825317547305482)	implicit=True	numFollowers=4	confidence=(5.5,0.8660254037844386)	directionRating=(5.0,1.0)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=5	x=6	correct=True
+take the red brick path towards the lamp all the way down to the intersection of the black path
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (while:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (brick:<ps,t> $1) (hall:<ps,t> $1))))) (pre:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> lamp:<ps,t>))) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (intersection:<ps,t> $2) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $3:e (and:<t*,t> (stone:<ps,t> $3) (hall:<ps,t> $3)))) $2)))))))
+// take :- S/NP : (lambda $0:e (lambda $1:a (and:<t*,t> (move:<a,t> $1) (while:<a,<ps,t>> $1 $0))))
+// the :- NP/N : io:<<e,t>,e>
+// red brick :- ADJ : brick:<ps,t>
+// path :- N : hall:<ps,t>
+// towards :- AP/NP : (lambda $0:e (lambda $1:a (pre:<a,<t,t>> $1 (front:<ps,<ps,t>> you:ps $0))))
+// the :- NP/N : io:<<e,t>,e>
+// lamp :- N : lamp:<ps,t>
+// all the way down to :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// intersection :- N : intersection:<ps,t>
+// of :- PP/NP : intersect:<ps,<ps,t>>
+// the :- NP/N : io:<<e,t>,e>
+// black :- ADJ : stone:<ps,t>
+// path :- N : hall:<ps,t>
+LEFT[I](23,18,0);LEFT[I](23,18,270);FORWARD(23,18,180);FORWARD(23,19,180);FORWARD(23,20,180);FORWARD(23,21,180);FORWARD(23,22,180);(23, 23, 180)
+take this black path until you reach the intersection with the white cement
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (while:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (stone:<ps,t> $1) (hall:<ps,t> $1))))) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (intersection:<ps,t> $2) (intersect:<ps,<ps,t>> (io:<<e,t>,e> cement:<ps,t>) $2)))) you:ps))))
+// take :- S/NP : (lambda $0:e (lambda $1:a (and:<t*,t> (move:<a,t> $1) (while:<a,<ps,t>> $1 $0))))
+// this :- NP/N : io:<<e,t>,e>
+// black :- ADJ : stone:<ps,t>
+// path :- N : hall:<ps,t>
+// until :- AP/S : (lambda $0:t (lambda $1:a (post:<a,<t,t>> $1 $0)))
+// you :- NP : you:ps
+// reach :- S\NP/NP : intersect:<ps,<ps,t>>
+// the :- NP/N : io:<<e,t>,e>
+// intersection :- N : intersection:<ps,t>
+// with :- PP/NP : intersect:<ps,<ps,t>>
+// the :- NP/N : io:<<e,t>,e>
+// white cement :- N : cement:<ps,t>
+RIGHT[I](23,23,180);FORWARD(23,23,270);(22, 23, 270)
+this is position x
+(intersect:<ps,<ps,t>> x:ps (io:<<e,t>,e> (lambda $0:e true:t)))
+// this :- NP : (io:<<e,t>,e> (lambda $0:e true:t))
+// is :- S\NP/NP : intersect:<ps,<ps,t>>
+// position x :- NP : x:ps
+(22, 23, 270)
+
+KLS_L0_6_1_Dirs_1
+map=l	efficiency=(1.0,0.0)	implicit=True	numFollowers=5	confidence=(5.8,0.39999999999999997)	directionRating=(4.0,0.8944271909999159)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=6	x=1	correct=True
+go towards an intersection with a red brick road
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (pre:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (intersection:<ps,t> $1) (intersect:<ps,<ps,t>> (a:<<e,t>,e> (lambda $2:e (and:<t*,t> (brick:<ps,t> $2) (hall:<ps,t> $2)))) $1))))))))
+// go :- S : move:<a,t>
+// towards :- AP/NP : (lambda $0:e (lambda $1:a (pre:<a,<t,t>> $1 (front:<ps,<ps,t>> you:ps $0))))
+// an :- NP/N : a:<<e,t>,e>
+// intersection :- N : intersection:<ps,t>
+// with :- PP/NP : intersect:<ps,<ps,t>>
+// a :- NP/N : a:<<e,t>,e>
+// red brick :- ADJ : brick:<ps,t>
+// road :- N : hall:<ps,t>
+RIGHT[I](22,23,0);FORWARD(22,23,90);(23, 23, 90)
+turn towards the direction on this path which leads to butterflies on the wall
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (intersect:<ps,<ps,t>> (a:<<e,t>,e> butterfly_w:<ps,t>) $1))))))))
+// turn :- S : turn:<a,t>
+// towards the direction on :- AP/NP : (lambda $0:e (lambda $1:a (post:<a,<t,t>> $1 (front:<ps,<ps,t>> you:ps $0))))
+// this :- NP/N : io:<<e,t>,e>
+// path :- N : hall:<ps,t>
+// which leads to :- PP/NP : intersect:<ps,<ps,t>>
+// butterflies on the wall :- NP : (a:<<e,t>,e> butterfly_w:<ps,t>)
+LEFT(23,23,90);(23, 23, 0)
+when you reach an intersection with a wood path , turn left
+(lambda $0:a (and:<t*,t> (pre:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (intersection:<ps,t> $1) (intersect:<ps,<ps,t>> (a:<<e,t>,e> (lambda $2:e (and:<t*,t> (wood:<ps,t> $2) (hall:<ps,t> $2)))) $1)))) you:ps)) (turn:<a,t> $0) (dir:<a,<dir,t>> $0 left:dir)))
+// when :- AP/S : (lambda $0:t (lambda $1:a (pre:<a,<t,t>> $1 $0)))
+// you :- NP : you:ps
+// reach :- S\NP/NP : intersect:<ps,<ps,t>>
+// an :- NP/N : a:<<e,t>,e>
+// intersection :- N : intersection:<ps,t>
+// with :- PP/NP : intersect:<ps,<ps,t>>
+// a :- NP/N : a:<<e,t>,e>
+// wood :- ADJ : wood:<ps,t>
+// path :- N : hall:<ps,t>
+// , :- AP : (lambda $0:a true:t)
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// left :- NP : left:dir
+FORWARD[I](23,23,0);FORWARD[I](23,22,0);FORWARD[I](23,21,0);FORWARD[I](23,20,0);FORWARD[I](23,19,0);FORWARD[I](23,18,0);LEFT(23,17,0);(23, 17, 270)
+once you hit a intersection with a bench , you are at position x
+(lambda $0:a (post:<a,<t,t>> $0 (and:<t*,t> (intersect:<ps,<ps,t>> (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (intersection:<ps,t> $1) (intersect:<ps,<ps,t>> (a:<<e,t>,e> sofa:<ps,t>) $1)))) you:ps) (intersect:<ps,<ps,t>> x:ps you:ps))))
+// once :- S/S/S : (lambda $0:t (lambda $1:t (lambda $2:a (post:<a,<t,t>> $2 (and:<t*,t> $0 $1)))))
+// you :- NP : you:ps
+// hit :- S\NP/NP : intersect:<ps,<ps,t>>
+// a :- NP/N : a:<<e,t>,e>
+// intersection :- N : intersection:<ps,t>
+// with :- PP/NP : intersect:<ps,<ps,t>>
+// a :- NP/N : a:<<e,t>,e>
+// bench :- N : sofa:<ps,t>
+// , :- S/S : (lambda $0:t $0)
+// you :- NP : you:ps
+// are at :- S\NP/NP : intersect:<ps,<ps,t>>
+// position x :- NP : x:ps
+FORWARD(23,17,270);(22, 17, 270)
+
+KXP_Jelly0_4_7_Dirs_1
+map=jelly	efficiency=(0.7111112,0.3950308279891077)	implicit=False	numFollowers=5	confidence=(4.8,1.469693845669907)	directionRating=(4.2,1.32664991614216)	annotated=True	targetFound=(0.8,0.4000000000000001)	valid=True	y=4	x=7	correct=True
+go out of the dead end you are in
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (pre:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (deadend:<ps,t> $1) (intersect:<ps,<ps,t>> you:ps $1)))))))
+// go :- S : move:<a,t>
+// out of :- AP/NP : (lambda $0:e (lambda $1:a (pre:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// dead end :- N : deadend:<ps,t>
+// you :- NP : you:ps
+// are in :- PP\NP : intersect:<ps,<ps,t>>
+FORWARD(15,20,0);(15, 19, 0)
+go to the other end of the hallway
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 (argmax:<<e,t>,<<e,n>,e>> (lambda $2:e (end:<ps,<ps,t>> $2 (io:<<e,t>,e> hall:<ps,t>))) dist:<ps,n>)))))))
+// go :- S : move:<a,t>
+// to :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// other :- N/N : (lambda $0:<e,t> (lambda $1:e (eq:<e,<e,t>> $1 (argmax:<<e,t>,<<e,n>,e>> $0 dist:<ps,n>))))
+// end of :- N/NP : (lambda $0:e (lambda $1:e (end:<ps,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// hallway :- N : hall:<ps,t>
+FORWARD(15,19,0);FORWARD(15,18,0);(15, 17, 0)
+make a right at the end
+(lambda $0:a (and:<t*,t> (dir:<a,<dir,t>> $0 right:dir) (pre:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (end:<ps,<ps,t>> $1 (io:<<e,t>,e> hall:<ps,t>)))))))
+// make a :- S/NP : (lambda $0:m (lambda $1:a (dir:<a,<dir,t>> $1 $0)))
+// right :- NP : right:dir
+// at :- AP/NP : (lambda $0:e (lambda $1:a (pre:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// end :- N : (lambda $0:e (end:<ps,<ps,t>> $0 (io:<<e,t>,e> hall:<ps,t>)))
+RIGHT(15,17,0);(15, 17, 90)
+keep going till you get to a piece of furniture
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (a:<<e,t>,e> furniture:<ps,t>) you:ps))))
+// keep going :- S : move:<a,t>
+// till :- AP/S : (lambda $0:t (lambda $1:a (post:<a,<t,t>> $1 $0)))
+// you :- NP : you:ps
+// get to :- S\NP/NP : intersect:<ps,<ps,t>>
+// a :- NP/N : a:<<e,t>,e>
+// piece of furniture :- N : furniture:<ps,t>
+FORWARD(15,17,90);FORWARD(16,17,90);(17, 17, 90)
+
+KXP_L0_7_3_Dirs_1
+map=l	efficiency=(0.2,0.4)	implicit=False	numFollowers=5	confidence=(5.8,0.39999999999999997)	directionRating=(4.4,1.0198039027185568)	annotated=True	targetFound=(0.2,0.4)	valid=True	y=7	x=3	correct=False	xalt=(21,24,180)
+face the longer end of the fish hallway with no pink on the floor
+(lambda $0:a (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 (argmax:<<e,t>,<<e,n>,e>> (lambda $2:e (end:<ps,<ps,t>> $2 (io:<<e,t>,e> (lambda $3:e (and:<t*,t> (fish_w:<ps,t> $3) (not:<t,t> (rose:<ps,t> $3))))))) dist:<ps,n>)))))))
+// face :- S/NP : (lambda $0:e (lambda $1:a (post:<a,<t,t>> $1 (front:<ps,<ps,t>> you:ps $0))))
+// the :- NP/N : io:<<e,t>,e>
+// longer end of :- N/NP : (lambda $0:e (lambda $1:e (eq:<e,<e,t>> $1 (argmax:<<e,t>,<<e,n>,e>> (lambda $2:e (end:<ps,<ps,t>> $2 $0)) dist:<ps,n>))))
+// the :- NP/N : io:<<e,t>,e>
+// fish hallway :- N : fish_w:<ps,t>
+// with no :- PP/N : (lambda $0:<e,t> (lambda $1:e (not:<t,t> ($0 $1))))
+// pink on the floor :- N : rose:<ps,t>
+LEFT(21,21,0);LEFT(21,21,270);(21, 21, 180)
+follow this all the way down
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (to:<a,<ps,t>> $0 (a:<<e,t>,e> wall:<ps,t>))))
+// follow this :- S : move:<a,t>
+// all the way down :- AP : (lambda $0:a (to:<a,<ps,t>> $0 (a:<<e,t>,e> wall:<ps,t>)))
+FORWARD(21,21,180);FORWARD(21,22,180);FORWARD(21,23,180);(21, 24, 180)
+
+TJS_L0_3_4_Dirs_1
+map=l	efficiency=(0.6857141999999999,0.4080816784989985)	implicit=True	numFollowers=5	confidence=(4.8,1.9390719429665317)	directionRating=(3.0,1.0954451150103324)	annotated=True	targetFound=(0.8,0.4)	valid=True	y=3	x=4	correct=True
+go all the way down the winding hall
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (while:<a,<ps,t>> $0 (io:<<e,t>,e> hall:<ps,t>))))
+// go :- S : move:<a,t>
+// all the way down :- AP/NP : (lambda $0:e (lambda $1:a (while:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// winding hall :- N : hall:<ps,t>
+LEFT[I](19,23,0);LEFT[I](19,23,270);FORWARD(19,23,180);(19, 24, 180)
+take a right ?
+(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+// take a :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// right :- NP : right:dir
+// ? :- S\S : (lambda $0:<a,t> $0)
+LEFT[I](19,24,180);FORWARD[I](19,24,90);FORWARD[I](20,24,90);LEFT[I](21,24,90);FORWARD[I](21,24,0);RIGHT(21,23,0);(21, 23, 90)
+go down that hall until you get to the blue hall , then position x is at the intersection of the blue and rose floored halls
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (while:<a,<ps,t>> $0 (io:<<e,t>,e> hall:<ps,t>)) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (blue:<ps,t> $1) (hall:<ps,t> $1)))) you:ps)) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (intersection:<ps,t> $2) (intersect:<ps,<ps,t>> (io:<<e,t>,e> blue:<ps,t>) $2) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $4:e (and:<t*,t> (rose:<ps,t> $4) (hall:<ps,t> $4)))) $2)))) x:ps))))
+// go :- S : move:<a,t>
+// down :- AP/NP : (lambda $0:e (lambda $1:a (while:<a,<ps,t>> $1 $0)))
+// that :- NP/N : io:<<e,t>,e>
+// hall :- N : hall:<ps,t>
+// until :- AP/S : (lambda $0:t (lambda $1:a (post:<a,<t,t>> $1 $0)))
+// you :- NP : you:ps
+// get to :- S\NP/NP : intersect:<ps,<ps,t>>
+// the :- NP/N : io:<<e,t>,e>
+// blue :- ADJ : blue:<ps,t>
+// hall :- N : hall:<ps,t>
+// , :- AP : (lambda $0:a true:t)
+// then :- AP/S : (lambda $0:t (lambda $1:a (post:<a,<t,t>> $1 $0)))
+// position x :- NP : x:ps
+// is at :- S\NP/NP : intersect:<ps,<ps,t>>
+// the :- NP/N : io:<<e,t>,e>
+// intersection :- N : intersection:<ps,t>
+// of :- PP/NP : intersect:<ps,<ps,t>>
+// the :- NP/N : io:<<e,t>,e>
+// blue :- N : blue:<ps,t>
+// and :- C : conj:c
+// rose floored :- ADJ : rose:<ps,t>
+// halls :- N : hall:<ps,t>
+FORWARD(21,23,90);FORWARD(22,23,90);FORWARD(23,23,90);(24, 23, 90)
+
+TJS_L0_5_1_Dirs_1
+map=l	efficiency=(0.6428571428571429,0.44031528592635544)	implicit=True	numFollowers=7	confidence=(4.571428571428571,1.9897697538834458)	directionRating=(4.285714285714286,1.1605769149479943)	annotated=True	targetFound=(0.7142857142857143,0.45175395145262565)	valid=True	y=5	x=1	correct=True
+take a left down the red hall , then turn onto the wood floor hall , then x has a bench on its spot
+(lambda $0:a[] (and:<t*,t> (turn:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 0:ind) left:dir) (post:<a,<t,t>> (i:<a[],<ind,a>> $0 0:ind) (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (brick:<ps,t> $1)))))) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (turn:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (post:<a,<t,t>> (i:<a[],<ind,a>> $0 1:ind) (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (wood:<ps,t> $2) (hall:<ps,t> $2)))))) (post:<a,<t,t>> (i:<a[],<ind,a>> $0 1:ind) (intersect:<ps,<ps,t>> (a:<<e,t>,e> sofa:<ps,t>) x:ps))))
+// take a :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// left :- NP : left:dir
+// down :- AP/NP : (lambda $0:e (lambda $1:a (post:<a,<t,t>> $1 (front:<ps,<ps,t>> you:ps $0))))
+// the :- NP/N : io:<<e,t>,e>
+// red :- ADJ : brick:<ps,t>
+// hall :- N : hall:<ps,t>
+// , :- AP : (lambda $0:a true:t)
+// then :- S\S/S : (lambda $0:<a,t> (lambda $1:<a,t> (lambda $2:a[] (and:<t*,t> ($1 (i:<a[],<ind,a>> $2 0:ind)) (bef:<a,<a,t>> (i:<a[],<ind,a>> $2 0:ind) (i:<a[],<ind,a>> $2 1:ind)) ($0 (i:<a[],<ind,a>> $2 1:ind))))))
+// turn :- S : turn:<a,t>
+// onto :- AP/NP : (lambda $0:e (lambda $1:a (post:<a,<t,t>> $1 (front:<ps,<ps,t>> you:ps $0))))
+// the :- NP/N : io:<<e,t>,e>
+// wood floor :- ADJ : wood:<ps,t>
+// hall :- N : hall:<ps,t>
+// , :- AP : (lambda $0:a true:t)
+// then :- AP/S : (lambda $0:t (lambda $1:a (post:<a,<t,t>> $1 $0)))
+// x :- NP : x:ps
+// has :- S\NP/NP : intersect:<ps,<ps,t>>
+// a :- NP/N : a:<<e,t>,e>
+// bench :- N : sofa:<ps,t>
+// on its spot :- PP : (lambda $0:e true:t)
+RIGHT[I](23,18,0);LEFT(23,18,90);FORWARD[I](23,18,0);LEFT(23,17,0);(23, 17, 270)
+
+WLH_Jelly0_2_4_Dirs_1
+map=jelly	efficiency=(0.8190477999999999,0.07619039999999999)	implicit=True	numFollowers=5	confidence=(5.6,0.8)	directionRating=(5.4,0.8)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=2	x=4	correct=True
+face and move to the hatrack
+(lambda $0:a[] (and:<t*,t> (post:<a,<t,t>> (i:<a[],<ind,a>> $0 0:ind) (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> hatrack:<ps,t>))) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (move:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (to:<a,<ps,t>> (i:<a[],<ind,a>> $0 1:ind) (io:<<e,t>,e> hatrack:<ps,t>))))
+// face :- S/NP : (lambda $0:e (lambda $1:a (post:<a,<t,t>> $1 (front:<ps,<ps,t>> you:ps $0))))
+// and :- S/NP\(S/NP)/(S/NP) : (lambda $0:<e,<a,t>> (lambda $1:<e,<a,t>> (lambda $2:e (lambda $3:a[] (and:<t*,t> ($1 $2 (i:<a[],<ind,a>> $3 0:ind)) (bef:<a,<a,t>> (i:<a[],<ind,a>> $3 0:ind) (i:<a[],<ind,a>> $3 1:ind)) ($0 $2 (i:<a[],<ind,a>> $3 1:ind)))))))
+// move :- S : move:<a,t>
+// to :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// hatrack :- N : hatrack:<ps,t>
+LEFT(23,16,0);LEFT(23,16,270);LEFT(23,16,180);LEFT(23,16,90);FORWARD(23,16,0);(23, 15, 0)
+turn left and walk to the along the grass to the chair
+(lambda $0:a[] (and:<t*,t> (turn:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 0:ind) left:dir) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (move:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (while:<a,<ps,t>> (i:<a[],<ind,a>> $0 1:ind) (io:<<e,t>,e> grass:<ps,t>)) (to:<a,<ps,t>> (i:<a[],<ind,a>> $0 1:ind) (io:<<e,t>,e> chair:<ps,t>))))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// left :- NP : left:dir
+// and :- S\S/S : (lambda $0:<a,t> (lambda $1:<a,t> (lambda $2:a[] (and:<t*,t> ($1 (i:<a[],<ind,a>> $2 0:ind)) (bef:<a,<a,t>> (i:<a[],<ind,a>> $2 0:ind) (i:<a[],<ind,a>> $2 1:ind)) ($0 (i:<a[],<ind,a>> $2 1:ind))))))
+// walk :- S : move:<a,t>
+// to the along :- AP/NP : (lambda $0:e (lambda $1:a (while:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// grass :- N : grass:<ps,t>
+// to :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// chair :- N : chair:<ps,t>
+LEFT(23,15,0);FORWARD(23,15,270);FORWARD(22,15,270);FORWARD(21,15,270);FORWARD(20,15,270);(19, 15, 270)
+turn left at the chair and turn right at the next intersection
+(lambda $0:a[] (and:<t*,t> (turn:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 0:ind) left:dir) (pre:<a,<ps,t>> (i:<a[],<ind,a>> $0 0:ind) (io:<<e,t>,e> chair:<ps,t>)) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (turn:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) right:dir) (pre:<a,<ps,t>> (i:<a[],<ind,a>> $0 1:ind) (io:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 (order:<<ps,t>,<<ps,n>,<n,ps>>> intersection:<ps,t> frontdist:<ps,n> 1:n)))))))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// left :- NP : left:dir
+// at :- AP/NP : (lambda $0:e (lambda $1:a (pre:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// chair :- N : chair:<ps,t>
+// and :- S\S/S : (lambda $0:<a,t> (lambda $1:<a,t> (lambda $2:a[] (and:<t*,t> ($1 (i:<a[],<ind,a>> $2 0:ind)) (bef:<a,<a,t>> (i:<a[],<ind,a>> $2 0:ind) (i:<a[],<ind,a>> $2 1:ind)) ($0 (i:<a[],<ind,a>> $2 1:ind))))))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// right :- NP : right:dir
+// at :- AP/NP : (lambda $0:e (lambda $1:a (pre:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// next :- N/N : (lambda $0:<e,t> (lambda $1:e (eq:<e,<e,t>> $1 (order:<<ps,t>,<<ps,n>,<n,ps>>> $0 frontdist:<ps,n> 1:n))))
+// intersection :- N : intersection:<ps,t>
+LEFT(19,15,270);FORWARD[I](19,15,180);RIGHT(19,16,180);(19, 16, 270)
+turn left at the sofa chair and right at the next sofa chair
+(lambda $0:a[] (and:<t*,t> (turn:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 0:ind) left:dir) (pre:<a,<ps,t>> (i:<a[],<ind,a>> $0 0:ind) (io:<<e,t>,e> sofa:<ps,t>)) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) right:dir) (pre:<a,<ps,t>> (i:<a[],<ind,a>> $0 1:ind) (io:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 (order:<<ps,t>,<<ps,n>,<n,ps>>> sofa:<ps,t> frontdist:<ps,n> 1:n)))))))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// left :- NP : left:dir
+// at :- AP/NP : (lambda $0:e (lambda $1:a (pre:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// sofa chair :- N : sofa:<ps,t>
+// and :- S\S/S : (lambda $0:<a,t> (lambda $1:<a,t> (lambda $2:a[] (and:<t*,t> ($1 (i:<a[],<ind,a>> $2 0:ind)) (bef:<a,<a,t>> (i:<a[],<ind,a>> $2 0:ind) (i:<a[],<ind,a>> $2 1:ind)) ($0 (i:<a[],<ind,a>> $2 1:ind))))))
+// right :- S : (lambda $0:a (dir:<a,<dir,t>> $0 right:dir))
+// at :- AP/NP : (lambda $0:e (lambda $1:a (pre:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// next :- N/N : (lambda $0:<e,t> (lambda $1:e (eq:<e,<e,t>> $1 (order:<<ps,t>,<<ps,n>,<n,ps>>> $0 frontdist:<ps,n> 1:n))))
+// sofa chair :- N : sofa:<ps,t>
+FORWARD[I](19,16,270);LEFT(18,16,270);FORWARD[I](18,16,180);RIGHT(18,17,180);(18, 17, 270)
+move along the stone flooring to the end
+(lambda $0:a (and:<t*,t> (move:<a,t> $0) (while:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (stone:<ps,t> $1) (hall:<ps,t> $1))))) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $2:e (end:<ps,<ps,t>> $2 (io:<<e,t>,e> hall:<ps,t>)))))))
+// move :- S : move:<a,t>
+// along :- AP/NP : (lambda $0:e (lambda $1:a (while:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// stone :- ADJ : stone:<ps,t>
+// flooring :- N : hall:<ps,t>
+// to :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// end :- N : (lambda $0:e (end:<ps,<ps,t>> $0 (io:<<e,t>,e> hall:<ps,t>)))
+FORWARD(18,17,270);FORWARD(17,17,270);FORWARD(16,17,270);(15, 17, 270)
+turn left and move along the octagons past the hatrack to the end of this alley
+(lambda $0:a[] (and:<t*,t> (turn:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 0:ind) left:dir) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (move:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (while:<a,<ps,t>> (i:<a[],<ind,a>> $0 1:ind) (io:<<e,t>,e> honeycomb:<ps,t>)) (pass:<a,<ps,t>> (i:<a[],<ind,a>> $0 1:ind) (io:<<e,t>,e> hatrack:<ps,t>)) (to:<a,<ps,t>> (i:<a[],<ind,a>> $0 1:ind) (io:<<e,t>,e> (lambda $2:e (end:<ps,<ps,t>> $2 (io:<<e,t>,e> hall:<ps,t>)))))))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// left :- NP : left:dir
+// and :- S\S/S : (lambda $0:<a,t> (lambda $1:<a,t> (lambda $2:a[] (and:<t*,t> ($1 (i:<a[],<ind,a>> $2 0:ind)) (bef:<a,<a,t>> (i:<a[],<ind,a>> $2 0:ind) (i:<a[],<ind,a>> $2 1:ind)) ($0 (i:<a[],<ind,a>> $2 1:ind))))))
+// move :- S : move:<a,t>
+// along :- AP/NP : (lambda $0:e (lambda $1:a (while:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// octagons :- N : honeycomb:<ps,t>
+// past :- AP/NP : (lambda $0:e (lambda $1:a (pass:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// hatrack :- N : hatrack:<ps,t>
+// to :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// end of :- N/NP : (lambda $0:e (lambda $1:e (end:<ps,<ps,t>> $1 $0)))
+// this :- NP/N : io:<<e,t>,e>
+// alley :- N : hall:<ps,t>
+LEFT(15,17,270);FORWARD(15,17,180);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+this is x
+(intersect:<ps,<ps,t>> x:ps (io:<<e,t>,e> (lambda $0:e true:t)))
+// this :- NP : (io:<<e,t>,e> (lambda $0:e true:t))
+// is :- S\NP/NP : intersect:<ps,<ps,t>>
+// x :- NP : x:ps
+(15, 20, 180)
+
+WLH_Jelly0_5_2_Dirs_1
+map=jelly	efficiency=(0.6571428571428571,0.43705881545081016)	implicit=True	numFollowers=7	confidence=(5.0,1.6903085094570331)	directionRating=(4.857142857142857,1.6413036132965795)	annotated=True	targetFound=(0.7142857142857143,0.45175395145262565)	valid=True	y=5	x=2	correct=True
+with your back to the easel move into the corner and turn left
+(lambda $0:a[] (and:<t*,t> (pre:<a,<t,t>> (i:<a[],<ind,a>> $0 0:ind) (front:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps back:dir) (io:<<e,t>,e> easel:<ps,t>))) (move:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (to:<a,<ps,t>> (i:<a[],<ind,a>> $0 0:ind) (io:<<e,t>,e> corner:<ps,t>)) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (turn:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) left:dir)))
+// with :- AP/S : (lambda $0:t (lambda $1:a (pre:<a,<t,t>> $1 $0)))
+// your :- NP/NP : (lambda $0:m (orient:<ps,<dir,ps>> you:ps $0))
+// back :- NP : back:dir
+// to :- S\NP/NP : (lambda $0:e (lambda $1:e (front:<ps,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// easel :- N : easel:<ps,t>
+// move :- S : move:<a,t>
+// into :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// corner :- N : corner:<ps,t>
+// and :- S\S/S : (lambda $0:<a,t> (lambda $1:<a,t> (lambda $2:a[] (and:<t*,t> ($1 (i:<a[],<ind,a>> $2 0:ind)) (bef:<a,<a,t>> (i:<a[],<ind,a>> $2 0:ind) (i:<a[],<ind,a>> $2 1:ind)) ($0 (i:<a[],<ind,a>> $2 1:ind))))))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// left :- NP : left:dir
+RIGHT[I](21,17,0);FORWARD(21,17,90);LEFT(22,17,90);(22, 17, 0)
+at the lamp turn right
+(lambda $0:a (and:<t*,t> (pre:<a,<ps,t>> $0 (io:<<e,t>,e> lamp:<ps,t>)) (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir)))
+// at :- AP/NP : (lambda $0:e (lambda $1:a (pre:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// lamp :- N : lamp:<ps,t>
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// right :- NP : right:dir
+FORWARD[I](22,17,0);RIGHT(22,16,0);(22, 16, 90)
+move into the corner and turn left
+(lambda $0:a[] (and:<t*,t> (move:<a,t> (i:<a[],<ind,a>> $0 0:ind)) (to:<a,<ps,t>> (i:<a[],<ind,a>> $0 0:ind) (io:<<e,t>,e> corner:<ps,t>)) (bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) (turn:<a,t> (i:<a[],<ind,a>> $0 1:ind)) (dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) left:dir)))
+// move :- S : move:<a,t>
+// into :- AP/NP : (lambda $0:e (lambda $1:a (to:<a,<ps,t>> $1 $0)))
+// the :- NP/N : io:<<e,t>,e>
+// corner :- N : corner:<ps,t>
+// and :- S\S/S : (lambda $0:<a,t> (lambda $1:<a,t> (lambda $2:a[] (and:<t*,t> ($1 (i:<a[],<ind,a>> $2 0:ind)) (bef:<a,<a,t>> (i:<a[],<ind,a>> $2 0:ind) (i:<a[],<ind,a>> $2 1:ind)) ($0 (i:<a[],<ind,a>> $2 1:ind))))))
+// turn :- S/NP : (lambda $0:m (lambda $1:a (and:<t*,t> (turn:<a,t> $1) (dir:<a,<dir,t>> $1 $0))))
+// left :- NP : left:dir
+FORWARD(22,16,90);LEFT(23,16,90);(23, 16, 0)
+you see a hatrack
+(front:<ps,<ps,t>> you:ps (a:<<e,t>,e> hatrack:<ps,t>))
+// you :- NP : you:ps
+// see :- S\NP/NP : (lambda $0:e (lambda $1:e (front:<ps,<ps,t>> $1 $0)))
+// a :- NP/N : a:<<e,t>,e>
+// hatrack :- N : hatrack:<ps,t>
+(23, 16, 0)
+this is x
+(intersect:<ps,<ps,t>> x:ps (io:<<e,t>,e> (lambda $0:e true:t)))
+// this :- NP : (io:<<e,t>,e> (lambda $0:e true:t))
+// is :- S\NP/NP : intersect:<ps,<ps,t>>
+// x :- NP : x:ps
+(23, 16, 0)
+

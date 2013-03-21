@@ -1,0 +1,1098 @@
+EDA_L0_7_1_Dirs_1
+map=l	efficiency=(1.0,0.0)	implicit=False	numFollowers=5	confidence=(5.4,0.8)	directionRating=(5.4,0.8)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=7	x=1	correct=True
+turn so that the wall is on your left side
+you:ps
+RIGHT(21,21,0);(21, 21, 90)
+walk forward twice
+you:ps
+FORWARD(21,21,90);FORWARD(22,21,90);(23, 21, 90)
+turn left and walk down the red hallway four times
+you:ps
+LEFT(23,21,90);FORWARD(23,21,0);FORWARD(23,20,0);FORWARD(23,19,0);FORWARD(23,18,0);(23, 17, 0)
+turn left and walk forward once
+you:ps
+LEFT(23,17,0);FORWARD(23,17,270);(22, 17, 270)
+
+TJS_Grid0_1_4_Dirs_1
+map=grid	efficiency=(0.52,0.16)	implicit=True	numFollowers=5	confidence=(5.6,0.48989794855663565)	directionRating=(4.6,0.8)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=1	x=4	correct=True
+take the blue hall until you get to the grassy hall , then follow the grassy hall to the end where it intersects with the yellow hall
+you:ps
+LEFT[I](1,6,0);FORWARD[I](1,6,270);RIGHT[I](0,6,270);FORWARD(0,6,0);RIGHT[I](0,5,0);FORWARD(0,5,90);FORWARD(1,5,90);FORWARD(2,5,90);(3, 5, 90)
+
+EDA_Jelly0_2_3_Dirs_1
+map=jelly	efficiency=(0.75,0.4330127018922193)	implicit=False	numFollowers=4	confidence=(5.25,1.299038105676658)	directionRating=(4.75,0.4330127018922193)	annotated=True	targetFound=(0.75,0.4330127018922193)	valid=True	y=2	x=3	correct=True
+turn so the wall is on your left and back
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+walk forward once
+you:ps
+FORWARD(23,16,270);(22, 16, 270)
+turn left
+you:ps
+LEFT(22,16,270);(22, 16, 180)
+walk forward once
+you:ps
+FORWARD(22,16,180);(22, 17, 180)
+turn right
+you:ps
+RIGHT(22,17,180);(22, 17, 270)
+walk forward twice
+you:ps
+FORWARD(22,17,270);FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+walk forward once
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn right onto the blue hallway and walk forward four times
+you:ps
+RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+if you are standing at the intersection of the blue and yellow floors , back up once
+you:ps
+(16, 18, 270)
+
+EDA_L0_6_4_Dirs_1
+map=l	efficiency=(1.0,0.0)	implicit=False	numFollowers=4	confidence=(4.25,2.0463381929681126)	directionRating=(4.75,0.82915619758885)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=6	x=4	correct=True
+turn to face the black corridor with the towers on both sides of the walls
+you:ps
+RIGHT(22,23,0);(22, 23, 90)
+walk forward once
+you:ps
+FORWARD(22,23,90);(23, 23, 90)
+turn left
+you:ps
+LEFT(23,23,90);(23, 23, 0)
+walk forward twice
+you:ps
+FORWARD(23,23,0);FORWARD(23,22,0);(23, 21, 0)
+turn right
+you:ps
+RIGHT(23,21,0);(23, 21, 90)
+walk forward once
+you:ps
+FORWARD(23,21,90);(24, 21, 90)
+
+TJS_Grid0_2_7_Dirs_1
+map=grid	efficiency=(0.131868,0.17319444926555816)	implicit=True	numFollowers=5	confidence=(3.0,0.0)	directionRating=(2.8,0.7483314773547882)	annotated=True	targetFound=(0.4,0.48989794855663565)	valid=True	y=2	x=7	correct=True
+go straight , then turn when you see the red hall , then go down the red hall until you can look to the right and see a blue corridor
+you:ps
+LEFT[I](3,8,0);FORWARD(3,8,270);FORWARD[I](2,8,270);LEFT(1,8,270);FORWARD(1,8,180);(1, 9, 180)
+
+EDA_Grid0_2_3_Dirs_1
+map=grid	efficiency=(1.0,0.0)	implicit=False	numFollowers=5	confidence=(5.2,0.7483314773547882)	directionRating=(5.0,0.8944271909999159)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=2	x=3	correct=True
+turn so the wall is on your left
+you:ps
+LEFT(3,8,0);(3, 8, 270)
+walk forward three times
+you:ps
+FORWARD(3,8,270);FORWARD(2,8,270);FORWARD(1,8,270);(0, 8, 270)
+turn left
+you:ps
+LEFT(0,8,270);(0, 8, 180)
+walk forward once
+you:ps
+FORWARD(0,8,180);(0, 9, 180)
+
+KXP_L0_7_3_Dirs_1
+map=l	efficiency=(0.2,0.4)	xalt=(21,24,180)	implicit=False	numFollowers=5	confidence=(5.8,0.39999999999999997)	directionRating=(4.4,1.0198039027185568)	annotated=True	targetFound=(0.2,0.4)	valid=True	y=7	x=3	correct=False
+face the longer end of the fish hallway with no pink on the floor
+you:ps
+LEFT(21,21,0);LEFT(21,21,270);(21, 21, 180)
+follow this all the way down
+you:ps
+FORWARD(21,21,180);FORWARD(21,22,180);FORWARD(21,23,180);(21, 24, 180)
+
+KLS_Grid0_7_1_Dirs_1
+map=grid	efficiency=(0.8857142857142858,0.18070158058105026)	implicit=True	numFollowers=7	confidence=(5.571428571428571,1.0497813183356477)	directionRating=(5.285714285714286,1.0301575072754257)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=7	x=1	correct=True
+take the red brick patch towards the lamp
+you:ps
+FORWARD(1,9,0);(1, 8, 0)
+once at the black easel , you are at x
+you:ps
+FORWARD[I](1,8,0);FORWARD[I](1,7,0);(1, 7, 0)
+
+KLS_L0_5_2_Dirs_1
+map=l	efficiency=(0.5426576,0.32014229248732506)	implicit=True	numFollowers=5	confidence=(5.8,0.4)	directionRating=(4.2,1.1661903789690602)	annotated=True	targetFound=(0.8,0.4000000000000001)	valid=True	y=5	x=2	correct=True
+go straight until you see an intersection of a black path
+you:ps
+LEFT[I](23,18,0);LEFT[I](23,18,270);FORWARD(23,18,180);FORWARD(23,19,180);FORWARD(23,20,180);FORWARD(23,21,180);FORWARD(23,22,180);(23, 23, 180)
+take a right onto the black path
+you:ps
+RIGHT(23,23,180);(23, 23, 270)
+go straight until you reach an intersection of the black path with a yellow path
+you:ps
+FORWARD(23,23,270);FORWARD(22,23,270);(21, 23, 270)
+this is position x
+you:ps
+(21, 23, 270)
+
+KLS_L0_3_6_Dirs_1
+map=l	efficiency=(0.0,0.0)	xalt=(21,23,0)	implicit=True	numFollowers=4	confidence=(5.75,0.4330127018922193)	directionRating=(4.75,1.299038105676658)	annotated=True	targetFound=(0.0,0.0)	valid=True	y=3	x=6	correct=False
+go straight until hall ends
+you:ps
+LEFT[I](19,23,0);LEFT[I](19,23,270);FORWARD(19,23,180);(19, 24, 180)
+take left
+you:ps
+LEFT(19,24,180);(19, 24, 90)
+take another left when the hall ends again
+you:ps
+FORWARD[I](19,24,90);FORWARD[I](20,24,90);LEFT(21,24,90);(21, 24, 0)
+the first intersection at the black will be position x
+you:ps
+(21, 24, 0)
+
+KLS_Jelly0_7_3_Dirs_1
+map=jelly	efficiency=(0.1,0.2)	implicit=True	numFollowers=5	confidence=(5.0,0.6324555320336759)	directionRating=(4.0,1.0954451150103324)	annotated=True	targetFound=(0.2,0.4)	valid=True	y=7	x=3	correct=True
+go straight towards the black chair
+you:ps
+LEFT[I](17,17,0);LEFT[I](17,17,270);FORWARD(17,17,180);(17, 18, 180)
+at the chair , take a right
+you:ps
+RIGHT(17,18,180);(17, 18, 270)
+the second intersection down on the blue path is x
+you:ps
+(17, 18, 270)
+
+EDA_Grid0_7_4_Dirs_1
+map=grid	efficiency=(1.0,0.0)	implicit=False	numFollowers=4	confidence=(5.75,0.4330127018922193)	directionRating=(5.25,0.82915619758885)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=7	x=4	correct=True
+turn to face the long red hallway
+you:ps
+LEFT(1,9,0);LEFT(1,9,270);LEFT(1,9,180);LEFT(1,9,90);(1, 9, 0)
+go to the end
+you:ps
+FORWARD(1,9,0);FORWARD(1,8,0);FORWARD(1,7,0);FORWARD(1,6,0);(1, 5, 0)
+turn right
+you:ps
+RIGHT(1,5,0);(1, 5, 90)
+go to the end
+you:ps
+FORWARD(1,5,90);FORWARD(2,5,90);(3, 5, 90)
+you should end up at the intersection of yellow and green
+you:ps
+(3, 5, 90)
+
+KLS_L0_1_4_Dirs_1
+map=l	efficiency=(1.0,0.0)	implicit=True	numFollowers=6	confidence=(5.666666666666667,0.4714045207910317)	directionRating=(5.5,0.5)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=1	x=4	correct=True
+go towards the intersection of the red brick path
+you:ps
+RIGHT[I](22,17,0);FORWARD(22,17,90);(23, 17, 90)
+take a right onto the red brick
+you:ps
+RIGHT(23,17,90);(23, 17, 180)
+follow it until the intersection of the pink flowered path
+you:ps
+FORWARD(23,17,180);FORWARD(23,18,180);FORWARD(23,19,180);FORWARD(23,20,180);(23, 21, 180)
+take a left onto it
+you:ps
+LEFT(23,21,180);(23, 21, 90)
+go all the way until you can either go right or left on a blue path
+you:ps
+FORWARD(23,21,90);(24, 21, 90)
+this is position x
+you:ps
+(24, 21, 90)
+
+KXP_Jelly0_3_6_Dirs_1
+map=jelly	efficiency=(0.2981996,0.3780558249024078)	implicit=True	numFollowers=5	confidence=(4.4,0.48989794855663565)	directionRating=(3.2,1.1661903789690602)	annotated=True	targetFound=(0.6,0.48989794855663565)	valid=True	y=3	x=6	correct=True
+go to the pink flowered area , make a right then a right go to end
+you:ps
+RIGHT[I](16,18,0);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);RIGHT(19,18,90);FORWARD[I](19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+EMWC_Jelly0_2_3_Dirs_1
+map=jelly	efficiency=(0.8,0.4)	implicit=False	numFollowers=5	confidence=(5.0,2.0)	directionRating=(4.8,1.9390719429665317)	annotated=True	targetFound=(0.8,0.4)	valid=True	y=2	x=3	correct=True
+face the lamp
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+go forward one segment to the intersection with the lamp
+you:ps
+FORWARD(23,16,270);(22, 16, 270)
+turn left
+you:ps
+LEFT(22,16,270);(22, 16, 180)
+go forward one segment to the wooden-tiled hall
+you:ps
+FORWARD(22,16,180);(22, 17, 180)
+turn right
+you:ps
+RIGHT(22,17,180);(22, 17, 270)
+go forward two segments to the intersection containing the easel
+you:ps
+FORWARD(22,17,270);FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+go forward one segment to the blue-tiled hall
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn to the right
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+go forward
+you:ps
+FORWARD(20,18,270);(19, 18, 270)
+pass the pink-flowered carpet hall
+you:ps
+FORWARD(19,18,270);(18, 18, 270)
+pass the chair
+you:ps
+FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+one segment past the chair is position x
+you:ps
+(16, 18, 270)
+
+EDA_Grid0_6_3_Dirs_1
+map=grid	efficiency=(1.0,0.0)	implicit=False	numFollowers=4	confidence=(5.5,0.5)	directionRating=(5.25,0.82915619758885)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=6	x=3	correct=True
+turn so that the wall is on your left
+you:ps
+LEFT(2,7,0);(2, 7, 270)
+walk forward twice
+you:ps
+FORWARD(2,7,270);FORWARD(1,7,270);(0, 7, 270)
+turn left
+you:ps
+LEFT(0,7,270);(0, 7, 180)
+walk forward twice
+you:ps
+FORWARD(0,7,180);FORWARD(0,8,180);(0, 9, 180)
+
+KXP_L0_2_6_Dirs_1
+map=l	efficiency=(0.16666666666666666,0.37267799624996495)	implicit=True	numFollowers=6	confidence=(4.5,1.707825127659933)	directionRating=(3.6666666666666665,1.5986105077709065)	annotated=True	targetFound=(0.16666666666666666,0.37267799624996495)	valid=True	y=2	x=6	correct=True
+go one space away from the easel
+you:ps
+RIGHT[I](21,23,0);FORWARD(21,23,90);(22, 23, 90)
+
+EDA_L0_2_4_Dirs_1
+map=l	efficiency=(0.8,0.4)	implicit=False	numFollowers=5	confidence=(4.4,1.8547236990991407)	directionRating=(3.8,1.469693845669907)	annotated=True	targetFound=(0.8,0.4)	valid=True	y=2	x=4	correct=True
+turn to face the short black hallway with the easel at the end
+you:ps
+LEFT(21,23,0);(21, 23, 270)
+from here , turn right
+you:ps
+RIGHT(21,23,270);(21, 23, 0)
+walk down the yellow hallway twice
+you:ps
+FORWARD(21,23,0);FORWARD(21,22,0);(21, 21, 0)
+turn right
+you:ps
+RIGHT(21,21,0);(21, 21, 90)
+walk down the pink hallway three times
+you:ps
+FORWARD(21,21,90);FORWARD(22,21,90);FORWARD(23,21,90);(24, 21, 90)
+
+WLH_Grid0_7_2_Dirs_1
+map=grid	efficiency=(0.0,0.0)	xalt=(1,6,0)	implicit=False	numFollowers=4	confidence=(5.5,0.8660254037844386)	directionRating=(5.0,1.224744871391589)	annotated=True	targetFound=(0.0,0.0)	valid=True	y=7	x=2	correct=False
+at y face the long alley with a lamp and an easel in front of you
+you:ps
+LEFT(1,9,0);LEFT(1,9,270);LEFT(1,9,180);LEFT(1,9,90);(1, 9, 0)
+walk to the easel
+you:ps
+FORWARD(1,9,0);FORWARD(1,8,0);FORWARD(1,7,0);(1, 6, 0)
+you should see flowered carpet to the sides
+you:ps
+(1, 6, 0)
+this is x
+you:ps
+(1, 6, 0)
+
+WLH_L0_2_6_Dirs_1
+map=l	efficiency=(0.5061224285714286,0.432152210871473)	implicit=True	numFollowers=7	confidence=(4.428571428571429,1.3997084244475304)	directionRating=(4.0,1.3093073414159542)	annotated=True	targetFound=(0.8571428571428571,0.3499271061118826)	valid=True	y=2	x=6	correct=True
+with your back to the easel walk along the stone flooring to the next alley
+you:ps
+RIGHT[I](21,23,0);FORWARD(21,23,90);(22, 23, 90)
+the alley to your left has grey floor
+you:ps
+(22, 23, 90)
+this is x
+you:ps
+(22, 23, 90)
+
+EMWC_Grid0_4_3_Dirs_1
+map=grid	efficiency=(0.5555556,0.46080982928474956)	implicit=True	numFollowers=5	confidence=(4.4,2.3323807579381204)	directionRating=(4.6,2.3323807579381204)	annotated=True	targetFound=(0.6,0.48989794855663565)	valid=True	y=4	x=3	correct=True
+go three segments down the grassy hall to the blue-tiled hall , passing the hatrack
+you:ps
+LEFT[I](3,5,0);FORWARD(3,5,270);FORWARD(2,5,270);FORWARD(1,5,270);(0, 5, 270)
+turn left into the blue-tiled hall
+you:ps
+LEFT(0,5,270);(0, 5, 180)
+follow it four segments to the intersection with the bare concrete hall , passing the chair and stool
+you:ps
+FORWARD(0,5,180);FORWARD(0,6,180);FORWARD(0,7,180);FORWARD(0,8,180);(0, 9, 180)
+this is position x
+you:ps
+(0, 9, 180)
+
+WLH_L0_7_2_Dirs_1
+map=l	efficiency=(0.6,0.48989794855663565)	implicit=True	numFollowers=5	confidence=(5.0,1.2649110640673518)	directionRating=(5.2,0.9797958971132712)	annotated=True	targetFound=(0.6,0.48989794855663565)	valid=True	y=7	x=2	correct=True
+with your back to the wall move forward to the second alley
+you:ps
+LEFT[I](21,21,0);LEFT[I](21,21,270);FORWARD(21,21,180);FORWARD(21,22,180);(21, 23, 180)
+the side alleys have stone flooring and there is an easel to your right
+you:ps
+(21, 23, 180)
+this is x
+you:ps
+(21, 23, 180)
+
+KLS_L0_6_5_Dirs_1
+map=l	efficiency=(0.55,0.3570714214271425)	implicit=True	numFollowers=4	confidence=(5.25,1.299038105676658)	directionRating=(5.0,0.7071067811865476)	annotated=True	targetFound=(0.75,0.4330127018922193)	valid=True	y=6	x=5	correct=True
+go towards the intersection of the black path and the brick path
+you:ps
+RIGHT[I](22,23,0);FORWARD(22,23,90);(23, 23, 90)
+take a left onto the brick patch and go all the way down until you get to where there are butterflies on the wall
+you:ps
+LEFT(23,23,90);FORWARD(23,23,0);FORWARD(23,22,0);FORWARD(23,21,0);FORWARD(23,20,0);(23, 19, 0)
+position x is one stop before the intersection of the red brick and the wood
+you:ps
+(23, 19, 0)
+
+KXP_L0_3_7_Dirs_1
+map=l	efficiency=(0.75,0.4330127018922193)	implicit=True	numFollowers=4	confidence=(5.75,0.4330127018922193)	directionRating=(4.25,1.0897247358851685)	annotated=True	targetFound=(0.75,0.4330127018922193)	valid=True	y=3	x=7	correct=True
+follow this hallway till you get to a the pink floored area stop here
+you:ps
+LEFT[I](19,23,0);LEFT[I](19,23,270);FORWARD[I](19,23,180);LEFT[I](19,24,180);FORWARD[I](19,24,90);FORWARD[I](20,24,90);LEFT[I](21,24,90);FORWARD(21,24,0);FORWARD(21,23,0);FORWARD(21,22,0);(21, 21, 0)
+
+WLH_Jelly0_4_5_Dirs_1
+map=jelly	efficiency=(0.7142857142857143,0.45175395145262565)	implicit=False	numFollowers=7	confidence=(5.428571428571429,0.7284313590846834)	directionRating=(5.142857142857143,1.1248582677159729)	annotated=True	targetFound=(0.7142857142857143,0.45175395145262565)	valid=True	y=4	x=5	correct=True
+move to hatrack and turn right
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);RIGHT(15,18,0);(15, 18, 90)
+go down this blue floored alley past the chair to the end
+you:ps
+FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+move to the easel with the wooden floored side alleys
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+you should see a longer alley than the one behind you
+you:ps
+(20, 17, 90)
+move one block to between the wall hanging butterflies
+you:ps
+FORWARD(20,17,90);(21, 17, 90)
+this is x
+you:ps
+(21, 17, 90)
+
+EDA_Grid0_5_3_Dirs_1
+map=grid	efficiency=(0.8,0.4)	implicit=False	numFollowers=5	confidence=(5.0,2.0)	directionRating=(4.6,1.8547236990991407)	annotated=True	targetFound=(0.8,0.4)	valid=True	y=5	x=3	correct=True
+turn so that the walls are on your right and back
+you:ps
+LEFT(1,11,0);(1, 11, 270)
+walk forward once
+you:ps
+FORWARD(1,11,270);(0, 11, 270)
+turn right
+you:ps
+RIGHT(0,11,270);(0, 11, 0)
+walk forward twice
+you:ps
+FORWARD(0,11,0);FORWARD(0,10,0);(0, 9, 0)
+
+EMWC_Grid0_3_6_Dirs_1
+map=grid	efficiency=(0.8571428571428571,0.3499271061118826)	implicit=False	numFollowers=7	confidence=(5.0,1.7728105208558367)	directionRating=(4.714285714285714,1.8294640678379568)	annotated=True	targetFound=(0.8571428571428571,0.3499271061118826)	valid=True	y=3	x=6	correct=True
+place your back against the wall of the t intersection
+you:ps
+RIGHT(0,9,0);(0, 9, 90)
+turn to the left
+you:ps
+LEFT(0,9,90);(0, 9, 0)
+go forward two segments along the blue-tiled hall
+you:ps
+FORWARD(0,9,0);FORWARD(0,8,0);(0, 7, 0)
+turn right into the wooden hall
+you:ps
+RIGHT(0,7,0);(0, 7, 90)
+go forward two segments to the intersection of the bare concrete hallway
+you:ps
+FORWARD(0,7,90);FORWARD(1,7,90);(2, 7, 90)
+this is position x
+you:ps
+(2, 7, 90)
+
+WLH_Grid0_3_2_Dirs_1
+map=grid	efficiency=(0.8333334000000001,0.21081845797329987)	implicit=False	numFollowers=5	confidence=(4.8,1.1661903789690602)	directionRating=(4.2,1.1661903789690602)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=3	x=2	correct=True
+at y put your back to the sofa and move forward towards the stool
+you:ps
+LEFT(0,9,0);LEFT(0,9,270);LEFT(0,9,180);LEFT(0,9,90);FORWARD(0,9,0);(0, 8, 0)
+when you get to the alley with the rock floor stop and turn right
+you:ps
+RIGHT(0,8,0);(0, 8, 90)
+move forward to the easel
+you:ps
+FORWARD(0,8,90);FORWARD(1,8,90);FORWARD(2,8,90);(3, 8, 90)
+this is x
+you:ps
+(3, 8, 90)
+
+EMWC_L0_2_3_Dirs_1
+map=l	efficiency=(0.7333334,0.38873011488980375)	implicit=False	numFollowers=5	confidence=(5.0,2.0)	directionRating=(5.0,2.0)	annotated=True	targetFound=(0.8,0.4)	valid=True	y=2	x=3	correct=True
+orient yourself along the yellow-tiled hall
+you:ps
+LEFT(21,23,0);LEFT(21,23,270);(21, 23, 180)
+the easel in the stone hall should be to your right
+you:ps
+(21, 23, 180)
+go forward along the yellow-tiled hall one segment to the intersection with a bare concrete hall
+you:ps
+FORWARD(21,23,180);(21, 24, 180)
+turn right
+you:ps
+RIGHT(21,24,180);(21, 24, 270)
+go forward two segments , passing a chair , to the intersection containing the stool
+you:ps
+FORWARD(21,24,270);FORWARD(20,24,270);(19, 24, 270)
+turn right
+you:ps
+RIGHT(19,24,270);(19, 24, 0)
+go forward one segment to the dead end
+you:ps
+FORWARD(19,24,0);(19, 23, 0)
+this is position x
+you:ps
+(19, 23, 0)
+
+EMWC_L0_6_5_Dirs_1
+map=l	efficiency=(0.8571428571428571,0.3499271061118826)	implicit=False	numFollowers=7	confidence=(4.714285714285714,1.8294640678379568)	directionRating=(5.142857142857143,1.355261854357877)	annotated=True	targetFound=(0.8571428571428571,0.3499271061118826)	valid=True	y=6	x=5	correct=True
+orient yourself along the stone hall with your back to the end of the hall containing the easel
+you:ps
+RIGHT(22,23,0);(22, 23, 90)
+there should be a bench to your right
+you:ps
+(22, 23, 90)
+go forward one segment to the intersection with the brick hall
+you:ps
+FORWARD(22,23,90);(23, 23, 90)
+turn left
+you:ps
+LEFT(23,23,90);(23, 23, 0)
+go forward five segments to the empty intersection with a bare concrete hall , passing a hatrack and a lamp
+you:ps
+FORWARD(23,23,0);FORWARD(23,22,0);FORWARD(23,21,0);FORWARD(23,20,0);FORWARD(23,19,0);(23, 18, 0)
+this is position x
+you:ps
+(23, 18, 0)
+
+KLS_Jelly0_6_1_Dirs_1
+map=jelly	efficiency=(0.8,0.4)	implicit=True	numFollowers=5	confidence=(5.0,1.0954451150103324)	directionRating=(5.0,1.2649110640673518)	annotated=True	targetFound=(0.8,0.4)	valid=True	y=6	x=1	correct=True
+go towards the pink path
+you:ps
+RIGHT[I](18,19,0);FORWARD(18,19,90);(19, 19, 90)
+at the pink path intersection , go left onto the pink path
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+take a right onto the blue path at the next intersection
+you:ps
+FORWARD[I](19,19,0);RIGHT(19,18,0);(19, 18, 90)
+at the end of the hall , go left towards the easel
+you:ps
+FORWARD[I](19,18,90);LEFT(20,18,90);(20, 18, 0)
+go past the easel until you come to the corner with the red brick intersection
+you:ps
+FORWARD(20,18,0);FORWARD(20,17,0);(20, 16, 0)
+go left onto the red brick and the first intersection is x
+you:ps
+LEFT(20,16,0);(20, 16, 270)
+
+KLS_Jelly0_2_1_Dirs_1
+map=jelly	efficiency=(1.0,0.0)	implicit=True	numFollowers=7	confidence=(5.714285714285714,0.6998542122237653)	directionRating=(5.571428571428571,0.7284313590846834)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=2	x=1	correct=True
+go on the path towards the coat rack
+you:ps
+FORWARD(23,16,0);(23, 15, 0)
+at the coat rack , take a left onto the green path
+you:ps
+LEFT(23,15,0);(23, 15, 270)
+go all the way down until you reach a chair
+you:ps
+FORWARD(23,15,270);FORWARD(22,15,270);FORWARD(21,15,270);FORWARD(20,15,270);(19, 15, 270)
+at the chair , take a left
+you:ps
+LEFT(19,15,270);(19, 15, 180)
+the very next intersection is x
+you:ps
+(19, 15, 180)
+
+WLH_Grid0_4_3_Dirs_1
+map=grid	efficiency=(0.3333333333333333,0.4714045207910317)	implicit=False	numFollowers=6	confidence=(5.5,0.7637626158259733)	directionRating=(5.0,0.5773502691896257)	annotated=True	targetFound=(0.3333333333333333,0.4714045207910317)	valid=True	y=4	x=3	correct=True
+at y face the grass carpet
+you:ps
+LEFT(3,5,0);(3, 5, 270)
+walk to the corner and turn left
+you:ps
+FORWARD(3,5,270);FORWARD(2,5,270);FORWARD(1,5,270);LEFT(0,5,270);(0, 5, 180)
+you should see blue carpet
+you:ps
+(0, 5, 180)
+walk along the blue carpet and you pass two objects
+you:ps
+FORWARD(0,5,180);FORWARD(0,6,180);FORWARD(0,7,180);FORWARD(0,8,180);(0, 9, 180)
+move to the alley where there is only gray floor to your left
+you:ps
+(0, 9, 180)
+in front of you is a chair , this is x
+you:ps
+(0, 9, 180)
+
+EDA_Jelly0_5_1_Dirs_1
+map=jelly	efficiency=(1.0,0.0)	implicit=False	numFollowers=5	confidence=(6.0,0.0)	directionRating=(5.4,0.8)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=5	x=1	correct=True
+turn to face the easel
+you:ps
+LEFT(21,17,0);(21, 17, 270)
+walk forward once
+you:ps
+FORWARD(21,17,270);(20, 17, 270)
+turn right and walk forward once
+you:ps
+RIGHT(20,17,270);FORWARD(20,17,0);(20, 16, 0)
+turn left and walk forward once
+you:ps
+LEFT(20,16,0);FORWARD(20,16,270);(19, 16, 270)
+
+WLH_Grid0_5_3_Dirs_1
+map=grid	efficiency=(0.75,0.4330127018922193)	implicit=False	numFollowers=4	confidence=(5.0,1.224744871391589)	directionRating=(4.5,1.6583123951777)	annotated=True	targetFound=(0.75,0.4330127018922193)	valid=True	y=5	x=3	correct=True
+face the hat rack and move to it
+you:ps
+LEFT(1,11,0);FORWARD(1,11,270);(0, 11, 270)
+turn right
+you:ps
+RIGHT(0,11,270);(0, 11, 0)
+walk one alley past the chair
+you:ps
+FORWARD(0,11,0);FORWARD(0,10,0);(0, 9, 0)
+you should see gray floor to your right and a stool in front of you
+you:ps
+(0, 9, 0)
+
+KLS_Jelly0_1_2_Dirs_1
+map=jelly	efficiency=(1.0,0.0)	implicit=True	numFollowers=5	confidence=(5.4,0.8)	directionRating=(5.2,0.7483314773547882)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=1	x=2	correct=True
+go towards the chair on the green path
+you:ps
+FORWARD(19,16,0);(19, 15, 0)
+at the chair , go right
+you:ps
+RIGHT(19,15,0);(19, 15, 90)
+follow this green path to the very end of the hall
+you:ps
+FORWARD(19,15,90);FORWARD(20,15,90);FORWARD(21,15,90);FORWARD(22,15,90);(23, 15, 90)
+once here , go right onto the plain cement path
+you:ps
+RIGHT(23,15,90);(23, 15, 180)
+the next corner you come to is x
+you:ps
+(23, 15, 180)
+
+KLS_Jelly0_4_2_Dirs_1
+map=jelly	efficiency=(0.7142857499999999,0.4164965761674248)	implicit=True	numFollowers=4	confidence=(5.25,1.299038105676658)	directionRating=(4.5,2.0615528128088303)	annotated=True	targetFound=(0.75,0.4330127018922193)	valid=True	y=4	x=2	correct=True
+take the yellow path away from the end of the hall
+you:ps
+FORWARD(15,20,0);(15, 19, 0)
+at the blue path intersection , take a right and follow the blue path to the very end of the hall
+you:ps
+FORWARD[I](15,19,0);RIGHT(15,18,0);FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+here , take a left on the plain path towards the easel , and then a right onto the wood path at the easel
+you:ps
+LEFT(20,18,90);FORWARD[I](20,18,0);RIGHT(20,17,0);(20, 17, 90)
+at the end of this hall , take a left towards the lamp
+you:ps
+FORWARD[I](20,17,90);FORWARD[I](21,17,90);LEFT(22,17,90);(22, 17, 0)
+once at the lamp , take a right to the very end of the hall and at the corner
+you:ps
+FORWARD[I](22,17,0);RIGHT(22,16,0);FORWARD(22,16,90);(23, 16, 90)
+this is x
+you:ps
+(23, 16, 90)
+
+EMWC_L0_7_2_Dirs_1
+map=l	efficiency=(0.6666666666666666,0.37267799624996495)	implicit=False	numFollowers=6	confidence=(5.166666666666667,0.6871842709362768)	directionRating=(5.0,0.816496580927726)	annotated=True	targetFound=(0.8333333333333334,0.37267799624996495)	valid=True	y=7	x=2	correct=True
+face the yellow-tiled hall
+you:ps
+LEFT(21,21,0);LEFT(21,21,270);(21, 21, 180)
+go forward two segments to the intersection with the stone hall
+you:ps
+FORWARD(21,21,180);FORWARD(21,22,180);(21, 23, 180)
+there is an easel to your right
+you:ps
+(21, 23, 180)
+this is position x
+you:ps
+(21, 23, 180)
+
+EMWC_Jelly0_6_5_Dirs_1
+map=jelly	efficiency=(0.8333333333333334,0.37267799624996495)	implicit=True	numFollowers=6	confidence=(6.0,0.0)	directionRating=(5.666666666666667,0.4714045207910317)	annotated=True	targetFound=(0.8333333333333334,0.37267799624996495)	valid=True	y=6	x=5	correct=True
+go forward one segment to the intersection with the pink-flowered carpet hall
+you:ps
+RIGHT[I](18,19,0);FORWARD(18,19,90);(19, 19, 90)
+turn left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+go forward one segment to the intersection with the blue-tiled floor
+you:ps
+FORWARD(19,19,0);(19, 18, 0)
+turn right
+you:ps
+RIGHT(19,18,0);(19, 18, 90)
+go forward one segment to the end of the hall
+you:ps
+FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+go forward one segment to the intersection with the wooden-floored hall
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+this intersection contains an easel
+you:ps
+(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+go forward one segment
+you:ps
+FORWARD(20,17,90);(21, 17, 90)
+this is position x
+you:ps
+(21, 17, 90)
+
+EDA_L0_7_4_Dirs_1
+map=l	efficiency=(0.75,0.4330127018922193)	implicit=False	numFollowers=4	confidence=(5.25,0.82915619758885)	directionRating=(4.5,1.118033988749895)	annotated=True	targetFound=(0.75,0.4330127018922193)	valid=True	y=7	x=4	correct=True
+turn so that the wall is on your left
+you:ps
+RIGHT(21,21,0);(21, 21, 90)
+walk forward three times
+you:ps
+FORWARD(21,21,90);FORWARD(22,21,90);FORWARD(23,21,90);(24, 21, 90)
+
+KXP_Grid0_7_1_Dirs_1
+map=grid	efficiency=(0.85714275,0.247436015229569)	implicit=True	numFollowers=4	confidence=(6.0,0.0)	directionRating=(3.75,1.479019945774904)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=7	x=1	correct=True
+position x is in the pink floored area , on the easel
+you:ps
+(1, 9, 0)
+
+KLS_Jelly0_2_5_Dirs_1
+map=jelly	efficiency=(0.42857142857142855,0.49487165930539345)	xalt=(20,17,270)	implicit=True	numFollowers=7	confidence=(6.0,0.0)	directionRating=(5.285714285714286,0.6998542122237652)	annotated=True	targetFound=(0.42857142857142855,0.49487165930539345)	valid=True	y=2	x=5	correct=False
+take the path towards the lamp
+you:ps
+LEFT[I](23,16,0);FORWARD(23,16,270);(22, 16, 270)
+at the lamp , take a left
+you:ps
+LEFT(22,16,270);(22, 16, 180)
+at the next corner , take a right onto the wood path
+you:ps
+FORWARD[I](22,16,180);RIGHT(22,17,180);(22, 17, 270)
+the very next intersection will be x
+you:ps
+(22, 17, 270)
+
+TJS_L0_7_2_Dirs_1
+map=l	efficiency=(0.58333325,0.43301275000476314)	implicit=True	numFollowers=4	confidence=(6.0,0.0)	directionRating=(5.5,0.8660254037844386)	annotated=True	targetFound=(0.75,0.4330127018922193)	valid=True	y=7	x=2	correct=True
+go down the yellow hall , then stop at the intersection of the yellow and the grey
+you:ps
+LEFT[I](21,21,0);LEFT[I](21,21,270);FORWARD(21,21,180);FORWARD(21,22,180);(21, 23, 180)
+
+WLH_Jelly0_1_2_Dirs_1
+map=jelly	efficiency=(0.65,0.4092676385936225)	implicit=False	numFollowers=4	confidence=(5.25,1.299038105676658)	directionRating=(5.25,0.82915619758885)	annotated=True	targetFound=(0.75,0.4330127018922193)	valid=True	y=1	x=2	correct=True
+face and move to the wooden chair
+you:ps
+LEFT(19,16,0);LEFT(19,16,270);LEFT(19,16,180);LEFT(19,16,90);FORWARD(19,16,0);(19, 15, 0)
+turn right
+you:ps
+RIGHT(19,15,0);(19, 15, 90)
+you see a long alley with grass
+you:ps
+(19, 15, 90)
+move down this to the hatrack
+you:ps
+FORWARD(19,15,90);FORWARD(20,15,90);FORWARD(21,15,90);FORWARD(22,15,90);(23, 15, 90)
+turn right and move into the corner
+you:ps
+RIGHT(23,15,90);FORWARD(23,15,180);(23, 16, 180)
+turning right you see a lamp and right again the hatrack you just came from
+you:ps
+RIGHT(23,16,180);RIGHT(23,16,270);(23, 16, 0)
+this is x
+you:ps
+(23, 16, 0)
+
+EDA_L0_7_2_Dirs_1
+map=l	efficiency=(0.0,0.0)	xalt=(21,22,180)	implicit=False	numFollowers=7	confidence=(5.857142857142857,0.3499271061118826)	directionRating=(5.857142857142857,0.3499271061118826)	annotated=True	targetFound=(0.0,0.0)	valid=True	y=7	x=2	correct=False
+turn to face the honeycomb yellow hallway
+you:ps
+LEFT(21,21,0);LEFT(21,21,270);(21, 21, 180)
+walk forward once
+you:ps
+FORWARD(21,21,180);(21, 22, 180)
+
+WLH_Jelly0_3_6_Dirs_1
+map=jelly	efficiency=(0.75,0.4330127018922193)	implicit=True	numFollowers=4	confidence=(4.75,2.165063509461097)	directionRating=(4.25,2.0463381929681126)	annotated=True	targetFound=(0.75,0.4330127018922193)	valid=True	y=3	x=6	correct=True
+with your back to the wall turn left
+you:ps
+LEFT[I](16,18,0);LEFT[I](16,18,270);LEFT(16,18,180);(16, 18, 90)
+move past the chair to the side alley with flowered carpet
+you:ps
+FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);(19, 18, 90)
+turn right down this alley and then right again at the first alley
+you:ps
+RIGHT(19,18,90);FORWARD[I](19,18,180);RIGHT(19,19,180);(19, 19, 270)
+facing the grey floored deadend
+you:ps
+(19, 19, 270)
+move to it
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+this is x
+you:ps
+(18, 19, 270)
+
+EDA_L0_5_4_Dirs_1
+map=l	efficiency=(0.9,0.20000000000000004)	implicit=False	numFollowers=5	confidence=(5.8,0.4)	directionRating=(5.4,0.8)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=5	x=4	correct=True
+turn so that the wall is on your right
+you:ps
+LEFT(23,18,0);LEFT(23,18,270);(23, 18, 180)
+walk forward once
+you:ps
+FORWARD(23,18,180);(23, 19, 180)
+turn to the left
+you:ps
+LEFT(23,19,180);(23, 19, 90)
+walk forward once
+you:ps
+FORWARD(23,19,90);(24, 19, 90)
+you should have the blue hallway on your right now
+you:ps
+(24, 19, 90)
+turn right and walk down the blue hallway twice
+you:ps
+RIGHT(24,19,90);FORWARD(24,19,180);FORWARD(24,20,180);(24, 21, 180)
+
+WLH_Jelly0_5_2_Dirs_1
+map=jelly	efficiency=(0.6571428571428571,0.43705881545081016)	implicit=True	numFollowers=7	confidence=(5.0,1.6903085094570331)	directionRating=(4.857142857142857,1.6413036132965795)	annotated=True	targetFound=(0.7142857142857143,0.45175395145262565)	valid=True	y=5	x=2	correct=True
+with your back to the easel move into the corner and turn left
+you:ps
+RIGHT[I](21,17,0);FORWARD(21,17,90);LEFT(22,17,90);(22, 17, 0)
+at the lamp turn right
+you:ps
+FORWARD[I](22,17,0);RIGHT(22,16,0);(22, 16, 90)
+move into the corner and turn left
+you:ps
+FORWARD(22,16,90);LEFT(23,16,90);(23, 16, 0)
+you see a hatrack
+you:ps
+(23, 16, 0)
+this is x
+you:ps
+(23, 16, 0)
+
+TJS_L0_4_1_Dirs_1
+map=l	efficiency=(0.77,0.20396078054371142)	implicit=True	numFollowers=5	confidence=(5.0,0.6324555320336759)	directionRating=(3.2,0.9797958971132712)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=4	x=1	correct=True
+go down the rose hall , then down the red hall , then take a left onto the wood hall
+you:ps
+LEFT[I](24,21,0);FORWARD(24,21,270);RIGHT[I](23,21,270);FORWARD(23,21,0);FORWARD[I](23,20,0);FORWARD[I](23,19,0);FORWARD[I](23,18,0);LEFT(23,17,0);(23, 17, 270)
+there is also a bench there
+you:ps
+FORWARD[I](23,17,270);(22, 17, 270)
+
+WLH_L0_7_5_Dirs_1
+map=l	efficiency=(0.2,0.4000000000000001)	implicit=True	numFollowers=5	confidence=(3.4,1.7435595774162693)	directionRating=(4.0,1.0954451150103324)	annotated=True	targetFound=(0.2,0.4000000000000001)	valid=True	y=7	x=5	correct=True
+with your back to the wall turn left
+you:ps
+LEFT[I](21,21,0);LEFT[I](21,21,270);LEFT(21,21,180);(21, 21, 90)
+walk along the flowered carpet to the red brick side alleys
+you:ps
+FORWARD(21,21,90);FORWARD(22,21,90);(23, 21, 90)
+it is one block before the end
+you:ps
+(23, 21, 90)
+turn left and walk one block past the lamp
+you:ps
+LEFT(23,21,90);FORWARD(23,21,0);FORWARD(23,20,0);FORWARD(23,19,0);(23, 18, 0)
+to your right you should see an alley with grey carpet
+you:ps
+(23, 18, 0)
+this is x
+you:ps
+(23, 18, 0)
+
+TJS_Grid0_6_5_Dirs_1
+map=grid	efficiency=(0.5266957142857143,0.35415037376060404)	implicit=True	numFollowers=7	confidence=(4.714285714285714,1.577908716741037)	directionRating=(4.285714285714286,1.385051387833237)	annotated=True	targetFound=(0.7142857142857143,0.45175395145262565)	valid=True	y=6	x=5	correct=True
+look for the blue hall
+you:ps
+LEFT[I](2,7,0);FORWARD[I](2,7,270);FORWARD[I](1,7,270);(0, 7, 270)
+go all the way down until you hit a spot with a coat rack , then one movement left
+you:ps
+LEFT[I](0,7,270);FORWARD(0,7,180);FORWARD(0,8,180);FORWARD(0,9,180);FORWARD(0,10,180);LEFT(0,11,180);FORWARD(0,11,90);(1, 11, 90)
+
+KLS_L0_7_3_Dirs_1
+map=l	efficiency=(1.0,0.0)	implicit=True	numFollowers=4	confidence=(6.0,0.0)	directionRating=(5.75,0.4330127018922193)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=7	x=3	correct=True
+follow the yellow road all the way to the other end where it ends and take a right
+you:ps
+LEFT[I](21,21,0);LEFT[I](21,21,270);FORWARD(21,21,180);FORWARD(21,22,180);FORWARD(21,23,180);RIGHT(21,24,180);(21, 24, 270)
+go straight until the hall ends again and take another right
+you:ps
+FORWARD(21,24,270);FORWARD(20,24,270);RIGHT(19,24,270);(19, 24, 0)
+the end of this hall is position x
+you:ps
+(19, 24, 0)
+
+KLS_Jelly0_6_2_Dirs_1
+map=jelly	efficiency=(0.9666666666666667,0.07453559924999298)	implicit=True	numFollowers=6	confidence=(5.833333333333333,0.37267799624996495)	directionRating=(5.166666666666667,0.6871842709362768)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=6	x=2	correct=True
+go straight towards the pink path
+you:ps
+RIGHT[I](18,19,0);FORWARD(18,19,90);(19, 19, 90)
+take a left onto the pink path
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+at the next intersection , take a right onto the blue path
+you:ps
+FORWARD[I](19,19,0);RIGHT(19,18,0);(19, 18, 90)
+at the end of the hall , go left towards the easel
+you:ps
+FORWARD[I](19,18,90);LEFT(20,18,90);(20, 18, 0)
+at the easel , take a right onto the wood path
+you:ps
+FORWARD[I](20,18,0);RIGHT(20,17,0);(20, 17, 90)
+follow this to the end of the hall and at the corner , go left towards the lamp
+you:ps
+FORWARD(20,17,90);FORWARD(21,17,90);LEFT(22,17,90);(22, 17, 0)
+at the lamp , take another right and follow it to the end of the hall at the corner
+you:ps
+FORWARD[I](22,17,0);RIGHT(22,16,0);FORWARD(22,16,90);(23, 16, 90)
+this is x
+you:ps
+(23, 16, 90)
+
+EDA_Jelly0_4_7_Dirs_1
+map=jelly	efficiency=(0.75,0.4330127018922193)	implicit=False	numFollowers=4	confidence=(4.75,1.6393596310755)	directionRating=(5.0,1.224744871391589)	annotated=True	targetFound=(0.75,0.4330127018922193)	valid=True	y=4	x=7	correct=True
+only one direction to go
+you:ps
+(15, 20, 0)
+walk to the end of the yellow hallway
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);FORWARD(15,18,0);(15, 17, 0)
+turn right
+you:ps
+RIGHT(15,17,0);(15, 17, 90)
+walk forward twice
+you:ps
+FORWARD(15,17,90);FORWARD(16,17,90);(17, 17, 90)
+
+KXP_Grid0_4_1_Dirs_1
+map=grid	efficiency=(0.8,0.2)	implicit=True	numFollowers=4	confidence=(6.0,0.0)	directionRating=(3.25,1.920286436967152)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=4	x=1	correct=True
+go to the easel in the pink floored area
+you:ps
+LEFT[I](3,5,0);FORWARD[I](3,5,270);FORWARD[I](2,5,270);LEFT[I](1,5,270);FORWARD[I](1,5,180);(1, 6, 180)
+
+KLS_Jelly0_3_2_Dirs_1
+map=jelly	efficiency=(0.9058824,0.1882352)	implicit=True	numFollowers=5	confidence=(5.2,0.7483314773547882)	directionRating=(5.0,0.6324555320336759)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=3	x=2	correct=True
+take the blue path towards the chair all the way to the end of the hall
+you:ps
+RIGHT[I](16,18,0);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+here , take a left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+next , at the easel , take a right to the end of the hall
+you:ps
+FORWARD[I](20,18,0);RIGHT(20,17,0);FORWARD(20,17,90);FORWARD(21,17,90);(22, 17, 90)
+at the corner , take a left and at the next corner , take a right at the lamp
+you:ps
+LEFT(22,17,90);FORWARD[I](22,17,0);RIGHT(22,16,0);(22, 16, 90)
+the end of this hall is x
+you:ps
+(22, 16, 90)
+
+KLS_Jelly0_3_6_Dirs_1
+map=jelly	efficiency=(0.8333333333333334,0.37267799624996495)	implicit=True	numFollowers=6	confidence=(5.5,1.118033988749895)	directionRating=(5.166666666666667,1.0671873729054748)	annotated=True	targetFound=(0.8333333333333334,0.37267799624996495)	valid=True	y=3	x=6	correct=True
+take the blue path towards the chair and at the pink path intersection , take a right onto the pink path
+you:ps
+RIGHT[I](16,18,0);FORWARD(16,18,90);FORWARD[I](17,18,90);FORWARD[I](18,18,90);RIGHT(19,18,90);(19, 18, 180)
+at the very first intersection on this path , take a right and go to the end of the hall
+you:ps
+FORWARD[I](19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+this is x
+you:ps
+(18, 19, 270)
+
+EDA_Jelly0_6_1_Dirs_1
+map=jelly	efficiency=(1.0,0.0)	implicit=True	numFollowers=6	confidence=(5.666666666666667,0.4714045207910317)	directionRating=(5.5,0.5)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=6	x=1	correct=True
+only one direction to go
+you:ps
+(18, 19, 0)
+walk forward once
+you:ps
+RIGHT[I](18,19,0);FORWARD(18,19,90);(19, 19, 90)
+turn left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+walk forward once
+you:ps
+FORWARD(19,19,0);(19, 18, 0)
+turn right
+you:ps
+RIGHT(19,18,0);(19, 18, 90)
+walk forward to the end of the hallway
+you:ps
+FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+walk forward twice
+you:ps
+FORWARD(20,18,0);FORWARD(20,17,0);(20, 16, 0)
+turn left
+you:ps
+LEFT(20,16,0);(20, 16, 270)
+walk forward once
+you:ps
+FORWARD(20,16,270);(19, 16, 270)
+
+WLH_Grid0_7_5_Dirs_1
+map=grid	efficiency=(0.5,0.5)	implicit=False	numFollowers=6	confidence=(5.0,1.1547005383792515)	directionRating=(4.0,1.1547005383792515)	annotated=True	targetFound=(0.5,0.5)	valid=True	y=7	x=5	correct=True
+at y face , from looking at the long alley turn left
+you:ps
+LEFT(1,9,0);(1, 9, 270)
+move to the blue carpet
+you:ps
+FORWARD(1,9,270);(0, 9, 270)
+turn left
+you:ps
+LEFT(0,9,270);(0, 9, 180)
+you should see a chair and then a hat rack
+you:ps
+(0, 9, 180)
+move to the hat rack
+you:ps
+FORWARD(0,9,180);FORWARD(0,10,180);(0, 11, 180)
+turn left at the hat rack
+you:ps
+LEFT(0,11,180);(0, 11, 90)
+move to the corner
+you:ps
+FORWARD(0,11,90);(1, 11, 90)
+you should see gray floor to your right
+you:ps
+(1, 11, 90)
+
+EMWC_Jelly0_6_1_Dirs_1
+map=jelly	efficiency=(0.7999999999999999,0.19086270308410552)	implicit=True	numFollowers=7	confidence=(5.571428571428571,0.7284313590846834)	directionRating=(5.142857142857143,0.6388765649999399)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=6	x=1	correct=True
+go forward one segment to the intersection with the pink-flowered carpet hall
+you:ps
+RIGHT[I](18,19,0);FORWARD(18,19,90);(19, 19, 90)
+turn left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+go forward one segment to the blue-tiled hall
+you:ps
+FORWARD(19,19,0);(19, 18, 0)
+turn right
+you:ps
+RIGHT(19,18,0);(19, 18, 90)
+go to the end of the hall
+you:ps
+FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+go forward , passing the easel follow the bare concrete hall to the intersection with the brick hall
+you:ps
+FORWARD(20,18,0);FORWARD(20,17,0);(20, 16, 0)
+turn into the brick hall
+you:ps
+LEFT(20,16,0);(20, 16, 270)
+go forward to the intersection which has butterfly pictures on one side and eiffel tower pictures on the other
+you:ps
+FORWARD(20,16,270);(19, 16, 270)
+
+TJS_L0_3_2_Dirs_1
+map=l	efficiency=(1.0,0.0)	implicit=True	numFollowers=5	confidence=(4.2,1.469693845669907)	directionRating=(4.0,1.6733200530681511)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=3	x=2	correct=True
+go all the way down the winding hall , then stop at the first intersection
+you:ps
+LEFT[I](19,23,0);LEFT[I](19,23,270);FORWARD(19,23,180);LEFT(19,24,180);FORWARD(19,24,90);FORWARD(20,24,90);LEFT(21,24,90);FORWARD(21,24,0);(21, 23, 0)
+
+EDA_L0_4_6_Dirs_1
+map=l	efficiency=(1.0,0.0)	implicit=False	numFollowers=6	confidence=(5.5,1.118033988749895)	directionRating=(5.833333333333333,0.37267799624996495)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=4	x=6	correct=True
+turn so that the wall is on your left and the pink hallway is to the right
+you:ps
+LEFT(24,21,0);LEFT(24,21,270);(24, 21, 180)
+walk forward twice
+you:ps
+FORWARD(24,21,180);FORWARD(24,22,180);(24, 23, 180)
+turn right
+you:ps
+RIGHT(24,23,180);(24, 23, 270)
+you should be facing a black hallway
+you:ps
+(24, 23, 270)
+walk forward twice
+you:ps
+FORWARD(24,23,270);FORWARD(23,23,270);(22, 23, 270)
+
+KLS_Jelly0_6_7_Dirs_1
+map=jelly	efficiency=(1.0,0.0)	implicit=True	numFollowers=5	confidence=(5.6,0.48989794855663565)	directionRating=(5.0,0.6324555320336759)	annotated=True	targetFound=(1.0,0.0)	valid=True	y=6	x=7	correct=True
+go towards the pink path intersection
+you:ps
+RIGHT[I](18,19,0);FORWARD(18,19,90);(19, 19, 90)
+once here , take a left onto the pink path
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+at the next intersection , take a left onto the blue path
+you:ps
+FORWARD[I](19,19,0);LEFT(19,18,0);(19, 18, 270)
+take the blue path towards the chair
+you:ps
+FORWARD(19,18,270);(18, 18, 270)
+at the chair , take a right
+you:ps
+FORWARD[I](18,18,270);RIGHT(17,18,270);(17, 18, 0)
+the next intersection is x
+you:ps
+(17, 18, 0)
+
+EMWC_Grid0_2_7_Dirs_1
+map=grid	efficiency=(0.2670993333333333,0.14609010572094042)	implicit=False	numFollowers=6	confidence=(5.166666666666667,0.6871842709362768)	directionRating=(4.166666666666667,1.0671873729054748)	end=7	annotated=True	targetFound=(0.8333333333333334,0.37267799624996495)	start=2	valid=True	y=2	x=7	correct=True
+follow the hall with the yellow-tiled floor to the hall with pink-flowered carpet on the floor
+you:ps
+FORWARD(3,8,0);FORWARD(3,7,0);(3, 6, 0)
+turn left into this hall
+you:ps
+LEFT(3,6,0);(3, 6, 270)
+follow this hall until you reach the hall with a brown stone floor , one previous to the blue-tiled hall
+you:ps
+FORWARD(3,6,270);FORWARD(2,6,270);(1, 6, 270)
+turn left
+you:ps
+LEFT(1,6,270);(1, 6, 180)
+follow the hall until you reach a concrete hall with butterflies to the side the blue tile is on and nothing in the intersection at that end of the hall
+you:ps
+FORWARD(1,6,180);FORWARD(1,7,180);FORWARD(1,8,180);(1, 9, 180)
+the intersection you are standing in should also be empty
+you:ps
+(1, 9, 180)
+this is position x
+you:ps
+(1, 9, 180)
+
+EDA_Grid0_7_2_Dirs_1
+map=grid	efficiency=(0.8,0.4)	implicit=False	numFollowers=5	confidence=(5.8,0.4)	directionRating=(5.4,0.8)	annotated=True	targetFound=(0.8,0.4)	valid=True	y=7	x=2	correct=True
+turn to face the walls with the immediate tower pictures
+you:ps
+RIGHT(1,9,0);(1, 9, 90)
+walk forward once
+you:ps
+FORWARD(1,9,90);(2, 9, 90)
+turn left
+you:ps
+LEFT(2,9,90);(2, 9, 0)
+walk forward once
+you:ps
+FORWARD(2,9,0);(2, 8, 0)
+turn right
+you:ps
+RIGHT(2,8,0);(2, 8, 90)
+walk forward once
+you:ps
+FORWARD(2,8,90);(3, 8, 90)
+

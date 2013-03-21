@@ -1,0 +1,4590 @@
+Cleaned-EMWC_Jelly0_2_1_Dirs_1
+y=2	map=jelly	x=1
+face the hatrack
+you:ps
+LEFT(23,16,0);LEFT(23,16,270);LEFT(23,16,180);LEFT(23,16,90);(23, 16, 0)
+go forward one segment to the intersection with the grassy hall
+you:ps
+FORWARD(23,16,0);(23, 15, 0)
+turn left
+you:ps
+LEFT(23,15,0);(23, 15, 270)
+go forward down the hall until a hall opens to your left
+you:ps
+FORWARD(23,15,270);FORWARD(22,15,270);FORWARD(21,15,270);FORWARD(20,15,270);(19, 15, 270)
+go forward one segment
+you:ps
+LEFT(19,15,270);FORWARD(19,15,180);(19, 16, 180)
+there will be butterfly pictures to your left and eiffel tower pictures to your right
+you:ps
+(19, 16, 180)
+
+Cleaned-EDA_Jelly0_2_6_Dirs_1
+y=2	map=jelly	x=6
+turn so that the wall is facing your left and back
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+walk forward once
+you:ps
+FORWARD(23,16,270);(22, 16, 270)
+turn left
+you:ps
+LEFT(22,16,270);(22, 16, 180)
+walk forward once
+you:ps
+FORWARD(22,16,180);(22, 17, 180)
+turn right
+you:ps
+RIGHT(22,17,180);(22, 17, 270)
+walk forward twice
+you:ps
+FORWARD(22,17,270);FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+walk forward once
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn right
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+walk forward once
+you:ps
+FORWARD(20,18,270);(19, 18, 270)
+turn left
+you:ps
+LEFT(19,18,270);(19, 18, 180)
+walk forward once
+you:ps
+FORWARD(19,18,180);(19, 19, 180)
+and finally turn right and walk forward once
+you:ps
+RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-TJS_Jelly0_5_6_Dirs_1
+y=5	map=jelly	x=6
+look for the rose floors
+you:ps
+RIGHT(21,17,0);FORWARD(21,17,90);LEFT(22,17,90);FORWARD(22,17,0);RIGHT(22,16,0);FORWARD(22,16,90);LEFT(23,16,90);FORWARD(23,16,0);LEFT(23,15,0);FORWARD(23,15,270);FORWARD(22,15,270);FORWARD(21,15,270);FORWARD(20,15,270);LEFT(19,15,270);FORWARD(19,15,180);RIGHT(19,16,180);FORWARD(19,16,270);LEFT(18,16,270);FORWARD(18,16,180);RIGHT(18,17,180);FORWARD(18,17,270);FORWARD(17,17,270);FORWARD(16,17,270);LEFT(15,17,270);FORWARD(15,17,180);LEFT(15,18,180);FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);(19, 18, 90)
+position 6 is at a dead end , a branch off from the rose floors , and has two pictures of the eiffel tower on it
+you:ps
+RIGHT(19,18,90);FORWARD(19,18,180);FORWARD(19,19,180);FORWARD(19,20,180);RIGHT(19,21,180);RIGHT(19,21,270);FORWARD(19,21,0);FORWARD(19,20,0);LEFT(19,19,0);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-EDA_Jelly0_3_4_Dirs_1
+y=3	map=jelly	x=4
+turn so that the wall is on your right side
+you:ps
+LEFT(16,18,0);(16, 18, 270)
+walk forward once
+you:ps
+FORWARD(16,18,270);(15, 18, 270)
+turn left
+you:ps
+LEFT(15,18,270);(15, 18, 180)
+walk forward twice
+you:ps
+FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-KXP_Jelly0_6_7_Dirs_1
+y=6	map=jelly	x=7
+foward 1
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);(19, 19, 90)
+left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+fwd 1
+you:ps
+FORWARD(19,19,0);(19, 18, 0)
+left
+you:ps
+LEFT(19,18,0);(19, 18, 270)
+foward till 1st right turn
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);(17, 18, 270)
+make a right
+you:ps
+RIGHT(17,18,270);(17, 18, 0)
+foward 1 space
+you:ps
+FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-EMWC_Jelly0_5_6_Dirs_1
+y=5	map=jelly	x=6
+face the easel
+you:ps
+LEFT(21,17,0);(21, 17, 270)
+go forward one segment to the intersection containing the easel
+you:ps
+FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+go forward one segment to the intersection with the blue-tiled floor
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn right
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+go forward one segment to the intersection with the pink-flowered carpet hall
+you:ps
+FORWARD(20,18,270);(19, 18, 270)
+turn left
+you:ps
+LEFT(19,18,270);(19, 18, 180)
+go forward one segment
+you:ps
+FORWARD(19,18,180);(19, 19, 180)
+turn right
+you:ps
+RIGHT(19,19,180);(19, 19, 270)
+go forward one segment
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-KXP_Jelly0_2_7_Dirs_1
+y=2	map=jelly	x=7
+go to blue floor area
+you:ps
+FORWARD(23,16,0);LEFT(23,15,0);FORWARD(23,15,270);FORWARD(22,15,270);FORWARD(21,15,270);FORWARD(20,15,270);FORWARD(19,15,270);LEFT(18,15,270);LEFT(18,15,180);FORWARD(18,15,90);RIGHT(19,15,90);FORWARD(19,15,180);RIGHT(19,16,180);FORWARD(19,16,270);LEFT(18,16,270);FORWARD(18,16,180);RIGHT(18,17,180);FORWARD(18,17,270);LEFT(17,17,270);FORWARD(17,17,180);(17, 18, 180)
+make 1st right go tward black floored area
+you:ps
+RIGHT(17,18,180);RIGHT(17,18,270);FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-WLH_Jelly0_5_6_Dirs_1
+y=5	map=jelly	x=6
+start facing the easel
+you:ps
+LEFT(21,17,0);(21, 17, 270)
+walk forward and turn left at the easel
+you:ps
+FORWARD(21,17,270);LEFT(20,17,270);(20, 17, 180)
+there should be blue carpet on the first alley
+you:ps
+(20, 17, 180)
+walk to that and turn right
+you:ps
+FORWARD(20,17,180);RIGHT(20,18,180);(20, 18, 270)
+you should see an alley to your left
+you:ps
+(20, 18, 270)
+take it
+you:ps
+FORWARD(20,18,270);LEFT(19,18,270);(19, 18, 180)
+the carpet has roses
+you:ps
+(19, 18, 180)
+go down the first alley to your right and stop at the end
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-EMWC_Jelly0_2_5_Dirs_1
+y=2	map=jelly	x=5
+face the lamp
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+go forward one segment to the intersection with the lamp
+you:ps
+FORWARD(23,16,270);(22, 16, 270)
+turn left
+you:ps
+LEFT(22,16,270);(22, 16, 180)
+go forward one segment to the intersection with the blue-tiled hall
+you:ps
+FORWARD(22,16,180);(22, 17, 180)
+turn right
+you:ps
+RIGHT(22,17,180);(22, 17, 270)
+go forward one segment
+you:ps
+FORWARD(22,17,270);(21, 17, 270)
+
+Cleaned-EMWC_Jelly0_6_3_Dirs_1
+y=6	map=jelly	x=3
+go forward one segment to the pink-flowered carpet hall
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);(19, 19, 90)
+turn left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+go forward one segment ot the blue-tiled hall
+you:ps
+FORWARD(19,19,0);(19, 18, 0)
+turn left
+you:ps
+LEFT(19,18,0);(19, 18, 270)
+go forward about two segments to an intersection with a bare concrete hall
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+this intersection is empty but the one on either side in the blue-tiled hall contain furniture
+you:ps
+(16, 18, 270)
+
+Cleaned-KXP_Jelly0_1_4_Dirs_1
+y=1	map=jelly	x=4
+end of the fish area
+you:ps
+LEFT(19,16,0);FORWARD(19,16,270);LEFT(18,16,270);FORWARD(18,16,180);RIGHT(18,17,180);FORWARD(18,17,270);FORWARD(17,17,270);FORWARD(16,17,270);(15, 17, 270)
+amek a left into dead end
+you:ps
+LEFT(15,17,270);FORWARD(15,17,180);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-KLS_Jelly0_7_3_Dirs_1
+y=7	map=jelly	x=3
+go straight towards teh black chair
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+at the chair , take a right
+you:ps
+FORWARD(17,17,180);RIGHT(17,18,180);(17, 18, 270)
+the second intersection down on the blue path is 3
+you:ps
+FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-WLH_Jelly0_1_7_Dirs_1
+y=1	map=jelly	x=7
+face and move to the chair
+you:ps
+LEFT(19,16,0);FORWARD(19,16,270);(18, 16, 270)
+turn left
+you:ps
+LEFT(18,16,270);(18, 16, 180)
+the side alley has stone flooring
+you:ps
+(18, 16, 180)
+turn down this alley and move to the stool
+you:ps
+FORWARD(18,16,180);RIGHT(18,17,180);FORWARD(18,17,270);(17, 17, 270)
+
+Cleaned-WLH_Jelly0_1_6_Dirs_1
+y=1	map=jelly	x=6
+with your back to the wall turn right and move into the corner
+you:ps
+RIGHT(19,16,0);FORWARD(19,16,90);(20, 16, 90)
+turn right again and walk past the easel to the blue carpeted side alley
+you:ps
+RIGHT(20,16,90);FORWARD(20,16,180);FORWARD(20,17,180);(20, 18, 180)
+turn right and move to the next side alley
+you:ps
+RIGHT(20,18,180);FORWARD(20,18,270);(19, 18, 270)
+turning left you see flowered carpet
+you:ps
+LEFT(19,18,270);(19, 18, 180)
+move forward and turn right at the first alley
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);(19, 19, 270)
+move to the deadend
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-KLS_Jelly0_5_2_Dirs_1
+y=5	map=jelly	x=2
+take the wood path away from the easel
+you:ps
+RIGHT(21,17,0);(21, 17, 90)
+at the corner , take a left
+you:ps
+FORWARD(21,17,90);LEFT(22,17,90);(22, 17, 0)
+follow the path to the next corner and take a right at the lamp
+you:ps
+FORWARD(22,17,0);RIGHT(22,16,0);(22, 16, 90)
+go straight to the very next corner and this is 2
+you:ps
+FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-EMWC_Jelly0_1_5_Dirs_1
+y=1	map=jelly	x=5
+place your back against the wall of the t intersection
+you:ps
+LEFT(19,16,0);LEFT(19,16,270);LEFT(19,16,180);LEFT(19,16,90);(19, 16, 0)
+turn to the right
+you:ps
+RIGHT(19,16,0);(19, 16, 90)
+go forward one segment to the end of the hall
+you:ps
+FORWARD(19,16,90);(20, 16, 90)
+turn right
+you:ps
+RIGHT(20,16,90);(20, 16, 180)
+go forward one segment to the intersection with the wooden-floored hall
+you:ps
+FORWARD(20,16,180);(20, 17, 180)
+this intersection contains an easel
+you:ps
+(20, 17, 180)
+turn left
+you:ps
+LEFT(20,17,180);(20, 17, 90)
+go forward one segment
+you:ps
+FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-KLS_Jelly0_5_6_Dirs_1
+y=5	map=jelly	x=6
+go on the wood path towards the easel
+you:ps
+LEFT(21,17,0);(21, 17, 270)
+at the easel , take a left and go to the corner where you will meet the blue path
+you:ps
+FORWARD(21,17,270);LEFT(20,17,270);FORWARD(20,17,180);(20, 18, 180)
+take a right onto the blue path
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+at the very first intersection , you will be at the pink path
+you:ps
+FORWARD(20,18,270);(19, 18, 270)
+take a left onto the pink path and at the first intersection , go right
+you:ps
+LEFT(19,18,270);FORWARD(19,18,180);RIGHT(19,19,180);(19, 19, 270)
+the very end of this hall is 6
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-EDA_Jelly0_5_1_Dirs_1
+y=5	map=jelly	x=1
+turn to face the easel
+you:ps
+LEFT(21,17,0);(21, 17, 270)
+walk forward once
+you:ps
+FORWARD(21,17,270);(20, 17, 270)
+turn right and walk forward once
+you:ps
+RIGHT(20,17,270);FORWARD(20,17,0);(20, 16, 0)
+turn left and walk forward once
+you:ps
+LEFT(20,16,0);FORWARD(20,16,270);(19, 16, 270)
+
+Cleaned-EMWC_Jelly0_4_5_Dirs_1
+y=4	map=jelly	x=5
+go forward two segments to the intersection with the blue-tiled hall
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);(15, 18, 0)
+turn right
+you:ps
+RIGHT(15,18,0);(15, 18, 90)
+go to the far end of the hall
+you:ps
+FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+go forward one segment to the intersection wth the wooden-floored hall
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+this intersection contains an easel
+you:ps
+(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+go forward one segment
+you:ps
+FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-WLH_Jelly0_6_1_Dirs_1
+y=6	map=jelly	x=1
+move to the flowered carpet and turn left
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);LEFT(19,19,90);(19, 19, 0)
+move along the blue to the chair and turn right
+you:ps
+FORWARD(19,19,0);LEFT(19,18,0);FORWARD(19,18,270);FORWARD(18,18,270);RIGHT(17,18,270);(17, 18, 0)
+move to the stool and turn right
+you:ps
+FORWARD(17,18,0);RIGHT(17,17,0);(17, 17, 90)
+turn left at the sofa chair and move to the next sofa chair
+you:ps
+FORWARD(17,17,90);LEFT(18,17,90);FORWARD(18,17,0);(18, 16, 0)
+move one alley along the brick
+you:ps
+RIGHT(18,16,0);FORWARD(18,16,90);(19, 16, 90)
+to your left is grey flooring
+you:ps
+(19, 16, 90)
+
+Cleaned-EMWC_Jelly0_3_7_Dirs_1
+y=3	map=jelly	x=7
+place your back to the wall of the t intersection
+you:ps
+LEFT(16,18,0);LEFT(16,18,270);(16, 18, 180)
+turn left
+you:ps
+LEFT(16,18,180);(16, 18, 90)
+go forward one segment to the intersection containing the chair
+you:ps
+FORWARD(16,18,90);(17, 18, 90)
+at one end , the left probably , of the intersecting hall there will be a stool and the bare concrete hall will intersect with the stone hall
+you:ps
+(17, 18, 90)
+turn toward that end and go forward one segment to that intersection
+you:ps
+LEFT(17,18,90);FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-EMWC_Jelly0_7_5_Dirs_1
+y=7	map=jelly	x=5
+place your back to the wall of the t intersection
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+go forward one segment to the intersection with the blue-tiled hall
+you:ps
+FORWARD(17,17,180);(17, 18, 180)
+this contains a chair
+you:ps
+(17, 18, 180)
+turn left
+you:ps
+LEFT(17,18,180);(17, 18, 90)
+go forward three segments to the end of the hall
+you:ps
+FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+go forward one segment to the blue-tiled hall intersection
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+this intersection contains an easel
+you:ps
+(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+go forward one segment
+you:ps
+FORWARD(20,17,90);(21, 17, 90)
+position 5 is in the wooden-floored hall
+you:ps
+(21, 17, 90)
+it is a hall section between the two sections of butterfly pictures
+you:ps
+(21, 17, 90)
+
+Cleaned-WLH_Jelly0_6_2_Dirs_1
+y=6	map=jelly	x=2
+move forward
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);(19, 19, 90)
+turn left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+turn right onto the blue carpet
+you:ps
+FORWARD(19,19,0);RIGHT(19,18,0);(19, 18, 90)
+take the left alley
+you:ps
+FORWARD(19,18,90);LEFT(20,18,90);(20, 18, 0)
+follow it around until you can see a lamp
+you:ps
+FORWARD(20,18,0);RIGHT(20,17,0);FORWARD(20,17,90);FORWARD(21,17,90);LEFT(22,17,90);(22, 17, 0)
+if you continue on you will see a hat rack
+you:ps
+FORWARD(22,17,0);RIGHT(22,16,0);FORWARD(22,16,90);(23, 16, 90)
+position yourself where you can see both the lamp and the hatrack
+you:ps
+(23, 16, 90)
+there should be butterfly images on the side at this point
+you:ps
+(23, 16, 90)
+
+Cleaned-KXP_Jelly0_3_4_Dirs_1
+y=3	map=jelly	x=4
+foward to the fish
+you:ps
+LEFT(16,18,0);(16, 18, 270)
+first left
+you:ps
+FORWARD(16,18,270);LEFT(15,18,270);(15, 18, 180)
+go tot the end
+you:ps
+FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-EDA_Jelly0_4_3_Dirs_1
+y=4	map=jelly	x=3
+only one way to go
+you:ps
+(15, 20, 0)
+walk forward until you reach the blue floors
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);(15, 18, 0)
+probably twice
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);(15, 18, 0)
+turn right
+you:ps
+RIGHT(15,18,0);(15, 18, 90)
+walk forward once
+you:ps
+FORWARD(15,18,90);(16, 18, 90)
+
+Cleaned-KXP_Jelly0_4_5_Dirs_1
+y=4	map=jelly	x=5
+foward till the end
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);FORWARD(15,18,0);(15, 17, 0)
+right
+you:ps
+RIGHT(15,17,0);(15, 17, 90)
+foward till the end
+you:ps
+FORWARD(15,17,90);FORWARD(16,17,90);FORWARD(17,17,90);(18, 17, 90)
+look for a blue aesal
+you:ps
+LEFT(18,17,90);FORWARD(18,17,0);RIGHT(18,16,0);FORWARD(18,16,90);FORWARD(19,16,90);RIGHT(20,16,90);FORWARD(20,16,180);LEFT(20,17,180);FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-TJS_Jelly0_6_5_Dirs_1
+y=6	map=jelly	x=5
+position 5 is in the middle of the wood floored hall
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);RIGHT(19,19,90);FORWARD(19,19,180);LEFT(19,20,180);LEFT(19,20,90);FORWARD(19,20,0);FORWARD(19,19,0);RIGHT(19,18,0);FORWARD(19,18,90);LEFT(20,18,90);FORWARD(20,18,0);RIGHT(20,17,0);FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-KLS_Jelly0_1_2_Dirs_1
+y=1	map=jelly	x=2
+go towards the chair on the green path
+you:ps
+(19, 16, 0)
+at the chair , go right
+you:ps
+FORWARD(19,16,0);RIGHT(19,15,0);(19, 15, 90)
+follow this green path to the very end of the hall
+you:ps
+FORWARD(19,15,90);FORWARD(20,15,90);FORWARD(21,15,90);FORWARD(22,15,90);(23, 15, 90)
+once here , go right onto the plain cement path
+you:ps
+RIGHT(23,15,90);(23, 15, 180)
+the next corner you come to is 2
+you:ps
+FORWARD(23,15,180);(23, 16, 180)
+
+Cleaned-TJS_Jelly0_2_7_Dirs_1
+y=2	map=jelly	x=7
+position 7 is in the middle of the grey floored hall with a coat rack or something
+you:ps
+LEFT(23,16,0);FORWARD(23,16,270);LEFT(22,16,270);FORWARD(22,16,180);RIGHT(22,17,180);FORWARD(22,17,270);FORWARD(21,17,270);LEFT(20,17,270);FORWARD(20,17,180);RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);RIGHT(17,18,270);FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-WLH_Jelly0_4_7_Dirs_1
+y=4	map=jelly	x=7
+from four walk as far as you can
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);FORWARD(15,18,0);(15, 17, 0)
+turn right
+you:ps
+RIGHT(15,17,0);(15, 17, 90)
+the chair about halfway down is on p-7
+you:ps
+FORWARD(15,17,90);FORWARD(16,17,90);(17, 17, 90)
+
+Cleaned-WLH_Jelly0_5_6_Dirs_2
+y=5	map=jelly	x=6
+face and move to the easel
+you:ps
+LEFT(21,17,0);FORWARD(21,17,270);(20, 17, 270)
+turn left and move down the aisle with blue flooring
+you:ps
+LEFT(20,17,270);FORWARD(20,17,180);RIGHT(20,18,180);(20, 18, 270)
+turn left at the first alley
+you:ps
+FORWARD(20,18,270);LEFT(19,18,270);(19, 18, 180)
+it has flowered carpet
+you:ps
+(19, 18, 180)
+turn right from the flowered carpet to face a dead end w/ grey floor
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);(19, 19, 270)
+move to the dead end
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-KXP_Jelly0_7_3_Dirs_1
+y=7	map=jelly	x=3
+go to the blue floored area
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);FORWARD(17,17,180);(17, 18, 180)
+pos 3 is in between the two pieces of furnitute in this hallway
+you:ps
+RIGHT(17,18,180);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-WLH_Jelly0_4_1_Dirs_1
+y=4	map=jelly	x=1
+move to the other end of the alley and turn right
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);FORWARD(15,18,0);RIGHT(15,17,0);(15, 17, 90)
+move along the stone floor to the sofa chair
+you:ps
+FORWARD(15,17,90);FORWARD(16,17,90);FORWARD(17,17,90);(18, 17, 90)
+turn left
+you:ps
+LEFT(18,17,90);(18, 17, 0)
+move to this sofa chair and turn right
+you:ps
+FORWARD(18,17,0);RIGHT(18,16,0);(18, 16, 90)
+move to the next alley
+you:ps
+FORWARD(18,16,90);(19, 16, 90)
+to your left is grey flooring and in front of you is brick
+you:ps
+(19, 16, 90)
+
+Cleaned-KLS_Jelly0_5_7_Dirs_1
+y=5	map=jelly	x=7
+take the wood path towards the easel
+you:ps
+LEFT(21,17,0);(21, 17, 270)
+at the easel , go left and then take a right onto the blue path at the corner
+you:ps
+FORWARD(21,17,270);LEFT(20,17,270);FORWARD(20,17,180);RIGHT(20,18,180);(20, 18, 270)
+follow the blue path towards the chair and at the chair , take a right towards the stool
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);RIGHT(17,18,270);(17, 18, 0)
+when you reach the stool , you are at 7
+you:ps
+FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-WLH_Jelly0_2_1_Dirs_2
+y=2	map=jelly	x=1
+face and move to the lamp
+you:ps
+LEFT(23,16,0);FORWARD(23,16,270);(22, 16, 270)
+turn left and move along the wooden flooring to the easel
+you:ps
+LEFT(22,16,270);FORWARD(22,16,180);RIGHT(22,17,180);FORWARD(22,17,270);FORWARD(21,17,270);(20, 17, 270)
+turn right
+you:ps
+RIGHT(20,17,270);(20, 17, 0)
+the side alley to the left has stone flooring
+you:ps
+(20, 17, 0)
+move to it
+you:ps
+FORWARD(20,17,0);(20, 16, 0)
+move one block down this alley
+you:ps
+LEFT(20,16,0);FORWARD(20,16,270);(19, 16, 270)
+you should see a sofa chair in front of you and a wooden chair to your right
+you:ps
+(19, 16, 270)
+
+Cleaned-EDA_Jelly0_1_5_Dirs_1
+y=1	map=jelly	x=5
+turn so that the wall is on your right
+you:ps
+RIGHT(19,16,0);(19, 16, 90)
+walk forward once
+you:ps
+FORWARD(19,16,90);(20, 16, 90)
+turn right
+you:ps
+RIGHT(20,16,90);(20, 16, 180)
+walk forward once
+you:ps
+FORWARD(20,16,180);(20, 17, 180)
+turn left
+you:ps
+LEFT(20,17,180);(20, 17, 90)
+walk forward once
+you:ps
+FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-EMWC_Jelly0_1_4_Dirs_1
+y=1	map=jelly	x=4
+place your back to the wall of the t intersection
+you:ps
+LEFT(19,16,0);LEFT(19,16,270);LEFT(19,16,180);LEFT(19,16,90);(19, 16, 0)
+turn right
+you:ps
+RIGHT(19,16,0);(19, 16, 90)
+go forward one segment to the end of the hall
+you:ps
+FORWARD(19,16,90);(20, 16, 90)
+turn right
+you:ps
+RIGHT(20,16,90);(20, 16, 180)
+go forward two segments to the blue-tiled hall
+you:ps
+FORWARD(20,16,180);FORWARD(20,17,180);(20, 18, 180)
+turn right
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+go forward to the intersection with the yellow-tiled hall
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+this intersection contains a hatrack
+you:ps
+(15, 18, 270)
+turn left
+you:ps
+LEFT(15,18,270);(15, 18, 180)
+go forward two segments to the end of the hall
+you:ps
+FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-KLS_Jelly0_3_7_Dirs_1
+y=3	map=jelly	x=7
+go towards the chair on the blue path
+you:ps
+RIGHT(16,18,0);(16, 18, 90)
+at the chair , go left towards teh stool
+you:ps
+FORWARD(16,18,90);LEFT(17,18,90);(17, 18, 0)
+when you reach the stool , you are at postion 7
+you:ps
+FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-EMWC_Jelly0_2_6_Dirs_1
+y=2	map=jelly	x=6
+face the lamp
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+go forward one segment
+you:ps
+FORWARD(23,16,270);(22, 16, 270)
+turn left
+you:ps
+LEFT(22,16,270);(22, 16, 180)
+go forward one segment to the intersection with the wooden-floored hall
+you:ps
+FORWARD(22,16,180);(22, 17, 180)
+turn right
+you:ps
+RIGHT(22,17,180);(22, 17, 270)
+go forward two segments to the intersection containing the easel
+you:ps
+FORWARD(22,17,270);FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+go forward one segment to the blue-tiled hall
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn right
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+go forward one segment to the intersection with the pink-flowered carpet hall
+you:ps
+FORWARD(20,18,270);(19, 18, 270)
+turn left into this hall
+you:ps
+LEFT(19,18,270);(19, 18, 180)
+go forward one segment
+you:ps
+FORWARD(19,18,180);(19, 19, 180)
+turn right
+you:ps
+RIGHT(19,19,180);(19, 19, 270)
+go forward one segment
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-KLS_Jelly0_4_7_Dirs_1
+y=4	map=jelly	x=7
+take the yellow path all the way to the other end of the hall
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);FORWARD(15,18,0);(15, 17, 0)
+here , take a right onto the black path
+you:ps
+RIGHT(15,17,0);(15, 17, 90)
+follow the black path all the way until you reach a black stool
+you:ps
+FORWARD(15,17,90);FORWARD(16,17,90);(17, 17, 90)
+
+Cleaned-EMWC_Jelly0_1_3_Dirs_1
+y=1	map=jelly	x=3
+place your back to the wall of the t intersection
+you:ps
+LEFT(19,16,0);LEFT(19,16,270);LEFT(19,16,180);LEFT(19,16,90);(19, 16, 0)
+go forward one segment
+you:ps
+FORWARD(19,16,0);(19, 15, 0)
+turn right
+you:ps
+RIGHT(19,15,0);(19, 15, 90)
+go forward two segments , passing the easel in the intersection with the wooden-floored hall
+you:ps
+FORWARD(19,15,90);FORWARD(20,15,90);FORWARD(21,15,90);FORWARD(22,15,90);RIGHT(23,15,90);FORWARD(23,15,180);RIGHT(23,16,180);FORWARD(23,16,270);LEFT(22,16,270);FORWARD(22,16,180);RIGHT(22,17,180);FORWARD(22,17,270);FORWARD(21,17,270);RIGHT(20,17,270);FORWARD(20,17,0);LEFT(20,16,0);LEFT(20,16,270);FORWARD(20,16,180);FORWARD(20,17,180);(20, 18, 180)
+position 3 is the empty section between the two pieces of furniture in this hall
+you:ps
+RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-EDA_Jelly0_4_7_Dirs_1
+y=4	map=jelly	x=7
+only one direction to go
+you:ps
+(15, 20, 0)
+walk to the end of the yellow hallway , 3 steps
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);FORWARD(15,18,0);(15, 17, 0)
+turn right
+you:ps
+RIGHT(15,17,0);(15, 17, 90)
+walk forward twice
+you:ps
+FORWARD(15,17,90);FORWARD(16,17,90);(17, 17, 90)
+
+Cleaned-TJS_Jelly0_6_3_Dirs_1
+y=6	map=jelly	x=3
+it s in the middle of the blue hall with two objects at either side
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);RIGHT(19,19,90);RIGHT(19,19,180);RIGHT(19,19,270);FORWARD(19,19,0);LEFT(19,18,0);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);LEFT(15,18,270);LEFT(15,18,180);FORWARD(15,18,90);(16, 18, 90)
+
+Cleaned-WLH_Jelly0_2_4_Dirs_1
+y=2	map=jelly	x=4
+face and move to the hatrack
+you:ps
+LEFT(23,16,0);LEFT(23,16,270);LEFT(23,16,180);LEFT(23,16,90);FORWARD(23,16,0);(23, 15, 0)
+turn left and walk along the grass to the chair
+you:ps
+LEFT(23,15,0);FORWARD(23,15,270);FORWARD(22,15,270);FORWARD(21,15,270);FORWARD(20,15,270);(19, 15, 270)
+turn left at the chair and turn right at the next interesection
+you:ps
+LEFT(19,15,270);FORWARD(19,15,180);RIGHT(19,16,180);(19, 16, 270)
+turn left at the sofa chair and right at the next sofa chair
+you:ps
+FORWARD(19,16,270);LEFT(18,16,270);FORWARD(18,16,180);RIGHT(18,17,180);(18, 17, 270)
+move along the stone flooring to the end
+you:ps
+FORWARD(18,17,270);FORWARD(17,17,270);FORWARD(16,17,270);(15, 17, 270)
+turn left and move along the octagons past the hatrack to the end of this alley
+you:ps
+LEFT(15,17,270);FORWARD(15,17,180);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-TJS_Jelly0_6_7_Dirs_1
+y=6	map=jelly	x=7
+look for grey tiled hall
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);LEFT(19,19,90);FORWARD(19,19,0);LEFT(19,18,0);FORWARD(19,18,270);FORWARD(18,18,270);(17, 18, 270)
+position 7 is in the middle of the grey hall and has i think a chair or coat rack or some sort of object
+you:ps
+RIGHT(17,18,270);FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-TJS_Jelly0_1_3_Dirs_1
+y=1	map=jelly	x=3
+position 3 is in the middle of the blue tiled floor , in between the coat rack and a chair of some sort
+you:ps
+LEFT(19,16,0);FORWARD(19,16,270);LEFT(18,16,270);FORWARD(18,16,180);RIGHT(18,17,180);FORWARD(18,17,270);LEFT(17,17,270);FORWARD(17,17,180);FORWARD(17,18,180);RIGHT(17,19,180);RIGHT(17,19,270);FORWARD(17,19,0);LEFT(17,18,0);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-EDA_Jelly0_1_4_Dirs_1
+y=1	map=jelly	x=4
+turn so that the wall is on your left
+you:ps
+LEFT(19,16,0);(19, 16, 270)
+walk forward once
+you:ps
+FORWARD(19,16,270);(18, 16, 270)
+turn left
+you:ps
+LEFT(18,16,270);(18, 16, 180)
+walk forward once
+you:ps
+FORWARD(18,16,180);(18, 17, 180)
+turn right
+you:ps
+RIGHT(18,17,180);(18, 17, 270)
+walk forward three times
+you:ps
+FORWARD(18,17,270);FORWARD(17,17,270);FORWARD(16,17,270);(15, 17, 270)
+turn left
+you:ps
+LEFT(15,17,270);(15, 17, 180)
+walk forward three times
+you:ps
+FORWARD(15,17,180);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-EMWC_Jelly0_3_6_Dirs_1
+y=3	map=jelly	x=6
+place your back against the wall of the t intersection
+you:ps
+LEFT(16,18,0);LEFT(16,18,270);(16, 18, 180)
+turn to the left
+you:ps
+LEFT(16,18,180);(16, 18, 90)
+go forward to the intersection with the pink-flowered carpet hall , passing the chair
+you:ps
+FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);(19, 18, 90)
+turn right
+you:ps
+RIGHT(19,18,90);(19, 18, 180)
+go forward one segment
+you:ps
+FORWARD(19,18,180);(19, 19, 180)
+turn right
+you:ps
+RIGHT(19,19,180);(19, 19, 270)
+go forward one segment
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-WLH_Jelly0_5_1_Dirs_1
+y=5	map=jelly	x=1
+move to the easel and turn right
+you:ps
+LEFT(21,17,0);FORWARD(21,17,270);RIGHT(20,17,270);(20, 17, 0)
+the left side alley should be stone
+you:ps
+FORWARD(20,17,0);(20, 16, 0)
+move along the stone alley past the sofa chair
+you:ps
+LEFT(20,16,0);FORWARD(20,16,270);(19, 16, 270)
+one alley past this chair
+you:ps
+(19, 16, 270)
+
+Cleaned-EDA_Jelly0_2_4_Dirs_1
+y=2	map=jelly	x=4
+turn so that the wall is on your left and to your back
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+walk forward once
+you:ps
+FORWARD(23,16,270);(22, 16, 270)
+turn left
+you:ps
+LEFT(22,16,270);(22, 16, 180)
+walk forward once
+you:ps
+FORWARD(22,16,180);(22, 17, 180)
+turn to the right
+you:ps
+RIGHT(22,17,180);(22, 17, 270)
+walk forward once
+you:ps
+FORWARD(22,17,270);(21, 17, 270)
+turn left
+you:ps
+FORWARD(21,17,270);LEFT(20,17,270);(20, 17, 180)
+you should be facing down a brown hallway
+you:ps
+(20, 17, 180)
+walk to the blue interseciton
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+one space
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn right
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+walk forward five times
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+turn left and walk forward once
+you:ps
+LEFT(15,18,270);FORWARD(15,18,180);(15, 19, 180)
+
+Cleaned-EMWC_Jelly0_4_6_Dirs_1
+y=4	map=jelly	x=6
+go forward two segments to the intersection of the blue-tiled hall
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);(15, 18, 0)
+turn right
+you:ps
+RIGHT(15,18,0);(15, 18, 90)
+go forward , passing the chair , to the intersection with the pink-flowered carpet
+you:ps
+FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);(19, 18, 90)
+turn right
+you:ps
+RIGHT(19,18,90);(19, 18, 180)
+go forward one segment
+you:ps
+FORWARD(19,18,180);(19, 19, 180)
+turn right
+you:ps
+RIGHT(19,19,180);(19, 19, 270)
+go forward one segment
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-WLH_Jelly0_7_2_Dirs_1
+y=7	map=jelly	x=2
+face and move to the chair
+you:ps
+RIGHT(17,17,0);FORWARD(17,17,90);(18, 17, 90)
+turn left
+you:ps
+LEFT(18,17,90);(18, 17, 0)
+move to the next chair and turn right
+you:ps
+FORWARD(18,17,0);RIGHT(18,16,0);(18, 16, 90)
+move to the next alley and turn left
+you:ps
+FORWARD(18,16,90);LEFT(19,16,90);(19, 16, 0)
+you see a chair and grass side alleys
+you:ps
+(19, 16, 0)
+move to the chair and turn right
+you:ps
+FORWARD(19,16,0);RIGHT(19,15,0);(19, 15, 90)
+walk along the grass to the hatrack and turn right
+you:ps
+FORWARD(19,15,90);FORWARD(20,15,90);FORWARD(21,15,90);FORWARD(22,15,90);RIGHT(23,15,90);(23, 15, 180)
+move to the corner
+you:ps
+FORWARD(23,15,180);(23, 16, 180)
+from this corner you can view a lamp to your right and the hatrack you just came from
+you:ps
+(23, 16, 180)
+
+Cleaned-TJS_Jelly0_5_3_Dirs_1
+y=5	map=jelly	x=3
+position 3 is in the middle of the blue hall
+you:ps
+LEFT(21,17,0);FORWARD(21,17,270);LEFT(20,17,270);FORWARD(20,17,180);RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-KLS_Jelly0_7_5_Dirs_1
+y=7	map=jelly	x=5
+take the path towards the chair
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+at the chair , go left onto the blue path
+you:ps
+FORWARD(17,17,180);LEFT(17,18,180);(17, 18, 90)
+at the end of the hall , take a left towards the easel
+you:ps
+FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);LEFT(20,18,90);(20, 18, 0)
+at the easel , go right onto the wood path and the very first section will be 5
+you:ps
+FORWARD(20,18,0);RIGHT(20,17,0);FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-WLH_Jelly0_4_6_Dirs_1
+y=4	map=jelly	x=6
+move one block on the green octagon carpet
+you:ps
+FORWARD(15,20,0);(15, 19, 0)
+the side alleys have blue flooring and in front of you
+you:ps
+(15, 19, 0)
+you see grey stone
+you:ps
+(15, 19, 0)
+turn right down the long blue alley
+you:ps
+FORWARD(15,19,0);RIGHT(15,18,0);(15, 18, 90)
+move past the stool and the chair to the side alley with flowered carpet
+you:ps
+FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);(19, 18, 90)
+turn down this alley and turn right at the first alley
+you:ps
+RIGHT(19,18,90);FORWARD(19,18,180);RIGHT(19,19,180);(19, 19, 270)
+move to the dead end
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-KLS_Jelly0_7_2_Dirs_1
+y=7	map=jelly	x=2
+go towards the chair on the path
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+at the chair , take a left onto the blue path and follow it to the very end of the hall
+you:ps
+FORWARD(17,17,180);LEFT(17,18,180);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+here , take a left towards the easel
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+at the easel , take a right onto the wood path
+you:ps
+FORWARD(20,18,0);RIGHT(20,17,0);(20, 17, 90)
+at the end of this hall , take a left towards the lamp and once at the lamp , take a right
+you:ps
+FORWARD(20,17,90);FORWARD(21,17,90);LEFT(22,17,90);FORWARD(22,17,0);RIGHT(22,16,0);(22, 16, 90)
+the end of this hall at the corner is 2
+you:ps
+FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-TJS_Jelly0_1_6_Dirs_1
+y=1	map=jelly	x=6
+position 6 is a dead end branch off the rose floor , with two eiffel towers on the walls
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-EMWC_Jelly0_3_2_Dirs_1
+y=3	map=jelly	x=2
+place your back against the wall of the t intersection
+you:ps
+LEFT(16,18,0);LEFT(16,18,270);(16, 18, 180)
+turn left
+you:ps
+LEFT(16,18,180);(16, 18, 90)
+go to the far end of the hall
+you:ps
+FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+go forward one segment to the intersection with the wooden-floored hall
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+this intersection contains an easel
+you:ps
+(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+go forward two segments to the end of the hall
+you:ps
+FORWARD(20,17,90);FORWARD(21,17,90);(22, 17, 90)
+turn left
+you:ps
+LEFT(22,17,90);(22, 17, 0)
+go forward one segment to the intersection containing the lamp
+you:ps
+FORWARD(22,17,0);(22, 16, 0)
+turn right
+you:ps
+RIGHT(22,16,0);(22, 16, 90)
+go forward one segment to the empty corner
+you:ps
+FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-WLH_Jelly0_5_7_Dirs_1
+y=5	map=jelly	x=7
+move to the easel and turn left
+you:ps
+LEFT(21,17,0);FORWARD(21,17,270);LEFT(20,17,270);(20, 17, 180)
+the side alley has blue floor
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+move onto this and stop at the chair
+you:ps
+RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);(17, 18, 270)
+turn right
+you:ps
+RIGHT(17,18,270);(17, 18, 0)
+move to the stool
+you:ps
+FORWARD(17,18,0);(17, 17, 0)
+the side alley has stone flooring
+you:ps
+(17, 17, 0)
+
+Cleaned-TJS_Jelly0_2_3_Dirs_1
+y=2	map=jelly	x=3
+position 3 is in the middle of the blue tiled hall with a coat rack at one end and a chair or something at the other end
+you:ps
+LEFT(23,16,0);FORWARD(23,16,270);LEFT(22,16,270);FORWARD(22,16,180);RIGHT(22,17,180);FORWARD(22,17,270);FORWARD(21,17,270);LEFT(20,17,270);FORWARD(20,17,180);RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-EDA_Jelly0_5_4_Dirs_1
+y=5	map=jelly	x=4
+turn to face the easel
+you:ps
+LEFT(21,17,0);(21, 17, 270)
+walk forward once
+you:ps
+FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+walk forward once
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn right
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+walk down the blue hallway untill you intersect the yellow hallway , about 5 steps
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+turn left and go to the end of the yellow hallway , about 2 steps
+you:ps
+LEFT(15,18,270);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-KLS_Jelly0_1_3_Dirs_1
+y=1	map=jelly	x=3
+follow the red brick path away from the bench
+you:ps
+RIGHT(19,16,0);(19, 16, 90)
+at the corner take a right towards the easel
+you:ps
+FORWARD(19,16,90);RIGHT(20,16,90);(20, 16, 180)
+go past the easel to the next corner and take a right onto the blue path
+you:ps
+FORWARD(20,16,180);FORWARD(20,17,180);RIGHT(20,18,180);(20, 18, 270)
+go towards the chair and one intersection past the chair is position 3
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-WLH_Jelly0_3_5_Dirs_1
+y=3	map=jelly	x=5
+with your back to the wall at 3 turn left
+you:ps
+LEFT(16,18,0);LEFT(16,18,270);LEFT(16,18,180);(16, 18, 90)
+go all the way to end of the blue carpet
+you:ps
+FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+walk until you see an easel
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+the left alley at the easel has the eiffel tower and the right has butterflies
+you:ps
+(20, 17, 0)
+take the alley w/ butterflies on the wall and stop when the butterflies are not on the wall
+you:ps
+RIGHT(20,17,0);FORWARD(20,17,90);(21, 17, 90)
+you should be two blocks in front of the corner
+you:ps
+(21, 17, 90)
+
+Cleaned-EMWC_Jelly0_2_7_Dirs_1
+y=2	map=jelly	x=7
+go toward the lamp
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+having covered that one segment , turn left
+you:ps
+FORWARD(23,16,270);LEFT(22,16,270);(22, 16, 180)
+go forward one segment
+you:ps
+FORWARD(22,16,180);(22, 17, 180)
+turn right
+you:ps
+RIGHT(22,17,180);(22, 17, 270)
+go forward two segments to the intersection with the easel
+you:ps
+FORWARD(22,17,270);FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+go forward one segment
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn right into the blue-tiled hall
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+pass the pink-flowered carpet hall
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);(18, 18, 270)
+the stool is key
+you:ps
+FORWARD(18,18,270);RIGHT(17,18,270);FORWARD(17,18,0);(17, 17, 0)
+position 7 is the intersection of the stone hall with a bare concrete hall
+you:ps
+(17, 17, 0)
+it contains a stool
+you:ps
+(17, 17, 0)
+at the other end of the bare concrete hall is the blue-tiled hall
+you:ps
+(17, 17, 0)
+
+Cleaned-WLH_Jelly0_6_4_Dirs_1
+y=6	map=jelly	x=4
+from 6 walk forward and move out to the blue carpet
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);LEFT(19,19,90);FORWARD(19,19,0);(19, 18, 0)
+turn left
+you:ps
+LEFT(19,18,0);(19, 18, 270)
+walk until you are in the same square as the hatrack
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+turn left walk to the wall
+you:ps
+FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-TJS_Jelly0_1_2_Dirs_1
+y=1	map=jelly	x=2
+find the butterfly halls
+you:ps
+RIGHT(19,16,0);FORWARD(19,16,90);RIGHT(20,16,90);FORWARD(20,16,180);LEFT(20,17,180);(20, 17, 90)
+pass a lampshade in the middle of a hall
+you:ps
+FORWARD(20,17,90);FORWARD(21,17,90);LEFT(22,17,90);FORWARD(22,17,0);(22, 16, 0)
+make a turn
+you:ps
+RIGHT(22,16,0);(22, 16, 90)
+position 2 is at the corner of two halls with no tiles on the floor but butterflies on the walls
+you:ps
+FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-WLH_Jelly0_6_4_Dirs_2
+y=6	map=jelly	x=4
+move to the flowered carpet and turn left
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);LEFT(19,19,90);(19, 19, 0)
+again move forward to the blue carpet and turn left
+you:ps
+FORWARD(19,19,0);LEFT(19,18,0);(19, 18, 270)
+move forward past the chair to the hatrack
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+turn left and move straight to the end of the green octagon alley
+you:ps
+LEFT(15,18,270);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-TJS_Jelly0_4_7_Dirs_1
+y=4	map=jelly	x=7
+it s in the middle of a grey floored hall with a stool
+you:ps
+(17, 17, 0)
+
+Cleaned-EDA_Jelly0_5_6_Dirs_1
+y=5	map=jelly	x=6
+turn to face the easel
+you:ps
+LEFT(21,17,0);(21, 17, 270)
+walk forward once
+you:ps
+FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+walk forward once
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn right
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+walk forward once turn left
+you:ps
+FORWARD(20,18,270);LEFT(19,18,270);(19, 18, 180)
+walk forward once
+you:ps
+FORWARD(19,18,180);(19, 19, 180)
+turn right
+you:ps
+RIGHT(19,19,180);(19, 19, 270)
+walk forward once
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-EDA_Jelly0_6_5_Dirs_1
+y=6	map=jelly	x=5
+only one way to go
+you:ps
+RIGHT(18,19,0);(18, 19, 90)
+walk forward once
+you:ps
+FORWARD(18,19,90);(19, 19, 90)
+turn left walk forward once
+you:ps
+LEFT(19,19,90);FORWARD(19,19,0);(19, 18, 0)
+turn right
+you:ps
+RIGHT(19,18,0);(19, 18, 90)
+walk forward once
+you:ps
+FORWARD(19,18,90);(20, 18, 90)
+turn left walk forward once
+you:ps
+LEFT(20,18,90);FORWARD(20,18,0);(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+walk forward once
+you:ps
+FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-WLH_Jelly0_3_4_Dirs_1
+y=3	map=jelly	x=4
+with your back to the wall at 3 you see an alley in front and blue carpet to each side
+you:ps
+LEFT(16,18,0);LEFT(16,18,270);(16, 18, 180)
+turn right and walk to the hat rack
+you:ps
+RIGHT(16,18,180);FORWARD(16,18,270);(15, 18, 270)
+turn left
+you:ps
+LEFT(15,18,270);(15, 18, 180)
+the carpet should have green octagons
+you:ps
+(15, 18, 180)
+go to the end of this alley
+you:ps
+FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-EMWC_Jelly0_5_7_Dirs_1
+y=5	map=jelly	x=7
+face the easel
+you:ps
+LEFT(21,17,0);(21, 17, 270)
+go forward one segment
+you:ps
+FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+go forward one segment to the intersection with the blue-tiled hall
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn right
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+you will follow the blue-tiled hall past the intersection with the pink-flowered carpet hall , on your left
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);(18, 18, 270)
+to your right there will be a bare concrete hall
+you:ps
+FORWARD(18,18,270);(17, 18, 270)
+one segment away there will be an intersection containing a stool in a stone hall
+you:ps
+RIGHT(17,18,270);FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-EDA_Jelly0_5_3_Dirs_1
+y=5	map=jelly	x=3
+turn to face the easel
+you:ps
+LEFT(21,17,0);(21, 17, 270)
+walk forward once
+you:ps
+FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+walk forward once
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn right
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+walk forward four times
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-EMWC_Jelly0_3_4_Dirs_1
+y=3	map=jelly	x=4
+place your back to the wall of the t intersection
+you:ps
+LEFT(16,18,0);LEFT(16,18,270);(16, 18, 180)
+turn right
+you:ps
+RIGHT(16,18,180);(16, 18, 270)
+go forward one segment to the intersection with the yellow-tiled hall
+you:ps
+FORWARD(16,18,270);(15, 18, 270)
+this intersection contains a hatrack
+you:ps
+(15, 18, 270)
+turn left
+you:ps
+LEFT(15,18,270);(15, 18, 180)
+go forward two segments to the end of the hall
+you:ps
+FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-KXP_Jelly0_4_3_Dirs_1
+y=4	map=jelly	x=3
+foward
+you:ps
+FORWARD(15,20,0);(15, 19, 0)
+right into blue floored hallway
+you:ps
+FORWARD(15,19,0);RIGHT(15,18,0);(15, 18, 90)
+keep going
+you:ps
+FORWARD(15,18,90);(16, 18, 90)
+make a rt into the pink flowered floor hallway
+you:ps
+FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);RIGHT(19,18,90);(19, 18, 180)
+make 1st rt into dead end
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-EDA_Jelly0_4_5_Dirs_1
+y=4	map=jelly	x=5
+only one way to go
+you:ps
+(15, 20, 0)
+walk forward twice
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);(15, 18, 0)
+turn right onto the blue hallway
+you:ps
+RIGHT(15,18,0);(15, 18, 90)
+walk to the far end , maybe 5 spaces
+you:ps
+FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left and walk forward once
+you:ps
+LEFT(20,18,90);FORWARD(20,18,0);(20, 17, 0)
+turn right and walk forward once
+you:ps
+RIGHT(20,17,0);FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-WLH_Jelly0_7_5_Dirs_2
+y=7	map=jelly	x=5
+with your back to the wall turn left
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);LEFT(17,17,180);(17, 17, 90)
+turn left at this sofa chair and turn right at the next one
+you:ps
+FORWARD(17,17,90);LEFT(18,17,90);FORWARD(18,17,0);RIGHT(18,16,0);(18, 16, 90)
+move along the brick flooring and turn right at the end of it
+you:ps
+FORWARD(18,16,90);FORWARD(19,16,90);RIGHT(20,16,90);(20, 16, 180)
+move to the easel and turn left
+you:ps
+FORWARD(20,16,180);LEFT(20,17,180);(20, 17, 90)
+you should be facing the longer wooden alley
+you:ps
+(20, 17, 90)
+move one block to the middle of the pictures
+you:ps
+FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-EDA_Jelly0_6_3_Dirs_1
+y=6	map=jelly	x=3
+only one way to go
+you:ps
+RIGHT(18,19,0);(18, 19, 90)
+walk forward once
+you:ps
+FORWARD(18,19,90);(19, 19, 90)
+turn left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+walk forward once
+you:ps
+FORWARD(19,19,0);(19, 18, 0)
+turn left
+you:ps
+LEFT(19,18,0);(19, 18, 270)
+walk forward three times
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-EMWC_Jelly0_5_3_Dirs_1
+y=5	map=jelly	x=3
+face the easel
+you:ps
+LEFT(21,17,0);(21, 17, 270)
+go forward one segment to the intersection containing the easel
+you:ps
+FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+go forward one segment to the intersection with the blue-tiled hall
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn right
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+go forward , passing the pink-flowered carpet hall on your left
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);(18, 18, 270)
+position 3 is the empty intersection between two which contain objects
+you:ps
+FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-KLS_Jelly0_7_6_Dirs_1
+y=7	map=jelly	x=6
+go towards the chair
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);FORWARD(17,17,180);(17, 18, 180)
+at the chair , go left onto the blue path
+you:ps
+LEFT(17,18,180);(17, 18, 90)
+follow it until you come to the pink path inersection
+you:ps
+FORWARD(17,18,90);FORWARD(18,18,90);(19, 18, 90)
+here , go right onto the pink path
+you:ps
+RIGHT(19,18,90);(19, 18, 180)
+at the very next intersection , take a right onto the plain path and follow it to the end of the hall
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-KLS_Jelly0_4_3_Dirs_1
+y=4	map=jelly	x=3
+take the yellow path towards the coat rack
+you:ps
+(15, 20, 0)
+at the coat rack , take a right onto the blue path
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);RIGHT(15,18,0);(15, 18, 90)
+go 2 intersections down and you ll be at 3
+you:ps
+FORWARD(15,18,90);FORWARD(16,18,90);RIGHT(17,18,90);RIGHT(17,18,180);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-EDA_Jelly0_7_6_Dirs_1
+y=7	map=jelly	x=6
+turn so that the wall is to your back
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+walk forward once
+you:ps
+FORWARD(17,17,180);(17, 18, 180)
+turn left
+you:ps
+LEFT(17,18,180);(17, 18, 90)
+walk forward once , or until the pink hallway is on your right
+you:ps
+FORWARD(17,18,90);FORWARD(18,18,90);(19, 18, 90)
+turn right
+you:ps
+RIGHT(19,18,90);(19, 18, 180)
+walk forward once
+you:ps
+FORWARD(19,18,180);(19, 19, 180)
+turn right and walk forward once
+you:ps
+RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-EMWC_Jelly0_7_6_Dirs_1
+y=7	map=jelly	x=6
+place your back to the wall of the t intersection
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+walk forward one segment to the intersection with the blue-tiled hall
+you:ps
+FORWARD(17,17,180);(17, 18, 180)
+this intersection contains a chair
+you:ps
+(17, 18, 180)
+turn left
+you:ps
+LEFT(17,18,180);(17, 18, 90)
+go forward until you reach the intersection with the pink-flowered carpet hall to your right
+you:ps
+FORWARD(17,18,90);FORWARD(18,18,90);(19, 18, 90)
+turn right
+you:ps
+RIGHT(19,18,90);(19, 18, 180)
+go forward one segment
+you:ps
+FORWARD(19,18,180);(19, 19, 180)
+turn right
+you:ps
+RIGHT(19,19,180);(19, 19, 270)
+go forward one segment
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-EDA_Jelly0_1_7_Dirs_1
+y=1	map=jelly	x=7
+turn to where the wall is on your left side
+you:ps
+LEFT(19,16,0);(19, 16, 270)
+walk forward once
+you:ps
+FORWARD(19,16,270);(18, 16, 270)
+turn left
+you:ps
+LEFT(18,16,270);(18, 16, 180)
+walk forward once
+you:ps
+FORWARD(18,16,180);(18, 17, 180)
+turn right
+you:ps
+RIGHT(18,17,180);(18, 17, 270)
+walk forward once
+you:ps
+FORWARD(18,17,270);(17, 17, 270)
+
+Cleaned-EDA_Jelly0_7_5_Dirs_1
+y=7	map=jelly	x=5
+turn so that your back is to the wall
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+walk forward once
+you:ps
+FORWARD(17,17,180);(17, 18, 180)
+turn left
+you:ps
+LEFT(17,18,180);(17, 18, 90)
+walk forward three times
+you:ps
+FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left walk forward once
+you:ps
+LEFT(20,18,90);FORWARD(20,18,0);(20, 17, 0)
+turn right walk forward once
+you:ps
+RIGHT(20,17,0);FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-TJS_Jelly0_3_6_Dirs_1
+y=3	map=jelly	x=6
+position 6 is in the hall with the rose floors
+you:ps
+RIGHT(16,18,0);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);RIGHT(19,18,90);(19, 18, 180)
+it is a dead end which branches off and has two pictures of the eiffel tower on the walls
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-EDA_Jelly0_6_4_Dirs_1
+y=6	map=jelly	x=4
+only one direction to go
+you:ps
+RIGHT(18,19,0);(18, 19, 90)
+walk forward once
+you:ps
+FORWARD(18,19,90);(19, 19, 90)
+turn left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+walk forward once
+you:ps
+FORWARD(19,19,0);(19, 18, 0)
+turn left
+you:ps
+LEFT(19,18,0);(19, 18, 270)
+walk forward about four times
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+until you reach the yellow floors
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+turn left at the yellow floors and walk to the end of the hall
+you:ps
+LEFT(15,18,270);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-EDA_Jelly0_7_1_Dirs_1
+y=7	map=jelly	x=1
+turn so that the wall is on your left
+you:ps
+RIGHT(17,17,0);(17, 17, 90)
+walk forward once
+you:ps
+FORWARD(17,17,90);(18, 17, 90)
+turn left
+you:ps
+LEFT(18,17,90);(18, 17, 0)
+walk forward once
+you:ps
+FORWARD(18,17,0);(18, 16, 0)
+turn left
+you:ps
+RIGHT(18,16,0);(18, 16, 90)
+walk forward once
+you:ps
+FORWARD(18,16,90);(19, 16, 90)
+
+Cleaned-WLH_Jelly0_4_2_Dirs_1
+y=4	map=jelly	x=2
+move to the end of the octagon alley
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);FORWARD(15,18,0);(15, 17, 0)
+to your right is stone flooring
+you:ps
+(15, 17, 0)
+move to the end of this alley and turn left
+you:ps
+RIGHT(15,17,0);FORWARD(15,17,90);FORWARD(16,17,90);FORWARD(17,17,90);LEFT(18,17,90);(18, 17, 0)
+standing next to a chair and looking at a chair move to the next chair and turn to face the red brick
+you:ps
+FORWARD(18,17,0);RIGHT(18,16,0);(18, 16, 90)
+move one alley and turn left
+you:ps
+FORWARD(18,16,90);LEFT(19,16,90);(19, 16, 0)
+you are facing a chair
+you:ps
+(19, 16, 0)
+move right along the grass to the hatrack
+you:ps
+FORWARD(19,16,0);RIGHT(19,15,0);FORWARD(19,15,90);FORWARD(20,15,90);FORWARD(21,15,90);FORWARD(22,15,90);(23, 15, 90)
+turn left at the hatrack and move to the corner
+you:ps
+RIGHT(23,15,90);FORWARD(23,15,180);(23, 16, 180)
+from here you can turn left and see a lamp
+you:ps
+(23, 16, 180)
+
+Cleaned-KLS_Jelly0_6_5_Dirs_1
+y=6	map=jelly	x=5
+go straight towards the pink path
+you:ps
+RIGHT(18,19,0);(18, 19, 90)
+at this intersection , go left onto the pink path
+you:ps
+FORWARD(18,19,90);LEFT(19,19,90);(19, 19, 0)
+at the very next intersection , go right onto the blue path
+you:ps
+FORWARD(19,19,0);RIGHT(19,18,0);(19, 18, 90)
+at the end of this hall at the corner , go left towards the easel
+you:ps
+FORWARD(19,18,90);LEFT(20,18,90);(20, 18, 0)
+take a right at the easel onto the wood path and the first section you come to will be 5
+you:ps
+FORWARD(20,18,0);RIGHT(20,17,0);FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-KLS_Jelly0_6_1_Dirs_1
+y=6	map=jelly	x=1
+go towards the pink path
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);LEFT(19,19,90);FORWARD(19,19,0);RIGHT(19,18,0);FORWARD(19,18,90);LEFT(20,18,90);FORWARD(20,18,0);FORWARD(20,17,0);LEFT(20,16,0);FORWARD(20,16,270);(19, 16, 270)
+at the pink path intersection , go left onto the pink path
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);LEFT(19,19,90);(19, 19, 0)
+take a right onto the blue path at the next intersection
+you:ps
+FORWARD(19,19,0);RIGHT(19,18,0);(19, 18, 90)
+at the end of the hall , go left towards the easel
+you:ps
+FORWARD(19,18,90);LEFT(20,18,90);(20, 18, 0)
+go past the easel until you come to the corner with the red brick intersection
+you:ps
+FORWARD(20,18,0);FORWARD(20,17,0);(20, 16, 0)
+go left onto the red brick and the first intersection is 1
+you:ps
+LEFT(20,16,0);FORWARD(20,16,270);(19, 16, 270)
+
+Cleaned-TJS_Jelly0_4_6_Dirs_1
+y=4	map=jelly	x=6
+position 6 is a dead end of a branch of the rose colored hall , with two pictures of the eiffel tower on the walls
+you:ps
+RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-TJS_Jelly0_3_1_Dirs_1
+y=3	map=jelly	x=1
+position 1 is in the middle of the red brick floored hall
+you:ps
+RIGHT(16,18,0);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);LEFT(20,18,90);FORWARD(20,18,0);FORWARD(20,17,0);LEFT(20,16,0);FORWARD(20,16,270);(19, 16, 270)
+
+Cleaned-WLH_Jelly0_7_3_Dirs_1
+y=7	map=jelly	x=3
+with your back to the wall move to the chair and turn right
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);FORWARD(17,17,180);RIGHT(17,18,180);(17, 18, 270)
+move to the next alley
+you:ps
+FORWARD(17,18,270);(16, 18, 270)
+in front is a hatrack and left is grey flooring
+you:ps
+(16, 18, 270)
+
+Cleaned-KLS_Jelly0_5_4_Dirs_1
+y=5	map=jelly	x=4
+take the wood path towards the easel
+you:ps
+LEFT(21,17,0);(21, 17, 270)
+at the easel , take a left to the next corner
+you:ps
+FORWARD(21,17,270);LEFT(20,17,270);FORWARD(20,17,180);(20, 18, 180)
+at the corner , take a right onto the blue path and go all the way down until you reach a coat rack
+you:ps
+RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+at the coat rack , take a left onto the yellow path and go to the end of the hall
+you:ps
+LEFT(15,18,270);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-TJS_Jelly0_2_4_Dirs_1
+y=2	map=jelly	x=4
+position 4 is at the dead end of a hall with yellow floors and fish on the walls
+you:ps
+(15, 20, 180)
+
+Cleaned-EMWC_Jelly0_3_5_Dirs_1
+y=3	map=jelly	x=5
+position 5 is in the wooden-floored hall
+you:ps
+LEFT(16,18,0);LEFT(16,18,270);FORWARD(16,18,180);LEFT(16,19,180);FORWARD(16,19,90);LEFT(17,19,90);FORWARD(17,19,0);RIGHT(17,18,0);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);LEFT(20,18,90);FORWARD(20,18,0);(20, 17, 0)
+it is a hall segment that is between pictures of butterflies
+you:ps
+RIGHT(20,17,0);FORWARD(20,17,90);(21, 17, 90)
+at the closer end of the hall there is an intersection with a bare concrete hall
+you:ps
+(21, 17, 90)
+in the opposite direction , one segment away , is an intersection containing an easel
+you:ps
+(21, 17, 90)
+possibly , place your back to the t intersection walk forward one segment to the intersection with the wooden-floored hall
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+this intersection conatins an easel
+you:ps
+(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+go forward one segment
+you:ps
+FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-EDA_Jelly0_2_3_Dirs_1
+y=2	map=jelly	x=3
+turn so the wall is on your left and back
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+walk forward once
+you:ps
+FORWARD(23,16,270);(22, 16, 270)
+turn left
+you:ps
+LEFT(22,16,270);(22, 16, 180)
+walk forward once
+you:ps
+FORWARD(22,16,180);(22, 17, 180)
+turn right
+you:ps
+RIGHT(22,17,180);(22, 17, 270)
+walk forward twice
+you:ps
+FORWARD(22,17,270);FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+walk forward once
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn right onto the blue hallway and walk forward four times
+you:ps
+RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+if you are standing at the intersection of the blue and yellow floors , back up once
+you:ps
+(16, 18, 270)
+
+Cleaned-KXP_Jelly0_2_4_Dirs_1
+y=2	map=jelly	x=4
+dead end of the fish area
+you:ps
+(15, 20, 180)
+
+Cleaned-WLH_Jelly0_4_3_Dirs_1
+y=4	map=jelly	x=3
+move forward to the hatrack and turn right
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);RIGHT(15,18,0);(15, 18, 90)
+move to the next alley
+you:ps
+FORWARD(15,18,90);(16, 18, 90)
+to your right is grey flooring and in front is a chair
+you:ps
+(16, 18, 90)
+
+Cleaned-KLS_Jelly0_4_5_Dirs_1
+y=4	map=jelly	x=5
+follow the yellow path towards the coat rack
+you:ps
+(15, 20, 0)
+at the coat rack take a right onto the blue path
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);RIGHT(15,18,0);(15, 18, 90)
+take the blue path all the way to the end of the hall and at the corner , go left towards the easel
+you:ps
+FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);LEFT(20,18,90);(20, 18, 0)
+at the easel , take a right onto the wood path and the very next section will be 5
+you:ps
+FORWARD(20,18,0);RIGHT(20,17,0);FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-EDA_Jelly0_7_2_Dirs_1
+y=7	map=jelly	x=2
+turn so that the wall is to your back
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+walk forward once
+you:ps
+FORWARD(17,17,180);(17, 18, 180)
+turn left
+you:ps
+LEFT(17,18,180);(17, 18, 90)
+walk forward until you come to the intersection of the brown hallways
+you:ps
+FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left and walk forward twice
+you:ps
+LEFT(20,18,90);FORWARD(20,18,0);(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+walk forward once
+you:ps
+FORWARD(20,17,90);FORWARD(21,17,90);(22, 17, 90)
+turn left
+you:ps
+LEFT(22,17,90);(22, 17, 0)
+walk forward once
+you:ps
+FORWARD(22,17,0);(22, 16, 0)
+turn right
+you:ps
+RIGHT(22,16,0);(22, 16, 90)
+walk forward once
+you:ps
+FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-WLH_Jelly0_3_4_Dirs_2
+y=3	map=jelly	x=4
+face and move to the hatrack
+you:ps
+LEFT(16,18,0);FORWARD(16,18,270);(15, 18, 270)
+turn left and move forward along the green octagon flooring
+you:ps
+LEFT(15,18,270);FORWARD(15,18,180);(15, 19, 180)
+p 4 is at the end of this alley
+you:ps
+FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-KLS_Jelly0_4_1_Dirs_1
+y=4	map=jelly	x=1
+take the yellow path away from the end of the hall and at the blue path intersection , go right onto the blue path
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);RIGHT(15,18,0);(15, 18, 90)
+follow it all the way to the other end of the hall
+you:ps
+FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+here , take a left towards the easel
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+go past the easel to the end of this hall and take a left onto the red brick at the corner
+you:ps
+FORWARD(20,18,0);FORWARD(20,17,0);LEFT(20,16,0);(20, 16, 270)
+the very next intersection is 1
+you:ps
+FORWARD(20,16,270);(19, 16, 270)
+
+Cleaned-TJS_Jelly0_4_3_Dirs_1
+y=4	map=jelly	x=3
+position 3 is in the middle of the blue hall
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);LEFT(15,18,0);LEFT(15,18,270);LEFT(15,18,180);FORWARD(15,18,90);(16, 18, 90)
+
+Cleaned-TJS_Jelly0_6_4_Dirs_1
+y=6	map=jelly	x=4
+find the fish hallways
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);LEFT(19,19,90);FORWARD(19,19,0);RIGHT(19,18,0);RIGHT(19,18,90);RIGHT(19,18,180);FORWARD(19,18,270);FORWARD(18,18,270);(17, 18, 270)
+then find the fish hallways with yellow floors
+you:ps
+FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+position 4 is a dead end of the yellow floored fish hallway
+you:ps
+LEFT(15,18,270);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-KLS_Jelly0_5_3_Dirs_1
+y=5	map=jelly	x=3
+take the wood path towards the easel and at the easel , go left
+you:ps
+LEFT(21,17,0);FORWARD(21,17,270);LEFT(20,17,270);(20, 17, 180)
+at the next corner , take a right onto the blue path and follow it towards the chair
+you:ps
+FORWARD(20,17,180);RIGHT(20,18,180);(20, 18, 270)
+one intersection past the chair is position 3
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-KLS_Jelly0_7_1_Dirs_1
+y=7	map=jelly	x=1
+go straight towards the chair
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+at the chair , go left onto the blue path
+you:ps
+FORWARD(17,17,180);LEFT(17,18,180);(17, 18, 90)
+follow this until the end of the hall
+you:ps
+FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+here , go left towards the easel
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+go past the easel to the end of the hall and go left onto the red brick path
+you:ps
+FORWARD(20,18,0);FORWARD(20,17,0);LEFT(20,16,0);(20, 16, 270)
+the next intersection will be 1
+you:ps
+FORWARD(20,16,270);(19, 16, 270)
+
+Cleaned-EMWC_Jelly0_4_2_Dirs_1
+y=4	map=jelly	x=2
+go forward two segments to the intersection with the blue-tiled hall
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);(15, 18, 0)
+turn right
+you:ps
+RIGHT(15,18,0);(15, 18, 90)
+go forward to the far end of the hall
+you:ps
+FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+go forward one segment to the intersection with the wooden-floored hall
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+this intersection contains an easel
+you:ps
+(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+go forward two segments to the end of the hall
+you:ps
+FORWARD(20,17,90);FORWARD(21,17,90);(22, 17, 90)
+turn left
+you:ps
+LEFT(22,17,90);(22, 17, 0)
+go forward one segment to the intersection containing the lamp
+you:ps
+FORWARD(22,17,0);(22, 16, 0)
+turn right
+you:ps
+RIGHT(22,16,0);(22, 16, 90)
+go forward one segment to the empty corner
+you:ps
+FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-WLH_Jelly0_7_4_Dirs_1
+y=7	map=jelly	x=4
+with your back to the wall , turn right
+you:ps
+LEFT(17,17,0);(17, 17, 270)
+you see green carpet w/ octagons
+you:ps
+(17, 17, 270)
+turn onto this carpet and move forward as far as you can
+you:ps
+FORWARD(17,17,270);FORWARD(16,17,270);LEFT(15,17,270);FORWARD(15,17,180);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-TJS_Jelly0_1_7_Dirs_1
+y=1	map=jelly	x=7
+look for grey tiled hall
+you:ps
+LEFT(19,16,0);FORWARD(19,16,270);FORWARD(18,16,270);RIGHT(17,16,270);RIGHT(17,16,0);FORWARD(17,16,90);RIGHT(18,16,90);FORWARD(18,16,180);(18, 17, 180)
+position 7 is in the middle of the hall , with a stool
+you:ps
+RIGHT(18,17,180);FORWARD(18,17,270);(17, 17, 270)
+
+Cleaned-EMWC_Jelly0_1_7_Dirs_1
+y=1	map=jelly	x=7
+position 7 is the intersection of a bare concrete hall and the stone hall
+you:ps
+FORWARD(19,16,0);LEFT(19,15,0);LEFT(19,15,270);FORWARD(19,15,180);LEFT(19,16,180);FORWARD(19,16,90);RIGHT(20,16,90);FORWARD(20,16,180);FORWARD(20,17,180);RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);LEFT(17,18,270);LEFT(17,18,180);LEFT(17,18,90);FORWARD(17,18,0);(17, 17, 0)
+there is a stool in this intersection
+you:ps
+(17, 17, 0)
+the most efficient route is probably to your left , if you have your back facing the wall of the t intersection
+you:ps
+LEFT(19,16,0);(19, 16, 270)
+
+Cleaned-EMWC_Jelly0_4_3_Dirs_1
+y=4	map=jelly	x=3
+go forward two segments to the intersection with the blue-tiled hall
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);(15, 18, 0)
+turn right
+you:ps
+RIGHT(15,18,0);(15, 18, 90)
+go forward to the bare concrete intersection between two intersections containing furniture
+you:ps
+FORWARD(15,18,90);(16, 18, 90)
+
+Cleaned-WLH_Jelly0_4_7_Dirs_2
+y=4	map=jelly	x=7
+move to the end of green octagon flooring to the stone floor
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);FORWARD(15,18,0);(15, 17, 0)
+turn right and move to the stool
+you:ps
+RIGHT(15,17,0);FORWARD(15,17,90);FORWARD(16,17,90);(17, 17, 90)
+turning right you see a chair and in front of you a sofa chair
+you:ps
+(17, 17, 90)
+
+Cleaned-WLH_Jelly0_7_5_Dirs_1
+y=7	map=jelly	x=5
+with your back to the wall turn left
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);LEFT(17,17,180);(17, 17, 90)
+walk to the chair and turn left
+you:ps
+FORWARD(17,17,90);LEFT(18,17,90);(18, 17, 0)
+follow the alley
+you:ps
+FORWARD(18,17,0);RIGHT(18,16,0);FORWARD(18,16,90);FORWARD(19,16,90);RIGHT(20,16,90);(20, 16, 180)
+you should see an easel after you turn the corner
+you:ps
+(20, 16, 180)
+walk toward the easel and stop on the block where there are no butterflies on the sides
+you:ps
+FORWARD(20,16,180);LEFT(20,17,180);FORWARD(20,17,90);(21, 17, 90)
+you should be two blocks in front of the easel
+you:ps
+(21, 17, 90)
+
+Cleaned-EDA_Jelly0_2_7_Dirs_1
+y=2	map=jelly	x=7
+turn so that the wall is on your left and back
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+walk forward once
+you:ps
+FORWARD(23,16,270);(22, 16, 270)
+turn left
+you:ps
+LEFT(22,16,270);(22, 16, 180)
+walk forward once turn right
+you:ps
+FORWARD(22,16,180);RIGHT(22,17,180);(22, 17, 270)
+walk forward twice
+you:ps
+FORWARD(22,17,270);FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+walk forward once
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn right
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+walk forward three times
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);(17, 18, 270)
+turn right
+you:ps
+RIGHT(17,18,270);(17, 18, 0)
+walk forward once
+you:ps
+FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-TJS_Jelly0_7_5_Dirs_1
+y=7	map=jelly	x=5
+position 5 is in the middle of the wooden floor with butterflies on the walls
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);FORWARD(17,17,180);RIGHT(17,18,180);FORWARD(17,18,270);FORWARD(16,18,270);LEFT(15,18,270);LEFT(15,18,180);FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);LEFT(20,18,90);FORWARD(20,18,0);RIGHT(20,17,0);FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-WLH_Jelly0_5_3_Dirs_1
+y=5	map=jelly	x=3
+face and move to the easel
+you:ps
+LEFT(21,17,0);FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+the right side alley should have blue flooring
+you:ps
+(20, 17, 180)
+move to it and down the alley
+you:ps
+FORWARD(20,17,180);RIGHT(20,18,180);FORWARD(20,18,270);(19, 18, 270)
+move one alley past the chair
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+in front of you is a hatrack and to your left is grey flooring
+you:ps
+FORWARD(16,18,270);(15, 18, 270)
+
+Cleaned-KXP_Jelly0_4_7_Dirs_1
+y=4	map=jelly	x=7
+go out of the dead end you are in
+you:ps
+FORWARD(15,20,0);(15, 19, 0)
+go to the other end of the hallway
+you:ps
+FORWARD(15,19,0);FORWARD(15,18,0);(15, 17, 0)
+make a right at the end
+you:ps
+RIGHT(15,17,0);(15, 17, 90)
+keep going till you get to a piece of furniture
+you:ps
+FORWARD(15,17,90);FORWARD(16,17,90);(17, 17, 90)
+
+Cleaned-EMWC_Jelly0_7_3_Dirs_1
+y=7	map=jelly	x=3
+place your back to the wall of the t intersection
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+go forward one segment to the intersection with the blue-tiled hall
+you:ps
+FORWARD(17,17,180);(17, 18, 180)
+this contains a chair
+you:ps
+(17, 18, 180)
+turn right
+you:ps
+RIGHT(17,18,180);(17, 18, 270)
+go forward one segment
+you:ps
+FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-EDA_Jelly0_5_2_Dirs_1
+y=5	map=jelly	x=2
+turn so that your back side faces the easel
+you:ps
+RIGHT(21,17,0);(21, 17, 90)
+walk forward once
+you:ps
+FORWARD(21,17,90);(22, 17, 90)
+turn left
+you:ps
+LEFT(22,17,90);(22, 17, 0)
+walk forward once
+you:ps
+FORWARD(22,17,0);(22, 16, 0)
+turn right
+you:ps
+RIGHT(22,16,0);(22, 16, 90)
+walk forward once
+you:ps
+FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-WLH_Jelly0_1_3_Dirs_1
+y=1	map=jelly	x=3
+face and move to the chair
+you:ps
+LEFT(19,16,0);FORWARD(19,16,270);(18, 16, 270)
+turn left
+you:ps
+LEFT(18,16,270);(18, 16, 180)
+move to this chair and turn right
+you:ps
+FORWARD(18,16,180);RIGHT(18,17,180);(18, 17, 270)
+move along the stone floor to the stool
+you:ps
+FORWARD(18,17,270);(17, 17, 270)
+turn left
+you:ps
+LEFT(17,17,270);(17, 17, 180)
+move to the chair
+you:ps
+FORWARD(17,17,180);(17, 18, 180)
+turn right and move to the next alley
+you:ps
+RIGHT(17,18,180);FORWARD(17,18,270);(16, 18, 270)
+in front of you is a hatrack and to your left is grey floored alley
+you:ps
+(16, 18, 270)
+
+Cleaned-EDA_Jelly0_7_3_Dirs_1
+y=7	map=jelly	x=3
+turn so the wall is to your back
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+wlak forward once
+you:ps
+FORWARD(17,17,180);(17, 18, 180)
+turn right
+you:ps
+RIGHT(17,18,180);(17, 18, 270)
+walk forward once
+you:ps
+FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-TJS_Jelly0_5_4_Dirs_1
+y=5	map=jelly	x=4
+it s at the end of the yellow fish hall , with yellow floors , dead end
+you:ps
+LEFT(21,17,0);FORWARD(21,17,270);FORWARD(20,17,270);LEFT(19,17,270);LEFT(19,17,180);FORWARD(19,17,90);RIGHT(20,17,90);FORWARD(20,17,180);RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);LEFT(15,18,270);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-KXP_Jelly0_5_3_Dirs_1
+y=5	map=jelly	x=3
+blue floored area
+you:ps
+LEFT(21,17,0);FORWARD(21,17,270);RIGHT(20,17,270);FORWARD(20,17,0);LEFT(20,16,0);FORWARD(20,16,270);FORWARD(19,16,270);LEFT(18,16,270);FORWARD(18,16,180);RIGHT(18,17,180);FORWARD(18,17,270);LEFT(17,17,270);FORWARD(17,17,180);(17, 18, 180)
+pos three is in between the two pieaces of furniture
+you:ps
+RIGHT(17,18,180);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-WLH_Jelly0_7_1_Dirs_1
+y=7	map=jelly	x=1
+face and move to the sofa chair
+you:ps
+RIGHT(17,17,0);FORWARD(17,17,90);(18, 17, 90)
+turn left and move to this sofa chair
+you:ps
+LEFT(18,17,90);FORWARD(18,17,0);(18, 16, 0)
+turn left again and move along the brick one alley
+you:ps
+LEFT(18,16,0);FORWARD(18,16,270);(17, 16, 270)
+to your left is grey flooring with a wooden chair in the distance
+you:ps
+RIGHT(17,16,270);RIGHT(17,16,0);FORWARD(17,16,90);FORWARD(18,16,90);(19, 16, 90)
+
+Cleaned-KXP_Jelly0_2_3_Dirs_1
+y=2	map=jelly	x=3
+blue floored area
+you:ps
+LEFT(23,16,0);FORWARD(23,16,270);LEFT(22,16,270);FORWARD(22,16,180);RIGHT(22,17,180);FORWARD(22,17,270);FORWARD(21,17,270);RIGHT(20,17,270);RIGHT(20,17,0);RIGHT(20,17,90);FORWARD(20,17,180);(20, 18, 180)
+pos 3 in between 2 furniture
+you:ps
+RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-WLH_Jelly0_5_4_Dirs_1
+y=5	map=jelly	x=4
+face and move to the easel
+you:ps
+LEFT(21,17,0);FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+the side alley to your right should be blue
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+move along the blue floored alley past the chair to the hatrack
+you:ps
+RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+turn left
+you:ps
+LEFT(15,18,270);(15, 18, 180)
+p 4 is at the end of the alley with the green octagon floor
+you:ps
+FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-TJS_Jelly0_7_1_Dirs_1
+y=7	map=jelly	x=1
+position 1 is in the red brick hall
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);FORWARD(17,17,180);FORWARD(17,18,180);RIGHT(17,19,180);FORWARD(17,19,270);RIGHT(16,19,270);FORWARD(16,19,0);LEFT(16,18,0);FORWARD(16,18,270);FORWARD(15,18,270);LEFT(14,18,270);LEFT(14,18,180);FORWARD(14,18,90);FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);LEFT(20,18,90);FORWARD(20,18,0);FORWARD(20,17,0);LEFT(20,16,0);FORWARD(20,16,270);(19, 16, 270)
+
+Cleaned-WLH_Jelly0_7_6_Dirs_1
+y=7	map=jelly	x=6
+with your back to the wall move forward to the chair and turn left
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);FORWARD(17,17,180);LEFT(17,18,180);(17, 18, 90)
+move to the right side alley with flowered carpet
+you:ps
+FORWARD(17,18,90);FORWARD(18,18,90);RIGHT(19,18,90);(19, 18, 180)
+move down this and stop at the first alley
+you:ps
+FORWARD(19,18,180);(19, 19, 180)
+turn right
+you:ps
+RIGHT(19,19,180);(19, 19, 270)
+move into the deadend
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-KLS_Jelly0_1_4_Dirs_1
+y=1	map=jelly	x=4
+follow the red brick path away from the bench
+you:ps
+RIGHT(19,16,0);(19, 16, 90)
+at the corner , go right towards the easel
+you:ps
+FORWARD(19,16,90);RIGHT(20,16,90);(20, 16, 180)
+go past the easel to the next corner , and go right again onto the blue path
+you:ps
+FORWARD(20,16,180);FORWARD(20,17,180);RIGHT(20,18,180);(20, 18, 270)
+follow the blue path all the way to the coat rack
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+at the coat rack , go left onto the yellow path and at the end of this hall is 4
+you:ps
+LEFT(15,18,270);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-TJS_Jelly0_3_7_Dirs_1
+y=3	map=jelly	x=7
+position 7 is in the middle of the grey tiled floor hall
+you:ps
+(17, 17, 0)
+
+Cleaned-TJS_Jelly0_6_2_Dirs_1
+y=6	map=jelly	x=2
+move out of the dead end
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);(19, 19, 90)
+take a left , i think
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+position 2 is at an intersection of two halls with no tiles on the floor but with monarch butterflies on the walls
+you:ps
+FORWARD(19,19,0);RIGHT(19,18,0);FORWARD(19,18,90);LEFT(20,18,90);FORWARD(20,18,0);FORWARD(20,17,0);LEFT(20,16,0);LEFT(20,16,270);FORWARD(20,16,180);LEFT(20,17,180);FORWARD(20,17,90);FORWARD(21,17,90);LEFT(22,17,90);FORWARD(22,17,0);RIGHT(22,16,0);FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-WLH_Jelly0_3_7_Dirs_1
+y=3	map=jelly	x=7
+face and move to the chair
+you:ps
+RIGHT(16,18,0);FORWARD(16,18,90);(17, 18, 90)
+turn left and move to the stool
+you:ps
+LEFT(17,18,90);FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-KXP_Jelly0_5_4_Dirs_1
+y=5	map=jelly	x=4
+go to the fish area
+you:ps
+RIGHT(21,17,0);FORWARD(21,17,90);LEFT(22,17,90);FORWARD(22,17,0);RIGHT(22,16,0);FORWARD(22,16,90);LEFT(23,16,90);FORWARD(23,16,0);LEFT(23,15,0);FORWARD(23,15,270);FORWARD(22,15,270);FORWARD(21,15,270);FORWARD(20,15,270);LEFT(19,15,270);FORWARD(19,15,180);RIGHT(19,16,180);FORWARD(19,16,270);LEFT(18,16,270);FORWARD(18,16,180);RIGHT(18,17,180);FORWARD(18,17,270);(17, 17, 270)
+pos 4 is at the dead end of one of the fish walled hallways
+you:ps
+FORWARD(17,17,270);FORWARD(16,17,270);LEFT(15,17,270);FORWARD(15,17,180);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-KLS_Jelly0_6_2_Dirs_1
+y=6	map=jelly	x=2
+go straight towards the pink path
+you:ps
+RIGHT(18,19,0);(18, 19, 90)
+take a left onto the pink path
+you:ps
+FORWARD(18,19,90);LEFT(19,19,90);(19, 19, 0)
+at the next intersection , take a right onto the blue path
+you:ps
+FORWARD(19,19,0);RIGHT(19,18,0);(19, 18, 90)
+at the end of the hall , go left towards the easel
+you:ps
+FORWARD(19,18,90);LEFT(20,18,90);(20, 18, 0)
+at the easel , take a right onto the wood path
+you:ps
+FORWARD(20,18,0);RIGHT(20,17,0);(20, 17, 90)
+follow this to the end of the hall and at the corner , go left towards the lamp
+you:ps
+FORWARD(20,17,90);FORWARD(21,17,90);LEFT(22,17,90);(22, 17, 0)
+at the lamp , take another right and follow it to the end of the hall at the corner
+you:ps
+FORWARD(22,17,0);RIGHT(22,16,0);FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-TJS_Jelly0_1_4_Dirs_1
+y=1	map=jelly	x=4
+position 4 is at the dead end of a yellow tiled hall with fish on the walls
+you:ps
+RIGHT(19,16,0);FORWARD(19,16,90);RIGHT(20,16,90);FORWARD(20,16,180);FORWARD(20,17,180);RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);LEFT(15,18,270);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-EDA_Jelly0_3_6_Dirs_1
+y=3	map=jelly	x=6
+turn so that the wall is on your left
+you:ps
+RIGHT(16,18,0);(16, 18, 90)
+wlak forward twice
+you:ps
+FORWARD(16,18,90);FORWARD(17,18,90);(18, 18, 90)
+turn right onto the pink hallway
+you:ps
+FORWARD(18,18,90);RIGHT(19,18,90);(19, 18, 180)
+walk forward once
+you:ps
+FORWARD(19,18,180);(19, 19, 180)
+turn right
+you:ps
+RIGHT(19,19,180);(19, 19, 270)
+walk forward once
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-WLH_Jelly0_2_3_Dirs_1
+y=2	map=jelly	x=3
+at two face the lamp
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+move forward and follow the alley around until you end up on blue carpet
+you:ps
+FORWARD(23,16,270);LEFT(22,16,270);FORWARD(22,16,180);RIGHT(22,17,180);FORWARD(22,17,270);FORWARD(21,17,270);LEFT(20,17,270);FORWARD(20,17,180);(20, 18, 180)
+walk on the blue until you pass a chair w/ a four way intersection
+you:ps
+RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+one block past the chair is p-3
+you:ps
+(16, 18, 270)
+you see a hat rack in front of you and an alley to your left
+you:ps
+(16, 18, 270)
+
+Cleaned-TJS_Jelly0_4_5_Dirs_1
+y=4	map=jelly	x=5
+position 5 is in the middle of the red brick floored room
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);RIGHT(15,18,0);FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);LEFT(20,18,90);FORWARD(20,18,0);LEFT(20,17,0);LEFT(20,17,270);LEFT(20,17,180);FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-KLS_Jelly0_2_4_Dirs_1
+y=2	map=jelly	x=4
+go on the path towards the lamp
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+at the lamp , take a left and at the next corner , go right onto the wood path
+you:ps
+FORWARD(23,16,270);LEFT(22,16,270);FORWARD(22,16,180);RIGHT(22,17,180);(22, 17, 270)
+follow it towards the easel and at the easel take a left
+you:ps
+FORWARD(22,17,270);FORWARD(21,17,270);LEFT(20,17,270);(20, 17, 180)
+at the intersection with the blue path , take a right onto the blue path and follow it towards the chair and past the coat rack
+you:ps
+FORWARD(20,17,180);RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+at the intersection with the yellow path , take a right onto the yellow path and go all the way to the end of the hall
+you:ps
+FORWARD(16,18,270);LEFT(15,18,270);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-EMWC_Jelly0_3_1_Dirs_1
+y=3	map=jelly	x=1
+place your back against the wall of the t intersection
+you:ps
+LEFT(16,18,0);LEFT(16,18,270);(16, 18, 180)
+turn left
+you:ps
+LEFT(16,18,180);(16, 18, 90)
+go forward one segment to the intersection containing the chair
+you:ps
+FORWARD(16,18,90);(17, 18, 90)
+turn right
+you:ps
+FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);LEFT(20,18,90);(20, 18, 0)
+go forward two segments to the intersection with the brick hall , passing the easel
+you:ps
+FORWARD(20,18,0);FORWARD(20,17,0);(20, 16, 0)
+turn left
+you:ps
+LEFT(20,16,0);(20, 16, 270)
+go forward one segment
+you:ps
+FORWARD(20,16,270);(19, 16, 270)
+
+Cleaned-EDA_Jelly0_6_2_Dirs_1
+y=6	map=jelly	x=2
+only one way to go
+you:ps
+RIGHT(18,19,0);(18, 19, 90)
+walk forward once
+you:ps
+FORWARD(18,19,90);(19, 19, 90)
+turn left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+walk forward once
+you:ps
+FORWARD(19,19,0);(19, 18, 0)
+turn right
+you:ps
+RIGHT(19,18,0);(19, 18, 90)
+walk forward once
+you:ps
+FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+walk forward once
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+walk forward twice
+you:ps
+FORWARD(20,17,90);FORWARD(21,17,90);(22, 17, 90)
+turn left
+you:ps
+LEFT(22,17,90);(22, 17, 0)
+walk forward once
+you:ps
+FORWARD(22,17,0);(22, 16, 0)
+turn right
+you:ps
+RIGHT(22,16,0);(22, 16, 90)
+walk forward once
+you:ps
+FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-TJS_Jelly0_2_6_Dirs_1
+y=2	map=jelly	x=6
+look for the rose floors
+you:ps
+LEFT(23,16,0);FORWARD(23,16,270);LEFT(22,16,270);FORWARD(22,16,180);RIGHT(22,17,180);FORWARD(22,17,270);FORWARD(21,17,270);LEFT(20,17,270);FORWARD(20,17,180);RIGHT(20,18,180);FORWARD(20,18,270);LEFT(19,18,270);(19, 18, 180)
+position 6 is at a dead end , a branch off from the rose floors
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+there are two pictures of the eiffel tower on the walls
+you:ps
+(18, 19, 270)
+
+Cleaned-WLH_Jelly0_3_6_Dirs_1
+y=3	map=jelly	x=6
+with your back to the wall turn left
+you:ps
+LEFT(16,18,0);LEFT(16,18,270);LEFT(16,18,180);(16, 18, 90)
+move past the chair to the side alley with flowered carpet
+you:ps
+FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);(19, 18, 90)
+turn right down this alley and then right again at the first alley
+you:ps
+RIGHT(19,18,90);FORWARD(19,18,180);RIGHT(19,19,180);(19, 19, 270)
+facing the grey floored deadend , move to it
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-EDA_Jelly0_7_4_Dirs_1
+y=7	map=jelly	x=4
+turn so that the wall is on your right
+you:ps
+LEFT(17,17,0);(17, 17, 270)
+walk forward once
+you:ps
+FORWARD(17,17,270);(16, 17, 270)
+turn left to face the yellow hallway
+you:ps
+FORWARD(16,17,270);LEFT(15,17,270);(15, 17, 180)
+walk forward to the far end
+you:ps
+FORWARD(15,17,180);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-WLH_Jelly0_3_1_Dirs_1
+y=3	map=jelly	x=1
+move to the chair and turn left
+you:ps
+RIGHT(16,18,0);FORWARD(16,18,90);LEFT(17,18,90);(17, 18, 0)
+move forward to the stool and turn right
+you:ps
+FORWARD(17,18,0);RIGHT(17,17,0);(17, 17, 90)
+turn left at the chair and face another chair
+you:ps
+FORWARD(17,17,90);LEFT(18,17,90);(18, 17, 0)
+turn right at this second chair and move along brick to the next alley
+you:ps
+FORWARD(18,17,0);RIGHT(18,16,0);FORWARD(18,16,90);(19, 16, 90)
+to your left is grey flooring
+you:ps
+(19, 16, 90)
+
+Cleaned-EMWC_Jelly0_6_2_Dirs_1
+y=6	map=jelly	x=2
+go forward one segment to the pink-flowered carpet hall
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);(19, 19, 90)
+turn left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+go forward one segment to the blue-tiled hall
+you:ps
+FORWARD(19,19,0);(19, 18, 0)
+turn right
+you:ps
+RIGHT(19,18,0);(19, 18, 90)
+go to the end of the hall , one segment
+you:ps
+FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+follow this hall to the wooden-floored hall
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+this intersection will contain an easel
+you:ps
+(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+go forward two segments to a bare concrete hall
+you:ps
+FORWARD(20,17,90);FORWARD(21,17,90);(22, 17, 90)
+turn left
+you:ps
+LEFT(22,17,90);(22, 17, 0)
+go forward one segment to the intersection containing the lamp
+you:ps
+FORWARD(22,17,0);(22, 16, 0)
+turn right
+you:ps
+RIGHT(22,16,0);(22, 16, 90)
+go forward one segment
+you:ps
+FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-EMWC_Jelly0_2_4_Dirs_1
+y=2	map=jelly	x=4
+go toward the intersection containing the lamp
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+after moving the one segment to reach this spot , turn left
+you:ps
+FORWARD(23,16,270);LEFT(22,16,270);(22, 16, 180)
+go forward one segment to the intersection with the wooden-floored hall
+you:ps
+FORWARD(22,16,180);(22, 17, 180)
+turn right
+you:ps
+RIGHT(22,17,180);(22, 17, 270)
+go forward two segments along the wooden-floored hall to the intersection containing the easel
+you:ps
+FORWARD(22,17,270);FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+go forward one segment to the blue-tiled hall
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn toward the end of the hall that intersects the yellow-tiled hall
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+i believe this is a right turn an dthat the intersection is two segments down
+you:ps
+(20, 18, 270)
+when you reach the yellow-tiled hall , you wil turn away from the end which intersects the stone hall and follow the yellow-tiled hall to that end
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);LEFT(15,18,270);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+if these directions fail , position 4 is at end of the yellow-tiled hall farthest from the intersection with the stone hall
+you:ps
+(15, 20, 180)
+
+Cleaned-KLS_Jelly0_3_2_Dirs_1
+y=3	map=jelly	x=2
+take the blue path towards the chair all the way to the end of the hall
+you:ps
+RIGHT(16,18,0);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+here , take a left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+next , at the easel , take a right to the end of the hall
+you:ps
+FORWARD(20,18,0);RIGHT(20,17,0);FORWARD(20,17,90);FORWARD(21,17,90);(22, 17, 90)
+at the corner , take a left and at the next corner , take a right at the lamp
+you:ps
+LEFT(22,17,90);FORWARD(22,17,0);RIGHT(22,16,0);(22, 16, 90)
+the end of this hall is 2
+you:ps
+FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-KLS_Jelly0_6_7_Dirs_1
+y=6	map=jelly	x=7
+go towards the pink path intersection
+you:ps
+RIGHT(18,19,0);(18, 19, 90)
+once here , take a left onto the pink path
+you:ps
+FORWARD(18,19,90);LEFT(19,19,90);(19, 19, 0)
+at the next intersection , take a left onto the blue path
+you:ps
+FORWARD(19,19,0);LEFT(19,18,0);(19, 18, 270)
+take the blue path towards teh chair
+you:ps
+(19, 18, 270)
+at the chair , take a right
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);RIGHT(17,18,270);(17, 18, 0)
+the next intersection is 7
+you:ps
+FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-TJS_Jelly0_4_2_Dirs_1
+y=4	map=jelly	x=2
+position 2 is at the corner of two halls with no tiles on the floor but with butterflies on the wall
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);FORWARD(15,18,0);RIGHT(15,17,0);FORWARD(15,17,90);FORWARD(16,17,90);FORWARD(17,17,90);LEFT(18,17,90);FORWARD(18,17,0);LEFT(18,16,0);LEFT(18,16,270);LEFT(18,16,180);FORWARD(18,16,90);FORWARD(19,16,90);RIGHT(20,16,90);FORWARD(20,16,180);LEFT(20,17,180);FORWARD(20,17,90);FORWARD(21,17,90);LEFT(22,17,90);FORWARD(22,17,0);RIGHT(22,16,0);FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-WLH_Jelly0_2_6_Dirs_2
+y=2	map=jelly	x=6
+face and move to the lamp
+you:ps
+LEFT(23,16,0);FORWARD(23,16,270);(22, 16, 270)
+turn left
+you:ps
+LEFT(22,16,270);(22, 16, 180)
+move forward
+you:ps
+FORWARD(22,16,180);(22, 17, 180)
+turn right
+you:ps
+RIGHT(22,17,180);(22, 17, 270)
+move to the easel and turn left
+you:ps
+FORWARD(22,17,270);FORWARD(21,17,270);LEFT(20,17,270);(20, 17, 180)
+move forward and turn right
+you:ps
+FORWARD(20,17,180);RIGHT(20,18,180);(20, 18, 270)
+move along the blue and turn left at the first alley
+you:ps
+FORWARD(20,18,270);LEFT(19,18,270);(19, 18, 180)
+move towards the easel and turn right at the first alley
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);(19, 19, 270)
+the end of this alley is 6
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-EMWC_Jelly0_5_4_Dirs_1
+y=5	map=jelly	x=4
+face the easel
+you:ps
+LEFT(21,17,0);(21, 17, 270)
+go forward one segment
+you:ps
+FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+go forward one segment to the intersection with the blue-tiled hall
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+follow this hall to its opposite end , about seven segments
+you:ps
+RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+you will pass a chair and a hatrack
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+at the far end , you will reach the intersection with the yellow-tiled hall
+you:ps
+(15, 18, 270)
+turn left
+you:ps
+LEFT(15,18,270);(15, 18, 180)
+go forward two segments to the end of the hall
+you:ps
+FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-KLS_Jelly0_1_7_Dirs_1
+y=1	map=jelly	x=7
+take the red brick path towards the butterflies
+you:ps
+RIGHT(19,16,0);(19, 16, 90)
+at the corner , take a right
+you:ps
+FORWARD(19,16,90);RIGHT(20,16,90);(20, 16, 180)
+at the next corner , take a left
+you:ps
+(20, 16, 180)
+follow the path until the blue path intersection
+you:ps
+FORWARD(20,16,180);FORWARD(20,17,180);(20, 18, 180)
+here , take a right onto the blue path and follow it towards the coat rack
+you:ps
+RIGHT(20,18,180);FORWARD(20,18,270);(19, 18, 270)
+at the intersection of plain cement , you will go right towards the black stool
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);RIGHT(17,18,270);(17, 18, 0)
+once you reach the black stool , you are at 7
+you:ps
+FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-EDA_Jelly0_4_1_Dirs_1
+y=4	map=jelly	x=1
+only one way to go
+you:ps
+(15, 20, 0)
+walk to the end of the yellow hall , 3 steps
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);FORWARD(15,18,0);(15, 17, 0)
+turn right
+you:ps
+RIGHT(15,17,0);(15, 17, 90)
+walk to the end of the black hall , 3 steps
+you:ps
+FORWARD(15,17,90);FORWARD(16,17,90);FORWARD(17,17,90);(18, 17, 90)
+turn left
+you:ps
+LEFT(18,17,90);(18, 17, 0)
+walk forward once
+you:ps
+FORWARD(18,17,0);(18, 16, 0)
+turn right
+you:ps
+RIGHT(18,16,0);(18, 16, 90)
+walk forward once
+you:ps
+FORWARD(18,16,90);(19, 16, 90)
+
+Cleaned-KLS_Jelly0_4_6_Dirs_1
+y=4	map=jelly	x=6
+take the yellow path away from the end of the hall to the blue path intersection
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);(15, 18, 0)
+at the coat rack , take a right onto the blue path and follow past the chair to the pink path intersection
+you:ps
+RIGHT(15,18,0);FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);(19, 18, 90)
+at this intersection , go right onto the pink path and at the very first intersection , go right to the very end of the hall and this is 6
+you:ps
+RIGHT(19,18,90);FORWARD(19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-KLS_Jelly0_6_3_Dirs_1
+y=6	map=jelly	x=3
+go towards the pink path
+you:ps
+RIGHT(18,19,0);(18, 19, 90)
+once at this intersection , go left onto the pink path
+you:ps
+FORWARD(18,19,90);LEFT(19,19,90);(19, 19, 0)
+at the very next intersection , take a left onto the blue path
+you:ps
+FORWARD(19,19,0);LEFT(19,18,0);(19, 18, 270)
+follow the blue path towards the chair and one intersection after the chair will be 3
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-EDA_Jelly0_6_7_Dirs_1
+y=6	map=jelly	x=7
+only one way to go
+you:ps
+RIGHT(18,19,0);(18, 19, 90)
+walk forward once
+you:ps
+FORWARD(18,19,90);(19, 19, 90)
+turn left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+walk forward once
+you:ps
+FORWARD(19,19,0);(19, 18, 0)
+turn left walk forward twice
+you:ps
+LEFT(19,18,0);FORWARD(19,18,270);FORWARD(18,18,270);(17, 18, 270)
+turn right
+you:ps
+RIGHT(17,18,270);(17, 18, 0)
+walk forward once
+you:ps
+FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-TJS_Jelly0_7_4_Dirs_1
+y=7	map=jelly	x=4
+position 4 is at the dead end of the yellow fish hall with yellow floors
+you:ps
+LEFT(17,17,0);FORWARD(17,17,270);FORWARD(16,17,270);LEFT(15,17,270);FORWARD(15,17,180);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-TJS_Jelly0_2_5_Dirs_1
+y=2	map=jelly	x=5
+position 5 is in the middle of the wood-floored room
+you:ps
+(21, 17, 90)
+
+Cleaned-KLS_Jelly0_2_5_Dirs_1
+y=2	map=jelly	x=5
+take the path towards the lamp
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+at the lamp , take a left
+you:ps
+FORWARD(23,16,270);LEFT(22,16,270);(22, 16, 180)
+at the next corner , take a right onto the wood path
+you:ps
+FORWARD(22,16,180);RIGHT(22,17,180);(22, 17, 270)
+the very next intersection will be 5
+you:ps
+FORWARD(22,17,270);(21, 17, 270)
+
+Cleaned-KLS_Jelly0_3_4_Dirs_1
+y=3	map=jelly	x=4
+go towards the coat rack and take a left at the coat rack
+you:ps
+LEFT(16,18,0);FORWARD(16,18,270);LEFT(15,18,270);(15, 18, 180)
+go all the way to the end of the hall and this is 4
+you:ps
+FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-EMWC_Jelly0_7_1_Dirs_1
+y=7	map=jelly	x=1
+place your back to the wall of the t intersection
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+go forward one segment to the blue-tiled hall
+you:ps
+FORWARD(17,17,180);(17, 18, 180)
+turn left
+you:ps
+LEFT(17,18,180);(17, 18, 90)
+go forward to the end of the hall
+you:ps
+FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+go forward two segments , passing the easel
+you:ps
+FORWARD(20,18,0);FORWARD(20,17,0);(20, 16, 0)
+turn left
+you:ps
+LEFT(20,16,0);(20, 16, 270)
+go forward one segment
+you:ps
+FORWARD(20,16,270);(19, 16, 270)
+
+Cleaned-WLH_Jelly0_2_7_Dirs_1
+y=2	map=jelly	x=7
+face and move to the lamp
+you:ps
+LEFT(23,16,0);FORWARD(23,16,270);(22, 16, 270)
+turn left and move to the easel
+you:ps
+LEFT(22,16,270);FORWARD(22,16,180);RIGHT(22,17,180);FORWARD(22,17,270);FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+you should see a side alley to the right with blue flooring
+you:ps
+(20, 17, 180)
+move to it and turn right
+you:ps
+FORWARD(20,17,180);RIGHT(20,18,180);(20, 18, 270)
+walk to the chair and turn right
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);RIGHT(17,18,270);(17, 18, 0)
+move to the stool
+you:ps
+FORWARD(17,18,0);(17, 17, 0)
+the side alleys have stone flooring
+you:ps
+(17, 17, 0)
+
+Cleaned-KXP_Jelly0_7_6_Dirs_1
+y=7	map=jelly	x=6
+go to blue
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);FORWARD(17,17,180);(17, 18, 180)
+then pink
+you:ps
+LEFT(17,18,180);FORWARD(17,18,90);FORWARD(18,18,90);(19, 18, 90)
+make a right
+you:ps
+RIGHT(19,18,90);(19, 18, 180)
+then anopther right
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-TJS_Jelly0_3_5_Dirs_1
+y=3	map=jelly	x=5
+position 5 is in a hall with wood floors
+you:ps
+RIGHT(16,18,0);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);LEFT(20,18,90);FORWARD(20,18,0);RIGHT(20,17,0);FORWARD(20,17,90);FORWARD(21,17,90);RIGHT(22,17,90);RIGHT(22,17,180);FORWARD(22,17,270);(21, 17, 270)
+it s in the middle
+you:ps
+(21, 17, 270)
+
+Cleaned-TJS_Jelly0_4_1_Dirs_1
+y=4	map=jelly	x=1
+position 1 is in the middle of the hall with the red brick floor
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);FORWARD(15,18,0);RIGHT(15,17,0);FORWARD(15,17,90);FORWARD(16,17,90);FORWARD(17,17,90);LEFT(18,17,90);FORWARD(18,17,0);LEFT(18,16,0);LEFT(18,16,270);LEFT(18,16,180);FORWARD(18,16,90);(19, 16, 90)
+
+Cleaned-WLH_Jelly0_2_5_Dirs_1
+y=2	map=jelly	x=5
+face and move towards the lamp
+you:ps
+LEFT(23,16,0);FORWARD(23,16,270);(22, 16, 270)
+turn left
+you:ps
+LEFT(22,16,270);(22, 16, 180)
+move forward
+you:ps
+FORWARD(22,16,180);(22, 17, 180)
+turn right
+you:ps
+RIGHT(22,17,180);(22, 17, 270)
+move one block towards the easel
+you:ps
+FORWARD(22,17,270);(21, 17, 270)
+you see butterflies on the walls
+you:ps
+(21, 17, 270)
+
+Cleaned-TJS_Jelly0_5_2_Dirs_1
+y=5	map=jelly	x=2
+position 2 is at a corner between two halls with no tiles on the floor
+you:ps
+LEFT(21,17,0);FORWARD(21,17,270);FORWARD(20,17,270);RIGHT(19,17,270);RIGHT(19,17,0);FORWARD(19,17,90);FORWARD(20,17,90);FORWARD(21,17,90);LEFT(22,17,90);FORWARD(22,17,0);RIGHT(22,16,0);FORWARD(22,16,90);(23, 16, 90)
+but butterflies on the wall
+you:ps
+(23, 16, 90)
+
+Cleaned-EMWC_Jelly0_2_3_Dirs_1
+y=2	map=jelly	x=3
+face the lamp
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+go forward one segment to the intersection with the lamp
+you:ps
+FORWARD(23,16,270);(22, 16, 270)
+turn left
+you:ps
+LEFT(22,16,270);(22, 16, 180)
+go forward one segment to the wooden-tiled hall
+you:ps
+FORWARD(22,16,180);(22, 17, 180)
+turn right
+you:ps
+RIGHT(22,17,180);(22, 17, 270)
+go forward two segments to the intersection containing the easel
+you:ps
+FORWARD(22,17,270);FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+go forward one segment to the blue-tiled hall
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn to the right
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+go forward
+you:ps
+FORWARD(20,18,270);(19, 18, 270)
+pass the pink-flowered carpet hall
+you:ps
+FORWARD(19,18,270);(18, 18, 270)
+pass the chair
+you:ps
+FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+one segment past the chair is position 3
+you:ps
+(16, 18, 270)
+
+Cleaned-EDA_Jelly0_4_2_Dirs_1
+y=4	map=jelly	x=2
+only one way to travel
+you:ps
+(15, 20, 0)
+go forward twice
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);(15, 18, 0)
+turn right onto the blue hallway and travel all the way down to the far end
+you:ps
+RIGHT(15,18,0);FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left and go forward once
+you:ps
+LEFT(20,18,90);FORWARD(20,18,0);(20, 17, 0)
+turn right and go forward twice
+you:ps
+RIGHT(20,17,0);FORWARD(20,17,90);FORWARD(21,17,90);(22, 17, 90)
+turn left again and go forward once
+you:ps
+LEFT(22,17,90);FORWARD(22,17,0);(22, 16, 0)
+and right again and go forward once
+you:ps
+RIGHT(22,16,0);FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-WLH_Jelly0_1_2_Dirs_1
+y=1	map=jelly	x=2
+face and move to the wooden chair
+you:ps
+LEFT(19,16,0);LEFT(19,16,270);LEFT(19,16,180);LEFT(19,16,90);FORWARD(19,16,0);(19, 15, 0)
+turn right
+you:ps
+RIGHT(19,15,0);(19, 15, 90)
+you see a long alley with grass
+you:ps
+(19, 15, 90)
+move down this to the hatrack
+you:ps
+FORWARD(19,15,90);FORWARD(20,15,90);FORWARD(21,15,90);FORWARD(22,15,90);(23, 15, 90)
+turn right and move into the corner
+you:ps
+RIGHT(23,15,90);FORWARD(23,15,180);(23, 16, 180)
+turning right you see a lamp and right again the hatrack you just came from
+you:ps
+RIGHT(23,16,180);RIGHT(23,16,270);(23, 16, 0)
+
+Cleaned-EDA_Jelly0_1_3_Dirs_1
+y=1	map=jelly	x=3
+turn so that the wall is on your left side
+you:ps
+LEFT(19,16,0);(19, 16, 270)
+walk forward once
+you:ps
+FORWARD(19,16,270);(18, 16, 270)
+turn left
+you:ps
+LEFT(18,16,270);(18, 16, 180)
+walk forward once
+you:ps
+FORWARD(18,16,180);(18, 17, 180)
+turn right
+you:ps
+RIGHT(18,17,180);(18, 17, 270)
+walk forward once
+you:ps
+FORWARD(18,17,270);(17, 17, 270)
+turn left
+you:ps
+LEFT(17,17,270);(17, 17, 180)
+walk forward once
+you:ps
+FORWARD(17,17,180);(17, 18, 180)
+turn right
+you:ps
+RIGHT(17,18,180);(17, 18, 270)
+walk forward once
+you:ps
+FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-EDA_Jelly0_3_2_Dirs_1
+y=3	map=jelly	x=2
+turn so that the wall is on your left
+you:ps
+RIGHT(16,18,0);(16, 18, 90)
+walk forward four times
+you:ps
+FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+walk forward once
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+walk forward twice
+you:ps
+FORWARD(20,17,90);FORWARD(21,17,90);(22, 17, 90)
+turn left
+you:ps
+LEFT(22,17,90);(22, 17, 0)
+walk forward once
+you:ps
+FORWARD(22,17,0);(22, 16, 0)
+turn right
+you:ps
+RIGHT(22,16,0);(22, 16, 90)
+walk forward once
+you:ps
+FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-EDA_Jelly0_2_5_Dirs_1
+y=2	map=jelly	x=5
+turn so that the wall is facing your left and back
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+walk forward once
+you:ps
+FORWARD(23,16,270);(22, 16, 270)
+turn left
+you:ps
+LEFT(22,16,270);(22, 16, 180)
+walk forward once
+you:ps
+FORWARD(22,16,180);(22, 17, 180)
+turn right
+you:ps
+RIGHT(22,17,180);(22, 17, 270)
+walk forward once
+you:ps
+FORWARD(22,17,270);(21, 17, 270)
+
+Cleaned-EDA_Jelly0_3_1_Dirs_1
+y=3	map=jelly	x=1
+turn so that the wall is on your left
+you:ps
+RIGHT(16,18,0);(16, 18, 90)
+walk forward to the end of the hallway
+you:ps
+FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left walk forward twice
+you:ps
+LEFT(20,18,90);FORWARD(20,18,0);FORWARD(20,17,0);(20, 16, 0)
+turn left walk forward once
+you:ps
+LEFT(20,16,0);FORWARD(20,16,270);(19, 16, 270)
+
+Cleaned-KLS_Jelly0_5_1_Dirs_1
+y=5	map=jelly	x=1
+take the wood path towards the easel
+you:ps
+LEFT(21,17,0);(21, 17, 270)
+at the easel , go right and follow the path to the end of the hall
+you:ps
+FORWARD(21,17,270);RIGHT(20,17,270);FORWARD(20,17,0);(20, 16, 0)
+at this corner , turn left onto the red brick
+you:ps
+LEFT(20,16,0);(20, 16, 270)
+the next intersection is 1
+you:ps
+FORWARD(20,16,270);(19, 16, 270)
+
+Cleaned-KXP_Jelly0_7_4_Dirs_1
+y=7	map=jelly	x=4
+head toward the blue floored hallway
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+make a right on it
+you:ps
+FORWARD(17,17,180);RIGHT(17,18,180);(17, 18, 270)
+go down till you see the fish walled areas
+you:ps
+(17, 18, 270)
+make a left in the fish walled hallway and go to the very end
+you:ps
+FORWARD(17,18,270);FORWARD(16,18,270);LEFT(15,18,270);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-EDA_Jelly0_6_1_Dirs_1
+y=6	map=jelly	x=1
+only one direction to go
+you:ps
+RIGHT(18,19,0);(18, 19, 90)
+walk forward once
+you:ps
+FORWARD(18,19,90);(19, 19, 90)
+turn left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+walk forward once
+you:ps
+FORWARD(19,19,0);(19, 18, 0)
+turn right
+you:ps
+RIGHT(19,18,0);(19, 18, 90)
+walk forward to the end of the hallway
+you:ps
+FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+walk forward twice
+you:ps
+FORWARD(20,18,0);FORWARD(20,17,0);(20, 16, 0)
+turn left
+you:ps
+LEFT(20,16,0);(20, 16, 270)
+walk forward once
+you:ps
+FORWARD(20,16,270);(19, 16, 270)
+
+Cleaned-KLS_Jelly0_2_3_Dirs_1
+y=2	map=jelly	x=3
+go towards the lamp and at the corner , take a left
+you:ps
+LEFT(23,16,0);FORWARD(23,16,270);LEFT(22,16,270);(22, 16, 180)
+go straight again , and at the next corner , take a right onto the wood path
+you:ps
+FORWARD(22,16,180);RIGHT(22,17,180);(22, 17, 270)
+go down to the easel , and take a left
+you:ps
+FORWARD(22,17,270);FORWARD(21,17,270);LEFT(20,17,270);(20, 17, 180)
+follow this path straight until you see the blue path
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+take a right onto the blue path and go straight towards the coat rack
+you:ps
+RIGHT(20,18,180);FORWARD(20,18,270);(19, 18, 270)
+one intersection before the coat rack will be 3
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-WLH_Jelly0_3_5_Dirs_2
+y=3	map=jelly	x=5
+face and move past the chair
+you:ps
+RIGHT(16,18,0);FORWARD(16,18,90);FORWARD(17,18,90);(18, 18, 90)
+at the end of the blue flooring turn left
+you:ps
+FORWARD(18,18,90);FORWARD(19,18,90);LEFT(20,18,90);(20, 18, 0)
+move to the easel and turn right
+you:ps
+FORWARD(20,18,0);RIGHT(20,17,0);(20, 17, 90)
+you should be facing the longer wooden floored alley
+you:ps
+(20, 17, 90)
+from the easel , move one block and place yourself between butterfly pictures
+you:ps
+FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-KLS_Jelly0_3_5_Dirs_1
+y=3	map=jelly	x=5
+go on the blue path towards the chair
+you:ps
+RIGHT(16,18,0);(16, 18, 90)
+at the very end of the hall , you will turn left towards the easel
+you:ps
+FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);LEFT(20,18,90);(20, 18, 0)
+at the easel , go right onto the wood path and the next intersection will be 5
+you:ps
+FORWARD(20,18,0);RIGHT(20,17,0);FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-WLH_Jelly0_3_2_Dirs_1
+y=3	map=jelly	x=2
+fave and move past the chair to the end of the blue flooring
+you:ps
+RIGHT(16,18,0);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left and move to the easel
+you:ps
+LEFT(20,18,90);FORWARD(20,18,0);(20, 17, 0)
+at the easel turn right and walk down the longer alley
+you:ps
+RIGHT(20,17,0);FORWARD(20,17,90);FORWARD(21,17,90);(22, 17, 90)
+turn left
+you:ps
+LEFT(22,17,90);(22, 17, 0)
+move past the lamp into the corner
+you:ps
+FORWARD(22,17,0);RIGHT(22,16,0);FORWARD(22,16,90);(23, 16, 90)
+from 2 you should be able to look left and see a hatrack
+you:ps
+(23, 16, 90)
+
+Cleaned-KXP_Jelly0_5_6_Dirs_1
+y=5	map=jelly	x=6
+go to blue
+you:ps
+RIGHT(21,17,0);FORWARD(21,17,90);LEFT(22,17,90);FORWARD(22,17,0);RIGHT(22,16,0);FORWARD(22,16,90);LEFT(23,16,90);FORWARD(23,16,0);LEFT(23,15,0);FORWARD(23,15,270);FORWARD(22,15,270);FORWARD(21,15,270);FORWARD(20,15,270);LEFT(19,15,270);FORWARD(19,15,180);LEFT(19,16,180);FORWARD(19,16,90);RIGHT(20,16,90);FORWARD(20,16,180);FORWARD(20,17,180);(20, 18, 180)
+then pink area
+you:ps
+RIGHT(20,18,180);FORWARD(20,18,270);LEFT(19,18,270);(19, 18, 180)
+make 1st rt
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-EDA_Jelly0_3_5_Dirs_1
+y=3	map=jelly	x=5
+turn so that the wall is on your left
+you:ps
+RIGHT(16,18,0);(16, 18, 90)
+walk forward to the end of the hallway , four spaces
+you:ps
+FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+walk forward once
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+walk forward once
+you:ps
+FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-WLH_Jelly0_7_4_Dirs_2
+y=7	map=jelly	x=4
+with your back to the wall turn right and move to the end
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);RIGHT(17,17,180);FORWARD(17,17,270);FORWARD(16,17,270);(15, 17, 270)
+here turn left and move past the hatrack to the end of the green octagon floored alley
+you:ps
+LEFT(15,17,270);FORWARD(15,17,180);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-EMWC_Jelly0_6_4_Dirs_1
+y=6	map=jelly	x=4
+go forward one segment to the intersection with the pink-flowered carpet hall
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);(19, 19, 90)
+turn left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+go forward one segment to the intersection with the blue-tiled hall
+you:ps
+FORWARD(19,19,0);(19, 18, 0)
+turn left
+you:ps
+LEFT(19,18,0);(19, 18, 270)
+go to the intersection with the yellow-tiled hall , passing a chair
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+this intersection contains a hatrack
+you:ps
+(15, 18, 270)
+turn left
+you:ps
+LEFT(15,18,270);(15, 18, 180)
+go forward two segments
+you:ps
+FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-EDA_Jelly0_1_2_Dirs_2
+y=1	map=jelly	x=2
+turn so the wall is on your back
+you:ps
+LEFT(19,16,0);LEFT(19,16,270);LEFT(19,16,180);LEFT(19,16,90);(19, 16, 0)
+walk forward once
+you:ps
+FORWARD(19,16,0);(19, 15, 0)
+turn right onto the green hallway
+you:ps
+RIGHT(19,15,0);(19, 15, 90)
+walk to the end , maybe four spaces
+you:ps
+FORWARD(19,15,90);FORWARD(20,15,90);FORWARD(21,15,90);FORWARD(22,15,90);(23, 15, 90)
+turn right and walk forward once
+you:ps
+RIGHT(23,15,90);FORWARD(23,15,180);(23, 16, 180)
+
+Cleaned-EDA_Jelly0_4_6_Dirs_1
+y=4	map=jelly	x=6
+only one way to go
+you:ps
+(15, 20, 0)
+walk forward twice
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);(15, 18, 0)
+turn right
+you:ps
+RIGHT(15,18,0);(15, 18, 90)
+walk forward four times
+you:ps
+FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);(19, 18, 90)
+turn right
+you:ps
+RIGHT(19,18,90);(19, 18, 180)
+walk forward once
+you:ps
+FORWARD(19,18,180);(19, 19, 180)
+turn right
+you:ps
+RIGHT(19,19,180);(19, 19, 270)
+walk forward once
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-KLS_Jelly0_2_6_Dirs_1
+y=2	map=jelly	x=6
+take the path towards the lamp
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+at the lamp , follow the path to the left , and then right at the next corner
+you:ps
+FORWARD(23,16,270);LEFT(22,16,270);FORWARD(22,16,180);RIGHT(22,17,180);(22, 17, 270)
+when you come to a red brick path , go left
+you:ps
+FORWARD(22,17,270);FORWARD(21,17,270);LEFT(20,17,270);(20, 17, 180)
+when you reach the blue path , take a right onto it
+you:ps
+FORWARD(20,17,180);RIGHT(20,18,180);(20, 18, 270)
+follow it until you can take a left onto the pink path
+you:ps
+FORWARD(20,18,270);LEFT(19,18,270);(19, 18, 180)
+once on the pink path , take a right at the first intersection and go all the way to the end of the hall
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-WLH_Jelly0_2_6_Dirs_1
+y=2	map=jelly	x=6
+face the lamp
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+step forward and follow the alley around
+you:ps
+FORWARD(23,16,270);LEFT(22,16,270);FORWARD(22,16,180);RIGHT(22,17,180);(22, 17, 270)
+you are placed where you can see an easel
+you:ps
+(22, 17, 270)
+move to this easel and turn left
+you:ps
+FORWARD(22,17,270);FORWARD(21,17,270);LEFT(20,17,270);(20, 17, 180)
+the carpet should be blue
+you:ps
+FORWARD(20,17,180);RIGHT(20,18,180);(20, 18, 270)
+walk until there is an opening on you right
+you:ps
+FORWARD(20,18,270);(19, 18, 270)
+upon turning right you should see an alley with rose carpet
+you:ps
+LEFT(19,18,270);(19, 18, 180)
+p-6 is at the end of this alley
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-EDA_Jelly0_2_4_Dirs_2
+y=2	map=jelly	x=4
+turn so that the wall is on your left and to your back
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+walk forward once
+you:ps
+FORWARD(23,16,270);(22, 16, 270)
+turn left
+you:ps
+LEFT(22,16,270);(22, 16, 180)
+walk forward once
+you:ps
+FORWARD(22,16,180);(22, 17, 180)
+turn right
+you:ps
+RIGHT(22,17,180);(22, 17, 270)
+walk forward twice
+you:ps
+FORWARD(22,17,270);FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+walk forward once
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn right
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+walk forward five times , or until you reach the yellow walkway
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+turn left and continue 2 steps to the end of the yellow hallway
+you:ps
+LEFT(15,18,270);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-EMWC_Jelly0_5_1_Dirs_1
+y=5	map=jelly	x=1
+face the easel
+you:ps
+LEFT(21,17,0);(21, 17, 270)
+go forward one segment to the intersection containing the easel
+you:ps
+FORWARD(21,17,270);(20, 17, 270)
+turn right
+you:ps
+RIGHT(20,17,270);(20, 17, 0)
+go forward one segment to the intersection with the brick hall
+you:ps
+FORWARD(20,17,0);(20, 16, 0)
+go forward one segment to the intersection which has eiffel tower pictures ahead and butterfly pictures behind
+you:ps
+LEFT(20,16,0);FORWARD(20,16,270);(19, 16, 270)
+
+Cleaned-TJS_Jelly0_5_1_Dirs_1
+y=5	map=jelly	x=1
+go up the hall
+you:ps
+LEFT(21,17,0);FORWARD(21,17,270);(20, 17, 270)
+position 1 is in the middle of the red brick floored room
+you:ps
+RIGHT(20,17,270);FORWARD(20,17,0);LEFT(20,16,0);FORWARD(20,16,270);(19, 16, 270)
+
+Cleaned-WLH_Jelly0_4_5_Dirs_1
+y=4	map=jelly	x=5
+move to hatrack and turn right
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);RIGHT(15,18,0);(15, 18, 90)
+go down this blue floored alley past the chair to the end
+you:ps
+FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+move to the easel with the wooden floored side alleys
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+you should see a longer alley than the one behind you
+you:ps
+(20, 17, 90)
+move one block to between the wall hanging butterflies
+you:ps
+FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-KXP_Jelly0_7_1_Dirs_1
+y=7	map=jelly	x=1
+go down toward the bench
+you:ps
+RIGHT(17,17,0);(17, 17, 90)
+make a left
+you:ps
+FORWARD(17,17,90);LEFT(18,17,90);(18, 17, 0)
+then go down
+you:ps
+FORWARD(18,17,0);(18, 16, 0)
+make a right go one space foward
+you:ps
+RIGHT(18,16,0);FORWARD(18,16,90);(19, 16, 90)
+
+Cleaned-TJS_Jelly0_5_7_Dirs_1
+y=5	map=jelly	x=7
+position 7 is in the middle of the grey floored hall
+you:ps
+(17, 17, 270)
+
+Cleaned-EMWC_Jelly0_6_7_Dirs_1
+y=6	map=jelly	x=7
+go forward one segment to the intersection with the pink-flowered carpet
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);(19, 19, 90)
+turn left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+go forward one segment to the blue-tiled hall
+you:ps
+FORWARD(19,19,0);(19, 18, 0)
+turn left
+you:ps
+LEFT(19,18,0);(19, 18, 270)
+go forward about two segments to the intersection containing the chair
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);(17, 18, 270)
+to one side you will see an intersection with the stone hall containing a stool
+you:ps
+(17, 18, 270)
+go forward one segment to this intersection
+you:ps
+RIGHT(17,18,270);FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-KXP_Jelly0_1_3_Dirs_1
+y=1	map=jelly	x=3
+go to the blue flooored area
+you:ps
+LEFT(19,16,0);FORWARD(19,16,270);FORWARD(18,16,270);RIGHT(17,16,270);RIGHT(17,16,0);FORWARD(17,16,90);RIGHT(18,16,90);FORWARD(18,16,180);RIGHT(18,17,180);FORWARD(18,17,270);FORWARD(17,17,270);FORWARD(16,17,270);LEFT(15,17,270);FORWARD(15,17,180);(15, 18, 180)
+pos three is in between the two pieces of furniture in this hallway
+you:ps
+LEFT(15,18,180);FORWARD(15,18,90);FORWARD(16,18,90);RIGHT(17,18,90);RIGHT(17,18,180);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-EMWC_Jelly0_6_1_Dirs_1
+y=6	map=jelly	x=1
+go forward one segment to the intersection with the pink-flowered carpet hall
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);(19, 19, 90)
+turn left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+go forward one segment to the blue-tiled hall
+you:ps
+FORWARD(19,19,0);(19, 18, 0)
+turn right
+you:ps
+RIGHT(19,18,0);(19, 18, 90)
+go to the end of the hall , one segment
+you:ps
+FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+go forward , passing the easel
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+follow the bare concrete hall to the intersection with the brick hall
+you:ps
+FORWARD(20,17,0);(20, 16, 0)
+turn into the brick hall
+you:ps
+LEFT(20,16,0);(20, 16, 270)
+go forward to the intersection which has butterfly pictures on one side and eiffel tower pictures on the other
+you:ps
+FORWARD(20,16,270);(19, 16, 270)
+
+Cleaned-TJS_Jelly0_3_4_Dirs_1
+y=3	map=jelly	x=4
+position 4 is a dead end of the yellow floored hall with fish on the walls
+you:ps
+LEFT(16,18,0);FORWARD(16,18,270);RIGHT(15,18,270);FORWARD(15,18,0);RIGHT(15,17,0);RIGHT(15,17,90);FORWARD(15,17,180);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-WLH_Jelly0_2_1_Dirs_1
+y=2	map=jelly	x=1
+from two face towards the hat rack
+you:ps
+LEFT(23,16,0);LEFT(23,16,270);LEFT(23,16,180);LEFT(23,16,90);(23, 16, 0)
+turn onto the green carpet
+you:ps
+FORWARD(23,16,0);LEFT(23,15,0);(23, 15, 270)
+walk until there is an exit on the left
+you:ps
+FORWARD(23,15,270);FORWARD(22,15,270);FORWARD(21,15,270);FORWARD(20,15,270);LEFT(19,15,270);(19, 15, 180)
+you should be standing next to a stool
+you:ps
+(19, 15, 180)
+walk forward
+you:ps
+FORWARD(19,15,180);(19, 16, 180)
+turn around when you hit the wall
+you:ps
+RIGHT(19,16,180);(19, 16, 0)
+to your left and right should be brick and in front of you the stool where you just came from
+you:ps
+(19, 16, 0)
+
+Cleaned-WLH_Jelly0_1_4_Dirs_1
+y=1	map=jelly	x=4
+face and move to the chair
+you:ps
+LEFT(19,16,0);LEFT(19,16,270);LEFT(19,16,180);LEFT(19,16,90);FORWARD(19,16,0);(19, 15, 0)
+turn left and move to the next chair
+you:ps
+RIGHT(19,15,0);RIGHT(19,15,90);FORWARD(19,15,180);RIGHT(19,16,180);FORWARD(19,16,270);LEFT(18,16,270);FORWARD(18,16,180);(18, 17, 180)
+face the stone floored alley and move to the end of it
+you:ps
+RIGHT(18,17,180);FORWARD(18,17,270);FORWARD(17,17,270);FORWARD(16,17,270);(15, 17, 270)
+turn left and move down the octagon flooring to the end
+you:ps
+LEFT(15,17,270);FORWARD(15,17,180);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-KLS_Jelly0_7_4_Dirs_1
+y=7	map=jelly	x=4
+take the black path away from the bench to the very end of the hall
+you:ps
+LEFT(17,17,0);FORWARD(17,17,270);FORWARD(16,17,270);(15, 17, 270)
+here , take a left onto the yellow path
+you:ps
+LEFT(15,17,270);(15, 17, 180)
+follow the path to the opposite end of the hall and here is 4
+you:ps
+FORWARD(15,17,180);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-KLS_Jelly0_3_1_Dirs_1
+y=3	map=jelly	x=1
+take the blue path towards the chair to the very end of the hall
+you:ps
+RIGHT(16,18,0);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+here , go left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+at the easel , take a right onto the wood path
+you:ps
+FORWARD(20,18,0);RIGHT(20,17,0);(20, 17, 90)
+go to the end of the hall
+you:ps
+FORWARD(20,17,90);FORWARD(21,17,90);(22, 17, 90)
+take a left , follow the path , and then take a right at the lamp
+you:ps
+LEFT(22,17,90);FORWARD(22,17,0);RIGHT(22,16,0);(22, 16, 90)
+again , follow the path and take a left at the corner , at the end of this hall , take a left onto the green path
+you:ps
+FORWARD(22,16,90);LEFT(23,16,90);FORWARD(23,16,0);LEFT(23,15,0);(23, 15, 270)
+go several intersections down to the plain cement intersection and take a left
+you:ps
+FORWARD(23,15,270);FORWARD(22,15,270);FORWARD(21,15,270);FORWARD(20,15,270);LEFT(19,15,270);(19, 15, 180)
+the very next intersection with the wood path is position 1
+you:ps
+FORWARD(19,15,180);(19, 16, 180)
+
+Cleaned-WLH_Jelly0_6_2_Dirs_2
+y=6	map=jelly	x=2
+move onto the flowered carpet and turn left
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);LEFT(19,19,90);(19, 19, 0)
+move to the blue carpet and turn right
+you:ps
+FORWARD(19,19,0);RIGHT(19,18,0);(19, 18, 90)
+move to the corner and turn left
+you:ps
+FORWARD(19,18,90);LEFT(20,18,90);(20, 18, 0)
+move to the easel and turn right
+you:ps
+FORWARD(20,18,0);RIGHT(20,17,0);(20, 17, 90)
+move along the wooden flooring and turn left
+you:ps
+FORWARD(20,17,90);FORWARD(21,17,90);LEFT(22,17,90);(22, 17, 0)
+move to the lamp and turn right
+you:ps
+FORWARD(22,17,0);RIGHT(22,16,0);(22, 16, 90)
+move to the corner
+you:ps
+FORWARD(22,16,90);(23, 16, 90)
+turning left , you see a hatrack
+you:ps
+(23, 16, 90)
+
+Cleaned-KLS_Jelly0_2_7_Dirs_1
+y=2	map=jelly	x=7
+go on the path towards the lamp
+you:ps
+LEFT(23,16,0);(23, 16, 270)
+at the lamp , go left
+you:ps
+FORWARD(23,16,270);LEFT(22,16,270);(22, 16, 180)
+at the next corner , go right onto the wood path
+you:ps
+FORWARD(22,16,180);RIGHT(22,17,180);(22, 17, 270)
+at the easel , go left on the plain path until it intersects with the blue path
+you:ps
+FORWARD(22,17,270);FORWARD(21,17,270);LEFT(20,17,270);FORWARD(20,17,180);(20, 18, 180)
+go right onto the blue path and follow it towards the chair
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+at the chair , go right
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);RIGHT(17,18,270);(17, 18, 0)
+and the very next intersection where there is also a stool is 7
+you:ps
+FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-EMWC_Jelly0_5_2_Dirs_1
+y=5	map=jelly	x=2
+face away from the easel
+you:ps
+RIGHT(21,17,0);(21, 17, 90)
+go forward one segment to the end of the hall
+you:ps
+FORWARD(21,17,90);(22, 17, 90)
+turn left
+you:ps
+LEFT(22,17,90);(22, 17, 0)
+go forward one segment to the intersection with the lamp
+you:ps
+FORWARD(22,17,0);(22, 16, 0)
+turn right
+you:ps
+RIGHT(22,16,0);(22, 16, 90)
+go forward one segment to the empty corner
+you:ps
+FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-KLS_Jelly0_6_4_Dirs_1
+y=6	map=jelly	x=4
+go straight towards the pink path and at this intersection take a left onto th epink path
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);LEFT(19,19,90);(19, 19, 0)
+at the next intersection , take a left onto the blue path
+you:ps
+FORWARD(19,19,0);LEFT(19,18,0);(19, 18, 270)
+follow it all the way to the coat rack and take a left onto the yellow path
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);LEFT(15,18,270);(15, 18, 180)
+the end of this hall is 4
+you:ps
+FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-TJS_Jelly0_6_1_Dirs_1
+y=6	map=jelly	x=1
+position 1 is in the middle of a red brick floored room
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);RIGHT(19,19,90);FORWARD(19,19,180);RIGHT(19,20,180);RIGHT(19,20,270);FORWARD(19,20,0);FORWARD(19,19,0);LEFT(19,18,0);FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);RIGHT(15,18,270);RIGHT(15,18,0);FORWARD(15,18,90);FORWARD(16,18,90);LEFT(17,18,90);FORWARD(17,18,0);RIGHT(17,17,0);FORWARD(17,17,90);LEFT(18,17,90);FORWARD(18,17,0);RIGHT(18,16,0);FORWARD(18,16,90);(19, 16, 90)
+
+Cleaned-WLH_Jelly0_1_5_Dirs_1
+y=1	map=jelly	x=5
+with your back to the wall turn right
+you:ps
+RIGHT(19,16,0);(19, 16, 90)
+move to the corner and turn right again
+you:ps
+FORWARD(19,16,90);RIGHT(20,16,90);(20, 16, 180)
+move to the easel and turn left
+you:ps
+FORWARD(20,16,180);LEFT(20,17,180);(20, 17, 90)
+you should be facing the longer alley of wooden flooring and butterfly pictures on the side
+you:ps
+(20, 17, 90)
+move one block
+you:ps
+FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-KXP_Jelly0_6_3_Dirs_1
+y=6	map=jelly	x=3
+foward
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);(19, 19, 90)
+left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+then left on to the blue floored area
+you:ps
+FORWARD(19,19,0);LEFT(19,18,0);(19, 18, 270)
+pos three is in between the two pieces of furniture in this hallway
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+
+Cleaned-EDA_Jelly0_1_6_Dirs_1
+y=1	map=jelly	x=6
+turn so the wall is on your right side
+you:ps
+RIGHT(19,16,0);(19, 16, 90)
+walk forward once
+you:ps
+FORWARD(19,16,90);(20, 16, 90)
+turn right
+you:ps
+RIGHT(20,16,90);(20, 16, 180)
+walk forward twice
+you:ps
+FORWARD(20,16,180);FORWARD(20,17,180);(20, 18, 180)
+turn right
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+walk forward once
+you:ps
+FORWARD(20,18,270);(19, 18, 270)
+turn left
+you:ps
+LEFT(19,18,270);(19, 18, 180)
+walk forward once
+you:ps
+FORWARD(19,18,180);(19, 19, 180)
+turn right
+you:ps
+RIGHT(19,19,180);(19, 19, 270)
+walk forward once
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-WLH_Jelly0_6_7_Dirs_1
+y=6	map=jelly	x=7
+go forward and turn left at the rose carpet
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);LEFT(19,19,90);(19, 19, 0)
+move forward to the blue carpet
+you:ps
+FORWARD(19,19,0);(19, 18, 0)
+walk forward on the blue carpet till you get to a chair
+you:ps
+LEFT(19,18,0);FORWARD(19,18,270);FORWARD(18,18,270);(17, 18, 270)
+turn right
+you:ps
+RIGHT(17,18,270);(17, 18, 0)
+there should be another chair
+you:ps
+(17, 18, 0)
+walk forward
+you:ps
+FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-EDA_Jelly0_5_7_Dirs_1
+y=5	map=jelly	x=7
+turn to face the easel
+you:ps
+LEFT(21,17,0);(21, 17, 270)
+walk forward once
+you:ps
+FORWARD(21,17,270);(20, 17, 270)
+turn left
+you:ps
+LEFT(20,17,270);(20, 17, 180)
+walk forward once
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+turn right walk forward three times
+you:ps
+RIGHT(20,18,180);FORWARD(20,18,270);FORWARD(19,18,270);FORWARD(18,18,270);(17, 18, 270)
+turn right
+you:ps
+RIGHT(17,18,270);(17, 18, 0)
+and walk forward once
+you:ps
+FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-EMWC_Jelly0_6_5_Dirs_1
+y=6	map=jelly	x=5
+go forward one segment to the intersection with the pink-flowered carpet hall
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);(19, 19, 90)
+turn left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+go forward one segment to the intersection with the blue-tiled floor
+you:ps
+FORWARD(19,19,0);(19, 18, 0)
+turn right
+you:ps
+RIGHT(19,18,0);(19, 18, 90)
+go forward one segment to the end of the hall
+you:ps
+FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+go forward one segment to the intersection with the wooden-floored hall
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+this intersection contains an easel
+you:ps
+(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+go forward one segment
+you:ps
+FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-KXP_Jelly0_3_6_Dirs_1
+y=3	map=jelly	x=6
+go to the pink flowered area
+you:ps
+RIGHT(16,18,0);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);(19, 18, 90)
+make a right then a right
+you:ps
+RIGHT(19,18,90);FORWARD(19,18,180);RIGHT(19,19,180);(19, 19, 270)
+go to end
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-KLS_Jelly0_1_5_Dirs_1
+y=1	map=jelly	x=5
+take the red brick path away from the bench and at the corner , go right towards the easel
+you:ps
+RIGHT(19,16,0);FORWARD(19,16,90);RIGHT(20,16,90);(20, 16, 180)
+at the easel , take a left onto the wood path and the very first section you come to , you will be at 5
+you:ps
+FORWARD(20,16,180);LEFT(20,17,180);FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-EMWC_Jelly0_4_1_Dirs_1
+y=4	map=jelly	x=1
+go forward two segments to the intersection with the blue-tiled hall
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);(15, 18, 0)
+turn right
+you:ps
+RIGHT(15,18,0);(15, 18, 90)
+go to the opposite end of the blue-tiled hall , passing the chair
+you:ps
+FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+go forward two segments , passing the easel in the intersection with the wooden-floored hall
+you:ps
+FORWARD(20,18,0);FORWARD(20,17,0);(20, 16, 0)
+turn left
+you:ps
+LEFT(20,16,0);(20, 16, 270)
+go forward to the empty intersection that has eiffel tower pictures ahead of you and butterfly pictures behind you
+you:ps
+FORWARD(20,16,270);(19, 16, 270)
+you should be able to see the grassy hall to your right
+you:ps
+(19, 16, 270)
+
+Cleaned-EMWC_Jelly0_7_4_Dirs_1
+y=7	map=jelly	x=4
+place your back against the wall of the t intersection
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+turn right
+you:ps
+RIGHT(17,17,180);(17, 17, 270)
+go forward two segments to the intersection of the yellow-tiled hall
+you:ps
+FORWARD(17,17,270);FORWARD(16,17,270);(15, 17, 270)
+turn left
+you:ps
+LEFT(15,17,270);(15, 17, 180)
+go forward three segments to the end of the hall
+you:ps
+FORWARD(15,17,180);FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-KLS_Jelly0_1_6_Dirs_1
+y=1	map=jelly	x=6
+follow the red brick path away from the bench
+you:ps
+RIGHT(19,16,0);(19, 16, 90)
+at the corner , go right towards the easel
+you:ps
+FORWARD(19,16,90);RIGHT(20,16,90);(20, 16, 180)
+past the easel , and at the next corner , take a right onto the blue path
+you:ps
+FORWARD(20,16,180);FORWARD(20,17,180);RIGHT(20,18,180);(20, 18, 270)
+at the first intersection , take a left onto the pink path
+you:ps
+FORWARD(20,18,270);LEFT(19,18,270);(19, 18, 180)
+again , take a right at the first intersection and go to the end of the hall
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-EMWC_Jelly0_1_2_Dirs_1
+y=1	map=jelly	x=2
+place your back against the wall of the t intersection
+you:ps
+LEFT(19,16,0);LEFT(19,16,270);LEFT(19,16,180);LEFT(19,16,90);(19, 16, 0)
+go forward one segment to the intersection with the grassy hall
+you:ps
+FORWARD(19,16,0);(19, 15, 0)
+turn right
+you:ps
+RIGHT(19,15,0);(19, 15, 90)
+go forward to the end of the hall
+you:ps
+FORWARD(19,15,90);FORWARD(20,15,90);FORWARD(21,15,90);FORWARD(22,15,90);(23, 15, 90)
+turn right
+you:ps
+RIGHT(23,15,90);(23, 15, 180)
+go forward one segment to the empty corner
+you:ps
+FORWARD(23,15,180);(23, 16, 180)
+
+Cleaned-WLH_Jelly0_6_5_Dirs_1
+y=6	map=jelly	x=5
+move to the flowered carpet and turn left
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);LEFT(19,19,90);FORWARD(19,19,0);RIGHT(19,18,0);FORWARD(19,18,90);LEFT(20,18,90);FORWARD(20,18,0);RIGHT(20,17,0);FORWARD(20,17,90);(21, 17, 90)
+move to the blue carpet and turn right
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);LEFT(19,19,90);FORWARD(19,19,0);RIGHT(19,18,0);(19, 18, 90)
+move to the corner and turn left
+you:ps
+FORWARD(19,18,90);LEFT(20,18,90);(20, 18, 0)
+move to the easel and turn right
+you:ps
+FORWARD(20,18,0);RIGHT(20,17,0);(20, 17, 90)
+you should be facing wooden floor and butterflies on the walls
+you:ps
+(20, 17, 90)
+move between the butterfly pictures
+you:ps
+FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-TJS_Jelly0_1_5_Dirs_1
+y=1	map=jelly	x=5
+go up the hall
+you:ps
+RIGHT(19,16,0);(19, 16, 90)
+turn right into the wood floored hall
+you:ps
+FORWARD(19,16,90);RIGHT(20,16,90);FORWARD(20,16,180);LEFT(20,17,180);(20, 17, 90)
+position 5 is in the middle
+you:ps
+FORWARD(20,17,90);(21, 17, 90)
+
+Cleaned-EDA_Jelly0_7_2_Dirs_2
+y=7	map=jelly	x=2
+turn so that the wall is to your back
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+walk forward once
+you:ps
+FORWARD(17,17,180);(17, 18, 180)
+turn left
+you:ps
+LEFT(17,18,180);(17, 18, 90)
+walk forward till the end of the hallway , maybe 3 spaces
+you:ps
+FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+walk forward
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+walk forward twice
+you:ps
+FORWARD(20,17,90);FORWARD(21,17,90);(22, 17, 90)
+turn left
+you:ps
+LEFT(22,17,90);(22, 17, 0)
+walk forward
+you:ps
+FORWARD(22,17,0);(22, 16, 0)
+turn right
+you:ps
+RIGHT(22,16,0);(22, 16, 90)
+walk forward
+you:ps
+FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-EDA_Jelly0_2_1_Dirs_1
+y=2	map=jelly	x=1
+turn so that the wall is on your right and back
+you:ps
+LEFT(23,16,0);LEFT(23,16,270);LEFT(23,16,180);LEFT(23,16,90);(23, 16, 0)
+walk forward once
+you:ps
+FORWARD(23,16,0);(23, 15, 0)
+turn left
+you:ps
+LEFT(23,15,0);(23, 15, 270)
+walk forward four times
+you:ps
+FORWARD(23,15,270);FORWARD(22,15,270);FORWARD(21,15,270);FORWARD(20,15,270);(19, 15, 270)
+turn left
+you:ps
+LEFT(19,15,270);(19, 15, 180)
+walk forward once
+you:ps
+FORWARD(19,15,180);(19, 16, 180)
+
+Cleaned-KXP_Jelly0_4_6_Dirs_1
+y=4	map=jelly	x=6
+go foward till the blue hallway
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);(15, 18, 0)
+make a right
+you:ps
+RIGHT(15,18,0);(15, 18, 90)
+keep goin till the pink flowerd floor hallway
+you:ps
+FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);(19, 18, 90)
+make a right into it
+you:ps
+RIGHT(19,18,90);(19, 18, 180)
+make the first right into a dead end
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);(19, 19, 270)
+pos 6 is at the end
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-KLS_Jelly0_3_6_Dirs_1
+y=3	map=jelly	x=6
+take the blue path towards the chair and at the pink path intersection , take a right onto the pink path
+you:ps
+RIGHT(16,18,0);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);RIGHT(19,18,90);(19, 18, 180)
+at the very first intersection on this path , take a right and go to the end of the hall
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-EMWC_Jelly0_7_2_Dirs_1
+y=7	map=jelly	x=2
+place your back against the wall of the t intersection
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);(17, 17, 180)
+go forward one segment to the intersection with the blue-tiled hall
+you:ps
+FORWARD(17,17,180);(17, 18, 180)
+this interesction contains a chair
+you:ps
+(17, 18, 180)
+turn left
+you:ps
+LEFT(17,18,180);(17, 18, 90)
+go forward to the end of the hall
+you:ps
+FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+turn left
+you:ps
+LEFT(20,18,90);(20, 18, 0)
+go forward one segment to the intersection with the wooden-floored hall
+you:ps
+FORWARD(20,18,0);(20, 17, 0)
+this intersection conatains an easel
+you:ps
+(20, 17, 0)
+turn right
+you:ps
+RIGHT(20,17,0);(20, 17, 90)
+go forward two segments to the end of the hall
+you:ps
+FORWARD(20,17,90);FORWARD(21,17,90);(22, 17, 90)
+turn left
+you:ps
+LEFT(22,17,90);(22, 17, 0)
+go forward one segment to the intersection containing the lamp
+you:ps
+FORWARD(22,17,0);(22, 16, 0)
+turn right
+you:ps
+RIGHT(22,16,0);(22, 16, 90)
+go forward one segment to the empty corner
+you:ps
+FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-TJS_Jelly0_7_6_Dirs_1
+y=7	map=jelly	x=6
+position 6 is a dead end branching off from the rose hall
+you:ps
+LEFT(17,17,0);LEFT(17,17,270);FORWARD(17,17,180);FORWARD(17,18,180);RIGHT(17,19,180);FORWARD(17,19,270);RIGHT(16,19,270);FORWARD(16,19,0);LEFT(16,18,0);FORWARD(16,18,270);RIGHT(15,18,270);RIGHT(15,18,0);FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);RIGHT(19,18,90);FORWARD(19,18,180);FORWARD(19,19,180);RIGHT(19,20,180);RIGHT(19,20,270);FORWARD(19,20,0);LEFT(19,19,0);FORWARD(19,19,270);(18, 19, 270)
+it was two pictures of the eiffel tower on it
+you:ps
+(18, 19, 270)
+
+Cleaned-WLH_Jelly0_6_3_Dirs_1
+y=6	map=jelly	x=3
+move to the flowered carpet and turn left
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);LEFT(19,19,90);(19, 19, 0)
+move to the blue carpet and turn left
+you:ps
+FORWARD(19,19,0);LEFT(19,18,0);(19, 18, 270)
+move along the blue one alley past the chair
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+in front is a hatrack and left is grey flooring
+you:ps
+(16, 18, 270)
+
+Cleaned-WLH_Jelly0_5_2_Dirs_1
+y=5	map=jelly	x=2
+with your back to the easel move into the corner and turn left
+you:ps
+RIGHT(21,17,0);FORWARD(21,17,90);LEFT(22,17,90);(22, 17, 0)
+at the lamp turn right
+you:ps
+FORWARD(22,17,0);RIGHT(22,16,0);(22, 16, 90)
+move into the corner and turn left
+you:ps
+FORWARD(22,16,90);LEFT(23,16,90);(23, 16, 0)
+you see a hatrack
+you:ps
+(23, 16, 0)
+
+Cleaned-KXP_Jelly0_6_4_Dirs_1
+y=6	map=jelly	x=4
+foward
+you:ps
+RIGHT(18,19,0);FORWARD(18,19,90);(19, 19, 90)
+left
+you:ps
+LEFT(19,19,90);(19, 19, 0)
+left
+you:ps
+FORWARD(19,19,0);LEFT(19,18,0);(19, 18, 270)
+all the way till almost the end
+you:ps
+FORWARD(19,18,270);FORWARD(18,18,270);FORWARD(17,18,270);FORWARD(16,18,270);(15, 18, 270)
+make a laft into fishy area
+you:ps
+LEFT(15,18,270);(15, 18, 180)
+go to end
+you:ps
+FORWARD(15,18,180);FORWARD(15,19,180);(15, 20, 180)
+
+Cleaned-EDA_Jelly0_3_7_Dirs_1
+y=3	map=jelly	x=7
+turn so the wall is on your left
+you:ps
+RIGHT(16,18,0);(16, 18, 90)
+walk forward once
+you:ps
+FORWARD(16,18,90);(17, 18, 90)
+turn left
+you:ps
+LEFT(17,18,90);(17, 18, 0)
+walk forward once
+you:ps
+FORWARD(17,18,0);(17, 17, 0)
+
+Cleaned-KLS_Jelly0_4_2_Dirs_1
+y=4	map=jelly	x=2
+take the yellow path away from the end of the hall
+you:ps
+(15, 20, 0)
+at the blue path intersection , take a right and follow the blue path to the very end of the hall
+you:ps
+FORWARD(15,20,0);FORWARD(15,19,0);RIGHT(15,18,0);FORWARD(15,18,90);FORWARD(16,18,90);FORWARD(17,18,90);FORWARD(18,18,90);FORWARD(19,18,90);(20, 18, 90)
+here , take a left on the plain path towards the easel , and then a right onto the wood path at the easel
+you:ps
+LEFT(20,18,90);FORWARD(20,18,0);RIGHT(20,17,0);(20, 17, 90)
+at the end of this hall , take a left towards the lamp
+you:ps
+FORWARD(20,17,90);FORWARD(21,17,90);LEFT(22,17,90);(22, 17, 0)
+once at the lamp , take a right to the very end of the hall and at the corner , this is 2
+you:ps
+FORWARD(22,17,0);RIGHT(22,16,0);FORWARD(22,16,90);(23, 16, 90)
+
+Cleaned-EMWC_Jelly0_1_6_Dirs_1
+y=1	map=jelly	x=6
+position 6 is at the end of a bare concrete hall one segment along the pink-flowered carpet hall away from the blue-tiled hall
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+in the opposite direction from the intersection of the blue-tiled hall with the pink-flowered carpet hall the hall contains some furniture
+you:ps
+(20, 18, 180)
+if you start with your back toward the wall , you should not go forward toward the grassy hall
+you:ps
+(19, 16, 0)
+the blue-tiled hall is behind you
+you:ps
+(19, 16, 0)
+to your right you will follow a couple turns to reach a wooden hall
+you:ps
+RIGHT(19,16,0);FORWARD(19,16,90);RIGHT(20,16,90);FORWARD(20,16,180);(20, 17, 180)
+you may be able to reach the blue tiled hall by finding the intersection in the wooden hall that contains the easel
+you:ps
+(20, 17, 180)
+if you enter it immediately , having simply walked forward , go forward
+you:ps
+FORWARD(20,17,180);(20, 18, 180)
+
+Cleaned-KXP_Jelly0_2_6_Dirs_1
+y=2	map=jelly	x=6
+go to blue floored area
+you:ps
+LEFT(23,16,0);FORWARD(23,16,270);LEFT(22,16,270);FORWARD(22,16,180);RIGHT(22,17,180);FORWARD(22,17,270);FORWARD(21,17,270);LEFT(20,17,270);FORWARD(20,17,180);RIGHT(20,18,180);(20, 18, 270)
+then pink floored area
+you:ps
+FORWARD(20,18,270);LEFT(19,18,270);(19, 18, 180)
+make the 1st right
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);FORWARD(19,19,270);(18, 19, 270)
+
+Cleaned-WLH_Jelly0_2_3_Dirs_2
+y=2	map=jelly	x=3
+face and move to the lamp
+you:ps
+LEFT(23,16,0);FORWARD(23,16,270);(22, 16, 270)
+turn left and move to the end of the aisle
+you:ps
+LEFT(22,16,270);FORWARD(22,16,180);(22, 17, 180)
+you will pass an easel
+you:ps
+RIGHT(22,17,180);FORWARD(22,17,270);FORWARD(21,17,270);LEFT(20,17,270);FORWARD(20,17,180);(20, 18, 180)
+turn right to face the blue floor
+you:ps
+RIGHT(20,18,180);(20, 18, 270)
+walk past the flowered carpet side alley
+you:ps
+FORWARD(20,18,270);FORWARD(19,18,270);(18, 18, 270)
+and stop one alley past the chair
+you:ps
+FORWARD(18,18,270);FORWARD(17,18,270);(16, 18, 270)
+you are looking at an object and to your right is gray floor
+you:ps
+(16, 18, 270)
+
+Cleaned-KLS_Jelly0_2_1_Dirs_1
+y=2	map=jelly	x=1
+go on the path towards the coat rack
+you:ps
+(23, 16, 0)
+at the coat rack , take a left onto the green path
+you:ps
+FORWARD(23,16,0);LEFT(23,15,0);(23, 15, 270)
+go all the way down until you reach a chair
+you:ps
+FORWARD(23,15,270);FORWARD(22,15,270);FORWARD(21,15,270);FORWARD(20,15,270);(19, 15, 270)
+at the chair , take a left
+you:ps
+LEFT(19,15,270);(19, 15, 180)
+the very next intersection is 1
+you:ps
+FORWARD(19,15,180);(19, 16, 180)
+
+Cleaned-KXP_Jelly0_1_6_Dirs_1
+y=1	map=jelly	x=6
+go to the blue floored area
+you:ps
+FORWARD(19,16,0);RIGHT(19,15,0);FORWARD(19,15,90);FORWARD(20,15,90);FORWARD(21,15,90);FORWARD(22,15,90);RIGHT(23,15,90);FORWARD(23,15,180);RIGHT(23,16,180);FORWARD(23,16,270);LEFT(22,16,270);FORWARD(22,16,180);RIGHT(22,17,180);FORWARD(22,17,270);FORWARD(21,17,270);LEFT(20,17,270);FORWARD(20,17,180);(20, 18, 180)
+go to the pink floored area
+you:ps
+RIGHT(20,18,180);FORWARD(20,18,270);LEFT(19,18,270);(19, 18, 180)
+make the first left into a dead ended street
+you:ps
+FORWARD(19,18,180);RIGHT(19,19,180);(19, 19, 270)
+pos 6 is at the end
+you:ps
+FORWARD(19,19,270);(18, 19, 270)
+
