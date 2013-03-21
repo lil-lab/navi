@@ -41,7 +41,7 @@ The output logs will be dumped into logging directories under the executed exper
 
 ## Understanding the code
 
-Navi experiments use the [UW SPF](http://yoavartzi.com/spf) experiment platform. The best way to start understanding the code and the various features is to first understand the SPF experiment platform (documented in SPF) and then use the experiment files as a starting point to explore the code. 
+Navi uses [UW SPF](http://yoavartzi.com/spf) (The University of Washington Semantic Parsing Framework). The experiments included use the experiment platform provided by SPF. The best way to start understanding the code and the various features is to first understand the SPF experiment platform (documented in SPF) and then use the experiment files as a starting point to explore the code. 
 
 ## Included Experiments
 
