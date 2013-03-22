@@ -39,10 +39,6 @@ It's best to allocate as much memory as possible. However, the code will probabl
 
 The output logs will be dumped into logging directories under the executed experiment directory. The data of each experiment is also located under the experiment directory, usually in a directory called `data`.
 
-## Understanding the code
-
-Navi uses [UW SPF](http://yoavartzi.com/spf) (The University of Washington Semantic Parsing Framework). The experiments included use the experiment platform provided by SPF. The best way to start understanding the code and the various features is to first understand the SPF experiment platform (documented in SPF) and then use the experiment files as a starting point to explore the code. 
-
 ## Included Experiments
 
 ### Development cross validation (dev.cross)
@@ -92,5 +88,10 @@ Experiment files:
 `experiments/eval.chen.cross/fold-jelly.exp`  
 `experiments/eval.chen.cross/fold-l.exp`  
 
+## Eclipse
 
+To work with the code in Eclipse create a workspace and import the  project `navi` into it. You will also need to define the [classpath variable](http://stackoverflow.com/questions/3557369/how-to-use-variables-for-classpath-definition-in-eclipse-launch-configurations) `NAVI_REPO` to point to the source repository. 
 
+## Understanding the code
+
+Navi uses [UW SPF](http://yoavartzi.com/spf) (The University of Washington Semantic Parsing Framework). The experiments included use the experiment platform provided by SPF. The best way to start understanding the code and the various features is to first understand the SPF experiment platform (documented in SPF) and then use the experiment files as a starting point to explore the code. 
