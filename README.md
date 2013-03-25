@@ -4,7 +4,7 @@ Yoav Artzi and Luke Zettlemoyer. [Weakly Supervised Learning of Semantic Parsers
 
 ## Building
 
-To compile Navi use: `ant dist`. The output jar file will be in the `dist` directory. 
+To compile Navi use: `ant dist`. The output JAR file will be in the `dist` directory. You can also download the compiled JAR file from the [Downloads](https://bitbucket.org/yoavartzi/navi/downloads) section.
 
 ## Package root file structure
 
