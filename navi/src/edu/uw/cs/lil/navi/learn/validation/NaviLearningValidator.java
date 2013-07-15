@@ -21,31 +21,32 @@ import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
-import edu.uw.cs.lil.tiny.data.utils.IValidator;
-import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.utils.composites.Pair;
 import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
 
-public class NaviLearningValidator implements
-		IValidator<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> {
+/**
+ * Strict validation: uses all the information in the demonstration trace.
+ * 
+ * @author Yoav Artzi
+ */
+public class NaviLearningValidator implements INaviValidator {
 	private static final ILogger	LOG	= LoggerFactory
 												.create(NaviLearningValidator.class);
 	
 	@Override
-	public boolean isValid(IDataItem<Pair<Sentence, Task>> dataItem,
-			Pair<LogicalExpression, Trace> label) {
+	public boolean isValid(IDataItem<Pair<Sentence, Task>> dataItem, Trace label) {
+		
 		if (dataItem instanceof ILabeledDataItem) {
 			final Object dataItemLabel = ((ILabeledDataItem<?, ?>) dataItem)
 					.getLabel();
-			if (dataItemLabel instanceof Trace) {
-				return dataItemLabel.equals(label.second());
+			if (!(dataItemLabel instanceof Pair)) {
+				return dataItemLabel.equals(label);
 			} else {
-				throw new RuntimeException("Invalid dataItem type: " + dataItem);
+				return ((Pair<?, ?>) dataItemLabel).second().equals(label);
 			}
-		} else {
-			LOG.error("Can't validate using: %s", dataItem);
-			return false;
 		}
+		LOG.error("Can't validate using: %s", dataItem);
+		return false;
 	}
 }

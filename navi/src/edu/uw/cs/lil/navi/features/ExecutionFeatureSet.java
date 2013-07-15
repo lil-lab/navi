@@ -41,7 +41,7 @@ import edu.uw.cs.lil.tiny.mr.language.type.Type;
 import edu.uw.cs.lil.tiny.parser.ccg.ILexicalParseStep;
 import edu.uw.cs.lil.tiny.parser.ccg.IParseStep;
 import edu.uw.cs.lil.tiny.parser.ccg.model.parse.IParseFeatureSet;
-import edu.uw.cs.lil.tiny.parser.joint.model.JointDataItemWrapper;
+import edu.uw.cs.lil.tiny.parser.joint.model.SituatedDataItemWrapper;
 import edu.uw.cs.lil.tiny.utils.hashvector.HashVectorFactory;
 import edu.uw.cs.lil.tiny.utils.hashvector.IHashVector;
 import edu.uw.cs.lil.tiny.utils.hashvector.IHashVectorImmutable;
@@ -113,7 +113,7 @@ public class ExecutionFeatureSet implements
 			return setFeats(
 					obj.getRoot(),
 					HashVectorFactory.create(),
-					((JointDataItemWrapper<Sentence, Task>) dataItem)
+					((SituatedDataItemWrapper<Sentence, Task>) dataItem)
 							.getBaseDataItem()).vectorMultiply(theta);
 		} else {
 			return 0;
@@ -126,7 +126,7 @@ public class ExecutionFeatureSet implements
 			IDataItem<Sentence> dataItem) {
 		if (shouldComputeFeatures(obj, dataItem)) {
 			setFeats(obj.getRoot(), feats,
-					((JointDataItemWrapper<Sentence, Task>) dataItem)
+					((SituatedDataItemWrapper<Sentence, Task>) dataItem)
 							.getBaseDataItem());
 			
 		}
@@ -188,7 +188,7 @@ public class ExecutionFeatureSet implements
 			IDataItem<Sentence> dataItem) {
 		return obj.getRoot().getSem() != null
 				&& obj instanceof ILexicalParseStep
-				&& dataItem instanceof JointDataItemWrapper
+				&& dataItem instanceof SituatedDataItemWrapper
 				&& validTypes.contains(LogicLanguageServices
 						.getTypeRepository().generalizeType(
 								obj.getRoot().getSem().getType()))

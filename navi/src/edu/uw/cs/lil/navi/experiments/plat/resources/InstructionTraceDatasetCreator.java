@@ -28,31 +28,32 @@ import edu.uw.cs.lil.navi.data.InstructionTraceDataset;
 import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.experiments.plat.NaviExperiment;
 import edu.uw.cs.lil.navi.map.NavigationMap;
+import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.explat.IResourceRepository;
 import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
 import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
 import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
-import edu.uw.cs.lil.tiny.parser.ccg.genlex.ILexiconGenerator;
-import edu.uw.cs.lil.tiny.parser.joint.model.JointDataItemWrapper;
+import edu.uw.cs.lil.tiny.genlex.ccg.ILexiconGenerator;
+import edu.uw.cs.utils.composites.Pair;
 
-public class InstructionTraceDatasetCreator<Y> implements
-		IResourceObjectCreator<InstructionTraceDataset<Y>> {
+public class InstructionTraceDatasetCreator<MR> implements
+		IResourceObjectCreator<InstructionTraceDataset<MR>> {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public InstructionTraceDataset<Y> create(Parameters params,
+	public InstructionTraceDataset<MR> create(Parameters params,
 			IResourceRepository repo) {
 		if (params.contains("sets")) {
-			final InstructionSeqTraceDataset<Y> sets = repo.getResource(params
+			final InstructionSeqTraceDataset<MR> sets = repo.getResource(params
 					.get("sets"));
-			final List<InstructionTrace<Y>> items = new LinkedList<InstructionTrace<Y>>();
-			for (final InstructionSeqTrace<Y> set : sets) {
-				for (final InstructionTrace<Y> st : set) {
+			final List<InstructionTrace<MR>> items = new LinkedList<InstructionTrace<MR>>();
+			for (final InstructionSeqTrace<MR> set : sets) {
+				for (final InstructionTrace<MR> st : set) {
 					items.add(st);
 				}
 			}
-			return new InstructionTraceDataset<Y>(items);
+			return new InstructionTraceDataset<MR>(items);
 		} else {
 			try {
 				return InstructionTraceDataset
@@ -60,7 +61,7 @@ public class InstructionTraceDatasetCreator<Y> implements
 								params.getAsFile("file"),
 								(Map<String, NavigationMap>) repo
 										.getResource(NaviExperiment.MAPS_RESOURCE),
-								(ILexiconGenerator<JointDataItemWrapper<Sentence, Task>, Y>) repo
+								(ILexiconGenerator<IDataItem<Pair<Sentence, Task>>, MR>) repo
 										.getResource(params.get("genlex")));
 			} catch (final IOException e) {
 				throw new RuntimeException(e);

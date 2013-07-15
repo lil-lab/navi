@@ -22,7 +22,7 @@ public class DevNoImplicitCrossSingleFold {
 	
 	public static void main(String[] args) {
 		NaviGenericExperiment
-				.run("experiments/dev.noimplicit.cross/dev.noimplicit.fold0.exp");
+				.run("../experiments/dev.noimplicit.cross/dev.noimplicit.fold0.exp");
 	}
 	
 }

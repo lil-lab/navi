@@ -25,14 +25,17 @@ import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
-import edu.uw.cs.lil.tiny.data.utils.IValidator;
-import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.utils.composites.Pair;
 import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
 
-public class NaviLearningRelaxedValidator implements
-		IValidator<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> {
+/**
+ * Relaxed validation: doesn't take into account implicit action flag during
+ * comparison. Compares the entire trace.
+ * 
+ * @author Yoav Artzi
+ */
+public class NaviLearningRelaxedValidator implements INaviValidator {
 	private static final ILogger	LOG	= LoggerFactory
 												.create(NaviLearningRelaxedValidator.class);
 	
@@ -64,20 +67,20 @@ public class NaviLearningRelaxedValidator implements
 	}
 	
 	@Override
-	public boolean isValid(IDataItem<Pair<Sentence, Task>> dataItem,
-			Pair<LogicalExpression, Trace> label) {
+	public boolean isValid(IDataItem<Pair<Sentence, Task>> dataItem, Trace label) {
 		if (dataItem instanceof ILabeledDataItem) {
 			final Object dataItemLabel = ((ILabeledDataItem<?, ?>) dataItem)
 					.getLabel();
 			if (dataItemLabel instanceof Trace) {
-				return relaxedTraceComparison((Trace) dataItemLabel,
-						label.second());
-			} else {
-				throw new RuntimeException("Invalid dataItem type: " + dataItem);
+				return relaxedTraceComparison((Trace) dataItemLabel, label);
+			} else if (dataItemLabel instanceof Pair) {
+				final Object second = ((Pair<?, ?>) dataItemLabel).second();
+				if (second instanceof Trace) {
+					return relaxedTraceComparison((Trace) second, label);
+				}
 			}
-		} else {
-			LOG.error("Can't validate using: %s", dataItem);
-			return false;
 		}
+		LOG.error("Can't validate using: %s", dataItem);
+		return false;
 	}
 }

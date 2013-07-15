@@ -23,29 +23,30 @@ import edu.uw.cs.lil.navi.data.InstructionSeqTraceDataset;
 import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.experiments.plat.NaviExperiment;
 import edu.uw.cs.lil.navi.map.NavigationMap;
+import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.explat.IResourceRepository;
 import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
 import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
 import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
-import edu.uw.cs.lil.tiny.parser.ccg.genlex.ILexiconGenerator;
-import edu.uw.cs.lil.tiny.parser.joint.model.JointDataItemWrapper;
+import edu.uw.cs.lil.tiny.genlex.ccg.ILexiconGenerator;
+import edu.uw.cs.utils.composites.Pair;
 
-public class InstructionSeqTraceDatasetCreator<Y> implements
-		IResourceObjectCreator<InstructionSeqTraceDataset<Y>> {
+public class InstructionSeqTraceDatasetCreator<MR> implements
+		IResourceObjectCreator<InstructionSeqTraceDataset<MR>> {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public InstructionSeqTraceDataset<Y> create(Parameters parameters,
-			IResourceRepository resourceRepo) {
+	public InstructionSeqTraceDataset<MR> create(Parameters params,
+			IResourceRepository repo) {
 		try {
 			return InstructionSeqTraceDataset
 					.readFromFile(
-							parameters.getAsFile("file"),
-							(Map<String, NavigationMap>) resourceRepo
+							params.getAsFile("file"),
+							(Map<String, NavigationMap>) repo
 									.getResource(NaviExperiment.MAPS_RESOURCE),
-							(ILexiconGenerator<JointDataItemWrapper<Sentence, Task>, Y>) resourceRepo
-									.getResource(parameters.get("genlex")));
+							(ILexiconGenerator<IDataItem<Pair<Sentence, Task>>, MR>) repo
+									.getResource(params.get("genlex")));
 		} catch (final IOException e) {
 			throw new RuntimeException(e);
 		}

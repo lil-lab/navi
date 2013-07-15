@@ -1,2 +1,2 @@
 ## Lexicon generator
-type=genlex.templated.abstract.joint.navi model=model maxTokens=4 id=genlex beam=@lexbeam validator=validator margin=2.0
+type=genlex.templated.abstract.joint.navi model=model maxTokens=4 id=genlex beam=@lexbeam validator=validator margin=2.0 lexicon=initialLexicon

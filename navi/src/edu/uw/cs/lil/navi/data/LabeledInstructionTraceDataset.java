@@ -27,42 +27,53 @@ import java.util.Map;
 import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.map.NavigationMap;
 import edu.uw.cs.lil.tiny.ccg.categories.ICategoryServices;
-import edu.uw.cs.lil.tiny.data.IDataCollection;
+import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
+import edu.uw.cs.lil.tiny.data.collection.IDataCollection;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
-import edu.uw.cs.lil.tiny.parser.ccg.genlex.ILexiconGenerator;
-import edu.uw.cs.lil.tiny.parser.joint.model.JointDataItemWrapper;
+import edu.uw.cs.lil.tiny.genlex.ccg.ILexiconGenerator;
 import edu.uw.cs.utils.collections.ListUtils;
+import edu.uw.cs.utils.composites.Pair;
 import edu.uw.cs.utils.io.FileUtils;
 
-public class LabeledInstructionTraceDataset<Y> implements
-		IDataCollection<LabeledInstructionTrace<Y>> {
+/**
+ * Data set of {@link LabeledInstructionTrace}.
+ * 
+ * @author Yoav Artzi
+ * @param <MR>
+ *            Type of meaning representation.
+ */
+public class LabeledInstructionTraceDataset<MR> implements
+		IDataCollection<LabeledInstructionTrace<MR>> {
 	
-	private final List<LabeledInstructionTrace<Y>>	items;
+	private final List<LabeledInstructionTrace<MR>>	items;
 	
-	public LabeledInstructionTraceDataset(List<LabeledInstructionTrace<Y>> items) {
+	public LabeledInstructionTraceDataset(
+			List<LabeledInstructionTrace<MR>> items) {
 		this.items = items;
 	}
 	
-	public static <Y> LabeledInstructionTraceDataset<Y> readFromFile(
+	public static <MR> LabeledInstructionTraceDataset<MR> readFromFile(
 			File f,
 			final Map<String, NavigationMap> maps,
-			final ICategoryServices<Y> categoryServices,
-			final ILexiconGenerator<JointDataItemWrapper<Sentence, Task>, Y> lexiconGenerator)
+			final ICategoryServices<MR> categoryServices,
+			final ILexiconGenerator<ILabeledDataItem<Pair<Sentence, Task>, Pair<MR, Trace>>, MR> lexiconGenerator)
 			throws IOException {
 		final String fileString = FileUtils.readFile(f);
 		
-		return new LabeledInstructionTraceDataset<Y>(
+		return new LabeledInstructionTraceDataset<MR>(
 				Collections.unmodifiableList(ListUtils.map(
 						Arrays.asList(fileString.split("\n\n")),
-						new ListUtils.Mapper<String, LabeledInstructionTrace<Y>>() {
+						new ListUtils.Mapper<String, LabeledInstructionTrace<MR>>() {
 							private int	counter	= 0;
 							
 							@Override
-							public LabeledInstructionTrace<Y> process(String obj) {
+							public LabeledInstructionTrace<MR> process(
+									String obj) {
 								counter++;
 								try {
-									return LabeledInstructionTrace.parse(obj, maps,
-											categoryServices, lexiconGenerator);
+									return LabeledInstructionTrace.parse(obj,
+											maps, categoryServices,
+											lexiconGenerator);
 								} catch (final Exception e) {
 									throw new LabeledInstructionTraceDatasetException(
 											e, obj, counter);
@@ -73,7 +84,7 @@ public class LabeledInstructionTraceDataset<Y> implements
 	}
 	
 	@Override
-	public Iterator<LabeledInstructionTrace<Y>> iterator() {
+	public Iterator<LabeledInstructionTrace<MR>> iterator() {
 		return items.iterator();
 	}
 	
@@ -84,7 +95,7 @@ public class LabeledInstructionTraceDataset<Y> implements
 	
 	@Override
 	public String toString() {
-		final Iterator<LabeledInstructionTrace<Y>> iterator = items.iterator();
+		final Iterator<LabeledInstructionTrace<MR>> iterator = items.iterator();
 		final StringBuilder sb = new StringBuilder();
 		while (iterator.hasNext()) {
 			sb.append(iterator.next().toString());

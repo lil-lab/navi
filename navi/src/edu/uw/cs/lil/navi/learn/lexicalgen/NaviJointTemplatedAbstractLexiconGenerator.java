@@ -25,6 +25,8 @@ import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.tiny.ccg.categories.syntax.ComplexSyntax;
 import edu.uw.cs.lil.tiny.ccg.categories.syntax.Syntax;
 import edu.uw.cs.lil.tiny.ccg.categories.syntax.Syntax.SimpleSyntax;
+import edu.uw.cs.lil.tiny.ccg.lexicon.factored.lambda.LexicalTemplate;
+import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.data.utils.IValidator;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicLanguageServices;
@@ -33,7 +35,6 @@ import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.mr.language.type.ComplexType;
 import edu.uw.cs.lil.tiny.mr.language.type.Type;
 import edu.uw.cs.lil.tiny.parser.IParser;
-import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.LexicalTemplate;
 import edu.uw.cs.lil.tiny.parser.ccg.joint.genlex.JointTemplatedAbstractLexiconGenerator;
 import edu.uw.cs.lil.tiny.parser.joint.IJointParser;
 import edu.uw.cs.lil.tiny.parser.joint.model.IJointModelImmutable;
@@ -55,11 +56,11 @@ public class NaviJointTemplatedAbstractLexiconGenerator extends
 			IParser<Sentence, LogicalExpression> baseParser,
 			int generationParsingBeam,
 			IJointParser<Sentence, Task, LogicalExpression, Trace, Trace> jointParser,
-			IValidator<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> validator,
-			double margin) {
+			double margin,
+			IValidator<IDataItem<Pair<Sentence, Task>>, Pair<LogicalExpression, Trace>> validator) {
 		super(templates, pontetialConstantSeqs, abstractConstantSeqs,
 				maxTokens, model, baseParser, generationParsingBeam,
-				jointParser, validator, margin);
+				jointParser, margin, validator);
 		LOG.info(
 				"Init JointNaviAbstractTemplatedLexiconGenerator :: %d templates, %d potential constants sequences",
 				templates.size(), pontetialConstantSeqs.size());
@@ -77,7 +78,7 @@ public class NaviJointTemplatedAbstractLexiconGenerator extends
 				int parsingBeam,
 				NaviEvaluationConstants naviConsts,
 				IJointParser<Sentence, Task, LogicalExpression, Trace, Trace> jointParser,
-				IValidator<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> validator) {
+				IValidator<IDataItem<Pair<Sentence, Task>>, Pair<LogicalExpression, Trace>> validator) {
 			super(maxTokens, model, parser, parsingBeam, jointParser, validator);
 			this.naviConsts = naviConsts;
 		}
@@ -98,12 +99,12 @@ public class NaviJointTemplatedAbstractLexiconGenerator extends
 		@Override
 		public NaviJointTemplatedAbstractLexiconGenerator build() {
 			LOG.info(
-					"Building NaviTemplatedLexiconGenerator: %d templates, %d constants",
+					"Building NaviJointTemplatedAbstractLexiconGenerator: %d templates, %d constants",
 					templates.size(), constants.size());
 			return new NaviJointTemplatedAbstractLexiconGenerator(templates,
 					createPotentialLists(), createAbstractLists(), maxTokens,
 					model, baseParser, generationParsingBeam, jointParser,
-					validator, margin);
+					margin, validator);
 		}
 		
 		private Syntax adverbialToSentenceExpansion(Syntax syntax, Type type) {

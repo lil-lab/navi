@@ -17,12 +17,12 @@
 package edu.uw.cs.lil.navi.experiments.plat.resources;
 
 import edu.uw.cs.lil.navi.features.init.TemplateCountModelInit;
+import edu.uw.cs.lil.tiny.ccg.lexicon.ILexicon;
 import edu.uw.cs.lil.tiny.explat.IResourceRepository;
 import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
 import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
 import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
-import edu.uw.cs.lil.tiny.parser.ccg.lexicon.ILexicon;
 
 public class TemplateCountModelInitCreator implements
 		IResourceObjectCreator<TemplateCountModelInit> {

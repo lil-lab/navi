@@ -4,6 +4,7 @@
 	<classpathentry kind="src" path="src-test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="var" path="NAVI_REPO/lib/spf-1.0.jar" sourcepath="/NAVI_REPO/lib/spf-1.0.jar"/>
+	<classpathentry kind="var" path="NAVI_REPO"/>
+	<classpathentry kind="var" path="NAVI_REPO/lib/spf-1.2.jar" sourcepath="/NAVI_DEV_REPO/lib/tiny-1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

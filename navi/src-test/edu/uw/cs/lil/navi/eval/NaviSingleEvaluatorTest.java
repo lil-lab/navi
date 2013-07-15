@@ -44,6 +44,36 @@ import edu.uw.cs.lil.tiny.mr.lambda.visitor.LambdaWrapped;
 public class NaviSingleEvaluatorTest {
 	
 	@Test
+	public void testAction() {
+		final NaviSingleEvaluator executor = new NaviSingleEvaluator(
+				NaviEvalTestingConstants.getServicesFactory());
+		
+		final Task task = new Task(new Agent(TestingConstants.MAPS.get("grid")
+				.get(3)), new PositionSet(TestingConstants.MAPS.get("grid")
+				.get(3).getAllOrientations(), false), new PositionSet(
+				TestingConstants.MAPS.get("grid").get(5).getAllOrientations(),
+				false), new HashMap<String, String>(),
+				TestingConstants.MAPS.get("grid"));
+		
+		final LogicalExpression exp = LambdaWrapped
+				.of(TestingConstants.CATEGORY_SERVICES
+						.parseSemantics("move:<a,t>"));
+		
+		// final LogicalExpression exp = LambdaWrapped
+		// .of(TestingConstants.CATEGORY_SERVICES
+		// .parseSemantics("move:<a,t>"));
+		
+		final Object result = executor.of(exp, task);
+		
+		System.out.println("result:\n" + result);
+		
+		Assert.assertTrue(result instanceof Trace);
+		Assert.assertEquals(
+				TestingConstants.MAPS.get("grid").get(0, 8, Direction.D0),
+				((Trace) result).getEndPosition());
+	}
+	
+	@Test
 	public void testImplicitActions() {
 		final NaviSingleEvaluator executor = new NaviSingleEvaluator(
 				NaviEvalTestingConstants.getServicesFactory());
@@ -268,8 +298,8 @@ public class NaviSingleEvaluatorTest {
 			}
 			Assert.assertEquals(
 					String.format(
-							"%d incorrect evaluations (BUT: 5 examples are known not to execute correctly)",
-							incorrects), 0, incorrects);
+							"%d incorrect evaluations (5 examples are known not to execute correctly)",
+							incorrects), 5, incorrects);
 		} catch (final IOException e) {
 			e.printStackTrace();
 			fail();

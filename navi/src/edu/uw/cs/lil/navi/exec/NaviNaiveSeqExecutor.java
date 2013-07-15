@@ -24,7 +24,6 @@ import edu.uw.cs.lil.navi.agent.Agent;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.map.Position;
-import edu.uw.cs.lil.navi.parse.NaviParser;
 import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.exec.IExec;
@@ -32,6 +31,7 @@ import edu.uw.cs.lil.tiny.exec.IExecOutput;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.parser.joint.IJointOutput;
 import edu.uw.cs.lil.tiny.parser.joint.IJointParse;
+import edu.uw.cs.lil.tiny.parser.joint.IJointParser;
 import edu.uw.cs.lil.tiny.parser.joint.model.IJointDataItemModel;
 import edu.uw.cs.lil.tiny.parser.joint.model.JointModel;
 import edu.uw.cs.utils.composites.Pair;
@@ -47,11 +47,12 @@ import edu.uw.cs.utils.composites.Pair;
  */
 public class NaviNaiveSeqExecutor implements
 		IExec<Pair<List<Sentence>, Task>, List<Pair<LogicalExpression, Trace>>> {
-	private final JointModel<Sentence, Task, LogicalExpression, Trace>	model;
-	private final NaviParser											parser;
-	private final boolean												pruneActionless;
+	private final JointModel<Sentence, Task, LogicalExpression, Trace>			model;
+	private final IJointParser<Sentence, Task, LogicalExpression, Trace, Trace>	parser;
+	private final boolean														pruneActionless;
 	
-	public NaviNaiveSeqExecutor(NaviParser parser,
+	public NaviNaiveSeqExecutor(
+			IJointParser<Sentence, Task, LogicalExpression, Trace, Trace> parser,
 			JointModel<Sentence, Task, LogicalExpression, Trace> model,
 			boolean pruneActionless) {
 		this.parser = parser;
@@ -104,7 +105,7 @@ public class NaviNaiveSeqExecutor implements
 			Position currentPosition = null;
 			final List<IJointParse<LogicalExpression, Trace>> newParses = new LinkedList<IJointParse<LogicalExpression, Trace>>();
 			for (final IJointParse<LogicalExpression, Trace> parse : parserOutput
-					.getBestJointParses(!pruneActionless)) {
+					.getBestParses(!pruneActionless)) {
 				
 				if (parse.getResult().second() != null
 						&& (currentPosition == null || currentPosition

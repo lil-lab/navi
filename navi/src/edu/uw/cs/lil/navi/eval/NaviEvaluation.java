@@ -29,6 +29,11 @@ import edu.uw.cs.lil.tiny.mr.lambda.visitor.LambdaWrapped;
 import edu.uw.cs.lil.tiny.mr.language.type.ComplexType;
 import edu.uw.cs.lil.tiny.mr.language.type.Type;
 
+/**
+ * The main evaluation visitor.
+ * 
+ * @author Yoav Artzi
+ */
 public class NaviEvaluation extends Evaluation {
 	private final LogicalExpression			completeExp;
 	private final NaviEvaluationServices	services;
@@ -46,8 +51,9 @@ public class NaviEvaluation extends Evaluation {
 				StatefulWrapping.of(exp, services),
 				services.getExistsQuantifier(), services.getAQuantifier(),
 				services.getEqualsPredicates());
-		final NaviEvaluation visitor = new NaviEvaluation(existsExp, services);
-		visitor.visit(LambdaWrapped.of(existsExp));
+		final LogicalExpression wrapped = LambdaWrapped.of(existsExp);
+		final NaviEvaluation visitor = new NaviEvaluation(wrapped, services);
+		visitor.visit(wrapped);
 		return visitor.result;
 	}
 	

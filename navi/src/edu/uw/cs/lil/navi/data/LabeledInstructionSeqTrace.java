@@ -33,54 +33,62 @@ import edu.uw.cs.lil.navi.map.PositionSet;
 import edu.uw.cs.lil.tiny.ccg.categories.ICategoryServices;
 import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
-import edu.uw.cs.lil.tiny.parser.ccg.genlex.ILexiconGenerator;
-import edu.uw.cs.lil.tiny.parser.joint.model.JointDataItemWrapper;
+import edu.uw.cs.lil.tiny.genlex.ccg.ILexiconGenerator;
 import edu.uw.cs.utils.collections.ListUtils;
 import edu.uw.cs.utils.composites.Pair;
 import edu.uw.cs.utils.composites.Triplet;
 import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
 
-public class LabeledInstructionSeqTrace<Y> implements
-		Iterable<LabeledInstructionTrace<Y>>,
-		ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<Y, Trace>>> {
-	private static final String						ID_KEY			= "id";
-	private static final ILogger					LOG				= LoggerFactory
-																			.create(LabeledInstructionSeqTrace.class);
+/**
+ * Sequence of consecutive instructions, each paired with a demonstration and a
+ * logical form.
+ * 
+ * @author Yoav Artzi
+ * @see LabeledInstructionTrace
+ * @param <MR>
+ *            Type of meaning representation
+ */
+public class LabeledInstructionSeqTrace<MR> implements
+		Iterable<LabeledInstructionTrace<MR>>,
+		ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> {
+	private static final String							ID_KEY			= "id";
+	private static final ILogger						LOG				= LoggerFactory
+																				.create(LabeledInstructionSeqTrace.class);
 	
-	private static final String						MAP_NAME_KEY	= "map";
+	private static final String							MAP_NAME_KEY	= "map";
 	
-	private final List<Triplet<Sentence, Y, Trace>>	instructions;
+	private final List<Triplet<Sentence, MR, Trace>>	instructions;
 	
-	private final List<Pair<Y, Trace>>				labelList;
+	private final List<Pair<MR, Trace>>					labelList;
 	
-	private final Pair<List<Sentence>, Task>		samplePair;
-	private final List<LabeledInstructionTrace<Y>>		singleTraces;
-	private final Task								task;
+	private final Pair<List<Sentence>, Task>			samplePair;
+	private final List<LabeledInstructionTrace<MR>>		singleTraces;
+	private final Task									task;
 	
 	public LabeledInstructionSeqTrace(
-			List<Triplet<Sentence, Y, Trace>> instructions,
+			List<Triplet<Sentence, MR, Trace>> instructions,
 			final Task task,
-			final ILexiconGenerator<JointDataItemWrapper<Sentence, Task>, Y> lexiconGenerator) {
+			final ILexiconGenerator<ILabeledDataItem<Pair<Sentence, Task>, Pair<MR, Trace>>, MR> lexiconGenerator) {
 		this.instructions = Collections.unmodifiableList(instructions);
 		this.task = task;
 		this.samplePair = Pair.of(Collections.unmodifiableList(ListUtils.map(
 				instructions,
-				new ListUtils.Mapper<Triplet<Sentence, Y, Trace>, Sentence>() {
+				new ListUtils.Mapper<Triplet<Sentence, MR, Trace>, Sentence>() {
 					
 					@Override
-					public Sentence process(Triplet<Sentence, Y, Trace> obj) {
+					public Sentence process(Triplet<Sentence, MR, Trace> obj) {
 						return obj.first();
 					}
 				})), task);
 		this.labelList = Collections
 				.unmodifiableList(ListUtils
 						.map(instructions,
-								new ListUtils.Mapper<Triplet<Sentence, Y, Trace>, Pair<Y, Trace>>() {
+								new ListUtils.Mapper<Triplet<Sentence, MR, Trace>, Pair<MR, Trace>>() {
 									
 									@Override
-									public Pair<Y, Trace> process(
-											Triplet<Sentence, Y, Trace> obj) {
+									public Pair<MR, Trace> process(
+											Triplet<Sentence, MR, Trace> obj) {
 										return Pair.of(obj.second(),
 												obj.third());
 									}
@@ -88,14 +96,14 @@ public class LabeledInstructionSeqTrace<Y> implements
 		this.singleTraces = Collections
 				.unmodifiableList(ListUtils
 						.map(instructions,
-								new ListUtils.Mapper<Triplet<Sentence, Y, Trace>, LabeledInstructionTrace<Y>>() {
+								new ListUtils.Mapper<Triplet<Sentence, MR, Trace>, LabeledInstructionTrace<MR>>() {
 									
 									@Override
-									public LabeledInstructionTrace<Y> process(
-											Triplet<Sentence, Y, Trace> obj) {
-										return new LabeledInstructionTrace<Y>(obj
-												.second(), obj.first(), task
-												.updateAgent(new Agent(obj
+									public LabeledInstructionTrace<MR> process(
+											Triplet<Sentence, MR, Trace> obj) {
+										return new LabeledInstructionTrace<MR>(
+												obj.second(), obj.first(),
+												task.updateAgent(new Agent(obj
 														.third()
 														.getStartPosition())),
 												obj.third(), lexiconGenerator);
@@ -105,11 +113,11 @@ public class LabeledInstructionSeqTrace<Y> implements
 		
 	}
 	
-	public static <Y> LabeledInstructionSeqTrace<Y> parse(
+	public static <MR> LabeledInstructionSeqTrace<MR> parse(
 			String string,
 			Map<String, NavigationMap> maps,
-			ILexiconGenerator<JointDataItemWrapper<Sentence, Task>, Y> lexiconGenerator,
-			ICategoryServices<Y> categoryServices) {
+			ILexiconGenerator<ILabeledDataItem<Pair<Sentence, Task>, Pair<MR, Trace>>, MR> lexiconGenerator,
+			ICategoryServices<MR> categoryServices) {
 		final LinkedList<String> lines = new LinkedList<String>(
 				Arrays.asList(string.split("\n")));
 		final String id = lines.pollFirst();
@@ -118,10 +126,10 @@ public class LabeledInstructionSeqTrace<Y> implements
 		properties.put(ID_KEY, id);
 		final NavigationMap map = maps.get(properties.get(MAP_NAME_KEY));
 		Position startPosition = null;
-		final List<Triplet<Sentence, Y, Trace>> instructions = new LinkedList<Triplet<Sentence, Y, Trace>>();
+		final List<Triplet<Sentence, MR, Trace>> instructions = new LinkedList<Triplet<Sentence, MR, Trace>>();
 		while (!lines.isEmpty()) {
 			final Sentence sentence = new Sentence(lines.pollFirst());
-			final Y semantics = categoryServices.parseSemantics(lines
+			final MR semantics = categoryServices.parseSemantics(lines
 					.pollFirst());
 			final Trace trace = Trace.parseLine(lines.pollFirst(), map);
 			if (startPosition == null) {
@@ -148,7 +156,7 @@ public class LabeledInstructionSeqTrace<Y> implements
 				map.get(Integer.valueOf(properties.get("y")))
 						.getAllOrientations(), false), new PositionSet(
 				goal.getAllOrientations(), false), properties, map);
-		return new LabeledInstructionSeqTrace<Y>(instructions, task,
+		return new LabeledInstructionSeqTrace<MR>(instructions, task,
 				lexiconGenerator);
 	}
 	
@@ -163,16 +171,16 @@ public class LabeledInstructionSeqTrace<Y> implements
 	}
 	
 	@Override
-	public double calculateLoss(List<Pair<Y, Trace>> label) {
+	public double calculateLoss(List<Pair<MR, Trace>> label) {
 		return labelList.equals(label) ? 0.0 : 1.0;
 	}
 	
-	public List<Triplet<Sentence, Y, Trace>> getInstructions() {
+	public List<Triplet<Sentence, MR, Trace>> getInstructions() {
 		return instructions;
 	}
 	
 	@Override
-	public List<Pair<Y, Trace>> getLabel() {
+	public List<Pair<MR, Trace>> getLabel() {
 		return labelList;
 	}
 	
@@ -186,17 +194,17 @@ public class LabeledInstructionSeqTrace<Y> implements
 	}
 	
 	@Override
-	public boolean isCorrect(List<Pair<Y, Trace>> label) {
+	public boolean isCorrect(List<Pair<MR, Trace>> label) {
 		return labelList.equals(label);
 	}
 	
 	@Override
-	public Iterator<LabeledInstructionTrace<Y>> iterator() {
+	public Iterator<LabeledInstructionTrace<MR>> iterator() {
 		return singleTraces.iterator();
 	}
 	
 	@Override
-	public boolean prune(List<Pair<Y, Trace>> y) {
+	public boolean prune(List<Pair<MR, Trace>> y) {
 		return !isCorrect(y);
 	}
 	
@@ -209,7 +217,7 @@ public class LabeledInstructionSeqTrace<Y> implements
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(task);
-		for (final Triplet<Sentence, Y, Trace> instruction : instructions) {
+		for (final Triplet<Sentence, MR, Trace> instruction : instructions) {
 			sb.append('\n');
 			sb.append(instruction.first()).append('\n');
 			sb.append(instruction.second()).append(" --> ")

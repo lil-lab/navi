@@ -23,22 +23,21 @@ import edu.uw.cs.lil.navi.eval.NaviEvaluationConstants;
 import edu.uw.cs.lil.tiny.ccg.categories.syntax.ComplexSyntax;
 import edu.uw.cs.lil.tiny.ccg.categories.syntax.Syntax;
 import edu.uw.cs.lil.tiny.ccg.categories.syntax.Syntax.SimpleSyntax;
+import edu.uw.cs.lil.tiny.ccg.lexicon.factored.lambda.LexicalTemplate;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
+import edu.uw.cs.lil.tiny.genlex.ccg.template.coarse.TemplateCoarseGenlex;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicLanguageServices;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalConstant;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.mr.language.type.ComplexType;
 import edu.uw.cs.lil.tiny.mr.language.type.Type;
 import edu.uw.cs.lil.tiny.parser.IParser;
-import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.LexicalTemplate;
-import edu.uw.cs.lil.tiny.parser.ccg.genlex.TemplatedAbstractLexiconGenerator;
 import edu.uw.cs.lil.tiny.parser.ccg.model.IModelImmutable;
 import edu.uw.cs.utils.composites.Pair;
 import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
 
-public class NaviTemplatedAbstractLexiconGenerator extends
-		TemplatedAbstractLexiconGenerator {
+public class NaviTemplatedAbstractLexiconGenerator extends TemplateCoarseGenlex {
 	private static final ILogger	LOG	= LoggerFactory
 												.create(NaviTemplatedAbstractLexiconGenerator.class);
 	
@@ -55,8 +54,7 @@ public class NaviTemplatedAbstractLexiconGenerator extends
 				templates.size(), pontetialConstantSeqs.size());
 	}
 	
-	public static class Builder extends
-			TemplatedAbstractLexiconGenerator.Builder {
+	public static class Builder extends TemplateCoarseGenlex.Builder {
 		
 		private final NaviEvaluationConstants	naviConsts;
 		

@@ -27,13 +27,20 @@ import java.util.Map;
 import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.map.NavigationMap;
 import edu.uw.cs.lil.tiny.ccg.categories.ICategoryServices;
-import edu.uw.cs.lil.tiny.data.IDataCollection;
+import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
+import edu.uw.cs.lil.tiny.data.collection.IDataCollection;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
-import edu.uw.cs.lil.tiny.parser.ccg.genlex.ILexiconGenerator;
-import edu.uw.cs.lil.tiny.parser.joint.model.JointDataItemWrapper;
+import edu.uw.cs.lil.tiny.genlex.ccg.ILexiconGenerator;
 import edu.uw.cs.utils.collections.ListUtils;
+import edu.uw.cs.utils.composites.Pair;
 import edu.uw.cs.utils.io.FileUtils;
 
+/**
+ * Data set of {@link LabeledInstructionSeqTrace}.
+ * 
+ * @author Yoav Artzi
+ * @param <Y>
+ */
 public class LabeledInstructionSeqTraceDataset<Y> implements
 		IDataCollection<LabeledInstructionSeqTrace<Y>> {
 	private final List<LabeledInstructionSeqTrace<Y>>	items;
@@ -43,22 +50,22 @@ public class LabeledInstructionSeqTraceDataset<Y> implements
 		this.items = items;
 	}
 	
-	public static <Y> LabeledInstructionSeqTraceDataset<Y> readFromFile(
+	public static <MR> LabeledInstructionSeqTraceDataset<MR> readFromFile(
 			File f,
 			final Map<String, NavigationMap> maps,
-			final ILexiconGenerator<JointDataItemWrapper<Sentence, Task>, Y> lexiconGenerator,
-			final ICategoryServices<Y> categoryServices) throws IOException {
+			final ILexiconGenerator<ILabeledDataItem<Pair<Sentence, Task>, Pair<MR, Trace>>, MR> lexiconGenerator,
+			final ICategoryServices<MR> categoryServices) throws IOException {
 		final String fileString = FileUtils.readFile(f);
 		
-		return new LabeledInstructionSeqTraceDataset<Y>(
+		return new LabeledInstructionSeqTraceDataset<MR>(
 				Collections.unmodifiableList(Collections.unmodifiableList(ListUtils.map(
 						Arrays.asList(fileString.replaceAll("//.*\n", "")
 								.split("\n\n")),
-						new ListUtils.Mapper<String, LabeledInstructionSeqTrace<Y>>() {
+						new ListUtils.Mapper<String, LabeledInstructionSeqTrace<MR>>() {
 							private int	counter	= 0;
 							
 							@Override
-							public LabeledInstructionSeqTrace<Y> process(
+							public LabeledInstructionSeqTrace<MR> process(
 									String obj) {
 								counter++;
 								try {
@@ -66,8 +73,8 @@ public class LabeledInstructionSeqTraceDataset<Y> implements
 											obj, maps, lexiconGenerator,
 											categoryServices);
 								} catch (final Exception e) {
-									throw new InstructionTraceDatasetException(e,
-											obj, counter);
+									throw new InstructionTraceDatasetException(
+											e, obj, counter);
 								}
 							}
 						}))));

@@ -65,7 +65,7 @@ import edu.uw.cs.lil.navi.map.objects.NaviHall;
 import edu.uw.cs.lil.navi.map.objects.NaviObj;
 import edu.uw.cs.lil.navi.map.objects.NaviWall;
 import edu.uw.cs.lil.navi.map.objects.metaitems.NaviMetaItem;
-import edu.uw.cs.lil.navi.parse.NaviParser;
+import edu.uw.cs.lil.navi.parse.NaviGraphParser;
 import edu.uw.cs.lil.navi.parse.WrappedCKYParser;
 import edu.uw.cs.lil.navi.test.stats.FinalCoordinatesTestStatistics;
 import edu.uw.cs.lil.navi.test.stats.FinalPositionTestStatistics;
@@ -76,14 +76,20 @@ import edu.uw.cs.lil.navi.test.stats.set.SetFinalCoordinatesTestStatistics;
 import edu.uw.cs.lil.navi.test.stats.set.SetGoalCoordinatesTestStatistics;
 import edu.uw.cs.lil.navi.test.stats.set.SetLogicalFormTestStatistics;
 import edu.uw.cs.lil.tiny.ccg.categories.syntax.Syntax;
-import edu.uw.cs.lil.tiny.data.IDataCollection;
+import edu.uw.cs.lil.tiny.ccg.lexicon.LexicalEntry;
+import edu.uw.cs.lil.tiny.ccg.lexicon.LexicalEntry.Origin;
+import edu.uw.cs.lil.tiny.ccg.lexicon.Lexicon;
+import edu.uw.cs.lil.tiny.ccg.lexicon.factored.lambda.FactoredLexicon;
+import edu.uw.cs.lil.tiny.ccg.lexicon.factored.lambda.FactoredLexicon.FactoredLexicalEntry;
+import edu.uw.cs.lil.tiny.ccg.lexicon.factored.lambda.FactoredLexiconServices;
 import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
+import edu.uw.cs.lil.tiny.data.collection.IDataCollection;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.exec.IExec;
 import edu.uw.cs.lil.tiny.explat.DistributedExperiment;
 import edu.uw.cs.lil.tiny.explat.Job;
 import edu.uw.cs.lil.tiny.explat.resources.ResourceCreatorRepository;
-import edu.uw.cs.lil.tiny.learn.weakp.validation.JointValidationSensitivePerceptron;
+import edu.uw.cs.lil.tiny.learn.situated.AbstractSituatedLearner;
 import edu.uw.cs.lil.tiny.mr.lambda.FlexibleTypeComparator;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicLanguageServices;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalConstant;
@@ -99,17 +105,10 @@ import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.evaluators.Not;
 import edu.uw.cs.lil.tiny.mr.language.type.TypeRepository;
 import edu.uw.cs.lil.tiny.parser.ccg.cky.genlex.MarkAwareCKYBinaryParsingRule;
 import edu.uw.cs.lil.tiny.parser.ccg.cky.multi.MultiCKYParser;
-import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.FactoredLexicon;
-import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.FactoredLexicon.FactoredLexicalEntry;
-import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.FactoredLexiconServices;
-import edu.uw.cs.lil.tiny.parser.ccg.lexicon.LexicalEntry;
-import edu.uw.cs.lil.tiny.parser.ccg.lexicon.LexicalEntry.Origin;
-import edu.uw.cs.lil.tiny.parser.ccg.lexicon.Lexicon;
 import edu.uw.cs.lil.tiny.parser.ccg.model.IModelImmutable;
 import edu.uw.cs.lil.tiny.parser.ccg.model.IModelInit;
 import edu.uw.cs.lil.tiny.parser.ccg.model.Model;
 import edu.uw.cs.lil.tiny.parser.ccg.model.ModelLogger;
-import edu.uw.cs.lil.tiny.parser.ccg.model.storage.DecoderHelper;
 import edu.uw.cs.lil.tiny.parser.ccg.rules.BinaryRulesSet;
 import edu.uw.cs.lil.tiny.parser.ccg.rules.IBinaryParseRule;
 import edu.uw.cs.lil.tiny.parser.ccg.rules.RuleSetBuilder;
@@ -127,6 +126,7 @@ import edu.uw.cs.lil.tiny.paser.ccg.rules.lambda.typeshifting.basic.AdverbialTop
 import edu.uw.cs.lil.tiny.paser.ccg.rules.lambda.typeshifting.basic.AdverbialTypeShifting;
 import edu.uw.cs.lil.tiny.paser.ccg.rules.lambda.typeshifting.basic.PrepositionTypeShifting;
 import edu.uw.cs.lil.tiny.paser.ccg.rules.lambda.typeshifting.basic.SententialAdverbialTypeShifting;
+import edu.uw.cs.lil.tiny.storage.DecoderHelper;
 import edu.uw.cs.lil.tiny.test.exec.ExecTester;
 import edu.uw.cs.lil.tiny.test.stats.CompositeTestingStatistics;
 import edu.uw.cs.lil.tiny.test.stats.ExactMatchTestingStatistics;
@@ -274,16 +274,17 @@ public class NaviExperiment extends DistributedExperiment {
 		// //////////////////////////////////////////////////
 		
 		final Map<String, NavigationMap> maps = new HashMap<String, NavigationMap>();
-		final NavigationMap gridMap = NavigationMapXMLReader.read(new File(
-				"resources/maps/map-grid.xml"));
+		final NavigationMap gridMap = NavigationMapXMLReader
+				.read(makeAbsolute(new File("../../resources/maps/map-grid.xml")));
 		maps.put(gridMap.getName().toLowerCase(), gridMap);
 		
-		final NavigationMap lMap = NavigationMapXMLReader.read(new File(
-				"resources/maps/map-l.xml"));
+		final NavigationMap lMap = NavigationMapXMLReader
+				.read(makeAbsolute(new File("../../resources/maps/map-l.xml")));
 		maps.put(lMap.getName().toLowerCase(), lMap);
 		
-		final NavigationMap jellyMap = NavigationMapXMLReader.read(new File(
-				"resources/maps/map-jelly.xml"));
+		final NavigationMap jellyMap = NavigationMapXMLReader
+				.read(makeAbsolute(new File(
+						"../../resources/maps/map-jelly.xml")));
 		maps.put(jellyMap.getName().toLowerCase(), jellyMap);
 		
 		storeResource(MAPS_RESOURCE, Collections.unmodifiableMap(maps));
@@ -607,12 +608,16 @@ public class NaviExperiment extends DistributedExperiment {
 						.setPruneLexicalCells(true)
 						.setPreChartPruning(true)
 						.addBinaryParseRule(
-								new MarkAwareCKYBinaryParsingRule(ruleSet, 1))
-						.setMaxNumberOfCellsInSpan(parserBeamSize).build(),
-				new SimpleFullParseFilter<LogicalExpression>(SetUtils
-						.createSingleton((Syntax) Syntax.S)));
+								new MarkAwareCKYBinaryParsingRule<LogicalExpression>(
+										ruleSet, 1))
+						.setMaxNumberOfCellsInSpan(parserBeamSize).build());
+		
 		storeResource(BASE_PARSER_RESOURCE, baseParser);
-		storeResource(PARSER_RESOURCE, new NaviParser(baseParser,
+		
+		// storeResource(PARSER_RESOURCE, new NaviParser(baseParser,
+		// singleEvaluator, this, 1000 * 60 * 2 /* two minutes */));
+		
+		storeResource(PARSER_RESOURCE, new NaviGraphParser(baseParser,
 				singleEvaluator, this, 1000 * 60 * 2 /* two minutes */));
 		
 		// //////////////////////////////////////////////////
@@ -807,7 +812,7 @@ public class NaviExperiment extends DistributedExperiment {
 				.get("model"));
 		
 		// The learner
-		final JointValidationSensitivePerceptron<Task, LogicalExpression, Trace, Trace> learner = (JointValidationSensitivePerceptron<Task, LogicalExpression, Trace, Trace>) getResource(params
+		final AbstractSituatedLearner<Task, LogicalExpression, Trace, Trace> learner = (AbstractSituatedLearner<Task, LogicalExpression, Trace, Trace>) getResource(params
 				.get("learner"));
 		
 		return new Job(params.get("id"), new HashSet<String>(

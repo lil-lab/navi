@@ -26,43 +26,50 @@ import java.util.Map;
 
 import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.map.NavigationMap;
-import edu.uw.cs.lil.tiny.data.IDataCollection;
+import edu.uw.cs.lil.tiny.data.IDataItem;
+import edu.uw.cs.lil.tiny.data.collection.IDataCollection;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
-import edu.uw.cs.lil.tiny.parser.ccg.genlex.ILexiconGenerator;
-import edu.uw.cs.lil.tiny.parser.joint.model.JointDataItemWrapper;
+import edu.uw.cs.lil.tiny.genlex.ccg.ILexiconGenerator;
 import edu.uw.cs.utils.collections.ListUtils;
+import edu.uw.cs.utils.composites.Pair;
 import edu.uw.cs.utils.io.FileUtils;
 
-public class InstructionSeqTraceDataset<Y> implements
-		IDataCollection<InstructionSeqTrace<Y>> {
-	private final List<InstructionSeqTrace<Y>>	items;
+/**
+ * Data set of {@link InstructionSeqTrace}.
+ * 
+ * @author Yoav Artzi
+ * @param <MR>
+ */
+public class InstructionSeqTraceDataset<MR> implements
+		IDataCollection<InstructionSeqTrace<MR>> {
+	private final List<InstructionSeqTrace<MR>>	items;
 	
-	public InstructionSeqTraceDataset(List<InstructionSeqTrace<Y>> items) {
+	public InstructionSeqTraceDataset(List<InstructionSeqTrace<MR>> items) {
 		this.items = items;
 	}
 	
-	public static <Y> InstructionSeqTraceDataset<Y> readFromFile(
+	public static <MR> InstructionSeqTraceDataset<MR> readFromFile(
 			File f,
 			final Map<String, NavigationMap> maps,
-			final ILexiconGenerator<JointDataItemWrapper<Sentence, Task>, Y> lexiconGenerator)
+			final ILexiconGenerator<IDataItem<Pair<Sentence, Task>>, MR> lexiconGenerator)
 			throws IOException {
 		final String fileString = FileUtils.readFile(f);
 		
-		return new InstructionSeqTraceDataset<Y>(
+		return new InstructionSeqTraceDataset<MR>(
 				Collections.unmodifiableList(Collections.unmodifiableList(ListUtils.map(
 						Arrays.asList(fileString.split("\n\n")),
-						new ListUtils.Mapper<String, InstructionSeqTrace<Y>>() {
+						new ListUtils.Mapper<String, InstructionSeqTrace<MR>>() {
 							private int	counter	= 0;
 							
 							@Override
-							public InstructionSeqTrace<Y> process(String obj) {
+							public InstructionSeqTrace<MR> process(String obj) {
 								counter++;
 								try {
 									return InstructionSeqTrace.parse(obj, maps,
 											lexiconGenerator);
 								} catch (final Exception e) {
-									throw new InstructionTraceDatasetException(e,
-											obj, counter);
+									throw new InstructionTraceDatasetException(
+											e, obj, counter);
 								}
 							}
 						}))));
@@ -70,7 +77,7 @@ public class InstructionSeqTraceDataset<Y> implements
 	}
 	
 	@Override
-	public Iterator<InstructionSeqTrace<Y>> iterator() {
+	public Iterator<InstructionSeqTrace<MR>> iterator() {
 		return items.iterator();
 	}
 	
@@ -81,7 +88,7 @@ public class InstructionSeqTraceDataset<Y> implements
 	
 	@Override
 	public String toString() {
-		final Iterator<InstructionSeqTrace<Y>> iterator = items.iterator();
+		final Iterator<InstructionSeqTrace<MR>> iterator = items.iterator();
 		final StringBuilder sb = new StringBuilder();
 		while (iterator.hasNext()) {
 			sb.append(iterator.next().toString());

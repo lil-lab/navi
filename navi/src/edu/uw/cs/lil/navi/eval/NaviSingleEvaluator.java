@@ -31,6 +31,7 @@ import edu.uw.cs.lil.tiny.mr.lambda.LogicLanguageServices;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.ILambdaResult;
 import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.IsEvaluable;
+import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.LambdaResult;
 import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.Tuple;
 import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
@@ -91,14 +92,17 @@ public class NaviSingleEvaluator {
 					currentAgent = new Agent(
 							((Trace) singleResult).getEndPosition());
 					steps.addAll(((Trace) singleResult).getSteps());
-				} else if (singleResult == null) {
+				} else if (singleResult == null
+						|| ((singleResult instanceof LambdaResult) && ((LambdaResult) singleResult)
+								.isEmpty())) {
 					return null;
 				} else {
 					// Results is not a trace, not sure what to do here, log it
 					// and return null
 					LOG.warn(
-							"Expected a trace or null, but got something else (%s), returning null",
-							singleResult.getClass().getSimpleName());
+							"Expected a trace or null (for: %s), but got something else (%s), returning null: %s",
+							singleActionExp, singleResult.getClass()
+									.getSimpleName(), singleResult);
 					return null;
 				}
 			}

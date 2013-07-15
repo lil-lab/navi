@@ -21,6 +21,8 @@ import edu.uw.cs.lil.navi.eval.NaviEvaluationServicesFactory;
 import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.experiments.plat.NaviExperiment;
 import edu.uw.cs.lil.navi.learn.lexicalgen.NaviJointTemplatedAbstractLexiconGenerator;
+import edu.uw.cs.lil.tiny.ccg.lexicon.ILexicon;
+import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.data.utils.IValidator;
 import edu.uw.cs.lil.tiny.explat.IResourceRepository;
@@ -57,14 +59,20 @@ public class NaviJointTemplatedAbstractLexiconGeneratorCreator
 						.getNaviEvaluationConsts(),
 				(IJointParser<Sentence, Task, LogicalExpression, Trace, Trace>) resourceRepo
 						.getResource(NaviExperiment.PARSER_RESOURCE),
-				(IValidator<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>) resourceRepo
+				(IValidator<IDataItem<Pair<Sentence, Task>>, Pair<LogicalExpression, Trace>>) resourceRepo
 						.getResource(parameters.get("validator")))
-				.addTemplatesFromModel(
-						(IModelImmutable<?, LogicalExpression>) resourceRepo
-								.getResource(parameters.get("model")))
-				.addConstants(
-						(Ontology) resourceRepo
-								.getResource(NaviExperiment.DOMAIN_ONTOLOGY_RESOURCE));
+				.addConstants((Ontology) resourceRepo
+						.getResource(NaviExperiment.DOMAIN_ONTOLOGY_RESOURCE));
+		
+		if (parameters.contains("templatesModel")) {
+			builder.addTemplatesFromModel((IModelImmutable<?, LogicalExpression>) resourceRepo
+					.getResource(parameters.get("model")));
+		} else if (parameters.contains("lexicon")) {
+			builder.addTemplatesFromLexicon((ILexicon<LogicalExpression>) resourceRepo
+					.getResource(parameters.get("lexicon")));
+		} else {
+			throw new IllegalStateException("no templates source specified");
+		}
 		
 		if (parameters.contains("margin")) {
 			builder.setMargin(Double.valueOf(parameters.get("margin")));

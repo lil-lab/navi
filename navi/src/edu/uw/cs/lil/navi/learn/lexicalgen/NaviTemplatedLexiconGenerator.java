@@ -23,38 +23,33 @@ import edu.uw.cs.lil.navi.eval.NaviEvaluationConstants;
 import edu.uw.cs.lil.tiny.ccg.categories.syntax.ComplexSyntax;
 import edu.uw.cs.lil.tiny.ccg.categories.syntax.Syntax;
 import edu.uw.cs.lil.tiny.ccg.categories.syntax.Syntax.SimpleSyntax;
-import edu.uw.cs.lil.tiny.data.sentence.Sentence;
+import edu.uw.cs.lil.tiny.ccg.lexicon.factored.lambda.LexicalTemplate;
+import edu.uw.cs.lil.tiny.genlex.ccg.template.TemplateGenlex;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicLanguageServices;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalConstant;
-import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.mr.language.type.ComplexType;
 import edu.uw.cs.lil.tiny.mr.language.type.Type;
-import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.LexicalTemplate;
-import edu.uw.cs.lil.tiny.parser.ccg.genlex.TemplatedLexiconGenerator;
-import edu.uw.cs.lil.tiny.parser.ccg.model.IModelImmutable;
 import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
 
-public class NaviTemplatedLexiconGenerator extends TemplatedLexiconGenerator {
+public class NaviTemplatedLexiconGenerator extends TemplateGenlex {
 	private static final ILogger	LOG	= LoggerFactory
 												.create(NaviTemplatedLexiconGenerator.class);
 	
 	public NaviTemplatedLexiconGenerator(Set<LexicalTemplate> templates,
-			Set<List<LogicalConstant>> pontetialConstantSeqs, int maxTokens,
-			IModelImmutable<Sentence, LogicalExpression> model) {
-		super(templates, pontetialConstantSeqs, maxTokens, model);
+			Set<List<LogicalConstant>> pontetialConstantSeqs, int maxTokens) {
+		super(templates, pontetialConstantSeqs, maxTokens);
 		LOG.info(
 				"Init NaviTemplatedLexiconGenerator :: %d templates, %d potential constants sequences",
 				templates.size(), pontetialConstantSeqs.size());
 	}
 	
-	public static class Builder extends TemplatedLexiconGenerator.Builder {
+	public static class Builder extends TemplateGenlex.Builder {
 		
 		private final NaviEvaluationConstants	naviConsts;
 		
-		public Builder(int maxTokens, NaviEvaluationConstants naviConsts,
-				IModelImmutable<Sentence, LogicalExpression> model) {
-			super(maxTokens, model);
+		public Builder(int maxTokens, NaviEvaluationConstants naviConsts) {
+			super(maxTokens);
 			this.naviConsts = naviConsts;
 		}
 		
@@ -77,7 +72,7 @@ public class NaviTemplatedLexiconGenerator extends TemplatedLexiconGenerator {
 					"Building NaviTemplatedLexiconGenerator: %d templates, %d constants",
 					templates.size(), constants.size());
 			return new NaviTemplatedLexiconGenerator(templates,
-					createPotentialLists(), maxTokens, model);
+					createPotentialLists(), maxTokens);
 		}
 		
 		private Syntax adverbialToSentenceExpansion(Syntax syntax, Type type) {

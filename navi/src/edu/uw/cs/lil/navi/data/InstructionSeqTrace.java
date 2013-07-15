@@ -30,16 +30,22 @@ import edu.uw.cs.lil.navi.map.NavigationMap;
 import edu.uw.cs.lil.navi.map.Pose;
 import edu.uw.cs.lil.navi.map.Position;
 import edu.uw.cs.lil.navi.map.PositionSet;
+import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
-import edu.uw.cs.lil.tiny.parser.ccg.genlex.ILexiconGenerator;
-import edu.uw.cs.lil.tiny.parser.joint.model.JointDataItemWrapper;
+import edu.uw.cs.lil.tiny.genlex.ccg.ILexiconGenerator;
 import edu.uw.cs.utils.collections.ListUtils;
 import edu.uw.cs.utils.composites.Pair;
 import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
 
-public class InstructionSeqTrace<Y> implements Iterable<InstructionTrace<Y>>,
+/**
+ * Sequence of consecutive instructions, each paired with a demonstration.
+ * 
+ * @author Yoav Artzi
+ * @param <MR>
+ */
+public class InstructionSeqTrace<MR> implements Iterable<InstructionTrace<MR>>,
 		ILabeledDataItem<Pair<List<Sentence>, Task>, List<Trace>> {
 	private static final String					ID_KEY			= "id";
 	
@@ -53,13 +59,13 @@ public class InstructionSeqTrace<Y> implements Iterable<InstructionTrace<Y>>,
 	private final List<Trace>					label;
 	
 	private final Pair<List<Sentence>, Task>	samplePair;
-	private final List<InstructionTrace<Y>>			singleTraces;
+	private final List<InstructionTrace<MR>>	singleTraces;
 	private final Task							task;
 	
 	public InstructionSeqTrace(
 			List<Pair<Sentence, Trace>> instructions,
 			final Task task,
-			final ILexiconGenerator<JointDataItemWrapper<Sentence, Task>, Y> lexiconGenerator) {
+			final ILexiconGenerator<IDataItem<Pair<Sentence, Task>>, MR> lexiconGenerator) {
 		this.instructions = Collections.unmodifiableList(instructions);
 		this.task = task;
 		this.samplePair = Pair.of(Collections.unmodifiableList(ListUtils.map(
@@ -79,26 +85,30 @@ public class InstructionSeqTrace<Y> implements Iterable<InstructionTrace<Y>>,
 						return obj.second();
 					}
 				}));
-		this.singleTraces = Collections.unmodifiableList(ListUtils.map(
-				instructions,
-				new ListUtils.Mapper<Pair<Sentence, Trace>, InstructionTrace<Y>>() {
-					
-					@Override
-					public InstructionTrace<Y> process(Pair<Sentence, Trace> obj) {
-						return new InstructionTrace<Y>(obj.first(), task
-								.updateAgent(new Agent(obj.second()
-										.getStartPosition())), obj.second(),
-								lexiconGenerator);
-					}
-					
-				}));
+		this.singleTraces = Collections
+				.unmodifiableList(ListUtils
+						.map(instructions,
+								new ListUtils.Mapper<Pair<Sentence, Trace>, InstructionTrace<MR>>() {
+									
+									@Override
+									public InstructionTrace<MR> process(
+											Pair<Sentence, Trace> obj) {
+										return new InstructionTrace<MR>(obj
+												.first(), task
+												.updateAgent(new Agent(obj
+														.second()
+														.getStartPosition())),
+												obj.second(), lexiconGenerator);
+									}
+									
+								}));
 		
 	}
 	
-	public static <Y> InstructionSeqTrace<Y> parse(
+	public static <MR> InstructionSeqTrace<MR> parse(
 			String string,
 			Map<String, NavigationMap> maps,
-			ILexiconGenerator<JointDataItemWrapper<Sentence, Task>, Y> lexiconGenerator) {
+			ILexiconGenerator<IDataItem<Pair<Sentence, Task>>, MR> lexiconGenerator) {
 		final LinkedList<String> lines = new LinkedList<String>(
 				Arrays.asList(string.split("\n")));
 		final String id = lines.pollFirst();
@@ -135,7 +145,7 @@ public class InstructionSeqTrace<Y> implements Iterable<InstructionTrace<Y>>,
 				map.get(Integer.valueOf(properties.get("y")))
 						.getAllOrientations(), false), new PositionSet(
 				goal.getAllOrientations(), false), properties, map);
-		return new InstructionSeqTrace<Y>(instructions, task, lexiconGenerator);
+		return new InstructionSeqTrace<MR>(instructions, task, lexiconGenerator);
 	}
 	
 	private static Map<String, String> parseProperties(String line) {
@@ -181,7 +191,7 @@ public class InstructionSeqTrace<Y> implements Iterable<InstructionTrace<Y>>,
 	}
 	
 	@Override
-	public Iterator<InstructionTrace<Y>> iterator() {
+	public Iterator<InstructionTrace<MR>> iterator() {
 		return singleTraces.iterator();
 	}
 	

@@ -24,18 +24,18 @@ import edu.uw.cs.lil.tiny.explat.IResourceRepository;
 import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
 import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
 import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
+import edu.uw.cs.lil.tiny.genlex.ccg.template.coarse.TemplateCoarseGenlex;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.mr.lambda.Ontology;
 import edu.uw.cs.lil.tiny.parser.IParser;
-import edu.uw.cs.lil.tiny.parser.ccg.genlex.TemplatedAbstractLexiconGenerator;
 import edu.uw.cs.lil.tiny.parser.ccg.model.IModelImmutable;
 
 public class NaviTemplatedAbstractLexiconGeneratorCreator implements
-		IResourceObjectCreator<TemplatedAbstractLexiconGenerator> {
+		IResourceObjectCreator<TemplateCoarseGenlex> {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public TemplatedAbstractLexiconGenerator create(Parameters parameters,
+	public TemplateCoarseGenlex create(Parameters parameters,
 			IResourceRepository resourceRepo) {
 		return new NaviTemplatedAbstractLexiconGenerator.Builder(
 				Integer.valueOf(parameters.get("maxTokens")),
@@ -63,8 +63,7 @@ public class NaviTemplatedAbstractLexiconGeneratorCreator implements
 	
 	@Override
 	public ResourceUsage usage() {
-		return new ResourceUsage.Builder(type(),
-				TemplatedAbstractLexiconGenerator.class)
+		return new ResourceUsage.Builder(type(), TemplateCoarseGenlex.class)
 				.setDescription(
 						"Lexical generator that uses abstract constants for coarse-to-fine pruning of lexical entries")
 				.addParam("maxTokens", "int",

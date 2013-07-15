@@ -17,48 +17,51 @@
 package edu.uw.cs.lil.navi.parse;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-import edu.uw.cs.lil.navi.data.Step;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.NaviSingleEvaluator;
 import edu.uw.cs.lil.navi.eval.Task;
+import edu.uw.cs.lil.tiny.ccg.lexicon.ILexicon;
 import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.parser.AbstractParser;
-import edu.uw.cs.lil.tiny.parser.IParseResult;
+import edu.uw.cs.lil.tiny.parser.IParse;
 import edu.uw.cs.lil.tiny.parser.IParser;
 import edu.uw.cs.lil.tiny.parser.IParserOutput;
-import edu.uw.cs.lil.tiny.parser.Pruner;
-import edu.uw.cs.lil.tiny.parser.ccg.lexicon.ILexicon;
 import edu.uw.cs.lil.tiny.parser.ccg.model.IDataItemModel;
 import edu.uw.cs.lil.tiny.parser.joint.IJointOutput;
 import edu.uw.cs.lil.tiny.parser.joint.IJointParse;
 import edu.uw.cs.lil.tiny.parser.joint.IJointParser;
 import edu.uw.cs.lil.tiny.parser.joint.JointOutput;
 import edu.uw.cs.lil.tiny.parser.joint.JointParse;
-import edu.uw.cs.lil.tiny.parser.joint.SingleExecResultWrapper;
+import edu.uw.cs.lil.tiny.parser.joint.graph.simple.DeterministicExecResultWrapper;
 import edu.uw.cs.lil.tiny.parser.joint.model.IJointDataItemModel;
 import edu.uw.cs.lil.tiny.utils.concurrency.ITinyExecutor;
 import edu.uw.cs.utils.composites.Pair;
+import edu.uw.cs.utils.filter.IFilter;
 import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
-import edu.uw.cs.utils.log.thread.LoggingCallable;
 
+/**
+ * Joint inference procedure to map pairs of <instruction,state> to pairs of
+ * <trace, logical form>.
+ * 
+ * @author Yoav Artzi
+ */
 public class NaviParser extends AbstractParser<Sentence, LogicalExpression>
 		implements
 		IJointParser<Sentence, Task, LogicalExpression, Trace, Trace> {
 	
-	private static final List<Step>						EMPTY_STEP_LIST	= Collections
-																				.emptyList();
-	
-	private static final ILogger						LOG				= LoggerFactory
-																				.create(NaviParser.class);
+	private static final ILogger						LOG	= LoggerFactory
+																	.create(NaviParser.class);
 	
 	private final IParser<Sentence, LogicalExpression>	baseParser;
 	
@@ -110,7 +113,7 @@ public class NaviParser extends AbstractParser<Sentence, LogicalExpression>
 				.parse(dataItem.getSample().first(), model, allowWordSkipping,
 						tempLexicon, beamSize);
 		final long evalStartTime = System.currentTimeMillis();
-		final List<IParseResult<LogicalExpression>> allBaseParses = baseParserOutput
+		final List<? extends IParse<LogicalExpression>> allBaseParses = baseParserOutput
 				.getAllParses();
 		final List<IJointParse<LogicalExpression, Trace>> parses = new ArrayList<IJointParse<LogicalExpression, Trace>>(
 				allBaseParses.size());
@@ -119,20 +122,43 @@ public class NaviParser extends AbstractParser<Sentence, LogicalExpression>
 				allBaseParses.size());
 		final List<EvaluationJob> evaluationJobs = new ArrayList<EvaluationJob>(
 				allBaseParses.size());
-		for (final IParseResult<LogicalExpression> baseParse : allBaseParses) {
-			evaluationJobs.add(new EvaluationJob(dataItem, baseParse, model));
+		
+		// Create evaluation jobs and mapping from semantics to base parses
+		final Map<LogicalExpression, List<IParse<LogicalExpression>>> semanticsToParses = new HashMap<LogicalExpression, List<IParse<LogicalExpression>>>();
+		for (final IParse<LogicalExpression> baseParse : allBaseParses) {
+			if (!semanticsToParses.containsKey(baseParse.getSemantics())) {
+				semanticsToParses.put(baseParse.getSemantics(),
+						new LinkedList<IParse<LogicalExpression>>());
+				evaluationJobs.add(new EvaluationJob(dataItem, baseParse
+						.getSemantics(), model, evaluationWrapper));
+			}
+			semanticsToParses.get(baseParse.getSemantics()).add(baseParse);
 		}
+		
 		try {
 			int numTimedOut = 0;
 			final Iterator<EvaluationJob> jobIterator = evaluationJobs
 					.iterator();
-			for (final Future<IJointParse<LogicalExpression, Trace>> future : executor
+			for (final Future<Pair<LogicalExpression, DeterministicExecResultWrapper<Trace, Trace>>> future : evalTimeoutMilliseconds > 0 ? executor
+					.invokeAllWithUniqueTimeout(evaluationJobs,
+							evalTimeoutMilliseconds) : executor
 					.invokeAll(evaluationJobs)) {
 				final EvaluationJob job = jobIterator.next();
-				if (job.timedOut) {
+				try {
+					final Pair<LogicalExpression, DeterministicExecResultWrapper<Trace, Trace>> evalResult = future
+							.get();
+					// Create a joint parse for every base parse that is rooted
+					// at this logical form
+					for (final IParse<LogicalExpression> baseParse : semanticsToParses
+							.get(evalResult.first())) {
+						parses.add(new JointParse<LogicalExpression, Trace>(
+								baseParse, evalResult.second()));
+					}
+				} catch (final ExecutionException e) {
 					++numTimedOut;
-				} else {
-					parses.add(future.get());
+					LOG.info(
+							"Evaluation interuppted (most likely due to timeout): %s",
+							job.getSemantics());
 				}
 			}
 			if (numTimedOut != 0) {
@@ -140,10 +166,7 @@ public class NaviParser extends AbstractParser<Sentence, LogicalExpression>
 						evaluationJobs.size());
 			}
 		} catch (final InterruptedException e) {
-			LOG.error("Interrupt exception during base parses evaluation");
-			throw new RuntimeException(e);
-		} catch (final ExecutionException e) {
-			LOG.error("Execution exception during base parses evaluation");
+			LOG.error("Unexpected interrupt exception during base parses evaluation");
 			throw new RuntimeException(e);
 		}
 		
@@ -173,110 +196,11 @@ public class NaviParser extends AbstractParser<Sentence, LogicalExpression>
 	
 	@Override
 	public IParserOutput<LogicalExpression> parse(IDataItem<Sentence> dataItem,
-			Pruner<Sentence, LogicalExpression> pruner,
+			IFilter<LogicalExpression> pruningFilter,
 			IDataItemModel<LogicalExpression> model, boolean allowWordSkipping,
 			ILexicon<LogicalExpression> tempLexicon, Integer beamSize) {
-		return baseParser.parse(dataItem, pruner, model, allowWordSkipping,
-				tempLexicon, beamSize);
+		return baseParser.parse(dataItem, pruningFilter, model,
+				allowWordSkipping, tempLexicon, beamSize);
 	}
 	
-	private class EvaluationJob extends
-			LoggingCallable<IJointParse<LogicalExpression, Trace>> {
-		
-		private final IParseResult<LogicalExpression>				baseParse;
-		private final IDataItem<Pair<Sentence, Task>>				dataItem;
-		private final IJointDataItemModel<LogicalExpression, Trace>	model;
-		private boolean												timedOut	= false;
-		
-		public EvaluationJob(IDataItem<Pair<Sentence, Task>> dataItem,
-				IParseResult<LogicalExpression> baseParse,
-				IJointDataItemModel<LogicalExpression, Trace> model) {
-			this.dataItem = dataItem;
-			this.baseParse = baseParse;
-			this.model = model;
-		}
-		
-		@Override
-		public IJointParse<LogicalExpression, Trace> loggedCall() {
-			LOG.debug("Evaluating: [%f] %s", baseParse.getScore(),
-					baseParse.getY());
-			
-			final Object result;
-			if (evalTimeoutMilliseconds > 0) {
-				// Case run with timeout
-				final TimedEvaluationRunnable runnable = new TimedEvaluationRunnable(
-						baseParse, dataItem);
-				synchronized (runnable) {
-					final Future<Object> future = executor.submit(runnable);
-					try {
-						executor.wait(runnable, evalTimeoutMilliseconds);
-					} catch (final InterruptedException e) {
-						throw new IllegalStateException(e);
-					}
-					result = runnable.result;
-					timedOut = !runnable.completed;
-					if (timedOut) {
-						if (future.cancel(true)) {
-							LOG.warn("Cancelled evaluation job successfuly");
-						} else {
-							LOG.warn("Failed to cancel evaluation job");
-						}
-					}
-				}
-			} else {
-				// Case run without timeout, no need to spawn another thread
-				result = evaluationWrapper.of(baseParse.getY(), dataItem
-						.getSample().second());
-			}
-			
-			if (timedOut) {
-				LOG.warn("Evaluation timed out for: [%s] %s",
-						dataItem.getSample(), baseParse);
-			}
-			
-			if (result instanceof Trace) {
-				return new JointParse<LogicalExpression, Trace>(baseParse,
-						new SingleExecResultWrapper<Trace, Trace>(
-								(Trace) result, model, (Trace) result));
-			} else if (Boolean.TRUE.equals(result)) {
-				final Trace emptyTrace = new Trace(EMPTY_STEP_LIST, dataItem
-						.getSample().second().getAgent().getPosition());
-				return new JointParse<LogicalExpression, Trace>(baseParse,
-						new SingleExecResultWrapper<Trace, Trace>(emptyTrace,
-								model, emptyTrace));
-			} else {
-				return new JointParse<LogicalExpression, Trace>(baseParse,
-						new SingleExecResultWrapper<Trace, Trace>(null, model,
-								null));
-			}
-		}
-	}
-	
-	private class TimedEvaluationRunnable extends LoggingCallable<Object> {
-		
-		private final IParseResult<LogicalExpression>	baseParse;
-		private boolean									completed	= false;
-		
-		private final IDataItem<Pair<Sentence, Task>>	dataItem;
-		private Object									result		= null;
-		
-		public TimedEvaluationRunnable(
-				IParseResult<LogicalExpression> baseParse,
-				IDataItem<Pair<Sentence, Task>> dataItem) {
-			this.baseParse = baseParse;
-			this.dataItem = dataItem;
-		}
-		
-		@Override
-		public Object loggedCall() {
-			final Object localResult = evaluationWrapper.of(baseParse.getY(),
-					dataItem.getSample().second());
-			synchronized (this) {
-				result = localResult;
-				completed = true;
-				this.notifyAll();
-				return result;
-			}
-		}
-	}
 }
