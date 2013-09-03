@@ -21,6 +21,8 @@ import edu.uw.cs.lil.navi.eval.literalevaluators.NaviInvariantLiteralEvaluator;
 
 public class ActionPreState extends NaviInvariantLiteralEvaluator {
 	
+	private static final long	serialVersionUID	= -4268056440400226640L;
+	
 	@Override
 	public Object evaluate(Object[] args) {
 		if (args.length == 2 && args[0] instanceof Action

@@ -35,7 +35,7 @@ public class LabeledInstructionSetTraceDatasetTest {
 	public void test() {
 		try {
 			LabeledInstructionSeqTraceDataset.readFromFile(new File("..",
-					"resources/seed.ccgsettrc"), TestingConstants.MAPS, null,
+					"resources/seed.ccgsettrc"), TestingConstants.MAPS,
 					TestingConstants.CATEGORY_SERVICES);
 		} catch (final IOException e) {
 			fail();

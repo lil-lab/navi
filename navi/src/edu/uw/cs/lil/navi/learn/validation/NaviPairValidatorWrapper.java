@@ -16,54 +16,29 @@
  ******************************************************************************/
 package edu.uw.cs.lil.navi.learn.validation;
 
+import edu.uw.cs.lil.navi.data.InstructionTrace;
 import edu.uw.cs.lil.navi.data.Trace;
-import edu.uw.cs.lil.navi.eval.Task;
-import edu.uw.cs.lil.tiny.data.IDataItem;
-import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
-import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.data.utils.IValidator;
-import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.utils.composites.Pair;
-import edu.uw.cs.utils.log.ILogger;
-import edu.uw.cs.utils.log.LoggerFactory;
 
 /**
- * Wrapper for trace validator, which allows to validate the logical form as
- * well, if the data item supports it.
+ * Wrapper for trace validator, which takes a result that includes the logical
+ * form as well, but ignores it.
  * 
  * @author Yoav Artzi
  */
-public class NaviPairValidatorWrapper
-		implements
-		IValidator<IDataItem<Pair<Sentence, Task>>, Pair<LogicalExpression, Trace>> {
-	private static final ILogger	LOG	= LoggerFactory
-												.create(NaviPairValidatorWrapper.class);
+public class NaviPairValidatorWrapper<MR> implements
+		IValidator<InstructionTrace<MR>, Pair<MR, Trace>> {
+	private final IValidator<InstructionTrace<MR>, Trace>	resultValidator;
 	
-	private final INaviValidator	resultValidator;
-	
-	public NaviPairValidatorWrapper(INaviValidator resultValidator) {
+	public NaviPairValidatorWrapper(
+			IValidator<InstructionTrace<MR>, Trace> resultValidator) {
 		this.resultValidator = resultValidator;
 	}
 	
 	@Override
-	public boolean isValid(IDataItem<Pair<Sentence, Task>> dataItem,
-			Pair<LogicalExpression, Trace> label) {
-		if (dataItem instanceof ILabeledDataItem) {
-			final Object dataItemLabel = ((ILabeledDataItem<?, ?>) dataItem)
-					.getLabel();
-			if (dataItemLabel instanceof Trace) {
-				return resultValidator.isValid(dataItem, label.second());
-			} else if (dataItemLabel instanceof Pair) {
-				final Object second = ((Pair<?, ?>) dataItemLabel).second();
-				if (second instanceof Trace) {
-					return resultValidator.isValid(dataItem, label.second())
-							&& ((Pair<?, ?>) dataItemLabel).first().equals(
-									label.first());
-				}
-			}
-		}
-		LOG.error("Can't validate using: %s", dataItem);
-		return false;
+	public boolean isValid(InstructionTrace<MR> dataItem, Pair<MR, Trace> label) {
+		return resultValidator.isValid(dataItem, label.second());
 	}
 	
 }

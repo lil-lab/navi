@@ -16,10 +16,14 @@
  ******************************************************************************/
 package edu.uw.cs.lil.navi.eval;
 
+import java.io.ObjectStreamException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,10 +34,7 @@ import edu.uw.cs.lil.tiny.mr.lambda.LogicalConstant;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.mr.language.type.Type;
 
-public class NaviEvaluationConstants {
-	public static final StateFlag								POST_ACTION_STATE	= new StateFlag();
-	
-	public static final StateFlag								PRE_ACTION_STATE	= new StateFlag();
+public class NaviEvaluationConstants implements Serializable {
 	private final LogicalExpression								actionExistsQuantifier;
 	
 	private final Type											actionSeqType;
@@ -91,16 +92,16 @@ public class NaviEvaluationConstants {
 		this.agentPositionVariantConstants = agentPositionVariantConstants;
 		final Map<StateFlag, LogicalConstant> statefuls = new HashMap<StateFlag, LogicalConstant>();
 		final Map<LogicalConstant, StateFlag> statefulsToFlag = new HashMap<LogicalConstant, StateFlag>();
-		statefuls.put(POST_ACTION_STATE, (LogicalConstant) categoryServices
+		statefuls.put(StateFlag.POST, (LogicalConstant) categoryServices
 				.parseSemantics("POST_STATE_WRAPPER:<a,<t,t>>"));
-		statefulsToFlag.put((LogicalConstant) categoryServices
-				.parseSemantics("POST_STATE_WRAPPER:<a,<t,t>>"),
-				POST_ACTION_STATE);
-		statefuls.put(PRE_ACTION_STATE, (LogicalConstant) categoryServices
+		statefulsToFlag
+				.put((LogicalConstant) categoryServices
+						.parseSemantics("POST_STATE_WRAPPER:<a,<t,t>>"),
+						StateFlag.POST);
+		statefuls.put(StateFlag.PRE, (LogicalConstant) categoryServices
 				.parseSemantics("PRE_STATE_WRAPPER:<a,<t,t>>"));
 		statefulsToFlag.put((LogicalConstant) categoryServices
-				.parseSemantics("PRE_STATE_WRAPPER:<a,<t,t>>"),
-				PRE_ACTION_STATE);
+				.parseSemantics("PRE_STATE_WRAPPER:<a,<t,t>>"), StateFlag.PRE);
 		this.statefulWrappers = Collections.unmodifiableMap(statefuls);
 		this.statefulWrappersToFlags = Collections
 				.unmodifiableMap(statefulsToFlag);
@@ -283,8 +284,63 @@ public class NaviEvaluationConstants {
 		}
 	}
 	
-	public static class StateFlag {
-		private StateFlag() {
+	public static class StateFlag implements Serializable {
+		
+		public static final StateFlag				POST	= new StateFlag(
+																	"post");
+		
+		public static final StateFlag				PRE		= new StateFlag(
+																	"pre");
+		
+		private static final Map<String, StateFlag>	STRING_MAPPING;
+		
+		private static final List<StateFlag>		VALUES;
+		
+		private final String						label;
+		
+		private StateFlag(String label) {
+			this.label = label;
+		}
+		
+		static {
+			final Map<String, StateFlag> stringMapping = new HashMap<String, StateFlag>();
+			
+			stringMapping.put(POST.label, POST);
+			stringMapping.put(PRE.label, PRE);
+			
+			STRING_MAPPING = Collections.unmodifiableMap(stringMapping);
+			VALUES = Collections.unmodifiableList(new ArrayList<StateFlag>(
+					stringMapping.values()));
+		}
+		
+		public static StateFlag valueOf(String string) {
+			return STRING_MAPPING.get(string);
+		}
+		
+		public static List<StateFlag> values() {
+			return VALUES;
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			return obj == this;
+		}
+		
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((label == null) ? 0 : label.hashCode());
+			return result;
+		}
+		
+		@Override
+		public String toString() {
+			return label;
+		}
+		
+		private Object readResolve() throws ObjectStreamException {
+			return Direction.valueOf(toString());
 		}
 	}
 	

@@ -22,13 +22,13 @@ import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
 import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
 import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
 
-public class NaviLearningWeakValidatorCreator implements
-		IResourceObjectCreator<NaviLearningWeakValidator> {
+public class NaviLearningWeakValidatorCreator<MR> implements
+		IResourceObjectCreator<NaviLearningWeakValidator<MR>> {
 	
 	@Override
-	public NaviLearningWeakValidator create(Parameters params,
+	public NaviLearningWeakValidator<MR> create(Parameters params,
 			IResourceRepository repo) {
-		return new NaviLearningWeakValidator();
+		return new NaviLearningWeakValidator<MR>();
 	}
 	
 	@Override

@@ -71,8 +71,7 @@ public class ExtractSingleAction implements ILogicalExpressionVisitor {
 		final LogicalExpression newBody = result;
 		if (updatedVariable != lambda.getArgument()
 				|| newBody != lambda.getBody()) {
-			result = new Lambda(updatedVariable, newBody,
-					LogicLanguageServices.getTypeRepository());
+			result = new Lambda(updatedVariable, newBody);
 		} else {
 			result = lambda;
 		}
@@ -110,9 +109,7 @@ public class ExtractSingleAction implements ILogicalExpressionVisitor {
 			}
 			if (argsChanged || newPred != literal.getPredicate()) {
 				result = new Literal(newPred, argsChanged ? newArgs
-						: literal.getArguments(),
-						LogicLanguageServices.getTypeComparator(),
-						LogicLanguageServices.getTypeRepository());
+						: literal.getArguments());
 			} else {
 				result = literal;
 			}

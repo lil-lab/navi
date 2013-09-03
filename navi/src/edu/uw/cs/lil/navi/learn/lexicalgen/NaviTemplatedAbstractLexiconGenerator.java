@@ -32,7 +32,6 @@ import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.mr.language.type.ComplexType;
 import edu.uw.cs.lil.tiny.mr.language.type.Type;
 import edu.uw.cs.lil.tiny.parser.IParser;
-import edu.uw.cs.lil.tiny.parser.ccg.model.IModelImmutable;
 import edu.uw.cs.utils.composites.Pair;
 import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
@@ -45,10 +44,9 @@ public class NaviTemplatedAbstractLexiconGenerator extends TemplateCoarseGenlex 
 			Set<LexicalTemplate> templates,
 			Set<Pair<List<Type>, List<LogicalConstant>>> pontetialConstantSeqs,
 			Set<List<LogicalConstant>> abstractConstantSeqs, int maxTokens,
-			IModelImmutable<Sentence, LogicalExpression> model,
 			IParser<Sentence, LogicalExpression> parser, int parsingBeam) {
 		super(templates, pontetialConstantSeqs, abstractConstantSeqs,
-				maxTokens, model, parser, parsingBeam);
+				maxTokens, parser, parsingBeam);
 		LOG.info(
 				"Init NaviTemplatedLexiconGenerator :: %d templates, %d potential constants sequences",
 				templates.size(), pontetialConstantSeqs.size());
@@ -59,10 +57,9 @@ public class NaviTemplatedAbstractLexiconGenerator extends TemplateCoarseGenlex 
 		private final NaviEvaluationConstants	naviConsts;
 		
 		public Builder(int maxTokens,
-				IModelImmutable<Sentence, LogicalExpression> model,
 				IParser<Sentence, LogicalExpression> parser, int parsingBeam,
 				NaviEvaluationConstants naviConsts) {
-			super(maxTokens, model, parser, parsingBeam);
+			super(maxTokens, parser, parsingBeam);
 			this.naviConsts = naviConsts;
 		}
 		
@@ -86,7 +83,7 @@ public class NaviTemplatedAbstractLexiconGenerator extends TemplateCoarseGenlex 
 					templates.size(), constants.size());
 			return new NaviTemplatedAbstractLexiconGenerator(templates,
 					createPotentialLists(), createAbstractLists(), maxTokens,
-					model, parser, parsingBeam);
+					parser, parsingBeam);
 		}
 		
 		private Syntax adverbialToSentenceExpansion(Syntax syntax, Type type) {

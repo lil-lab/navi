@@ -17,6 +17,7 @@
 package edu.uw.cs.lil.navi.experiments.plat.resources;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -25,30 +26,34 @@ import edu.uw.cs.lil.navi.data.LabeledInstructionSeqTrace;
 import edu.uw.cs.lil.navi.data.LabeledInstructionSeqTraceDataset;
 import edu.uw.cs.lil.navi.data.LabeledInstructionTrace;
 import edu.uw.cs.lil.navi.data.LabeledInstructionTraceDataset;
-import edu.uw.cs.lil.navi.data.Trace;
-import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.experiments.plat.NaviExperiment;
 import edu.uw.cs.lil.navi.map.NavigationMap;
 import edu.uw.cs.lil.tiny.ccg.categories.ICategoryServices;
-import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
-import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.explat.IResourceRepository;
 import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
 import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
 import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
-import edu.uw.cs.lil.tiny.genlex.ccg.ILexiconGenerator;
-import edu.uw.cs.utils.composites.Pair;
 
 public class LabeledInstructionTraceDatasetCreator<MR> implements
 		IResourceObjectCreator<LabeledInstructionTraceDataset<MR>> {
 	
+	private static Map<String, NavigationMap> toMap(List<String> ids,
+			IResourceRepository repo) {
+		final Map<String, NavigationMap> maps = new HashMap<String, NavigationMap>();
+		for (final String id : ids) {
+			final NavigationMap map = repo.getResource(id);
+			maps.put(map.getName().toLowerCase(), map);
+		}
+		return maps;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public LabeledInstructionTraceDataset<MR> create(Parameters parameters,
+	public LabeledInstructionTraceDataset<MR> create(Parameters params,
 			IResourceRepository repo) {
-		if (parameters.contains("sets")) {
+		if (params.contains("sets")) {
 			final LabeledInstructionSeqTraceDataset<MR> sets = repo
-					.getResource(parameters.get("sets"));
+					.getResource(params.get("sets"));
 			final List<LabeledInstructionTrace<MR>> items = new LinkedList<LabeledInstructionTrace<MR>>();
 			for (final LabeledInstructionSeqTrace<MR> set : sets) {
 				for (final LabeledInstructionTrace<MR> lst : set) {
@@ -60,13 +65,10 @@ public class LabeledInstructionTraceDatasetCreator<MR> implements
 			try {
 				return LabeledInstructionTraceDataset
 						.readFromFile(
-								parameters.getAsFile("file"),
-								(Map<String, NavigationMap>) repo
-										.getResource(NaviExperiment.MAPS_RESOURCE),
+								params.getAsFile("file"),
+								toMap(params.getSplit("maps"), repo),
 								(ICategoryServices<MR>) repo
-										.getResource(NaviExperiment.CATEGORY_SERVICES_RESOURCE),
-								(ILexiconGenerator<ILabeledDataItem<Pair<Sentence, Task>, Pair<MR, Trace>>, MR>) repo
-										.getResource(parameters.get("genlex")));
+										.getResource(NaviExperiment.CATEGORY_SERVICES_RESOURCE));
 			} catch (final IOException e) {
 				throw new RuntimeException(e);
 			}
@@ -89,7 +91,9 @@ public class LabeledInstructionTraceDatasetCreator<MR> implements
 						"id",
 						"Dataset of labeled instruction sequences to construct a labeled instruction dataset from (may be used instead of file and genlex).")
 				.addParam("file", "file", "Dataset file")
-				.addParam("genlex", "id", "Lexical generator").build();
+				.addParam("genlex", "id", "Lexical generator")
+				.addParam("maps", NavigationMap.class, "Navigation maps.")
+				.build();
 	}
 	
 }

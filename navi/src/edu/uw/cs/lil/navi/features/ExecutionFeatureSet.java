@@ -16,6 +16,11 @@
  ******************************************************************************/
 package edu.uw.cs.lil.navi.features;
 
+import java.io.IOException;
+import java.io.InvalidObjectException;
+import java.io.ObjectInputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -60,20 +65,24 @@ import edu.uw.cs.utils.log.LoggerFactory;
  * @author Yoav Artzi
  */
 public class ExecutionFeatureSet implements
-		IParseFeatureSet<Sentence, LogicalExpression> {
-	private static final String									FEATURE_TAG			= "LEX_EXEC";
-	private static final ILogger								LOG					= LoggerFactory
-																							.create(ExecutionFeatureSet.class);
-	private static final Object									NULL_PLACEHOLDER	= new Object();
+		IParseFeatureSet<IDataItem<Sentence>, LogicalExpression> {
+	private static final String												FEATURE_TAG			= "LEX_EXEC";
+	private static final ILogger											LOG					= LoggerFactory
+																										.create(ExecutionFeatureSet.class);
+	private static final Object												NULL_PLACEHOLDER	= new Object();
 	
-	private final Cache<Pair<LogicalExpression, Task>, Object>	cache;
-	private final NaviSingleEvaluator							evaluator;
-	private final double										scale;
-	private final Set<Type>										validTypes;
+	private transient final Cache<Pair<LogicalExpression, Task>, Object>	cache;
+	
+	private final int														cacheSize;
+	
+	private final NaviSingleEvaluator										evaluator;
+	private final double													scale;
+	private final Set<Type>													validTypes;
 	
 	public ExecutionFeatureSet(NaviSingleEvaluator evaluator, int cacheSize,
 			double scale) {
 		this.evaluator = evaluator;
+		this.cacheSize = cacheSize;
 		this.scale = scale;
 		this.cache = CacheBuilder.newBuilder().maximumSize(cacheSize).build();
 		final Set<Type> types = new HashSet<Type>();
@@ -113,8 +122,8 @@ public class ExecutionFeatureSet implements
 			return setFeats(
 					obj.getRoot(),
 					HashVectorFactory.create(),
-					((SituatedDataItemWrapper<Sentence, Task>) dataItem)
-							.getBaseDataItem()).vectorMultiply(theta);
+					((SituatedDataItemWrapper<IDataItem<Pair<Sentence, Task>>, Task>) dataItem)
+							.getSituatedDataItem()).vectorMultiply(theta);
 		} else {
 			return 0;
 		}
@@ -125,11 +134,18 @@ public class ExecutionFeatureSet implements
 	public void setFeats(IParseStep<LogicalExpression> obj, IHashVector feats,
 			IDataItem<Sentence> dataItem) {
 		if (shouldComputeFeatures(obj, dataItem)) {
-			setFeats(obj.getRoot(), feats,
-					((SituatedDataItemWrapper<Sentence, Task>) dataItem)
-							.getBaseDataItem());
+			setFeats(
+					obj.getRoot(),
+					feats,
+					((SituatedDataItemWrapper<IDataItem<Pair<Sentence, Task>>, Task>) dataItem)
+							.getSituatedDataItem());
 			
 		}
+	}
+	
+	private void readObject(@SuppressWarnings("unused") ObjectInputStream in)
+			throws IOException, ClassNotFoundException {
+		throw new InvalidObjectException("Proxy required");
 	}
 	
 	private IHashVector setFeats(final Category<LogicalExpression> category,
@@ -196,5 +212,27 @@ public class ExecutionFeatureSet implements
 						.getNaviEvaluationConsts()
 						.getAgentPositionVariantConstants(),
 						GetConstantsSet.of(obj.getRoot().getSem()));
+	}
+	
+	private Object writeReplace() throws ObjectStreamException {
+		return new SerializationProxy(this);
+	}
+	
+	private static class SerializationProxy implements Serializable {
+		private static final long			serialVersionUID	= -3169913258541038530L;
+		private final int					cacheSize;
+		private final NaviSingleEvaluator	evaluator;
+		private final double				scale;
+		
+		public SerializationProxy(ExecutionFeatureSet efs) {
+			this.evaluator = efs.evaluator;
+			this.scale = efs.scale;
+			this.cacheSize = efs.cacheSize;
+		}
+		
+		private Object readResolve() throws ObjectStreamException {
+			return new ExecutionFeatureSet(evaluator, cacheSize, scale);
+		}
+		
 	}
 }

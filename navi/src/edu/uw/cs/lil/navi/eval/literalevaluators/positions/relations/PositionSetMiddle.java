@@ -28,6 +28,8 @@ import edu.uw.cs.utils.collections.ListUtils;
 
 public class PositionSetMiddle extends NaviInvariantLiteralEvaluator {
 	
+	private static final long	serialVersionUID	= 1851603158279342366L;
+	
 	@Override
 	public Object evaluate(Object[] args) {
 		if (args.length == 2 && args[0] instanceof PositionSet

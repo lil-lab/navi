@@ -22,6 +22,8 @@ import edu.uw.cs.lil.navi.map.PositionSet;
 
 public class PositionSetAgentDistance implements INaviLiteralEvaluator {
 	
+	private static final long	serialVersionUID	= -651431226680464070L;
+	
 	@Override
 	public boolean agentDependent() {
 		return true;

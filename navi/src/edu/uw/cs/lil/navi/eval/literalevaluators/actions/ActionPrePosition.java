@@ -23,6 +23,8 @@ import edu.uw.cs.lil.navi.map.PositionSetSingleton;
 
 public class ActionPrePosition extends NaviInvariantLiteralEvaluator {
 	
+	private static final long	serialVersionUID	= 3560080458734338475L;
+	
 	@Override
 	public Object evaluate(Object[] args) {
 		if (args.length == 2 && args[0] instanceof Action

@@ -21,6 +21,8 @@ import edu.uw.cs.lil.navi.map.PositionSet;
 
 public class PositionSetDistance extends NaviInvariantLiteralEvaluator {
 	
+	private static final long	serialVersionUID	= 6317101320396427266L;
+	
 	@Override
 	public Object evaluate(Object[] args) {
 		if (args.length == 3 && args[0] instanceof PositionSet

@@ -21,6 +21,8 @@ import edu.uw.cs.lil.navi.eval.NaviEvaluationServices;
 public abstract class NaviInvariantLiteralEvaluator implements
 		INaviLiteralEvaluator {
 	
+	private static final long	serialVersionUID	= 4367394302417968396L;
+	
 	@Override
 	public final boolean agentDependent() {
 		return false;

@@ -201,7 +201,7 @@ public class NaviSingleEvaluatorTest {
 					.readFromFile(
 							new File("..", "resources-test/sample.ccgtrc"),
 							TestingConstants.MAPS,
-							TestingConstants.CATEGORY_SERVICES, null);
+							TestingConstants.CATEGORY_SERVICES);
 			
 			final NaviSingleEvaluator executor = new NaviSingleEvaluator(
 					NaviEvalTestingConstants.getServicesFactory());
@@ -260,7 +260,7 @@ public class NaviSingleEvaluatorTest {
 		try {
 			final LabeledInstructionSeqTraceDataset<LogicalExpression> sets = LabeledInstructionSeqTraceDataset
 					.readFromFile(new File("..", "resources/seed.ccgsettrc"),
-							TestingConstants.MAPS, null,
+							TestingConstants.MAPS,
 							TestingConstants.CATEGORY_SERVICES);
 			
 			final NaviSingleEvaluator evaluator = new NaviSingleEvaluator(

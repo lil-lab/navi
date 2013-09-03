@@ -37,7 +37,7 @@ public class LabeledSingleTraceDatasetTest {
 					.readFromFile(
 							new File("..", "resources-test/sample.ccgtrc"),
 							TestingConstants.MAPS,
-							TestingConstants.CATEGORY_SERVICES, null);
+							TestingConstants.CATEGORY_SERVICES);
 			System.out.println(dataset);
 			Assert.assertEquals(31, dataset.size());
 		} catch (final IOException e) {

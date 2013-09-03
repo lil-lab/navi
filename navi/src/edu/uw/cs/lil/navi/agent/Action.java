@@ -16,6 +16,8 @@
  ******************************************************************************/
 package edu.uw.cs.lil.navi.agent;
 
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -231,26 +233,30 @@ public class Action implements Comparable<Action> {
 		return sb.toString();
 	}
 	
-	public static class AgentAction implements Comparable<AgentAction> {
-		public static final AgentAction					FORWARD	= new AgentAction(
-																		"FORWARD",
-																		0);
+	public static class AgentAction implements Comparable<AgentAction>,
+			Serializable {
 		
-		public static final AgentAction					LEFT	= new AgentAction(
-																		"LEFT",
-																		1);
+		public static final AgentAction					FORWARD				= new AgentAction(
+																					"FORWARD",
+																					0);
 		
-		public static final AgentAction					RIGHT	= new AgentAction(
-																		"RIGHT",
-																		2);
-		public static final AgentAction					VERIFY	= new AgentAction(
-																		"VERIFY",
-																		3);
+		public static final AgentAction					LEFT				= new AgentAction(
+																					"LEFT",
+																					1);
+		
+		public static final AgentAction					RIGHT				= new AgentAction(
+																					"RIGHT",
+																					2);
+		
+		public static final AgentAction					VERIFY				= new AgentAction(
+																					"VERIFY",
+																					3);
+		
+		private static final long						serialVersionUID	= 8728646844332258134L;
 		private static final Map<String, AgentAction>	STRING_MAPPING;
-		
 		private static final List<AgentAction>			VALUES;
-		private final String							label;
 		
+		private final String							label;
 		private final int								order;
 		
 		public AgentAction(String label, int order) {
@@ -300,6 +306,10 @@ public class Action implements Comparable<Action> {
 		@Override
 		public String toString() {
 			return label;
+		}
+		
+		private Object readResolve() throws ObjectStreamException {
+			return AgentAction.valueOf(toString());
 		}
 	}
 }

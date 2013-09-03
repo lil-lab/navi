@@ -36,46 +36,43 @@ import edu.uw.cs.lil.tiny.parser.ccg.joint.genlex.JointTemplatedAbstractLexiconG
 import edu.uw.cs.lil.tiny.parser.ccg.joint.genlex.JointTemplatedAbstractLexiconGenerator.Builder;
 import edu.uw.cs.lil.tiny.parser.ccg.model.IModelImmutable;
 import edu.uw.cs.lil.tiny.parser.joint.IJointParser;
-import edu.uw.cs.lil.tiny.parser.joint.model.IJointModelImmutable;
 import edu.uw.cs.utils.composites.Pair;
 
 public class NaviJointTemplatedAbstractLexiconGeneratorCreator
 		implements
-		IResourceObjectCreator<JointTemplatedAbstractLexiconGenerator<Task, Trace, Trace>> {
+		IResourceObjectCreator<JointTemplatedAbstractLexiconGenerator<Task, Trace, Trace, IDataItem<Pair<Sentence, Task>>>> {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public JointTemplatedAbstractLexiconGenerator<Task, Trace, Trace> create(
-			Parameters parameters, IResourceRepository resourceRepo) {
-		final Builder<Task, Trace, Trace> builder = new NaviJointTemplatedAbstractLexiconGenerator.Builder(
-				Integer.valueOf(parameters.get("maxTokens")),
-				(IJointModelImmutable<Sentence, Task, LogicalExpression, Trace>) resourceRepo
-						.getResource(parameters.get("model")),
+	public JointTemplatedAbstractLexiconGenerator<Task, Trace, Trace, IDataItem<Pair<Sentence, Task>>> create(
+			Parameters params, IResourceRepository resourceRepo) {
+		final Builder<Task, Trace, Trace, IDataItem<Pair<Sentence, Task>>> builder = new NaviJointTemplatedAbstractLexiconGenerator.Builder(
+				Integer.valueOf(params.get("maxTokens")),
 				(IParser<Sentence, LogicalExpression>) resourceRepo
-						.getResource(NaviExperiment.BASE_PARSER_RESOURCE),
-				Integer.valueOf(parameters.get("beam")),
+						.getResource(params.get("baseParser")),
+				Integer.valueOf(params.get("beam")),
 				((NaviEvaluationServicesFactory) resourceRepo
 						.getResource(NaviExperiment.EVAL_SERVICES_FACTORY))
 						.getNaviEvaluationConsts(),
 				(IJointParser<Sentence, Task, LogicalExpression, Trace, Trace>) resourceRepo
-						.getResource(NaviExperiment.PARSER_RESOURCE),
+						.getResource(params.get("parser")),
 				(IValidator<IDataItem<Pair<Sentence, Task>>, Pair<LogicalExpression, Trace>>) resourceRepo
-						.getResource(parameters.get("validator")))
+						.getResource(params.get("validator")))
 				.addConstants((Ontology) resourceRepo
 						.getResource(NaviExperiment.DOMAIN_ONTOLOGY_RESOURCE));
 		
-		if (parameters.contains("templatesModel")) {
+		if (params.contains("templatesModel")) {
 			builder.addTemplatesFromModel((IModelImmutable<?, LogicalExpression>) resourceRepo
-					.getResource(parameters.get("model")));
-		} else if (parameters.contains("lexicon")) {
+					.getResource(params.get("model")));
+		} else if (params.contains("lexicon")) {
 			builder.addTemplatesFromLexicon((ILexicon<LogicalExpression>) resourceRepo
-					.getResource(parameters.get("lexicon")));
+					.getResource(params.get("lexicon")));
 		} else {
 			throw new IllegalStateException("no templates source specified");
 		}
 		
-		if (parameters.contains("margin")) {
-			builder.setMargin(Double.valueOf(parameters.get("margin")));
+		if (params.contains("margin")) {
+			builder.setMargin(Double.valueOf(params.get("margin")));
 		}
 		
 		return builder.build();

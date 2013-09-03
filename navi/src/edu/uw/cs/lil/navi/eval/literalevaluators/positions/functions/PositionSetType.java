@@ -23,6 +23,7 @@ import edu.uw.cs.utils.filter.IFilter;
 
 public class PositionSetType extends NaviInvariantLiteralEvaluator {
 	
+	private static final long		serialVersionUID	= -5135733348309431411L;
 	private final IFilter<Position>	positionFilter;
 	
 	public PositionSetType(IFilter<Position> positionFilter) {

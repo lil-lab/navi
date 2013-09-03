@@ -16,6 +16,7 @@
  ******************************************************************************/
 package edu.uw.cs.lil.navi.features.init;
 
+import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicLanguageServices;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalConstant;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
@@ -31,7 +32,8 @@ import edu.uw.cs.lil.tiny.utils.hashvector.IHashVector;
  * @param <X>
  * @param <Y>
  */
-public class ReptFeaturesInit<X> implements IModelInit<X, LogicalExpression> {
+public class ReptFeaturesInit<DI extends IDataItem<?>> implements
+		IModelInit<DI, LogicalExpression> {
 	
 	private final String	featureName;
 	private final String	featureTag;
@@ -47,7 +49,7 @@ public class ReptFeaturesInit<X> implements IModelInit<X, LogicalExpression> {
 	}
 	
 	@Override
-	public void init(Model<X, LogicalExpression> model) {
+	public void init(Model<DI, LogicalExpression> model) {
 		final IHashVector theta = model.getTheta();
 		for (final LogicalConstant pred : ontology.getAllPredicates()) {
 			theta.set(featureTag, featureName, LogicLanguageServices

@@ -17,6 +17,7 @@
 package edu.uw.cs.lil.navi.experiments.plat.resources;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -25,22 +26,25 @@ import edu.uw.cs.lil.navi.data.InstructionSeqTrace;
 import edu.uw.cs.lil.navi.data.InstructionSeqTraceDataset;
 import edu.uw.cs.lil.navi.data.InstructionTrace;
 import edu.uw.cs.lil.navi.data.InstructionTraceDataset;
-import edu.uw.cs.lil.navi.eval.Task;
-import edu.uw.cs.lil.navi.experiments.plat.NaviExperiment;
 import edu.uw.cs.lil.navi.map.NavigationMap;
-import edu.uw.cs.lil.tiny.data.IDataItem;
-import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.explat.IResourceRepository;
 import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
 import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
 import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
-import edu.uw.cs.lil.tiny.genlex.ccg.ILexiconGenerator;
-import edu.uw.cs.utils.composites.Pair;
 
 public class InstructionTraceDatasetCreator<MR> implements
 		IResourceObjectCreator<InstructionTraceDataset<MR>> {
 	
-	@SuppressWarnings("unchecked")
+	private static Map<String, NavigationMap> toMap(List<String> ids,
+			IResourceRepository repo) {
+		final Map<String, NavigationMap> maps = new HashMap<String, NavigationMap>();
+		for (final String id : ids) {
+			final NavigationMap map = repo.getResource(id);
+			maps.put(map.getName().toLowerCase(), map);
+		}
+		return maps;
+	}
+	
 	@Override
 	public InstructionTraceDataset<MR> create(Parameters params,
 			IResourceRepository repo) {
@@ -56,13 +60,9 @@ public class InstructionTraceDatasetCreator<MR> implements
 			return new InstructionTraceDataset<MR>(items);
 		} else {
 			try {
-				return InstructionTraceDataset
-						.readFromFile(
-								params.getAsFile("file"),
-								(Map<String, NavigationMap>) repo
-										.getResource(NaviExperiment.MAPS_RESOURCE),
-								(ILexiconGenerator<IDataItem<Pair<Sentence, Task>>, MR>) repo
-										.getResource(params.get("genlex")));
+				return InstructionTraceDataset.readFromFile(
+						params.getAsFile("file"),
+						toMap(params.getSplit("maps"), repo));
 			} catch (final IOException e) {
 				throw new RuntimeException(e);
 			}
@@ -84,6 +84,7 @@ public class InstructionTraceDatasetCreator<MR> implements
 						"id",
 						"Dataset of instruction sequences to construct a labeled instruction dataset from (may be used instead of file and genlex).")
 				.addParam("file", "file", "Dataset file")
+				.addParam("maps", NavigationMap.class, "Navigation maps.")
 				.addParam("genlex", "id", "Lexical generator").build();
 	}
 	

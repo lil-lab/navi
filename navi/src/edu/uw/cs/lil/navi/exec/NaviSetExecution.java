@@ -23,6 +23,7 @@ import java.util.List;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.tiny.ccg.lexicon.LexicalEntry;
+import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.exec.IExecution;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
@@ -34,13 +35,14 @@ import edu.uw.cs.utils.composites.Pair;
 public class NaviSetExecution implements
 		IExecution<List<Pair<LogicalExpression, Trace>>> {
 	
-	private final IJointModelImmutable<Sentence, Task, LogicalExpression, Trace>	model;
-	private final List<IJointParse<LogicalExpression, Trace>>						parses;
-	private final List<Pair<LogicalExpression, Trace>>								result;
-	private double																	score;
+	private final IJointModelImmutable<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace>	model;
+	private final List<IJointParse<LogicalExpression, Trace>>											parses;
+	private final List<Pair<LogicalExpression, Trace>>													result;
+	private double																						score;
 	
-	public NaviSetExecution(List<IJointParse<LogicalExpression, Trace>> parses,
-			IJointModelImmutable<Sentence, Task, LogicalExpression, Trace> model) {
+	public NaviSetExecution(
+			List<IJointParse<LogicalExpression, Trace>> parses,
+			IJointModelImmutable<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace> model) {
 		this.model = model;
 		this.parses = parses;
 		this.result = Collections
@@ -64,7 +66,7 @@ public class NaviSetExecution implements
 	
 	private static String lexToString(
 			Iterable<LexicalEntry<LogicalExpression>> lexicalEntries,
-			IJointModelImmutable<Sentence, Task, LogicalExpression, Trace> model,
+			IJointModelImmutable<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace> model,
 			String prefix) {
 		final StringBuilder sb = new StringBuilder();
 		final Iterator<LexicalEntry<LogicalExpression>> iterator = lexicalEntries

@@ -20,79 +20,93 @@ import java.util.List;
 
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.Task;
-import edu.uw.cs.lil.tiny.data.IDataItem;
+import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
-import edu.uw.cs.lil.tiny.test.stats.ITestingStatistics;
+import edu.uw.cs.lil.tiny.test.stats.AbstractTestingStatistics;
+import edu.uw.cs.lil.tiny.test.stats.IStatistics;
 import edu.uw.cs.utils.collections.ListUtils;
 import edu.uw.cs.utils.composites.Pair;
 
-public class SetLogicalFormTestStatistics<Y> implements
-		ITestingStatistics<Pair<List<Sentence>, Task>, List<Pair<Y, Trace>>> {
-	
-	private final ITestingStatistics<Pair<List<Sentence>, Task>, List<Y>>	baseStats;
+/**
+ * Evaluate the sequence of logical form interpretations against the annotated
+ * logical forms. Ignores the actual execution.
+ * 
+ * @author Yoav Artzi
+ * @param <MR>
+ */
+public class SetLogicalFormTestStatistics<MR>
+		extends
+		AbstractTestingStatistics<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> {
 	
 	public SetLogicalFormTestStatistics(
-			ITestingStatistics<Pair<List<Sentence>, Task>, List<Y>> baseStats) {
-		this.baseStats = baseStats;
+			String prefix,
+			String metricName,
+			IStatistics<ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>>> stats) {
+		super(prefix, metricName, stats);
 	}
 	
-	private static <Y> List<Y> getLogicalFormList(List<Pair<Y, Trace>> result) {
-		return ListUtils.map(result, new ListUtils.Mapper<Pair<Y, Trace>, Y>() {
-			@Override
-			public Y process(Pair<Y, Trace> obj) {
-				return obj.first();
-			}
-		});
+	private static <MR> List<MR> getLogicalFormList(List<Pair<MR, Trace>> result) {
+		return ListUtils.map(result,
+				new ListUtils.Mapper<Pair<MR, Trace>, MR>() {
+					@Override
+					public MR process(Pair<MR, Trace> obj) {
+						return obj.first();
+					}
+				});
 	}
 	
 	@Override
-	public void recordNoParse(IDataItem<Pair<List<Sentence>, Task>> dataItem,
-			List<Pair<Y, Trace>> gold) {
-		baseStats.recordNoParse(dataItem, getLogicalFormList(gold));
+	public void recordNoParse(
+			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			List<Pair<MR, Trace>> gold) {
+		stats.recordFailure(dataItem);
 	}
 	
 	@Override
 	public void recordNoParseWithSkipping(
-			IDataItem<Pair<List<Sentence>, Task>> dataItem,
-			List<Pair<Y, Trace>> gold) {
-		baseStats.recordNoParseWithSkipping(dataItem, getLogicalFormList(gold));
+			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			List<Pair<MR, Trace>> gold) {
+		stats.recordSloppyFailure(dataItem);
 	}
 	
 	@Override
-	public void recordParse(IDataItem<Pair<List<Sentence>, Task>> dataItem,
-			List<Pair<Y, Trace>> gold, List<Pair<Y, Trace>> label) {
-		baseStats.recordParse(dataItem, getLogicalFormList(gold),
-				getLogicalFormList(label));
+	public void recordParse(
+			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			List<Pair<MR, Trace>> gold, List<Pair<MR, Trace>> label) {
+		final List<MR> labelLFs = getLogicalFormList(label);
+		final List<MR> goldLFs = getLogicalFormList(dataItem.getLabel());
+		if (labelLFs.equals(goldLFs)) {
+			stats.recordCorrect(dataItem);
+		} else {
+			stats.recordIncorrect(dataItem);
+		}
 	}
 	
 	@Override
-	public void recordParses(IDataItem<Pair<List<Sentence>, Task>> dataItem,
-			List<Pair<Y, Trace>> gold, List<List<Pair<Y, Trace>>> labels) {
-		baseStats.recordNoParse(dataItem, getLogicalFormList(gold));
+	public void recordParses(
+			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			List<Pair<MR, Trace>> gold, List<List<Pair<MR, Trace>>> labels) {
+		stats.recordFailure(dataItem);
 	}
 	
 	@Override
 	public void recordParsesWithSkipping(
-			IDataItem<Pair<List<Sentence>, Task>> dataItem,
-			List<Pair<Y, Trace>> gold, List<List<Pair<Y, Trace>>> labels) {
-		baseStats.recordNoParseWithSkipping(dataItem, getLogicalFormList(gold));
+			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			List<Pair<MR, Trace>> gold, List<List<Pair<MR, Trace>>> labels) {
+		stats.recordSloppyFailure(dataItem);
 	}
 	
 	@Override
 	public void recordParseWithSkipping(
-			IDataItem<Pair<List<Sentence>, Task>> dataItem,
-			List<Pair<Y, Trace>> gold, List<Pair<Y, Trace>> label) {
-		baseStats.recordParseWithSkipping(dataItem, getLogicalFormList(gold),
-				getLogicalFormList(label));
+			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			List<Pair<MR, Trace>> gold, List<Pair<MR, Trace>> label) {
+		final List<MR> labelLFs = getLogicalFormList(label);
+		final List<MR> goldLFs = getLogicalFormList(dataItem.getLabel());
+		if (labelLFs.equals(goldLFs)) {
+			stats.recordSloppyCorrect(dataItem);
+		} else {
+			stats.recordSloppyIncorrect(dataItem);
+		}
 	}
 	
-	@Override
-	public String toString() {
-		return baseStats.toString();
-	}
-	
-	@Override
-	public String toTabDelimitedString() {
-		return baseStats.toTabDelimitedString();
-	}
 }

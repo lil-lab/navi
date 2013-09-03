@@ -18,6 +18,7 @@ package edu.uw.cs.lil.navi.eval;
 
 import edu.uw.cs.lil.navi.TestingConstants;
 import edu.uw.cs.lil.navi.agent.Action.AgentAction;
+import edu.uw.cs.lil.navi.eval.NaviEvaluationConstants.StateFlag;
 import edu.uw.cs.lil.navi.eval.literalevaluators.WrappedGenericEvaluator;
 import edu.uw.cs.lil.navi.eval.literalevaluators.actions.ActionDirection;
 import edu.uw.cs.lil.navi.eval.literalevaluators.actions.ActionLength;
@@ -336,23 +337,17 @@ public class NaviEvalTestingConstants {
 		
 		// Stateful predicates
 		builder.addStatefulPredicate(TestingConstants.CATEGORY_SERVICES
-				.parseSemantics("post:<a,<t,t>>"),
-				NaviEvaluationConstants.POST_ACTION_STATE);
+				.parseSemantics("post:<a,<t,t>>"), StateFlag.POST);
 		builder.addStatefulPredicate(TestingConstants.CATEGORY_SERVICES
-				.parseSemantics("pass:<a,<ps,t>>"),
-				NaviEvaluationConstants.POST_ACTION_STATE);
+				.parseSemantics("pass:<a,<ps,t>>"), StateFlag.POST);
 		builder.addStatefulPredicate(TestingConstants.CATEGORY_SERVICES
-				.parseSemantics("pre:<a,<t,t>>"),
-				NaviEvaluationConstants.PRE_ACTION_STATE);
+				.parseSemantics("pre:<a,<t,t>>"), StateFlag.PRE);
 		builder.addStatefulPredicate(TestingConstants.CATEGORY_SERVICES
-				.parseSemantics("pre:<a,<ps,t>>"),
-				NaviEvaluationConstants.PRE_ACTION_STATE);
+				.parseSemantics("pre:<a,<ps,t>>"), StateFlag.PRE);
 		builder.addStatefulPredicate(TestingConstants.CATEGORY_SERVICES
-				.parseSemantics("while:<a,<ps,t>>"),
-				NaviEvaluationConstants.PRE_ACTION_STATE);
+				.parseSemantics("while:<a,<ps,t>>"), StateFlag.PRE);
 		builder.addStatefulPredicate(TestingConstants.CATEGORY_SERVICES
-				.parseSemantics("to:<a,<ps,t>>"),
-				NaviEvaluationConstants.POST_ACTION_STATE);
+				.parseSemantics("to:<a,<ps,t>>"), StateFlag.POST);
 		
 		servicesFactory = new NaviEvaluationServicesFactory(builder.build());
 		

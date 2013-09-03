@@ -18,6 +18,7 @@ package edu.uw.cs.lil.navi.experiments.plat;
 
 import java.util.List;
 
+import edu.uw.cs.lil.navi.data.InstructionTrace;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.experiments.plat.resources.ExecutionFeatureSetCreator;
@@ -37,6 +38,9 @@ import edu.uw.cs.lil.navi.experiments.plat.resources.NaviTemplatedAbstractLexico
 import edu.uw.cs.lil.navi.experiments.plat.resources.NaviTemplatedLexiconGeneratorCreator;
 import edu.uw.cs.lil.navi.experiments.plat.resources.ReptFeaturesInitCreator;
 import edu.uw.cs.lil.navi.experiments.plat.resources.TemplateCountModelInitCreator;
+import edu.uw.cs.lil.navi.map.NavigationMap;
+import edu.uw.cs.lil.navi.parse.NaviGraphParser;
+import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
 import edu.uw.cs.lil.tiny.data.resources.CompositeDataCollectionCreator;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
@@ -45,6 +49,9 @@ import edu.uw.cs.lil.tiny.explat.resources.ResourceCreatorRepository;
 import edu.uw.cs.lil.tiny.learn.situated.resources.SituatedValidationPerceptronCreator;
 import edu.uw.cs.lil.tiny.learn.situated.resources.SituatedValidationStocGradCreator;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
+import edu.uw.cs.lil.tiny.mr.lambda.ccg.SimpleFullParseFilter;
+import edu.uw.cs.lil.tiny.parser.ccg.cky.genlex.MarkAwareCKYBinaryParsingRule;
+import edu.uw.cs.lil.tiny.parser.ccg.cky.multi.MultiCKYParser;
 import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.resources.FactoredLexiconCreator;
 import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.resources.FactoredUniformScorerCreator;
 import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.resources.LexemeCooccurrenceScorerCreator;
@@ -61,7 +68,17 @@ import edu.uw.cs.lil.tiny.parser.ccg.features.lambda.resources.LogicalExpression
 import edu.uw.cs.lil.tiny.parser.ccg.features.lambda.resources.LogicalExpressionCoordinationFeatureSetCreator;
 import edu.uw.cs.lil.tiny.parser.ccg.features.lambda.resources.LogicalExpressionTypeFeatureSetCreator;
 import edu.uw.cs.lil.tiny.parser.ccg.joint.cky.resources.ChartLoggerCreator;
-import edu.uw.cs.lil.tiny.parser.joint.model.JointModelCreator;
+import edu.uw.cs.lil.tiny.parser.ccg.rules.BinaryRulesSet;
+import edu.uw.cs.lil.tiny.parser.ccg.rules.OverloadedRulesCreator;
+import edu.uw.cs.lil.tiny.parser.ccg.rules.lambda.typeshifting.basic.AdjectiveTypeShifting;
+import edu.uw.cs.lil.tiny.parser.ccg.rules.lambda.typeshifting.basic.AdverbialTopicalisationTypeShifting;
+import edu.uw.cs.lil.tiny.parser.ccg.rules.lambda.typeshifting.basic.AdverbialTypeShifting;
+import edu.uw.cs.lil.tiny.parser.ccg.rules.lambda.typeshifting.basic.PrepositionTypeShifting;
+import edu.uw.cs.lil.tiny.parser.ccg.rules.lambda.typeshifting.basic.SententialAdverbialTypeShifting;
+import edu.uw.cs.lil.tiny.parser.ccg.rules.primitivebinary.ApplicationCreator;
+import edu.uw.cs.lil.tiny.parser.ccg.rules.primitivebinary.CompositionCreator;
+import edu.uw.cs.lil.tiny.parser.ccg.rules.skipping.SkippingRuleCreator;
+import edu.uw.cs.lil.tiny.parser.joint.resources.JointModelCreator;
 import edu.uw.cs.lil.tiny.parser.resources.LexiconCreator;
 import edu.uw.cs.lil.tiny.parser.resources.LexiconModelInitCreator;
 import edu.uw.cs.lil.tiny.parser.resources.ModelLoggerCreator;
@@ -72,6 +89,24 @@ public class NaviResourceCreatorRepository extends ResourceCreatorRepository {
 	public NaviResourceCreatorRepository() {
 		super();
 		// Register default available resources
+		
+		// Parser creators
+		registerResourceCreator(new OverloadedRulesCreator<LogicalExpression>());
+		registerResourceCreator(new ApplicationCreator<LogicalExpression>());
+		registerResourceCreator(new CompositionCreator<LogicalExpression>());
+		registerResourceCreator(new PrepositionTypeShifting.Creator());
+		registerResourceCreator(new AdjectiveTypeShifting.Creator());
+		registerResourceCreator(new AdverbialTypeShifting.Creator());
+		registerResourceCreator(new AdverbialTopicalisationTypeShifting.Creator());
+		registerResourceCreator(new SententialAdverbialTypeShifting.Creator());
+		registerResourceCreator(new BinaryRulesSet.Creator<LogicalExpression>());
+		registerResourceCreator(new SkippingRuleCreator<LogicalExpression>());
+		registerResourceCreator(new MultiCKYParser.Creator<LogicalExpression>());
+		registerResourceCreator(new SimpleFullParseFilter.Creator());
+		registerResourceCreator(new MarkAwareCKYBinaryParsingRule.Creator<LogicalExpression>());
+		registerResourceCreator(new NaviGraphParser.Creator());
+		
+		registerResourceCreator(new NavigationMap.Creator());
 		registerResourceCreator(new LexiconModelInitCreator<Sentence, LogicalExpression>());
 		registerResourceCreator(new SingleSentenceDatasetCreator());
 		registerResourceCreator(new TemplateCountModelInitCreator());
@@ -79,9 +114,9 @@ public class NaviResourceCreatorRepository extends ResourceCreatorRepository {
 		registerResourceCreator(new UniformScorerCreator<LogicalExpression>());
 		registerResourceCreator(new ExpLengthLexicalEntryScorerCreator<LogicalExpression>());
 		registerResourceCreator(new FactoredUniformScorerCreator());
-		registerResourceCreator(new LexemeFeatureSetCreator<Pair<Sentence, Task>>());
-		registerResourceCreator(new LexicalFeatureSetCreator<Pair<Sentence, Task>, LogicalExpression>());
-		registerResourceCreator(new LexicalTemplateFeatureSetCreator<Pair<Sentence, Task>>());
+		registerResourceCreator(new LexemeFeatureSetCreator<IDataItem<Pair<Sentence, Task>>>());
+		registerResourceCreator(new LexicalFeatureSetCreator<IDataItem<Pair<Sentence, Task>>, LogicalExpression>());
+		registerResourceCreator(new LexicalTemplateFeatureSetCreator<IDataItem<Pair<Sentence, Task>>>());
 		registerResourceCreator(new LogicalExpressionCoordinationFeatureSetCreator<Sentence>());
 		registerResourceCreator(new LogicalExpressionCooccurrenceFeatureSetCreator<Sentence>());
 		registerResourceCreator(new LogicalExpressionTypeFeatureSetCreator<Sentence>());
@@ -90,30 +125,30 @@ public class NaviResourceCreatorRepository extends ResourceCreatorRepository {
 		registerResourceCreator(new LexicalEntryLexemeBasedScorerCreator());
 		registerResourceCreator(new LabeledInstructionTraceDatasetCreator<LogicalExpression>());
 		registerResourceCreator(new InstructionTraceDatasetCreator<LogicalExpression>());
-		registerResourceCreator(new JointModelCreator<Sentence, Task, LogicalExpression, Trace>());
+		registerResourceCreator(new JointModelCreator<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace>());
 		registerResourceCreator(new LexiconCreator<LogicalExpression>());
 		registerResourceCreator(new FactoredLexiconCreator());
 		registerResourceCreator(new ExecutionFeatureSetCreator());
 		registerResourceCreator(new NaviTemplatedLexiconGeneratorCreator());
 		registerResourceCreator(new NaviTemplatedAbstractLexiconGeneratorCreator());
 		registerResourceCreator(new NaviJointTemplatedAbstractLexiconGeneratorCreator());
-		registerResourceCreator(new SituatedValidationPerceptronCreator<Task, LogicalExpression, Trace, Trace>(
+		registerResourceCreator(new SituatedValidationPerceptronCreator<Task, LogicalExpression, Trace, Trace, InstructionTrace<LogicalExpression>>(
 				"learner.trc"));
-		registerResourceCreator(new SituatedValidationStocGradCreator<Task, LogicalExpression, Trace, Trace>(
+		registerResourceCreator(new SituatedValidationStocGradCreator<Task, LogicalExpression, Trace, Trace, InstructionTrace<LogicalExpression>>(
 				"learner.stocgrad.trc"));
 		registerResourceCreator(new OriginLexicalEntryScorerCreator<LogicalExpression>());
 		registerResourceCreator(new ExecTesterCreator<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>());
 		registerResourceCreator(new NaviSingleExecutorCreator());
 		registerResourceCreator(new LabeledInstructionSeqTraceDatasetCreator<LogicalExpression>());
 		registerResourceCreator(new InstructionSeqTraceDatasetCreator<LogicalExpression>());
-		registerResourceCreator(new RuleUsageFeatureSetCreator<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>());
+		registerResourceCreator(new RuleUsageFeatureSetCreator<IDataItem<Pair<Sentence, Task>>, LogicalExpression>());
 		registerResourceCreator(new NaviSeqExecutorCreator());
 		registerResourceCreator(new NaviNaiveSeqExecutorCreator());
 		registerResourceCreator(new ModelLoggerCreator());
-		registerResourceCreator(new NaviLearningValidatorCreator());
-		registerResourceCreator(new NaviPairValidatorWrapperCreator());
-		registerResourceCreator(new NaviLearningRelaxedValidatorCreator());
-		registerResourceCreator(new NaviLearningWeakValidatorCreator());
+		registerResourceCreator(new NaviLearningValidatorCreator<LogicalExpression>());
+		registerResourceCreator(new NaviPairValidatorWrapperCreator<LogicalExpression>());
+		registerResourceCreator(new NaviLearningRelaxedValidatorCreator<LogicalExpression>());
+		registerResourceCreator(new NaviLearningWeakValidatorCreator<LogicalExpression>());
 		registerResourceCreator(new ChartLoggerCreator<Trace, Trace>());
 		registerResourceCreator(new ExecTesterCreator<Pair<List<Sentence>, Task>, List<Pair<LogicalExpression, Trace>>>(
 				"tester.exec.set"));

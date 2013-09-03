@@ -26,6 +26,7 @@ import edu.uw.cs.lil.navi.eval.literalevaluators.NaviInvariantLiteralEvaluator;
 
 public class ActionType extends NaviInvariantLiteralEvaluator {
 	
+	private static final long		serialVersionUID	= -5340418737731420887L;
 	private final Set<AgentAction>	actions;
 	
 	public ActionType(AgentAction... actions) {

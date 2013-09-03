@@ -21,105 +21,113 @@ import java.util.List;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.map.Coordinates;
-import edu.uw.cs.lil.tiny.data.IDataItem;
+import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
-import edu.uw.cs.lil.tiny.test.stats.ITestingStatistics;
+import edu.uw.cs.lil.tiny.test.stats.AbstractTestingStatistics;
+import edu.uw.cs.lil.tiny.test.stats.IStatistics;
 import edu.uw.cs.utils.composites.Pair;
 
+/**
+ * Evaluate the final (x,y) coordinate of the agent.
+ * 
+ * @author Yoav Artzi
+ */
 public class FinalCoordinatesTestStatistics
-		implements
-		ITestingStatistics<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> {
-	
-	private final ITestingStatistics<Pair<Sentence, Task>, Coordinates>	baseStats;
+		extends
+		AbstractTestingStatistics<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> {
 	
 	public FinalCoordinatesTestStatistics(
-			ITestingStatistics<Pair<Sentence, Task>, Coordinates> baseStats) {
-		this.baseStats = baseStats;
+			String prefix,
+			String metricName,
+			IStatistics<ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>> stats) {
+		super(prefix, metricName, stats);
 	}
 	
 	@Override
-	public void recordNoParse(IDataItem<Pair<Sentence, Task>> dataItem,
+	public void recordNoParse(
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold) {
-		baseStats.recordNoParse(dataItem, gold.second().getEndPosition()
-				.getPose().getCoordinates());
-		
+		stats.recordFailure(dataItem);
 	}
 	
 	@Override
 	public void recordNoParseWithSkipping(
-			IDataItem<Pair<Sentence, Task>> dataItem,
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold) {
-		baseStats.recordNoParseWithSkipping(dataItem, gold.second()
-				.getEndPosition().getPose().getCoordinates());
+		stats.recordSloppyFailure(dataItem);
 	}
 	
 	@Override
-	public void recordParse(IDataItem<Pair<Sentence, Task>> dataItem,
+	public void recordParse(
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			Pair<LogicalExpression, Trace> label) {
 		if (label.second() == null) {
-			baseStats.recordNoParse(dataItem, gold.second().getEndPosition()
-					.getPose().getCoordinates());
+			stats.recordFailure(dataItem);
+		} else if (gold
+				.second()
+				.getEndPosition()
+				.getPose()
+				.getCoordinates()
+				.equals(label.second().getEndPosition().getPose()
+						.getCoordinates())) {
+			stats.recordCorrect(dataItem);
 		} else {
-			baseStats.recordParse(dataItem, gold.second().getEndPosition()
-					.getPose().getCoordinates(), label.second()
-					.getEndPosition().getPose().getCoordinates());
+			stats.recordIncorrect(dataItem);
 		}
 	}
 	
 	@Override
-	public void recordParses(IDataItem<Pair<Sentence, Task>> dataItem,
+	public void recordParses(
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			List<Pair<LogicalExpression, Trace>> labels) {
 		final Coordinates coordinates = clusterCoordinates(labels);
 		if (coordinates == null) {
-			baseStats.recordNoParse(dataItem, gold.second().getEndPosition()
-					.getPose().getCoordinates());
+			stats.recordFailure(dataItem);
+		} else if (gold.second().getEndPosition().getPose().getCoordinates()
+				.equals(coordinates)) {
+			stats.recordCorrect(dataItem);
 		} else {
-			baseStats.recordParse(dataItem, gold.second().getEndPosition()
-					.getPose().getCoordinates(), coordinates);
+			stats.recordIncorrect(dataItem);
 		}
 	}
 	
 	@Override
 	public void recordParsesWithSkipping(
-			IDataItem<Pair<Sentence, Task>> dataItem,
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			List<Pair<LogicalExpression, Trace>> labels) {
 		final Coordinates coordinates = clusterCoordinates(labels);
 		if (coordinates == null) {
-			baseStats.recordNoParseWithSkipping(dataItem, gold.second()
-					.getEndPosition().getPose().getCoordinates());
+			stats.recordSloppyFailure(dataItem);
+		} else if (gold.second().getEndPosition().getPose().getCoordinates()
+				.equals(coordinates)) {
+			stats.recordSloppyCorrect(dataItem);
 		} else {
-			baseStats.recordParseWithSkipping(dataItem, gold.second()
-					.getEndPosition().getPose().getCoordinates(), coordinates);
+			stats.recordSloppyIncorrect(dataItem);
 		}
 	}
 	
 	@Override
 	public void recordParseWithSkipping(
-			IDataItem<Pair<Sentence, Task>> dataItem,
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			Pair<LogicalExpression, Trace> label) {
 		if (label.second() == null) {
-			baseStats.recordNoParseWithSkipping(dataItem, gold.second()
-					.getEndPosition().getPose().getCoordinates());
+			stats.recordSloppyFailure(dataItem);
+		} else if (gold
+				.second()
+				.getEndPosition()
+				.getPose()
+				.getCoordinates()
+				.equals(label.second().getEndPosition().getPose()
+						.getCoordinates())) {
+			stats.recordSloppyCorrect(dataItem);
 		} else {
-			baseStats.recordParseWithSkipping(dataItem, gold.second()
-					.getEndPosition().getPose().getCoordinates(), label
-					.second().getEndPosition().getPose().getCoordinates());
+			stats.recordSloppyIncorrect(dataItem);
 		}
-	}
-	
-	@Override
-	public String toString() {
-		return baseStats.toString();
-	}
-	
-	@Override
-	public String toTabDelimitedString() {
-		return baseStats.toTabDelimitedString();
 	}
 	
 	private Coordinates clusterCoordinates(
@@ -138,4 +146,5 @@ public class FinalCoordinatesTestStatistics
 		}
 		return coordinates;
 	}
+	
 }

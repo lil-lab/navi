@@ -4,15 +4,12 @@ outputDir=logs
 globalLog=logs/global.log
 
 # Resources
-include=../default.include.model.exp
-include=../default.include.genlex.exp
+include=../default.include.resources.exp
 ## Training and testing sets
-type=data.settrc id=trainSet file=data/train.settrc genlex=genlex
-type=data.trc id=train sets=trainSet
-type=data.ccgsettrc id=testSet file=data/eval.ccgsettrc genlex=genlex
-type=data.ccgtrc id=test sets=testSet
-type=data.ccgsettrc id=testSetLF file=data/eval.lf.ccgsettrc genlex=genlex
-type=data.ccgtrc id=testLF sets=testSetLF
+type=data.composite.trc id=train sets=devFold0,devFold1,devFold2,devFold3,devFold4,devTestLF
+type=data.composite.ccgtrc id=test sets=eval
+type=data.composite.ccgsettrc id=testSet sets=evalSet
+type=data.composite.ccgtrc id=testLF sets=evalLFCCG
 include=../default.include.learn.exp
 
 # Jobs

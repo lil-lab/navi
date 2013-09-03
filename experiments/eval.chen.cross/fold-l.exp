@@ -4,13 +4,13 @@ outputDir=logs-l
 globalLog=logs-l/global.log
 
 # Resources
-include=../default.include.model.exp
-include=../default.include.genlex.exp
+include=../default.include.resources.exp
 include=include.data.exp
 ## Training and testing sets
-type=data.composite.trc id=train sets=fold-jelly,fold-grid
-type=data.composite.ccgtrc id=test sets=fold-lCCG
-type=data.composite.ccgsettrc id=testSet sets=fold-lSetCCG
+type=data.composite.trc id=train sets=evalChenFold-jelly,defChenFold-grid
+type=data.composite.ccgtrc id=test sets=evalChenFold-lCCG
+type=data.composite.ccgsettrc id=testSet sets=evalChenFold-lSetCCG
+type=data.composite.ccgtrc id=testLF sets=evalLFCCG
 include=../default.include.learn.exp
 
 # Jobs

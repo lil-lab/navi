@@ -20,78 +20,133 @@ import java.util.List;
 
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.Task;
-import edu.uw.cs.lil.tiny.data.IDataItem;
+import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
+import edu.uw.cs.lil.tiny.test.stats.IStatistics;
 import edu.uw.cs.lil.tiny.test.stats.ITestingStatistics;
 import edu.uw.cs.utils.composites.Pair;
 
+/**
+ * Evaluates logical form correctness only, treats only the sentence as the
+ * sample (relevant for statistics that take duplication into account).
+ * 
+ * @author Yoav Artzi
+ */
 public class LogicalFormSentenceTestStatistics
 		implements
 		ITestingStatistics<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> {
 	
-	private final ITestingStatistics<Sentence, LogicalExpression>	baseStats;
+	private final String					metricName;
+	private final String					prefix;
+	protected final IStatistics<Sentence>	stats;
 	
-	public LogicalFormSentenceTestStatistics(
-			ITestingStatistics<Sentence, LogicalExpression> baseStats) {
-		this.baseStats = baseStats;
+	public LogicalFormSentenceTestStatistics(String prefix, String metricName,
+			IStatistics<Sentence> stats) {
+		this.prefix = prefix;
+		this.metricName = metricName;
+		this.stats = stats;
 	}
 	
 	@Override
-	public void recordNoParse(IDataItem<Pair<Sentence, Task>> dataItem,
+	public void recordNoParse(
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold) {
-		baseStats.recordNoParse(dataItem.getSample().first(), gold.first());
+		stats.recordFailure(dataItem.getSample().first());
 		
 	}
 	
 	@Override
 	public void recordNoParseWithSkipping(
-			IDataItem<Pair<Sentence, Task>> dataItem,
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold) {
-		baseStats.recordNoParseWithSkipping(dataItem.getSample().first(),
-				gold.first());
+		stats.recordSloppyFailure(dataItem.getSample().first());
 	}
 	
 	@Override
-	public void recordParse(IDataItem<Pair<Sentence, Task>> dataItem,
+	public void recordParse(
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			Pair<LogicalExpression, Trace> label) {
-		baseStats.recordParse(dataItem.getSample().first(), gold.first(),
-				label.first());
+		if (gold.first().equals(label.second())) {
+			stats.recordCorrect(dataItem.getSample().first());
+		} else {
+			stats.recordIncorrect(dataItem.getSample().first());
+		}
 	}
 	
 	@Override
-	public void recordParses(IDataItem<Pair<Sentence, Task>> dataItem,
+	public void recordParses(
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			List<Pair<LogicalExpression, Trace>> labels) {
-		baseStats.recordNoParse(dataItem.getSample().first(), gold.first());
+		stats.recordFailure(dataItem.getSample().first());
 	}
 	
 	@Override
 	public void recordParsesWithSkipping(
-			IDataItem<Pair<Sentence, Task>> dataItem,
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			List<Pair<LogicalExpression, Trace>> labels) {
-		baseStats.recordNoParseWithSkipping(dataItem.getSample().first(),
-				gold.first());
+		stats.recordSloppyFailure(dataItem.getSample().first());
 	}
 	
 	@Override
 	public void recordParseWithSkipping(
-			IDataItem<Pair<Sentence, Task>> dataItem,
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			Pair<LogicalExpression, Trace> label) {
-		baseStats.recordParseWithSkipping(dataItem.getSample().first(),
-				gold.first(), label.first());
+		if (gold.first().equals(label.second())) {
+			stats.recordSloppyCorrect(dataItem.getSample().first());
+		} else {
+			stats.recordSloppyIncorrect(dataItem.getSample().first());
+		}
 	}
 	
 	@Override
 	public String toString() {
-		return baseStats.toString();
+		final StringBuilder ret = new StringBuilder("=== ").append(
+				getMetricName()).append(" statistics:\n");
+		ret.append("Recall: ").append(stats.getCorrects()).append('/')
+				.append(stats.getTotal()).append(" = ").append(stats.recall())
+				.append('\n');
+		ret.append("Precision: ").append(stats.getCorrects()).append('/')
+				.append(stats.getTotal() - stats.getFailures()).append(" = ")
+				.append(stats.precision()).append('\n');
+		ret.append("F1: ").append(stats.f1()).append('\n');
+		ret.append("SKIP Recall: ")
+				.append(stats.getSloppyCorrects() + stats.getCorrects())
+				.append('/').append(stats.getTotal()).append(" = ")
+				.append(stats.sloppyRecall()).append('\n');
+		ret.append("SKIP Precision: ")
+				.append(stats.getSloppyCorrects() + stats.getCorrects())
+				.append('/')
+				.append(stats.getTotal() - stats.getSloppyFailures())
+				.append(" = ").append(stats.sloppyPrecision()).append('\n');
+		ret.append("SKIP F1: ").append(stats.sloppyF1());
+		return ret.toString();
 	}
 	
 	@Override
 	public String toTabDelimitedString() {
-		return baseStats.toTabDelimitedString();
+		final StringBuilder ret = new StringBuilder(getPrefix())
+				.append("\tmetric=").append(getMetricName()).append("\t");
+		ret.append("recall=").append(stats.recall()).append('\t');
+		ret.append("precision=").append(stats.precision()).append('\t');
+		ret.append("f1=").append(stats.f1()).append('\t');
+		ret.append("skippingRecall=").append(stats.sloppyRecall()).append('\t');
+		ret.append("skippingPrecision=").append(stats.sloppyPrecision())
+				.append('\t');
+		ret.append("skippingF1=").append(stats.sloppyF1());
+		return ret.toString();
 	}
+	
+	protected String getMetricName() {
+		return metricName;
+	}
+	
+	protected String getPrefix() {
+		return prefix == null ? "" : prefix;
+	}
+	
 }

@@ -24,11 +24,8 @@ import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.map.NavigationMap;
 import edu.uw.cs.lil.navi.map.PositionSet;
 import edu.uw.cs.lil.tiny.ccg.categories.ICategoryServices;
-import edu.uw.cs.lil.tiny.ccg.lexicon.ILexicon;
 import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
-import edu.uw.cs.lil.tiny.data.lexicalgen.ILexGenLabeledDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
-import edu.uw.cs.lil.tiny.genlex.ccg.ILexiconGenerator;
 import edu.uw.cs.utils.composites.Pair;
 
 /**
@@ -39,42 +36,34 @@ import edu.uw.cs.utils.composites.Pair;
  * @param <MR>
  */
 public class LabeledInstructionTrace<MR> implements
-		ILexGenLabeledDataItem<Pair<Sentence, Task>, MR, Pair<MR, Trace>> {
+		ILabeledDataItem<Pair<Sentence, Task>, Pair<MR, Trace>> {
 	
-	private static final Object																		MAP_NAME_KEY	= "map";
+	private static final Object			MAP_NAME_KEY	= "map";
 	
-	private final Pair<MR, Trace>																	labelPair;
+	private final Pair<MR, Trace>		labelPair;
 	
-	private final ILexiconGenerator<ILabeledDataItem<Pair<Sentence, Task>, Pair<MR, Trace>>, MR>	lexiconGenerator;
-	private final Pair<Sentence, Task>																pair;
-	private final MR																				semantics;
+	private final Pair<Sentence, Task>	pair;
+	private final MR					semantics;
 	
-	private final Sentence																			sentence;
+	private final Sentence				sentence;
 	
-	private final Task																				task;
+	private final Task					task;
 	
-	private final Trace																				trace;
+	private final Trace					trace;
 	
-	public LabeledInstructionTrace(
-			MR semantics,
-			Sentence sentence,
-			Task task,
-			Trace trace,
-			ILexiconGenerator<ILabeledDataItem<Pair<Sentence, Task>, Pair<MR, Trace>>, MR> lexiconGenerator) {
+	public LabeledInstructionTrace(MR semantics, Sentence sentence, Task task,
+			Trace trace) {
 		this.semantics = semantics;
 		this.sentence = sentence;
 		this.task = task;
 		this.trace = trace;
-		this.lexiconGenerator = lexiconGenerator;
 		this.pair = Pair.of(sentence, task);
 		this.labelPair = Pair.of(semantics, trace);
 	}
 	
-	public static <MR> LabeledInstructionTrace<MR> parse(
-			String string,
+	public static <MR> LabeledInstructionTrace<MR> parse(String string,
 			Map<String, NavigationMap> maps,
-			ICategoryServices<MR> categoryServices,
-			ILexiconGenerator<ILabeledDataItem<Pair<Sentence, Task>, Pair<MR, Trace>>, MR> lexiconGenerator) {
+			ICategoryServices<MR> categoryServices) {
 		final String[] split = string.split("\n");
 		final Map<String, String> properties = parseProperties(split[2]);
 		final NavigationMap map = maps.get(properties.get(MAP_NAME_KEY));
@@ -86,7 +75,7 @@ public class LabeledInstructionTrace<MR> implements
 						.getAllOrientations(), false), properties, map);
 		return new LabeledInstructionTrace<MR>(
 				categoryServices.parseSemantics(split[1]), new Sentence(
-						split[0]), task, trace, lexiconGenerator);
+						split[0]), task, trace);
 	}
 	
 	private static Map<String, String> parseProperties(String line) {
@@ -102,11 +91,6 @@ public class LabeledInstructionTrace<MR> implements
 	@Override
 	public double calculateLoss(Pair<MR, Trace> label) {
 		return labelPair.equals(label) ? 0.0 : 1.0;
-	}
-	
-	@Override
-	public ILexicon<MR> generateLexicon() {
-		return lexiconGenerator.generate(this);
 	}
 	
 	@Override

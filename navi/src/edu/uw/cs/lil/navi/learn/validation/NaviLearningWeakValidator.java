@@ -16,12 +16,9 @@
  ******************************************************************************/
 package edu.uw.cs.lil.navi.learn.validation;
 
+import edu.uw.cs.lil.navi.data.InstructionTrace;
 import edu.uw.cs.lil.navi.data.Trace;
-import edu.uw.cs.lil.navi.eval.Task;
-import edu.uw.cs.lil.tiny.data.IDataItem;
-import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
-import edu.uw.cs.lil.tiny.data.sentence.Sentence;
-import edu.uw.cs.utils.composites.Pair;
+import edu.uw.cs.lil.tiny.data.utils.IValidator;
 import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
 
@@ -31,7 +28,8 @@ import edu.uw.cs.utils.log.LoggerFactory;
  * 
  * @author Yoav Artzi
  */
-public class NaviLearningWeakValidator implements INaviValidator {
+public class NaviLearningWeakValidator<MR> implements
+		IValidator<InstructionTrace<MR>, Trace> {
 	private static final ILogger	LOG	= LoggerFactory
 												.create(NaviLearningWeakValidator.class);
 	
@@ -40,22 +38,8 @@ public class NaviLearningWeakValidator implements INaviValidator {
 	}
 	
 	@Override
-	public boolean isValid(IDataItem<Pair<Sentence, Task>> dataItem, Trace label) {
-		
-		if (dataItem instanceof ILabeledDataItem) {
-			final Object dataItemLabel = ((ILabeledDataItem<?, ?>) dataItem)
-					.getLabel();
-			if (dataItemLabel instanceof Trace) {
-				return weakTraceComparison((Trace) dataItemLabel, label);
-			} else if (dataItemLabel instanceof Pair) {
-				final Object second = ((Pair<?, ?>) dataItemLabel).second();
-				if (second instanceof Trace) {
-					return weakTraceComparison((Trace) second, label);
-				}
-			}
-		}
-		LOG.error("Can't validate using: %s", dataItem);
-		return false;
+	public boolean isValid(InstructionTrace<MR> dataItem, Trace label) {
+		return weakTraceComparison(dataItem.getLabel(), label);
 	}
 	
 	private boolean weakTraceComparison(Trace t1, Trace t2) {
@@ -65,5 +49,4 @@ public class NaviLearningWeakValidator implements INaviValidator {
 			return t1.getEndPosition().equals(t2.getEndPosition());
 		}
 	}
-	
 }

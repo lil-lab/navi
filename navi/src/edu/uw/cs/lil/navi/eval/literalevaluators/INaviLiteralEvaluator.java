@@ -16,9 +16,11 @@
  ******************************************************************************/
 package edu.uw.cs.lil.navi.eval.literalevaluators;
 
+import java.io.Serializable;
+
 import edu.uw.cs.lil.navi.eval.NaviEvaluationServices;
 
-public interface INaviLiteralEvaluator {
+public interface INaviLiteralEvaluator extends Serializable {
 	
 	boolean agentDependent();
 	

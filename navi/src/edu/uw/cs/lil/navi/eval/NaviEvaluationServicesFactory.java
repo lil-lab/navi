@@ -16,12 +16,14 @@
  ******************************************************************************/
 package edu.uw.cs.lil.navi.eval;
 
+import java.io.Serializable;
+
 /**
  * Factory for {@link NaviEvaluationServices}.
  * 
  * @author Yoav Artzi
  */
-public class NaviEvaluationServicesFactory {
+public class NaviEvaluationServicesFactory implements Serializable {
 	private final NaviEvaluationConstants	naviConsts;
 	
 	public NaviEvaluationServicesFactory(NaviEvaluationConstants naviConsts) {

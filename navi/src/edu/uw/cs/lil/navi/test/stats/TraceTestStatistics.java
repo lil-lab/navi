@@ -20,94 +20,99 @@ import java.util.List;
 
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.Task;
-import edu.uw.cs.lil.tiny.data.IDataItem;
+import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
-import edu.uw.cs.lil.tiny.test.stats.ITestingStatistics;
+import edu.uw.cs.lil.tiny.test.stats.AbstractTestingStatistics;
+import edu.uw.cs.lil.tiny.test.stats.IStatistics;
 import edu.uw.cs.utils.composites.Pair;
 
+/**
+ * Evaluate the complete trace of the agent.
+ * 
+ * @author Yoav Artzi
+ */
 public class TraceTestStatistics
-		implements
-		ITestingStatistics<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> {
-	
-	private final ITestingStatistics<Pair<Sentence, Task>, Trace>	baseStats;
+		extends
+		AbstractTestingStatistics<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> {
 	
 	public TraceTestStatistics(
-			ITestingStatistics<Pair<Sentence, Task>, Trace> baseStats) {
-		this.baseStats = baseStats;
+			String prefix,
+			String metricName,
+			IStatistics<ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>> stats) {
+		super(prefix, metricName, stats);
 	}
 	
 	@Override
-	public void recordNoParse(IDataItem<Pair<Sentence, Task>> dataItem,
+	public void recordNoParse(
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold) {
-		baseStats.recordNoParse(dataItem, gold.second());
-		
+		stats.recordFailure(dataItem);
 	}
 	
 	@Override
 	public void recordNoParseWithSkipping(
-			IDataItem<Pair<Sentence, Task>> dataItem,
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold) {
-		baseStats.recordNoParseWithSkipping(dataItem, gold.second());
+		stats.recordSloppyFailure(dataItem);
 	}
 	
 	@Override
-	public void recordParse(IDataItem<Pair<Sentence, Task>> dataItem,
+	public void recordParse(
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			Pair<LogicalExpression, Trace> label) {
 		if (label.second() == null) {
-			baseStats.recordNoParse(dataItem, gold.second());
+			stats.recordFailure(dataItem);
+		} else if (gold.second().equals(label.second())) {
+			stats.recordCorrect(dataItem);
 		} else {
-			baseStats.recordParse(dataItem, gold.second(), label.second());
+			stats.recordIncorrect(dataItem);
 		}
 	}
 	
 	@Override
-	public void recordParses(IDataItem<Pair<Sentence, Task>> dataItem,
+	public void recordParses(
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			List<Pair<LogicalExpression, Trace>> labels) {
 		final Trace trace = clusterTraces(labels);
 		if (trace == null) {
-			baseStats.recordNoParse(dataItem, gold.second());
+			stats.recordFailure(dataItem);
+		} else if (gold.second().equals(trace)) {
+			stats.recordCorrect(dataItem);
 		} else {
-			baseStats.recordParse(dataItem, gold.second(), trace);
+			stats.recordIncorrect(dataItem);
 		}
 	}
 	
 	@Override
 	public void recordParsesWithSkipping(
-			IDataItem<Pair<Sentence, Task>> dataItem,
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			List<Pair<LogicalExpression, Trace>> labels) {
 		final Trace trace = clusterTraces(labels);
 		if (trace == null) {
-			baseStats.recordNoParseWithSkipping(dataItem, gold.second());
+			stats.recordSloppyFailure(dataItem);
+		} else if (gold.second().equals(trace)) {
+			stats.recordSloppyCorrect(dataItem);
 		} else {
-			baseStats.recordParseWithSkipping(dataItem, gold.second(), trace);
+			stats.recordSloppyIncorrect(dataItem);
 		}
 	}
 	
 	@Override
 	public void recordParseWithSkipping(
-			IDataItem<Pair<Sentence, Task>> dataItem,
+			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			Pair<LogicalExpression, Trace> label) {
 		if (label.second() == null) {
-			baseStats.recordNoParseWithSkipping(dataItem, gold.second());
+			stats.recordSloppyFailure(dataItem);
+		} else if (gold.second().equals(label.second())) {
+			stats.recordSloppyCorrect(dataItem);
 		} else {
-			baseStats.recordParseWithSkipping(dataItem, gold.second(),
-					label.second());
+			stats.recordSloppyIncorrect(dataItem);
 		}
-	}
-	
-	@Override
-	public String toString() {
-		return baseStats.toString();
-	}
-	
-	@Override
-	public String toTabDelimitedString() {
-		return baseStats.toTabDelimitedString();
 	}
 	
 	private Trace clusterTraces(List<Pair<LogicalExpression, Trace>> labels) {

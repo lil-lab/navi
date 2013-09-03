@@ -51,8 +51,7 @@ public class XPositionWrap implements ILogicalExpressionVisitor {
 		if (visitor.result == exp) {
 			return null;
 		} else {
-			return new Lambda(visitor.xVariable, visitor.result,
-					LogicLanguageServices.getTypeRepository());
+			return new Lambda(visitor.xVariable, visitor.result);
 		}
 	}
 	
@@ -62,8 +61,7 @@ public class XPositionWrap implements ILogicalExpressionVisitor {
 		if (result == lambda.getBody()) {
 			result = lambda;
 		} else {
-			result = new Lambda(lambda.getArgument(), result,
-					LogicLanguageServices.getTypeRepository());
+			result = new Lambda(lambda.getArgument(), result);
 		}
 	}
 	
@@ -85,9 +83,7 @@ public class XPositionWrap implements ILogicalExpressionVisitor {
 		}
 		if (argsChanged || newPredicate != literal.getPredicate()) {
 			result = new Literal(newPredicate, argsChanged ? newArgs
-					: literal.getArguments(),
-					LogicLanguageServices.getTypeComparator(),
-					LogicLanguageServices.getTypeRepository());
+					: literal.getArguments());
 		} else {
 			result = literal;
 		}

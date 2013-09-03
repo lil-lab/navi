@@ -24,14 +24,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.map.NavigationMap;
-import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.collection.IDataCollection;
-import edu.uw.cs.lil.tiny.data.sentence.Sentence;
-import edu.uw.cs.lil.tiny.genlex.ccg.ILexiconGenerator;
 import edu.uw.cs.utils.collections.ListUtils;
-import edu.uw.cs.utils.composites.Pair;
 import edu.uw.cs.utils.io.FileUtils;
 
 /**
@@ -48,11 +43,8 @@ public class InstructionSeqTraceDataset<MR> implements
 		this.items = items;
 	}
 	
-	public static <MR> InstructionSeqTraceDataset<MR> readFromFile(
-			File f,
-			final Map<String, NavigationMap> maps,
-			final ILexiconGenerator<IDataItem<Pair<Sentence, Task>>, MR> lexiconGenerator)
-			throws IOException {
+	public static <MR> InstructionSeqTraceDataset<MR> readFromFile(File f,
+			final Map<String, NavigationMap> maps) throws IOException {
 		final String fileString = FileUtils.readFile(f);
 		
 		return new InstructionSeqTraceDataset<MR>(
@@ -65,8 +57,7 @@ public class InstructionSeqTraceDataset<MR> implements
 							public InstructionSeqTrace<MR> process(String obj) {
 								counter++;
 								try {
-									return InstructionSeqTrace.parse(obj, maps,
-											lexiconGenerator);
+									return InstructionSeqTrace.parse(obj, maps);
 								} catch (final Exception e) {
 									throw new InstructionTraceDatasetException(
 											e, obj, counter);

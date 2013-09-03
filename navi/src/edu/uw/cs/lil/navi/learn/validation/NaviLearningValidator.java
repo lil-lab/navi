@@ -16,37 +16,21 @@
  ******************************************************************************/
 package edu.uw.cs.lil.navi.learn.validation;
 
+import edu.uw.cs.lil.navi.data.InstructionTrace;
 import edu.uw.cs.lil.navi.data.Trace;
-import edu.uw.cs.lil.navi.eval.Task;
-import edu.uw.cs.lil.tiny.data.IDataItem;
-import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
-import edu.uw.cs.lil.tiny.data.sentence.Sentence;
-import edu.uw.cs.utils.composites.Pair;
-import edu.uw.cs.utils.log.ILogger;
-import edu.uw.cs.utils.log.LoggerFactory;
+import edu.uw.cs.lil.tiny.data.utils.IValidator;
 
 /**
- * Strict validation: uses all the information in the demonstration trace.
+ * Strict validation: uses all the information in the demonstration trace,
+ * including inofrmation about an action being implicit.
  * 
  * @author Yoav Artzi
  */
-public class NaviLearningValidator implements INaviValidator {
-	private static final ILogger	LOG	= LoggerFactory
-												.create(NaviLearningValidator.class);
+public class NaviLearningValidator<MR> implements
+		IValidator<InstructionTrace<MR>, Trace> {
 	
 	@Override
-	public boolean isValid(IDataItem<Pair<Sentence, Task>> dataItem, Trace label) {
-		
-		if (dataItem instanceof ILabeledDataItem) {
-			final Object dataItemLabel = ((ILabeledDataItem<?, ?>) dataItem)
-					.getLabel();
-			if (!(dataItemLabel instanceof Pair)) {
-				return dataItemLabel.equals(label);
-			} else {
-				return ((Pair<?, ?>) dataItemLabel).second().equals(label);
-			}
-		}
-		LOG.error("Can't validate using: %s", dataItem);
-		return false;
+	public boolean isValid(InstructionTrace<MR> dataItem, Trace label) {
+		return dataItem.getLabel().equals(label);
 	}
 }

@@ -16,6 +16,8 @@
  ******************************************************************************/
 package edu.uw.cs.lil.navi.agent;
 
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -25,9 +27,10 @@ import java.util.Map;
 import edu.uw.cs.lil.navi.agent.Action.AgentAction;
 import edu.uw.cs.lil.navi.map.Position;
 
-public abstract class Direction {
+public abstract class Direction implements Serializable {
 	public static final Direction				BACK	= new Direction("back",
 																null) {
+															
 															@Override
 															public Position orientPosition(
 																	Position position) {
@@ -39,6 +42,7 @@ public abstract class Direction {
 	public static final Direction				FORWARD	= new Direction(
 																"forward",
 																AgentAction.FORWARD) {
+															
 															@Override
 															public Position orientPosition(
 																	Position position) {
@@ -49,6 +53,7 @@ public abstract class Direction {
 	public static final Direction				LEFT	= new Direction(
 																"left",
 																AgentAction.LEFT) {
+															
 															@Override
 															public Position orientPosition(
 																	Position position) {
@@ -60,6 +65,7 @@ public abstract class Direction {
 	public static final Direction				RIGHT	= new Direction(
 																"right",
 																AgentAction.RIGHT) {
+															
 															@Override
 															public Position orientPosition(
 																	Position position) {
@@ -125,5 +131,9 @@ public abstract class Direction {
 	
 	public boolean validaAgentAction(AgentAction action) {
 		return action == agentAction;
+	}
+	
+	private Object readResolve() throws ObjectStreamException {
+		return Direction.valueOf(label);
 	}
 }

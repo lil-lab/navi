@@ -27,6 +27,8 @@ import edu.uw.cs.utils.collections.SetUtils;
 
 public class PositionSetFrontDistance implements INaviLiteralEvaluator {
 	
+	private static final long	serialVersionUID	= 3683871310029179559L;
+	
 	@Override
 	public boolean agentDependent() {
 		return true;

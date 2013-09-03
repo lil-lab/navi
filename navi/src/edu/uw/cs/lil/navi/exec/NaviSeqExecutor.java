@@ -48,17 +48,17 @@ import edu.uw.cs.utils.log.LoggerFactory;
 
 public class NaviSeqExecutor implements
 		IExec<Pair<List<Sentence>, Task>, List<Pair<LogicalExpression, Trace>>> {
-	private static final ILogger												LOG	= LoggerFactory
-																							.create(NaviSeqExecutor.class);
-	private final int															beam;
-	private final boolean														failureRecovery;
-	private final JointModel<Sentence, Task, LogicalExpression, Trace>			model;
-	private final IJointParser<Sentence, Task, LogicalExpression, Trace, Trace>	parser;
-	private final boolean														pruneFails;
+	private static final ILogger																LOG	= LoggerFactory
+																											.create(NaviSeqExecutor.class);
+	private final int																			beam;
+	private final boolean																		failureRecovery;
+	private final JointModel<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace>	model;
+	private final IJointParser<Sentence, Task, LogicalExpression, Trace, Trace>					parser;
+	private final boolean																		pruneFails;
 	
 	public NaviSeqExecutor(
 			IJointParser<Sentence, Task, LogicalExpression, Trace, Trace> parser,
-			JointModel<Sentence, Task, LogicalExpression, Trace> model,
+			JointModel<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace> model,
 			int beam, boolean failureRecovery, boolean pruneFails) {
 		this.parser = parser;
 		this.model = model;

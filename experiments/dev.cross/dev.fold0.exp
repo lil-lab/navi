@@ -4,13 +4,12 @@ outputDir=logs0
 globalLog=logs0/global.log
 
 # Resources
-include=../default.include.model.exp
-include=../default.include.genlex.exp
-include=dev.include.data.exp
+include=../default.include.resources.exp
 ## Training and testing sets
-type=data.composite.trc id=train sets=fold1,fold2,fold3,fold4
-type=data.composite.ccgtrc id=test sets=fold0CCG
-type=data.composite.ccgsettrc id=testSet sets=fold0SetCCG
+type=data.composite.trc id=train sets=devFold1,devFold2,devFold3,devFold4
+type=data.composite.ccgtrc id=test sets=devFold0CCG
+type=data.composite.ccgsettrc id=testSet sets=devFold0SetCCG
+type=data.composite.ccgtrc id=testLF sets=devTestLFCCG
 include=../default.include.learn.exp
 
 # Jobs

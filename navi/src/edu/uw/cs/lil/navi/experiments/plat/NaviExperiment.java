@@ -19,9 +19,7 @@ package edu.uw.cs.lil.navi.experiments.plat;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,8 +29,10 @@ import java.util.Set;
 import org.xml.sax.SAXException;
 
 import edu.uw.cs.lil.navi.agent.Action.AgentAction;
+import edu.uw.cs.lil.navi.data.InstructionTrace;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.NaviEvaluationConstants;
+import edu.uw.cs.lil.navi.eval.NaviEvaluationConstants.StateFlag;
 import edu.uw.cs.lil.navi.eval.NaviEvaluationServicesFactory;
 import edu.uw.cs.lil.navi.eval.NaviSingleEvaluator;
 import edu.uw.cs.lil.navi.eval.Task;
@@ -57,16 +57,10 @@ import edu.uw.cs.lil.navi.eval.literalevaluators.positions.relations.PositionSet
 import edu.uw.cs.lil.navi.eval.literalevaluators.positions.relations.PositionSetIntersect;
 import edu.uw.cs.lil.navi.eval.literalevaluators.positions.relations.PositionSetMiddle;
 import edu.uw.cs.lil.navi.eval.literalevaluators.quantifiers.DefiniteArticle;
-import edu.uw.cs.lil.navi.map.Coordinates;
-import edu.uw.cs.lil.navi.map.NavigationMap;
-import edu.uw.cs.lil.navi.map.NavigationMapXMLReader;
-import edu.uw.cs.lil.navi.map.Position;
 import edu.uw.cs.lil.navi.map.objects.NaviHall;
 import edu.uw.cs.lil.navi.map.objects.NaviObj;
 import edu.uw.cs.lil.navi.map.objects.NaviWall;
 import edu.uw.cs.lil.navi.map.objects.metaitems.NaviMetaItem;
-import edu.uw.cs.lil.navi.parse.NaviGraphParser;
-import edu.uw.cs.lil.navi.parse.WrappedCKYParser;
 import edu.uw.cs.lil.navi.test.stats.FinalCoordinatesTestStatistics;
 import edu.uw.cs.lil.navi.test.stats.FinalPositionTestStatistics;
 import edu.uw.cs.lil.navi.test.stats.LogicalFormSentenceTestStatistics;
@@ -75,13 +69,14 @@ import edu.uw.cs.lil.navi.test.stats.TraceTestStatistics;
 import edu.uw.cs.lil.navi.test.stats.set.SetFinalCoordinatesTestStatistics;
 import edu.uw.cs.lil.navi.test.stats.set.SetGoalCoordinatesTestStatistics;
 import edu.uw.cs.lil.navi.test.stats.set.SetLogicalFormTestStatistics;
-import edu.uw.cs.lil.tiny.ccg.categories.syntax.Syntax;
+import edu.uw.cs.lil.tiny.ccg.categories.ICategoryServices;
 import edu.uw.cs.lil.tiny.ccg.lexicon.LexicalEntry;
 import edu.uw.cs.lil.tiny.ccg.lexicon.LexicalEntry.Origin;
 import edu.uw.cs.lil.tiny.ccg.lexicon.Lexicon;
 import edu.uw.cs.lil.tiny.ccg.lexicon.factored.lambda.FactoredLexicon;
 import edu.uw.cs.lil.tiny.ccg.lexicon.factored.lambda.FactoredLexicon.FactoredLexicalEntry;
 import edu.uw.cs.lil.tiny.ccg.lexicon.factored.lambda.FactoredLexiconServices;
+import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
 import edu.uw.cs.lil.tiny.data.collection.IDataCollection;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
@@ -96,49 +91,28 @@ import edu.uw.cs.lil.tiny.mr.lambda.LogicalConstant;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.mr.lambda.Ontology;
 import edu.uw.cs.lil.tiny.mr.lambda.ccg.LogicalExpressionCategoryServices;
-import edu.uw.cs.lil.tiny.mr.lambda.ccg.SimpleFullParseFilter;
 import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.evaluators.ArgMax;
 import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.evaluators.ArgMin;
 import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.evaluators.Equals;
 import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.evaluators.Exists;
 import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.evaluators.Not;
 import edu.uw.cs.lil.tiny.mr.language.type.TypeRepository;
-import edu.uw.cs.lil.tiny.parser.ccg.cky.genlex.MarkAwareCKYBinaryParsingRule;
-import edu.uw.cs.lil.tiny.parser.ccg.cky.multi.MultiCKYParser;
 import edu.uw.cs.lil.tiny.parser.ccg.model.IModelImmutable;
 import edu.uw.cs.lil.tiny.parser.ccg.model.IModelInit;
 import edu.uw.cs.lil.tiny.parser.ccg.model.Model;
 import edu.uw.cs.lil.tiny.parser.ccg.model.ModelLogger;
-import edu.uw.cs.lil.tiny.parser.ccg.rules.BinaryRulesSet;
-import edu.uw.cs.lil.tiny.parser.ccg.rules.IBinaryParseRule;
-import edu.uw.cs.lil.tiny.parser.ccg.rules.RuleSetBuilder;
-import edu.uw.cs.lil.tiny.parser.ccg.rules.coordination.CoordinationRule;
-import edu.uw.cs.lil.tiny.parser.ccg.rules.coordination.lambda.LogicalExpressionCoordinationServices;
-import edu.uw.cs.lil.tiny.parser.ccg.rules.primitivebinary.BackwardApplication;
-import edu.uw.cs.lil.tiny.parser.ccg.rules.primitivebinary.BackwardComposition;
-import edu.uw.cs.lil.tiny.parser.ccg.rules.primitivebinary.ForwardApplication;
-import edu.uw.cs.lil.tiny.parser.ccg.rules.primitivebinary.ForwardComposition;
-import edu.uw.cs.lil.tiny.parser.ccg.rules.skipping.BackwardSkippingRule;
-import edu.uw.cs.lil.tiny.parser.ccg.rules.skipping.ForwardSkippingRule;
 import edu.uw.cs.lil.tiny.parser.joint.model.JointModel;
-import edu.uw.cs.lil.tiny.paser.ccg.rules.lambda.typeshifting.basic.AdjectiveTypeShifting;
-import edu.uw.cs.lil.tiny.paser.ccg.rules.lambda.typeshifting.basic.AdverbialTopicalisationTypeShifting;
-import edu.uw.cs.lil.tiny.paser.ccg.rules.lambda.typeshifting.basic.AdverbialTypeShifting;
-import edu.uw.cs.lil.tiny.paser.ccg.rules.lambda.typeshifting.basic.PrepositionTypeShifting;
-import edu.uw.cs.lil.tiny.paser.ccg.rules.lambda.typeshifting.basic.SententialAdverbialTypeShifting;
 import edu.uw.cs.lil.tiny.storage.DecoderHelper;
 import edu.uw.cs.lil.tiny.test.exec.ExecTester;
 import edu.uw.cs.lil.tiny.test.stats.CompositeTestingStatistics;
-import edu.uw.cs.lil.tiny.test.stats.ExactMatchTestingStatistics;
-import edu.uw.cs.lil.tiny.test.stats.ExactMatchTestingStatsWithDuplicates;
 import edu.uw.cs.lil.tiny.test.stats.ITestingStatistics;
+import edu.uw.cs.lil.tiny.test.stats.SimpleStats;
+import edu.uw.cs.lil.tiny.test.stats.StatsWithDuplicates;
 import edu.uw.cs.lil.tiny.utils.hashvector.HashVectorFactory;
 import edu.uw.cs.lil.tiny.utils.hashvector.HashVectorFactory.Type;
 import edu.uw.cs.utils.collections.ListUtils;
-import edu.uw.cs.utils.collections.SetUtils;
 import edu.uw.cs.utils.composites.Pair;
 import edu.uw.cs.utils.log.ILogger;
-import edu.uw.cs.utils.log.Log;
 import edu.uw.cs.utils.log.LogLevel;
 import edu.uw.cs.utils.log.Logger;
 import edu.uw.cs.utils.log.LoggerFactory;
@@ -150,11 +124,7 @@ import edu.uw.cs.utils.log.LoggerFactory;
  */
 public class NaviExperiment extends DistributedExperiment {
 	
-	public static final String						BASE_PARSER_RESOURCE	= "baseParser";
-	
 	public static final String						EVAL_SERVICES_FACTORY	= "evalServicesFactory";
-	
-	public static final String						MAPS_RESOURCE			= "maps";
 	
 	public static final String						SINGLE_EVALUATOR		= "singleEval";
 	
@@ -164,10 +134,16 @@ public class NaviExperiment extends DistributedExperiment {
 	private final LogicalExpressionCategoryServices	categoryServices;
 	
 	private final DecoderHelper<LogicalExpression>	decoderHelper;
-	private final ResourceCreatorRepository			resCreatorRepo			= new NaviResourceCreatorRepository();
 	
 	public NaviExperiment(File initFile) throws IOException, SAXException {
-		super(initFile);
+		this(initFile, Collections.<String, String> emptyMap(),
+				new NaviResourceCreatorRepository());
+	}
+	
+	public NaviExperiment(File initFile, Map<String, String> envParams,
+			ResourceCreatorRepository resCreatorRepo) throws IOException,
+			SAXException {
+		super(initFile, envParams);
 		
 		LogLevel.DEV.set();
 		Logger.setSkipPrefix(true);
@@ -177,9 +153,14 @@ public class NaviExperiment extends DistributedExperiment {
 		// //////////////////////////////////////////
 		final File typesFile = globalParams.getAsFile("types");
 		final List<File> seedLexiconFiles = globalParams.getAsFiles("seedlex");
-		final int parserBeamSize = Integer.parseInt(globalParams.get("beam"));
 		final int maxImplicitActions = Integer.parseInt(globalParams
 				.get("implicit"));
+		
+		// //////////////////////////////////////////
+		// Executor resource
+		// //////////////////////////////////////////
+		
+		storeResource(EXECUTOR_RESOURCE, this);
 		
 		// //////////////////////////////////////////
 		// Use tree hash vector
@@ -270,29 +251,44 @@ public class NaviExperiment extends DistributedExperiment {
 		storeResource("initialLexicon", semiFactored);
 		
 		// //////////////////////////////////////////////////
-		// Maps
+		// Navi Evaluation objects
 		// //////////////////////////////////////////////////
 		
-		final Map<String, NavigationMap> maps = new HashMap<String, NavigationMap>();
-		final NavigationMap gridMap = NavigationMapXMLReader
-				.read(makeAbsolute(new File("../../resources/maps/map-grid.xml")));
-		maps.put(gridMap.getName().toLowerCase(), gridMap);
+		final NaviSingleEvaluator singleEvaluator = createEvaluationProcedure(
+				categoryServices, maxImplicitActions);
 		
-		final NavigationMap lMap = NavigationMapXMLReader
-				.read(makeAbsolute(new File("../../resources/maps/map-l.xml")));
-		maps.put(lMap.getName().toLowerCase(), lMap);
-		
-		final NavigationMap jellyMap = NavigationMapXMLReader
-				.read(makeAbsolute(new File(
-						"../../resources/maps/map-jelly.xml")));
-		maps.put(jellyMap.getName().toLowerCase(), jellyMap);
-		
-		storeResource(MAPS_RESOURCE, Collections.unmodifiableMap(maps));
+		storeResource(EVAL_SERVICES_FACTORY,
+				singleEvaluator.getServicesFactory());
+		storeResource(SINGLE_EVALUATOR, singleEvaluator);
 		
 		// //////////////////////////////////////////////////
-		// Navi evaluation consts
+		// Read resources
 		// //////////////////////////////////////////////////
 		
+		for (final Parameters params : resourceParams) {
+			final String type = params.get("type");
+			final String id = params.get("id");
+			if (resCreatorRepo.getCreator(type) == null) {
+				throw new IllegalArgumentException("Invalid resource type: "
+						+ type);
+			} else {
+				storeResource(id,
+						resCreatorRepo.getCreator(type).create(params, this));
+			}
+		}
+		
+		// //////////////////////////////////////////////////
+		// Create jobs
+		// //////////////////////////////////////////////////
+		
+		for (final Parameters params : jobParams) {
+			addJob(createJob(params));
+		}
+	}
+	
+	private static NaviSingleEvaluator createEvaluationProcedure(
+			ICategoryServices<LogicalExpression> categoryServices,
+			int maxImplicitActions) {
 		final NaviEvaluationConstants.Builder builder = new NaviEvaluationConstants.Builder(
 				LogicLanguageServices.getTypeRepository().getType("a"),
 				(LogicalConstant) categoryServices.parseSemantics("x:ps"),
@@ -529,120 +525,26 @@ public class NaviExperiment extends DistributedExperiment {
 		// Stateful predicates
 		builder.addStatefulPredicate(
 				categoryServices.parseSemantics("post:<a,<t,t>>"),
-				NaviEvaluationConstants.POST_ACTION_STATE);
+				StateFlag.POST);
 		builder.addStatefulPredicate(
 				categoryServices.parseSemantics("pass:<a,<ps,t>>"),
-				NaviEvaluationConstants.POST_ACTION_STATE);
+				StateFlag.POST);
 		builder.addStatefulPredicate(
-				categoryServices.parseSemantics("pre:<a,<t,t>>"),
-				NaviEvaluationConstants.PRE_ACTION_STATE);
+				categoryServices.parseSemantics("pre:<a,<t,t>>"), StateFlag.PRE);
 		builder.addStatefulPredicate(
 				categoryServices.parseSemantics("pre:<a,<ps,t>>"),
-				NaviEvaluationConstants.PRE_ACTION_STATE);
+				StateFlag.PRE);
 		builder.addStatefulPredicate(
 				categoryServices.parseSemantics("while:<a,<ps,t>>"),
-				NaviEvaluationConstants.PRE_ACTION_STATE);
+				StateFlag.PRE);
 		builder.addStatefulPredicate(
 				categoryServices.parseSemantics("to:<a,<ps,t>>"),
-				NaviEvaluationConstants.POST_ACTION_STATE);
+				StateFlag.POST);
 		
 		final NaviEvaluationServicesFactory servicesFactory = new NaviEvaluationServicesFactory(
 				builder.build());
 		
-		storeResource(EVAL_SERVICES_FACTORY, servicesFactory);
-		
-		// //////////////////////////////////////////////////
-		// Navi single instruction evaluator
-		// //////////////////////////////////////////////////
-		
-		final NaviSingleEvaluator singleEvaluator = new NaviSingleEvaluator(
-				servicesFactory);
-		
-		storeResource(SINGLE_EVALUATOR, singleEvaluator);
-		
-		// //////////////////////////////////////////////////
-		// CKY Parser
-		// //////////////////////////////////////////////////
-		
-		final RuleSetBuilder<LogicalExpression> ruleSetBuilder = new RuleSetBuilder<LogicalExpression>();
-		
-		// Binary rules
-		ruleSetBuilder.add(new ForwardComposition<LogicalExpression>(
-				categoryServices));
-		ruleSetBuilder.add(new BackwardComposition<LogicalExpression>(
-				categoryServices));
-		ruleSetBuilder.add(new ForwardApplication<LogicalExpression>(
-				categoryServices));
-		ruleSetBuilder.add(new BackwardApplication<LogicalExpression>(
-				categoryServices));
-		ruleSetBuilder.add(CoordinationRule
-				.create(new LogicalExpressionCoordinationServices(
-						(LogicalConstant) categoryServices
-								.parseSemantics("conj:c"),
-						(LogicalConstant) categoryServices
-								.parseSemantics("disj:c"), categoryServices)));
-		
-		// Type shifting functions
-		ruleSetBuilder.add("shift_pp", new PrepositionTypeShifting());
-		ruleSetBuilder.add("shift_adj", new AdjectiveTypeShifting());
-		ruleSetBuilder.add("shift_ap", new AdverbialTypeShifting());
-		// Topicalization of adverbial phrases
-		ruleSetBuilder.add("topic_ap",
-				new AdverbialTopicalisationTypeShifting());
-		// Shifting S->S/AP allow composition that allows certain coordination
-		// cases
-		ruleSetBuilder.add("shift_s", new SententialAdverbialTypeShifting());
-		
-		final List<IBinaryParseRule<LogicalExpression>> rules = new ArrayList<IBinaryParseRule<LogicalExpression>>(
-				3);
-		rules.add(ruleSetBuilder.build());
-		rules.add(new ForwardSkippingRule<LogicalExpression>(categoryServices));
-		rules.add(new BackwardSkippingRule<LogicalExpression>(categoryServices));
-		final BinaryRulesSet<LogicalExpression> ruleSet = new BinaryRulesSet<LogicalExpression>(
-				rules);
-		
-		final WrappedCKYParser baseParser = new WrappedCKYParser(
-				new MultiCKYParser.Builder<LogicalExpression>(categoryServices,
-						this, new SimpleFullParseFilter<LogicalExpression>(
-								SetUtils.createSingleton((Syntax) Syntax.S)))
-						.setPruneLexicalCells(true)
-						.setPreChartPruning(true)
-						.addBinaryParseRule(
-								new MarkAwareCKYBinaryParsingRule<LogicalExpression>(
-										ruleSet, 1))
-						.setMaxNumberOfCellsInSpan(parserBeamSize).build());
-		
-		storeResource(BASE_PARSER_RESOURCE, baseParser);
-		
-		// storeResource(PARSER_RESOURCE, new NaviParser(baseParser,
-		// singleEvaluator, this, 1000 * 60 * 2 /* two minutes */));
-		
-		storeResource(PARSER_RESOURCE, new NaviGraphParser(baseParser,
-				singleEvaluator, this, 1000 * 60 * 2 /* two minutes */));
-		
-		// //////////////////////////////////////////////////
-		// Read resources
-		// //////////////////////////////////////////////////
-		
-		for (final Parameters params : resourceParams) {
-			final String type = params.get("type");
-			final String id = params.get("id");
-			if (resCreatorRepo.getCreator(type) == null) {
-				throw new IllegalArgumentException("Invalid resource type: "
-						+ type);
-			} else {
-				storeResource(id,
-						resCreatorRepo.getCreator(type).create(params, this));
-			}
-		}
-		
-		// //////////////////////////////////////////////////
-		// Create jobs
-		// //////////////////////////////////////////////////
-		
-		for (final Parameters params : jobParams) {
-			addJob(createJob(params));
-		}
+		return new NaviSingleEvaluator(servicesFactory);
 	}
 	
 	private Job createJob(Parameters params) throws FileNotFoundException {
@@ -677,8 +579,8 @@ public class NaviExperiment extends DistributedExperiment {
 		
 		return new Job(params.get("id"), new HashSet<String>(
 				params.getSplit("dep")), this,
-				createJobOutputStream(params.get("id")), new Log(
-						createJobLogStream(params.get("id")))) {
+				createJobOutputFile(params.get("id")),
+				createJobLogFile(params.get("id"))) {
 			
 			@Override
 			protected void doJob() {
@@ -695,8 +597,8 @@ public class NaviExperiment extends DistributedExperiment {
 		final ModelLogger modelLogger = getResource(params.get("logger"));
 		return new Job(params.get("id"), new HashSet<String>(
 				params.getSplit("dep")), this,
-				createJobOutputStream(params.get("id")), new Log(
-						createJobLogStream(params.get("id")))) {
+				createJobOutputFile(params.get("id")),
+				createJobLogFile(params.get("id"))) {
 			
 			@Override
 			protected void doJob() {
@@ -712,40 +614,49 @@ public class NaviExperiment extends DistributedExperiment {
 		final String prefix = String.format("%s:", jobId);
 		if ("exact.trace".equals(metricName)) {
 			return (ITestingStatistics<X, Z>) new TraceTestStatistics(
-					new ExactMatchTestingStatistics<Pair<Sentence, Task>, Trace>(
-							expId, prefix + "exact.trace"));
+					expId,
+					prefix + "exact.trace",
+					new SimpleStats<ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>>());
 		} else if ("exact.position".equals(metricName)) {
 			return (ITestingStatistics<X, Z>) new FinalPositionTestStatistics(
-					new ExactMatchTestingStatistics<Pair<Sentence, Task>, Position>(
-							expId, prefix + "exact.position"));
+					expId,
+					prefix + "exact.position",
+					new SimpleStats<ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>>());
 		} else if ("exact.coordinates".equals(metricName)) {
 			return (ITestingStatistics<X, Z>) new FinalCoordinatesTestStatistics(
-					new ExactMatchTestingStatistics<Pair<Sentence, Task>, Coordinates>(
-							expId, prefix + "exact.coordinates"));
+					expId,
+					prefix + "exact.coordinates",
+					new SimpleStats<ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>>());
 		} else if ("exact.lf".equals(metricName)) {
 			return (ITestingStatistics<X, Z>) new LogicalFormTestStatistics(
-					new ExactMatchTestingStatistics<Pair<Sentence, Task>, LogicalExpression>(
-							expId, prefix + "exact.lf"));
+					expId,
+					prefix + "exact.lf",
+					new SimpleStats<ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>>());
 		} else if ("exact.lf.dup".equals(metricName)) {
 			return (ITestingStatistics<X, Z>) new LogicalFormTestStatistics(
-					new ExactMatchTestingStatsWithDuplicates<Pair<Sentence, Task>, LogicalExpression>(
-							expId, prefix + "exact.lf.dup"));
+					expId,
+					prefix + "exact.lf.dup",
+					new StatsWithDuplicates<ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>>());
 		} else if ("exact.lf.dup.nl".equals(metricName)) {
 			return (ITestingStatistics<X, Z>) new LogicalFormSentenceTestStatistics(
-					new ExactMatchTestingStatsWithDuplicates<Sentence, LogicalExpression>(
-							expId, prefix + "exact.lf.dup.nl"));
+					expId, prefix + "exact.lf.dup.nl",
+					new StatsWithDuplicates<Sentence>());
 		} else if ("exact.set.coordinates".equals(metricName)) {
 			return (ITestingStatistics<X, Z>) new SetFinalCoordinatesTestStatistics<LogicalExpression>(
-					new ExactMatchTestingStatistics<Pair<List<Sentence>, Task>, Coordinates>(
-							expId, prefix + "exact.set.coordinates"));
+					expId,
+					prefix + "exact.set.coordinates",
+					new SimpleStats<ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<LogicalExpression, Trace>>>>());
 		} else if ("exact.set.xcoordinates".equals(metricName)) {
 			return (ITestingStatistics<X, Z>) new SetGoalCoordinatesTestStatistics<LogicalExpression>(
-					new ExactMatchTestingStatistics<Pair<List<Sentence>, Task>, Coordinates>(
-							expId, prefix + "exact.set.xcoordinates"));
+					expId,
+					prefix + "exact.set.xcoordinates",
+					new SimpleStats<ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<LogicalExpression, Trace>>>>());
 		} else if ("exact.set.lf".equals(metricName)) {
 			return (ITestingStatistics<X, Z>) new SetLogicalFormTestStatistics<LogicalExpression>(
-					new ExactMatchTestingStatistics<Pair<List<Sentence>, Task>, List<LogicalExpression>>(
-							expId, prefix + "exact.set.lf"));
+					expId,
+					prefix + "exact.set.lf",
+					new SimpleStats<ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<LogicalExpression, Trace>>>>());
+			
 		} else {
 			throw new RuntimeException("Unknown testing metric: " + metricName);
 		}
@@ -776,8 +687,8 @@ public class NaviExperiment extends DistributedExperiment {
 		// Create and return the job
 		return new Job(params.get("id"), new HashSet<String>(
 				params.getSplit("dep")), this,
-				createJobOutputStream(params.get("id")), new Log(
-						createJobLogStream(params.get("id")))) {
+				createJobOutputFile(params.get("id")),
+				createJobLogFile(params.get("id"))) {
 			
 			@Override
 			protected void doJob() {
@@ -808,17 +719,17 @@ public class NaviExperiment extends DistributedExperiment {
 	private Job createTrainJob(Parameters params) throws FileNotFoundException {
 		
 		// The model to use
-		final JointModel<Sentence, Task, LogicalExpression, Trace> model = (JointModel<Sentence, Task, LogicalExpression, Trace>) getResource(params
+		final JointModel<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace> model = (JointModel<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace>) getResource(params
 				.get("model"));
 		
 		// The learner
-		final AbstractSituatedLearner<Task, LogicalExpression, Trace, Trace> learner = (AbstractSituatedLearner<Task, LogicalExpression, Trace, Trace>) getResource(params
+		final AbstractSituatedLearner<Task, LogicalExpression, Trace, Trace, InstructionTrace<LogicalExpression>> learner = (AbstractSituatedLearner<Task, LogicalExpression, Trace, Trace, InstructionTrace<LogicalExpression>>) getResource(params
 				.get("learner"));
 		
 		return new Job(params.get("id"), new HashSet<String>(
 				params.getSplit("dep")), this,
-				createJobOutputStream(params.get("id")), new Log(
-						createJobLogStream(params.get("id")))) {
+				createJobOutputFile(params.get("id")),
+				createJobLogFile(params.get("id"))) {
 			
 			@Override
 			protected void doJob() {

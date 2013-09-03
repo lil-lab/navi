@@ -31,13 +31,13 @@ import edu.uw.cs.utils.composites.Pair;
 public class NaviSingleExecutor implements
 		IExec<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> {
 	
-	private final JointModel<Sentence, Task, LogicalExpression, Trace>			model;
-	private final IJointParser<Sentence, Task, LogicalExpression, Trace, Trace>	parser;
-	private final boolean														pruneFails;
+	private final JointModel<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace>	model;
+	private final IJointParser<Sentence, Task, LogicalExpression, Trace, Trace>					parser;
+	private final boolean																		pruneFails;
 	
 	public NaviSingleExecutor(
 			IJointParser<Sentence, Task, LogicalExpression, Trace, Trace> parser,
-			JointModel<Sentence, Task, LogicalExpression, Trace> model,
+			JointModel<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace> model,
 			boolean pruneActionless) {
 		this.parser = parser;
 		this.model = model;

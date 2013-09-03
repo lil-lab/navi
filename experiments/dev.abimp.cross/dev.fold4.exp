@@ -1,16 +1,15 @@
 include=../default.params
 include=dev.params
 outputDir=logs4
-globalLog=global.log
+globalLog=logs4/global.log
 
 # Resources
-include=../default.include.model.exp
-include=../default.include.genlex.exp
-include=dev.include.data.exp
+include=../default.include.resources.exp
 ## Training and testing sets
-type=data.composite.trc id=train sets=fold0,fold1,fold2,fold3
-type=data.composite.ccgtrc id=test sets=fold4CCG
-type=data.composite.ccgsettrc id=testSet sets=fold4SetCCG
+type=data.composite.trc id=train sets=devFold0,devFold1,devFold2,devFold3
+type=data.composite.ccgtrc id=test sets=devFold4CCG
+type=data.composite.ccgsettrc id=testSet sets=devFold4SetCCG
+type=data.composite.ccgtrc id=testLF sets=devTestLFCCG
 include=../default.include.learn.exp
 
 # Jobs

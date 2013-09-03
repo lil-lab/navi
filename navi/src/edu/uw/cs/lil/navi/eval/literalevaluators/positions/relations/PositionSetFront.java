@@ -34,6 +34,8 @@ import edu.uw.cs.utils.collections.SetUtils;
 
 public class PositionSetFront implements INaviLiteralEvaluator {
 	
+	private static final long	serialVersionUID	= -4385117405455278115L;
+	
 	@Override
 	public boolean agentDependent() {
 		return true;

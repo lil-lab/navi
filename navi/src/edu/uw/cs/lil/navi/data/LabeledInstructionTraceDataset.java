@@ -24,15 +24,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.map.NavigationMap;
 import edu.uw.cs.lil.tiny.ccg.categories.ICategoryServices;
-import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
 import edu.uw.cs.lil.tiny.data.collection.IDataCollection;
-import edu.uw.cs.lil.tiny.data.sentence.Sentence;
-import edu.uw.cs.lil.tiny.genlex.ccg.ILexiconGenerator;
 import edu.uw.cs.utils.collections.ListUtils;
-import edu.uw.cs.utils.composites.Pair;
 import edu.uw.cs.utils.io.FileUtils;
 
 /**
@@ -52,12 +47,9 @@ public class LabeledInstructionTraceDataset<MR> implements
 		this.items = items;
 	}
 	
-	public static <MR> LabeledInstructionTraceDataset<MR> readFromFile(
-			File f,
+	public static <MR> LabeledInstructionTraceDataset<MR> readFromFile(File f,
 			final Map<String, NavigationMap> maps,
-			final ICategoryServices<MR> categoryServices,
-			final ILexiconGenerator<ILabeledDataItem<Pair<Sentence, Task>, Pair<MR, Trace>>, MR> lexiconGenerator)
-			throws IOException {
+			final ICategoryServices<MR> categoryServices) throws IOException {
 		final String fileString = FileUtils.readFile(f);
 		
 		return new LabeledInstructionTraceDataset<MR>(
@@ -72,8 +64,7 @@ public class LabeledInstructionTraceDataset<MR> implements
 								counter++;
 								try {
 									return LabeledInstructionTrace.parse(obj,
-											maps, categoryServices,
-											lexiconGenerator);
+											maps, categoryServices);
 								} catch (final Exception e) {
 									throw new LabeledInstructionTraceDatasetException(
 											e, obj, counter);

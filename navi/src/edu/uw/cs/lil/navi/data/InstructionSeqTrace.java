@@ -30,10 +30,8 @@ import edu.uw.cs.lil.navi.map.NavigationMap;
 import edu.uw.cs.lil.navi.map.Pose;
 import edu.uw.cs.lil.navi.map.Position;
 import edu.uw.cs.lil.navi.map.PositionSet;
-import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
-import edu.uw.cs.lil.tiny.genlex.ccg.ILexiconGenerator;
 import edu.uw.cs.utils.collections.ListUtils;
 import edu.uw.cs.utils.composites.Pair;
 import edu.uw.cs.utils.log.ILogger;
@@ -62,10 +60,8 @@ public class InstructionSeqTrace<MR> implements Iterable<InstructionTrace<MR>>,
 	private final List<InstructionTrace<MR>>	singleTraces;
 	private final Task							task;
 	
-	public InstructionSeqTrace(
-			List<Pair<Sentence, Trace>> instructions,
-			final Task task,
-			final ILexiconGenerator<IDataItem<Pair<Sentence, Task>>, MR> lexiconGenerator) {
+	public InstructionSeqTrace(List<Pair<Sentence, Trace>> instructions,
+			final Task task) {
 		this.instructions = Collections.unmodifiableList(instructions);
 		this.task = task;
 		this.samplePair = Pair.of(Collections.unmodifiableList(ListUtils.map(
@@ -98,17 +94,15 @@ public class InstructionSeqTrace<MR> implements Iterable<InstructionTrace<MR>>,
 												.updateAgent(new Agent(obj
 														.second()
 														.getStartPosition())),
-												obj.second(), lexiconGenerator);
+												obj.second());
 									}
 									
 								}));
 		
 	}
 	
-	public static <MR> InstructionSeqTrace<MR> parse(
-			String string,
-			Map<String, NavigationMap> maps,
-			ILexiconGenerator<IDataItem<Pair<Sentence, Task>>, MR> lexiconGenerator) {
+	public static <MR> InstructionSeqTrace<MR> parse(String string,
+			Map<String, NavigationMap> maps) {
 		final LinkedList<String> lines = new LinkedList<String>(
 				Arrays.asList(string.split("\n")));
 		final String id = lines.pollFirst();
@@ -145,7 +139,7 @@ public class InstructionSeqTrace<MR> implements Iterable<InstructionTrace<MR>>,
 				map.get(Integer.valueOf(properties.get("y")))
 						.getAllOrientations(), false), new PositionSet(
 				goal.getAllOrientations(), false), properties, map);
-		return new InstructionSeqTrace<MR>(instructions, task, lexiconGenerator);
+		return new InstructionSeqTrace<MR>(instructions, task);
 	}
 	
 	private static Map<String, String> parseProperties(String line) {

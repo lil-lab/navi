@@ -183,10 +183,9 @@ public class NaviEvaluation extends Evaluation {
 			// Set the state
 			if (arg0Eval instanceof Action) {
 				final StateFlag stateFlag = services.getStateFlag(literal);
-				if (stateFlag.equals(NaviEvaluationConstants.POST_ACTION_STATE)) {
+				if (stateFlag.equals(StateFlag.POST)) {
 					services.pushAgentPosition(((Action) arg0Eval).getEnd());
-				} else if (stateFlag
-						.equals(NaviEvaluationConstants.PRE_ACTION_STATE)) {
+				} else if (stateFlag.equals(StateFlag.PRE)) {
 					services.pushAgentPosition(((Action) arg0Eval).getStart());
 				} else {
 					throw new IllegalStateException("unhandled state flag");

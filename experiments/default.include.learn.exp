@@ -1,6 +1,7 @@
 ## Learner
 #type=chart.logger id=chartLogger outputDir=/scratch/yoav
-type=learner.trc id=learner maxSentenceLength=@trainingMaxSentenceLength genlexbeam=@lexbeam iter=@iter data=train hard=true validator=validator
+type=learner.trc id=learner maxSentenceLength=%{trainingMaxSentenceLength} genlexbeam=%{lexbeam} iter=%{gIter} data=train hard=true validator=wValidator genlex=genlex
+type=learner.stocgrad.trc id=learnerStocGrad maxSentenceLength=%{trainingMaxSentenceLength} genlexbeam=%{lexbeam} iter=%{gIter} data=train validator=validator genlex=genlex
 # parseLogger=chartLogger
 ## Testers
 type=tester.exec id=tester

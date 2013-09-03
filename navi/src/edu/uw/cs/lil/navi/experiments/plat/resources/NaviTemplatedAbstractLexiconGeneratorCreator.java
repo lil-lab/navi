@@ -35,21 +35,19 @@ public class NaviTemplatedAbstractLexiconGeneratorCreator implements
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public TemplateCoarseGenlex create(Parameters parameters,
+	public TemplateCoarseGenlex create(Parameters params,
 			IResourceRepository resourceRepo) {
 		return new NaviTemplatedAbstractLexiconGenerator.Builder(
-				Integer.valueOf(parameters.get("maxTokens")),
-				(IModelImmutable<Sentence, LogicalExpression>) resourceRepo
-						.getResource(parameters.get("model")),
+				Integer.valueOf(params.get("maxTokens")),
 				(IParser<Sentence, LogicalExpression>) resourceRepo
-						.getResource(NaviExperiment.BASE_PARSER_RESOURCE),
-				Integer.valueOf(parameters.get("beam")),
+						.getResource(params.get("baseParser")),
+				Integer.valueOf(params.get("beam")),
 				((NaviEvaluationServicesFactory) resourceRepo
 						.getResource(NaviExperiment.EVAL_SERVICES_FACTORY))
 						.getNaviEvaluationConsts())
 				.addTemplatesFromModel(
 						(IModelImmutable<?, LogicalExpression>) resourceRepo
-								.getResource(parameters.get("model")))
+								.getResource(params.get("model")))
 				.addConstants(
 						(Ontology) resourceRepo
 								.getResource(NaviExperiment.DOMAIN_ONTOLOGY_RESOURCE))

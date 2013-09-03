@@ -29,6 +29,8 @@ import edu.uw.cs.lil.navi.map.PositionSet;
  */
 public class ActionWhile extends NaviInvariantLiteralEvaluator {
 	
+	private static final long	serialVersionUID	= -7403515916022931853L;
+	
 	@Override
 	public Object evaluate(Object[] args) {
 		if (args.length == 2 && args[0] instanceof Action

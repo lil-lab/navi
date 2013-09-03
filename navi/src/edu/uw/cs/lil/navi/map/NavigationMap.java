@@ -16,6 +16,7 @@
  ******************************************************************************/
 package edu.uw.cs.lil.navi.map;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,6 +24,10 @@ import java.util.Map;
 import java.util.Set;
 
 import edu.uw.cs.lil.navi.map.Position.MutablePosition;
+import edu.uw.cs.lil.tiny.explat.IResourceRepository;
+import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
+import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
+import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
 
 /**
  * Represents a navigation map.
@@ -89,6 +94,41 @@ public class NavigationMap {
 	public Set<Position> positionSet() {
 		return Collections.unmodifiableSet(new HashSet<Position>(positions
 				.values()));
+	}
+	
+	public static class Creator implements
+			IResourceObjectCreator<NavigationMap> {
+		
+		private final String	type;
+		
+		public Creator() {
+			this("navimap");
+		}
+		
+		public Creator(String type) {
+			this.type = type;
+		}
+		
+		@Override
+		public NavigationMap create(Parameters params, IResourceRepository repo) {
+			try {
+				return NavigationMapXMLReader.read(params.getAsFile("file"));
+			} catch (final Exception e) {
+				throw new RuntimeException(e);
+			}
+		}
+		
+		@Override
+		public String type() {
+			return type;
+		}
+		
+		@Override
+		public ResourceUsage usage() {
+			return ResourceUsage.builder(type, NavigationMap.class)
+					.addParam("file", File.class, "XML file.").build();
+		}
+		
 	}
 	
 }

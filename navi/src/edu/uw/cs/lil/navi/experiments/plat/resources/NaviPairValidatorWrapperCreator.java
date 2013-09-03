@@ -16,21 +16,25 @@
  ******************************************************************************/
 package edu.uw.cs.lil.navi.experiments.plat.resources;
 
-import edu.uw.cs.lil.navi.learn.validation.INaviValidator;
+import edu.uw.cs.lil.navi.data.InstructionTrace;
+import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.learn.validation.NaviPairValidatorWrapper;
+import edu.uw.cs.lil.tiny.data.utils.IValidator;
 import edu.uw.cs.lil.tiny.explat.IResourceRepository;
 import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
 import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
 import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
 
-public class NaviPairValidatorWrapperCreator implements
-		IResourceObjectCreator<NaviPairValidatorWrapper> {
+public class NaviPairValidatorWrapperCreator<MR> implements
+		IResourceObjectCreator<NaviPairValidatorWrapper<MR>> {
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public NaviPairValidatorWrapper create(Parameters params,
+	public NaviPairValidatorWrapper<MR> create(Parameters params,
 			IResourceRepository repo) {
-		return new NaviPairValidatorWrapper(
-				(INaviValidator) repo.getResource(params.get("base")));
+		return new NaviPairValidatorWrapper<MR>(
+				(IValidator<InstructionTrace<MR>, Trace>) repo
+						.getResource(params.get("base")));
 	}
 	
 	@Override
@@ -41,7 +45,7 @@ public class NaviPairValidatorWrapperCreator implements
 	@Override
 	public ResourceUsage usage() {
 		return new ResourceUsage.Builder(type(), NaviPairValidatorWrapper.class)
-				.addParam("base", "validator",
+				.addParam("base", IValidator.class,
 						"Base validator to to handle traces").build();
 	}
 	

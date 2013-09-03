@@ -16,6 +16,7 @@
  ******************************************************************************/
 package edu.uw.cs.lil.navi.eval;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,7 +37,7 @@ import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.Tuple;
 import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
 
-public class NaviSingleEvaluator {
+public class NaviSingleEvaluator implements Serializable {
 	private static final ILogger				LOG	= LoggerFactory
 															.create(NaviSingleEvaluator.class);
 	private final NaviEvaluationServicesFactory	servicesFactory;

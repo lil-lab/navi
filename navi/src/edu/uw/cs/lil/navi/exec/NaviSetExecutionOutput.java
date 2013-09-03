@@ -22,6 +22,7 @@ import java.util.List;
 
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.Task;
+import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.exec.IExecOutput;
 import edu.uw.cs.lil.tiny.exec.IExecution;
@@ -41,7 +42,7 @@ public class NaviSetExecutionOutput implements
 	
 	public NaviSetExecutionOutput(
 			List<List<IJointParse<LogicalExpression, Trace>>> parseLists,
-			final IJointModelImmutable<Sentence, Task, LogicalExpression, Trace> model,
+			final IJointModelImmutable<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace> model,
 			long execTime) {
 		this.execTime = execTime;
 		this.allExecutions = ListUtils

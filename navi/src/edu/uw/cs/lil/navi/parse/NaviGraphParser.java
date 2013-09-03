@@ -28,9 +28,15 @@ import java.util.concurrent.Future;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.NaviSingleEvaluator;
 import edu.uw.cs.lil.navi.eval.Task;
+import edu.uw.cs.lil.navi.experiments.plat.NaviExperiment;
 import edu.uw.cs.lil.tiny.ccg.lexicon.ILexicon;
 import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
+import edu.uw.cs.lil.tiny.explat.IResourceRepository;
+import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment;
+import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
+import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
+import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.parser.ccg.model.IDataItemModel;
 import edu.uw.cs.lil.tiny.parser.graph.AbstractGraphParser;
@@ -202,6 +208,50 @@ public class NaviGraphParser extends
 			ILexicon<LogicalExpression> tempLexicon, Integer beamSize) {
 		return baseParser.parse(dataItem, pruningFilter, model,
 				allowWordSkipping, tempLexicon, beamSize);
+	}
+	
+	public static class Creator implements
+			IResourceObjectCreator<NaviGraphParser> {
+		
+		private final String	type;
+		
+		public Creator() {
+			this("parser.joint.navi.graph");
+		}
+		
+		public Creator(String type) {
+			this.type = type;
+		}
+		
+		@SuppressWarnings("unchecked")
+		@Override
+		public NaviGraphParser create(Parameters params,
+				IResourceRepository repo) {
+			return new NaviGraphParser(
+					(IGraphParser<Sentence, LogicalExpression>) repo
+							.getResource(params.get("baseParser")),
+					(NaviSingleEvaluator) repo
+							.getResource(NaviExperiment.SINGLE_EVALUATOR),
+					(ITinyExecutor) repo
+							.getResource(ParameterizedExperiment.EXECUTOR_RESOURCE),
+					params.getAsInteger("evalTimeout"));
+		}
+		
+		@Override
+		public String type() {
+			return type;
+		}
+		
+		@Override
+		public ResourceUsage usage() {
+			return ResourceUsage
+					.builder(type, NaviGraphParser.class)
+					.addParam("baseParser", IGraphParser.class,
+							"Base parser for mapping sentences to logical forms.")
+					.addParam("evalTimeout", Integer.class,
+							"Evaluation timeout in milliseconds.").build();
+		}
+		
 	}
 	
 }
