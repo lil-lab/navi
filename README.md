@@ -1,4 +1,4 @@
-# _**Navi v1.1**_
+# _**Navi v1.2**_
 
 Yoav Artzi and Luke Zettlemoyer. [Weakly Supervised Learning of Semantic Parsers for Mapping Instructions to Actions](http://yoavartzi.com/pub/az-tacl.2013.pdf). In Transactions of the Association for Computational Linguistics (TACL), 2013.
 
