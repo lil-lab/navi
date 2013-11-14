@@ -16,7 +16,12 @@
  ******************************************************************************/
 package edu.uw.cs.lil.navi.features.init;
 
+import edu.uw.cs.lil.navi.experiments.plat.NaviExperiment;
 import edu.uw.cs.lil.tiny.data.IDataItem;
+import edu.uw.cs.lil.tiny.explat.IResourceRepository;
+import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
+import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
+import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicLanguageServices;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalConstant;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
@@ -29,13 +34,14 @@ import edu.uw.cs.lil.tiny.utils.hashvector.IHashVector;
  * Init conjunction REPT features.
  * 
  * @author Yoav Artzi
- * @param <X>
- * @param <Y>
+ * @param <DI>
+ *            Inference data item.
  */
 public class ReptFeaturesInit<DI extends IDataItem<?>> implements
 		IModelInit<DI, LogicalExpression> {
 	
 	private final String	featureName;
+	
 	private final String	featureTag;
 	private final double	initWeight;
 	private final Ontology	ontology;
@@ -56,6 +62,38 @@ public class ReptFeaturesInit<DI extends IDataItem<?>> implements
 					.getConjunctionPredicate().toString(), pred.toString(),
 					initWeight);
 		}
+	}
+	
+	public static class Creator<DI extends IDataItem<?>> implements
+			IResourceObjectCreator<ReptFeaturesInit<DI>> {
+		
+		@Override
+		public ReptFeaturesInit<DI> create(Parameters params,
+				IResourceRepository repo) {
+			return new ReptFeaturesInit<DI>(params.get("tag"),
+					params.get("name"), Double.valueOf(params.get("weight")),
+					(Ontology) repo
+							.getResource(NaviExperiment.ONTOLOGY_RESOURCE));
+		}
+		
+		@Override
+		public String type() {
+			return "init.feats.rept";
+		}
+		
+		@Override
+		public ResourceUsage usage() {
+			return new ResourceUsage.Builder(type(), ReptFeaturesInit.class)
+					.setDescription(
+							"Intializer for logical expression repetition features")
+					.addParam("tag", "string", "Repetition features tag")
+					.addParam("name", "string",
+							"Repetition features second identifier")
+					.addParam("weight", "double",
+							"Initial weight to give to each initialized feature")
+					.build();
+		}
+		
 	}
 	
 }

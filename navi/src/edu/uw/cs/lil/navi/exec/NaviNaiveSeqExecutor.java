@@ -21,13 +21,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 import edu.uw.cs.lil.navi.agent.Agent;
+import edu.uw.cs.lil.navi.data.Instruction;
+import edu.uw.cs.lil.navi.data.InstructionSeq;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.Task;
+import edu.uw.cs.lil.navi.experiments.plat.NaviExperiment;
 import edu.uw.cs.lil.navi.map.Position;
-import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.exec.IExec;
 import edu.uw.cs.lil.tiny.exec.IExecOutput;
+import edu.uw.cs.lil.tiny.explat.IResourceRepository;
+import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
+import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
+import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.parser.joint.IJointOutput;
 import edu.uw.cs.lil.tiny.parser.joint.IJointParse;
@@ -46,62 +52,44 @@ import edu.uw.cs.utils.composites.Pair;
  * @author Yoav Artzi
  */
 public class NaviNaiveSeqExecutor implements
-		IExec<Pair<List<Sentence>, Task>, List<Pair<LogicalExpression, Trace>>> {
-	private final JointModel<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace>	model;
-	private final IJointParser<Sentence, Task, LogicalExpression, Trace, Trace>					parser;
-	private final boolean																		pruneActionless;
+		IExec<InstructionSeq, List<Pair<LogicalExpression, Trace>>> {
+	private final JointModel<Instruction, LogicalExpression, Trace>				model;
+	private final IJointParser<Instruction, LogicalExpression, Trace, Trace>	parser;
+	private final boolean														pruneActionless;
 	
 	public NaviNaiveSeqExecutor(
-			IJointParser<Sentence, Task, LogicalExpression, Trace, Trace> parser,
-			JointModel<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace> model,
+			IJointParser<Instruction, LogicalExpression, Trace, Trace> parser,
+			JointModel<Instruction, LogicalExpression, Trace> model,
 			boolean pruneActionless) {
 		this.parser = parser;
 		this.model = model;
 		this.pruneActionless = pruneActionless;
 	}
 	
-	private static IDataItem<Pair<Sentence, Task>> createSingleDataItem(
-			final Sentence sentence, final Task task) {
-		return new IDataItem<Pair<Sentence, Task>>() {
-			private final Pair<Sentence, Task>	sample	= Pair.of(sentence,
-																task);
-			
-			@Override
-			public Pair<Sentence, Task> getSample() {
-				return sample;
-			}
-			
-			@Override
-			public String toString() {
-				return sample.toString();
-			}
-		};
-	}
-	
 	@Override
 	public IExecOutput<List<Pair<LogicalExpression, Trace>>> execute(
-			IDataItem<Pair<List<Sentence>, Task>> dataItem) {
+			InstructionSeq dataItem) {
 		return execute(dataItem, false);
 	}
 	
 	@Override
 	public IExecOutput<List<Pair<LogicalExpression, Trace>>> execute(
-			IDataItem<Pair<List<Sentence>, Task>> dataItem, boolean sloppy) {
+			InstructionSeq dataItem, boolean sloppy) {
 		final long startTime = System.currentTimeMillis();
 		
-		Task currentTask = dataItem.getSample().second();
+		Task currentTask = dataItem.getState();
 		final List<List<IJointParse<LogicalExpression, Trace>>> parseLists = new LinkedList<List<IJointParse<LogicalExpression, Trace>>>();
 		
 		// Init with empty list
 		parseLists.add(new ArrayList<IJointParse<LogicalExpression, Trace>>());
 		
-		for (final Sentence sentence : dataItem.getSample().first()) {
-			final IDataItem<Pair<Sentence, Task>> singleDataItem = createSingleDataItem(
-					sentence, currentTask);
+		for (final Sentence sentence : dataItem) {
+			final Instruction instruction = new Instruction(sentence,
+					currentTask);
 			final IJointDataItemModel<LogicalExpression, Trace> dataItemModel = model
-					.createJointDataItemModel(singleDataItem);
+					.createJointDataItemModel(instruction);
 			final IJointOutput<LogicalExpression, Trace> parserOutput = parser
-					.parse(singleDataItem, dataItemModel, sloppy);
+					.parse(instruction, dataItemModel, sloppy);
 			Position currentPosition = null;
 			final List<IJointParse<LogicalExpression, Trace>> newParses = new LinkedList<IJointParse<LogicalExpression, Trace>>();
 			for (final IJointParse<LogicalExpression, Trace> parse : parserOutput
@@ -149,5 +137,38 @@ public class NaviNaiveSeqExecutor implements
 		
 		return new NaviSetExecutionOutput(parseLists, model,
 				System.currentTimeMillis() - startTime);
+	}
+	
+	public static class Creator implements
+			IResourceObjectCreator<NaviNaiveSeqExecutor> {
+		
+		@SuppressWarnings("unchecked")
+		@Override
+		public NaviNaiveSeqExecutor create(Parameters params,
+				IResourceRepository repo) {
+			return new NaviNaiveSeqExecutor(
+					(IJointParser<Instruction, LogicalExpression, Trace, Trace>) repo
+							.getResource(NaviExperiment.PARSER_RESOURCE),
+					(JointModel<Instruction, LogicalExpression, Trace>) repo
+							.getResource(params.get("model")), "false"
+							.equals(params.get("pruneAtionless")));
+		}
+		
+		@Override
+		public String type() {
+			return "exec.set.naive";
+		}
+		
+		@Override
+		public ResourceUsage usage() {
+			return new ResourceUsage.Builder(type(), NaviNaiveSeqExecutor.class)
+					.setDescription(
+							"Naive (baseline) executor for sequences of instructions.")
+					.addParam("model", "id", "Joint model for inference")
+					.addParam("pruneActionless", "boolean",
+							"Prune parses that fail to generate valid actions. Default: true.")
+					.build();
+		}
+		
 	}
 }

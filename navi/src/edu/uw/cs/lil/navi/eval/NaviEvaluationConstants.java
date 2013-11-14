@@ -29,25 +29,24 @@ import java.util.Set;
 
 import edu.uw.cs.lil.navi.agent.Direction;
 import edu.uw.cs.lil.navi.eval.literalevaluators.INaviLiteralEvaluator;
-import edu.uw.cs.lil.tiny.ccg.categories.ICategoryServices;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalConstant;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.mr.language.type.Type;
 
 public class NaviEvaluationConstants implements Serializable {
-	private final LogicalExpression								actionExistsQuantifier;
+	private final LogicalConstant								actionExistsQuantifier;
 	
 	private final Type											actionSeqType;
 	private final Set<LogicalConstant>							agentPositionVariantConstants;
-	private final LogicalExpression								aQuantifier;
+	private final LogicalConstant								aQuantifier;
 	
 	private final LogicalConstant								currentPositionConstant;
-	private final LogicalExpression								definiteQuantifier;
+	private final LogicalConstant								definiteQuantifier;
 	/**
 	 * Translates :dir constants to direction objects.
 	 */
 	private final Map<LogicalExpression, Direction>				directions;
-	private final LogicalExpression								entityExistsQuantifier;
+	private final LogicalConstant								entityExistsQuantifier;
 	private final Map<Type, LogicalConstant>					equalsPredicates;
 	private final Map<LogicalConstant, INaviLiteralEvaluator>	literalEvaluators;
 	private final int											maxImplicitActionsPerTurn;
@@ -66,13 +65,12 @@ public class NaviEvaluationConstants implements Serializable {
 			LogicalConstant positionXConstant,
 			LogicalConstant positionYConstant,
 			Map<LogicalExpression, StateFlag> statefulPredicates,
-			LogicalExpression definiteQuantifier,
-			LogicalExpression existsQuantifier, LogicalExpression aQuantifier,
+			LogicalConstant definiteQuantifier,
+			LogicalConstant existsQuantifier, LogicalConstant aQuantifier,
 			Set<Double> supportedNumbers,
-			LogicalExpression actionExistsQuantifier,
-			int maxImplicitActionsPerTurn,
-			ICategoryServices<LogicalExpression> categoryServices,
-			Type metaEntityType, Map<Type, LogicalConstant> equalsPredicates,
+			LogicalConstant actionExistsQuantifier,
+			int maxImplicitActionsPerTurn, Type metaEntityType,
+			Map<Type, LogicalConstant> equalsPredicates,
 			Set<LogicalConstant> agentPositionVariantConstants) {
 		this.actionSeqType = actionSeqType;
 		this.currentPositionConstant = currentPositionConstant;
@@ -92,16 +90,16 @@ public class NaviEvaluationConstants implements Serializable {
 		this.agentPositionVariantConstants = agentPositionVariantConstants;
 		final Map<StateFlag, LogicalConstant> statefuls = new HashMap<StateFlag, LogicalConstant>();
 		final Map<LogicalConstant, StateFlag> statefulsToFlag = new HashMap<LogicalConstant, StateFlag>();
-		statefuls.put(StateFlag.POST, (LogicalConstant) categoryServices
-				.parseSemantics("POST_STATE_WRAPPER:<a,<t,t>>"));
-		statefulsToFlag
-				.put((LogicalConstant) categoryServices
-						.parseSemantics("POST_STATE_WRAPPER:<a,<t,t>>"),
-						StateFlag.POST);
-		statefuls.put(StateFlag.PRE, (LogicalConstant) categoryServices
-				.parseSemantics("PRE_STATE_WRAPPER:<a,<t,t>>"));
-		statefulsToFlag.put((LogicalConstant) categoryServices
-				.parseSemantics("PRE_STATE_WRAPPER:<a,<t,t>>"), StateFlag.PRE);
+		statefuls.put(StateFlag.POST,
+				LogicalConstant.parse("POST_STATE_WRAPPER:<a,<t,t>>"));
+		statefulsToFlag.put(
+				LogicalConstant.parse("POST_STATE_WRAPPER:<a,<t,t>>"),
+				StateFlag.POST);
+		statefuls.put(StateFlag.PRE,
+				LogicalConstant.parse("PRE_STATE_WRAPPER:<a,<t,t>>"));
+		statefulsToFlag.put(
+				LogicalConstant.parse("PRE_STATE_WRAPPER:<a,<t,t>>"),
+				StateFlag.PRE);
 		this.statefulWrappers = Collections.unmodifiableMap(statefuls);
 		this.statefulWrappersToFlags = Collections
 				.unmodifiableMap(statefulsToFlag);
@@ -119,7 +117,7 @@ public class NaviEvaluationConstants implements Serializable {
 		return directions.values();
 	}
 	
-	public LogicalExpression getAQuantifier() {
+	public LogicalConstant getAQuantifier() {
 		return aQuantifier;
 	}
 	
@@ -131,7 +129,7 @@ public class NaviEvaluationConstants implements Serializable {
 		return directions.get(exp);
 	}
 	
-	public LogicalExpression getEntityExistsQuantifier() {
+	public LogicalConstant getEntityExistsQuantifier() {
 		return entityExistsQuantifier;
 	}
 	
@@ -190,16 +188,15 @@ public class NaviEvaluationConstants implements Serializable {
 	}
 	
 	public static class Builder {
-		private final LogicalExpression								actionExistsQuantifier;
+		private final LogicalConstant								actionExistsQuantifier;
 		private final Type											actionSeqType;
 		private final Set<LogicalConstant>							agentPositionVariantConstants	= new HashSet<LogicalConstant>();
-		private final LogicalExpression								aQuantifier;
-		private final ICategoryServices<LogicalExpression>			categoryServices;
+		private final LogicalConstant								aQuantifier;
 		private final LogicalConstant								currentPositionConstant;
-		private final LogicalExpression								definiteDeterminer;
+		private final LogicalConstant								definiteDeterminer;
 		private final Map<LogicalExpression, Direction>				directions						= new HashMap<LogicalExpression, Direction>();
 		private final Map<Type, LogicalConstant>					equalsPredicates				= new HashMap<Type, LogicalConstant>();
-		private final LogicalExpression								existsQuantifier;
+		private final LogicalConstant								existsQuantifier;
 		private final Map<LogicalConstant, INaviLiteralEvaluator>	literalEvaluators				= new HashMap<LogicalConstant, INaviLiteralEvaluator>();
 		private final int											maxImplicitActionsPerTurn;
 		private final Type											metaEntityType;
@@ -214,13 +211,10 @@ public class NaviEvaluationConstants implements Serializable {
 		public Builder(Type actionSeqType, LogicalConstant positionXConstant,
 				LogicalConstant positionYConstant,
 				LogicalConstant currentPositionConstant,
-				LogicalExpression definiteDeterminer,
-				LogicalExpression existsQuantifier,
-				LogicalExpression aQuantifier,
-				LogicalExpression actionExistsQuantifier,
-				int maxImplicitActionsPerTurn,
-				ICategoryServices<LogicalExpression> categoryServices,
-				Type metaEntityType) {
+				LogicalConstant definiteDeterminer,
+				LogicalConstant existsQuantifier, LogicalConstant aQuantifier,
+				LogicalConstant actionExistsQuantifier,
+				int maxImplicitActionsPerTurn, Type metaEntityType) {
 			this.actionSeqType = actionSeqType;
 			this.positionXConstant = positionXConstant;
 			this.positionYConstant = positionYConstant;
@@ -229,7 +223,6 @@ public class NaviEvaluationConstants implements Serializable {
 			this.aQuantifier = aQuantifier;
 			this.actionExistsQuantifier = actionExistsQuantifier;
 			this.maxImplicitActionsPerTurn = maxImplicitActionsPerTurn;
-			this.categoryServices = categoryServices;
 			this.metaEntityType = metaEntityType;
 			this.currentPositionConstant = currentPositionConstant;
 			// Except certain predicates (complex constants) only the current
@@ -278,7 +271,7 @@ public class NaviEvaluationConstants implements Serializable {
 					definiteDeterminer, existsQuantifier, aQuantifier,
 					Collections.unmodifiableSet(supportedNumbers),
 					actionExistsQuantifier, maxImplicitActionsPerTurn,
-					categoryServices, metaEntityType,
+					metaEntityType,
 					Collections.unmodifiableMap(equalsPredicates),
 					Collections.unmodifiableSet(agentPositionVariantConstants));
 		}

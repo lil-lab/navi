@@ -52,7 +52,7 @@ import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
 
 public class NaviEvaluationServices extends AbstractEvaluationServices<State> {
-	private static final ILogger			LOG					= LoggerFactory
+	public static final ILogger				LOG					= LoggerFactory
 																		.create(NaviEvaluationServices.class);
 	private final Stack<State>				agentCurrentState	= new Stack<State>();
 	private final Agent						initAgent;
@@ -459,7 +459,7 @@ public class NaviEvaluationServices extends AbstractEvaluationServices<State> {
 		}
 	}
 	
-	public LogicalExpression getAQuantifier() {
+	public LogicalConstant getAQuantifier() {
 		return naviConsts.getAQuantifier();
 	}
 	
@@ -479,7 +479,7 @@ public class NaviEvaluationServices extends AbstractEvaluationServices<State> {
 		return naviConsts.getEqualsPredicates();
 	}
 	
-	public LogicalExpression getExistsQuantifier() {
+	public LogicalConstant getExistsQuantifier() {
 		return naviConsts.getEntityExistsQuantifier();
 	}
 	

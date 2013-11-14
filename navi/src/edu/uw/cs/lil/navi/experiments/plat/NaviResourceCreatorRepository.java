@@ -18,56 +18,62 @@ package edu.uw.cs.lil.navi.experiments.plat;
 
 import java.util.List;
 
+import edu.uw.cs.lil.navi.data.Instruction;
+import edu.uw.cs.lil.navi.data.InstructionSeq;
+import edu.uw.cs.lil.navi.data.InstructionSeqTraceDataset;
 import edu.uw.cs.lil.navi.data.InstructionTrace;
+import edu.uw.cs.lil.navi.data.InstructionTraceDataset;
+import edu.uw.cs.lil.navi.data.LabeledInstructionSeqTraceDataset;
+import edu.uw.cs.lil.navi.data.LabeledInstructionTraceDataset;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.Task;
-import edu.uw.cs.lil.navi.experiments.plat.resources.ExecutionFeatureSetCreator;
-import edu.uw.cs.lil.navi.experiments.plat.resources.InstructionSeqTraceDatasetCreator;
-import edu.uw.cs.lil.navi.experiments.plat.resources.InstructionTraceDatasetCreator;
-import edu.uw.cs.lil.navi.experiments.plat.resources.LabeledInstructionSeqTraceDatasetCreator;
-import edu.uw.cs.lil.navi.experiments.plat.resources.LabeledInstructionTraceDatasetCreator;
-import edu.uw.cs.lil.navi.experiments.plat.resources.NaviJointTemplatedAbstractLexiconGeneratorCreator;
-import edu.uw.cs.lil.navi.experiments.plat.resources.NaviLearningRelaxedValidatorCreator;
-import edu.uw.cs.lil.navi.experiments.plat.resources.NaviLearningValidatorCreator;
-import edu.uw.cs.lil.navi.experiments.plat.resources.NaviLearningWeakValidatorCreator;
-import edu.uw.cs.lil.navi.experiments.plat.resources.NaviNaiveSeqExecutorCreator;
-import edu.uw.cs.lil.navi.experiments.plat.resources.NaviPairValidatorWrapperCreator;
-import edu.uw.cs.lil.navi.experiments.plat.resources.NaviSeqExecutorCreator;
-import edu.uw.cs.lil.navi.experiments.plat.resources.NaviSingleExecutorCreator;
-import edu.uw.cs.lil.navi.experiments.plat.resources.NaviTemplatedAbstractLexiconGeneratorCreator;
-import edu.uw.cs.lil.navi.experiments.plat.resources.NaviTemplatedLexiconGeneratorCreator;
-import edu.uw.cs.lil.navi.experiments.plat.resources.ReptFeaturesInitCreator;
-import edu.uw.cs.lil.navi.experiments.plat.resources.TemplateCountModelInitCreator;
+import edu.uw.cs.lil.navi.exec.NaviNaiveSeqExecutor;
+import edu.uw.cs.lil.navi.exec.NaviSeqExecutor;
+import edu.uw.cs.lil.navi.exec.NaviSingleExecutor;
+import edu.uw.cs.lil.navi.features.ExecutionFeatureSet;
+import edu.uw.cs.lil.navi.features.init.ReptFeaturesInit;
+import edu.uw.cs.lil.navi.features.init.TemplateCountModelInit;
+import edu.uw.cs.lil.navi.learn.lexicalgen.NaviJointTemplatedAbstractLexiconGenerator;
+import edu.uw.cs.lil.navi.learn.lexicalgen.NaviTemplateCoarseGenlex;
+import edu.uw.cs.lil.navi.learn.lexicalgen.NaviTemplatedLexiconGenerator;
+import edu.uw.cs.lil.navi.learn.validation.NaviLearningRelaxedValidator;
+import edu.uw.cs.lil.navi.learn.validation.NaviLearningValidator;
+import edu.uw.cs.lil.navi.learn.validation.NaviLearningWeakValidator;
+import edu.uw.cs.lil.navi.learn.validation.NaviPairValidatorWrapper;
 import edu.uw.cs.lil.navi.map.NavigationMap;
 import edu.uw.cs.lil.navi.parse.NaviGraphParser;
+import edu.uw.cs.lil.navi.parse.WrappedCKYParser;
+import edu.uw.cs.lil.tiny.ccg.lexicon.Lexicon;
+import edu.uw.cs.lil.tiny.ccg.lexicon.factored.lambda.FactoredLexicon;
+import edu.uw.cs.lil.tiny.ccg.lexicon.factored.lambda.Lexeme;
 import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
-import edu.uw.cs.lil.tiny.data.resources.CompositeDataCollectionCreator;
+import edu.uw.cs.lil.tiny.data.collection.CompositeDataCollection;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
-import edu.uw.cs.lil.tiny.data.singlesentence.resources.SingleSentenceDatasetCreator;
+import edu.uw.cs.lil.tiny.data.singlesentence.SingleSentenceDataset;
 import edu.uw.cs.lil.tiny.explat.resources.ResourceCreatorRepository;
-import edu.uw.cs.lil.tiny.learn.situated.resources.SituatedValidationPerceptronCreator;
-import edu.uw.cs.lil.tiny.learn.situated.resources.SituatedValidationStocGradCreator;
+import edu.uw.cs.lil.tiny.learn.situated.perceptron.SituatedValidationPerceptron;
+import edu.uw.cs.lil.tiny.learn.situated.stocgrad.SituatedValidationStocGrad;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.mr.lambda.ccg.SimpleFullParseFilter;
 import edu.uw.cs.lil.tiny.parser.ccg.cky.genlex.MarkAwareCKYBinaryParsingRule;
 import edu.uw.cs.lil.tiny.parser.ccg.cky.multi.MultiCKYParser;
-import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.resources.FactoredLexiconCreator;
-import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.resources.FactoredUniformScorerCreator;
-import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.resources.LexemeCooccurrenceScorerCreator;
-import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.resources.LexemeFeatureSetCreator;
-import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.resources.LexicalEntryLexemeBasedScorerCreator;
-import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.resources.LexicalTemplateFeatureSetCreator;
-import edu.uw.cs.lil.tiny.parser.ccg.features.basic.resources.ExpLengthLexicalEntryScorerCreator;
-import edu.uw.cs.lil.tiny.parser.ccg.features.basic.resources.LexicalFeatureSetCreator;
-import edu.uw.cs.lil.tiny.parser.ccg.features.basic.resources.OriginLexicalEntryScorerCreator;
-import edu.uw.cs.lil.tiny.parser.ccg.features.basic.resources.RuleUsageFeatureSetCreator;
-import edu.uw.cs.lil.tiny.parser.ccg.features.basic.resources.SkippingSensitiveLexicalEntryScorerCreator;
-import edu.uw.cs.lil.tiny.parser.ccg.features.basic.resources.UniformScorerCreator;
-import edu.uw.cs.lil.tiny.parser.ccg.features.lambda.resources.LogicalExpressionCooccurrenceFeatureSetCreator;
-import edu.uw.cs.lil.tiny.parser.ccg.features.lambda.resources.LogicalExpressionCoordinationFeatureSetCreator;
-import edu.uw.cs.lil.tiny.parser.ccg.features.lambda.resources.LogicalExpressionTypeFeatureSetCreator;
-import edu.uw.cs.lil.tiny.parser.ccg.joint.cky.resources.ChartLoggerCreator;
+import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.features.LexemeFeatureSet;
+import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.features.LexicalTemplateFeatureSet;
+import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.features.scorers.LexemeCooccurrenceScorer;
+import edu.uw.cs.lil.tiny.parser.ccg.factoredlex.features.scorers.LexicalEntryLexemeBasedScorer;
+import edu.uw.cs.lil.tiny.parser.ccg.features.basic.LexicalFeatureSet;
+import edu.uw.cs.lil.tiny.parser.ccg.features.basic.LexicalFeaturesInit;
+import edu.uw.cs.lil.tiny.parser.ccg.features.basic.RuleUsageFeatureSet;
+import edu.uw.cs.lil.tiny.parser.ccg.features.basic.scorer.ExpLengthLexicalEntryScorer;
+import edu.uw.cs.lil.tiny.parser.ccg.features.basic.scorer.OriginLexicalEntryScorer;
+import edu.uw.cs.lil.tiny.parser.ccg.features.basic.scorer.SkippingSensitiveLexicalEntryScorer;
+import edu.uw.cs.lil.tiny.parser.ccg.features.basic.scorer.UniformScorer;
+import edu.uw.cs.lil.tiny.parser.ccg.features.lambda.LogicalExpressionCooccurrenceFeatureSet;
+import edu.uw.cs.lil.tiny.parser.ccg.features.lambda.LogicalExpressionCoordinationFeatureSet;
+import edu.uw.cs.lil.tiny.parser.ccg.joint.cky.JointInferenceChartLogger;
+import edu.uw.cs.lil.tiny.parser.ccg.model.LexiconModelInit;
+import edu.uw.cs.lil.tiny.parser.ccg.model.ModelLogger;
 import edu.uw.cs.lil.tiny.parser.ccg.rules.BinaryRulesSet;
 import edu.uw.cs.lil.tiny.parser.ccg.rules.OverloadedRulesCreator;
 import edu.uw.cs.lil.tiny.parser.ccg.rules.lambda.typeshifting.basic.AdjectiveTypeShifting;
@@ -78,11 +84,8 @@ import edu.uw.cs.lil.tiny.parser.ccg.rules.lambda.typeshifting.basic.SententialA
 import edu.uw.cs.lil.tiny.parser.ccg.rules.primitivebinary.ApplicationCreator;
 import edu.uw.cs.lil.tiny.parser.ccg.rules.primitivebinary.CompositionCreator;
 import edu.uw.cs.lil.tiny.parser.ccg.rules.skipping.SkippingRuleCreator;
-import edu.uw.cs.lil.tiny.parser.joint.resources.JointModelCreator;
-import edu.uw.cs.lil.tiny.parser.resources.LexiconCreator;
-import edu.uw.cs.lil.tiny.parser.resources.LexiconModelInitCreator;
-import edu.uw.cs.lil.tiny.parser.resources.ModelLoggerCreator;
-import edu.uw.cs.lil.tiny.test.exec.resources.ExecTesterCreator;
+import edu.uw.cs.lil.tiny.parser.joint.model.JointModel;
+import edu.uw.cs.lil.tiny.test.exec.ExecTester;
 import edu.uw.cs.utils.composites.Pair;
 
 public class NaviResourceCreatorRepository extends ResourceCreatorRepository {
@@ -105,60 +108,62 @@ public class NaviResourceCreatorRepository extends ResourceCreatorRepository {
 		registerResourceCreator(new SimpleFullParseFilter.Creator());
 		registerResourceCreator(new MarkAwareCKYBinaryParsingRule.Creator<LogicalExpression>());
 		registerResourceCreator(new NaviGraphParser.Creator());
+		registerResourceCreator(new WrappedCKYParser.Creator());
 		
 		registerResourceCreator(new NavigationMap.Creator());
-		registerResourceCreator(new LexiconModelInitCreator<Sentence, LogicalExpression>());
-		registerResourceCreator(new SingleSentenceDatasetCreator());
-		registerResourceCreator(new TemplateCountModelInitCreator());
-		registerResourceCreator(new ReptFeaturesInitCreator<Sentence>());
-		registerResourceCreator(new UniformScorerCreator<LogicalExpression>());
-		registerResourceCreator(new ExpLengthLexicalEntryScorerCreator<LogicalExpression>());
-		registerResourceCreator(new FactoredUniformScorerCreator());
-		registerResourceCreator(new LexemeFeatureSetCreator<IDataItem<Pair<Sentence, Task>>>());
-		registerResourceCreator(new LexicalFeatureSetCreator<IDataItem<Pair<Sentence, Task>>, LogicalExpression>());
-		registerResourceCreator(new LexicalTemplateFeatureSetCreator<IDataItem<Pair<Sentence, Task>>>());
-		registerResourceCreator(new LogicalExpressionCoordinationFeatureSetCreator<Sentence>());
-		registerResourceCreator(new LogicalExpressionCooccurrenceFeatureSetCreator<Sentence>());
-		registerResourceCreator(new LogicalExpressionTypeFeatureSetCreator<Sentence>());
-		registerResourceCreator(new LexemeCooccurrenceScorerCreator());
-		registerResourceCreator(new SkippingSensitiveLexicalEntryScorerCreator<LogicalExpression>());
-		registerResourceCreator(new LexicalEntryLexemeBasedScorerCreator());
-		registerResourceCreator(new LabeledInstructionTraceDatasetCreator<LogicalExpression>());
-		registerResourceCreator(new InstructionTraceDatasetCreator<LogicalExpression>());
-		registerResourceCreator(new JointModelCreator<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace>());
-		registerResourceCreator(new LexiconCreator<LogicalExpression>());
-		registerResourceCreator(new FactoredLexiconCreator());
-		registerResourceCreator(new ExecutionFeatureSetCreator());
-		registerResourceCreator(new NaviTemplatedLexiconGeneratorCreator());
-		registerResourceCreator(new NaviTemplatedAbstractLexiconGeneratorCreator());
-		registerResourceCreator(new NaviJointTemplatedAbstractLexiconGeneratorCreator());
-		registerResourceCreator(new SituatedValidationPerceptronCreator<Task, LogicalExpression, Trace, Trace, InstructionTrace<LogicalExpression>>(
+		registerResourceCreator(new LexiconModelInit.Creator<Sentence, LogicalExpression>());
+		registerResourceCreator(new SingleSentenceDataset.Creator());
+		registerResourceCreator(new TemplateCountModelInit.Creator());
+		registerResourceCreator(new ReptFeaturesInit.Creator<Sentence>());
+		registerResourceCreator(new LexicalFeaturesInit.Creator<Sentence, LogicalExpression>());
+		registerResourceCreator(new UniformScorer.Creator<LogicalExpression>());
+		registerResourceCreator(new ExpLengthLexicalEntryScorer.Creator<LogicalExpression>());
+		registerResourceCreator(new UniformScorer.Creator<Lexeme>(
+				"scorer.uniform.factored"));
+		registerResourceCreator(new LexemeFeatureSet.Creator<IDataItem<Pair<Sentence, Task>>>());
+		registerResourceCreator(new LexicalFeatureSet.Creator<IDataItem<Pair<Sentence, Task>>, LogicalExpression>());
+		registerResourceCreator(new LexicalTemplateFeatureSet.Creator<IDataItem<Pair<Sentence, Task>>>());
+		registerResourceCreator(new LogicalExpressionCoordinationFeatureSet.Creator<Sentence>());
+		registerResourceCreator(new LogicalExpressionCooccurrenceFeatureSet.Creator<Sentence>());
+		registerResourceCreator(new LexemeCooccurrenceScorer.Creator());
+		registerResourceCreator(new SkippingSensitiveLexicalEntryScorer.Creator<LogicalExpression>());
+		registerResourceCreator(new LexicalEntryLexemeBasedScorer.Creator());
+		registerResourceCreator(new LabeledInstructionTraceDataset.Creator<LogicalExpression>());
+		registerResourceCreator(new InstructionTraceDataset.Creator());
+		registerResourceCreator(new JointModel.Creator<Instruction, LogicalExpression, Trace>());
+		registerResourceCreator(new Lexicon.Creator<LogicalExpression>());
+		registerResourceCreator(new FactoredLexicon.Creator());
+		registerResourceCreator(new ExecutionFeatureSet.Creator());
+		registerResourceCreator(new NaviTemplatedLexiconGenerator.Creator());
+		registerResourceCreator(new NaviTemplateCoarseGenlex.Creator());
+		registerResourceCreator(new NaviJointTemplatedAbstractLexiconGenerator.Creator());
+		registerResourceCreator(new SituatedValidationPerceptron.Creator<Instruction, LogicalExpression, Trace, Trace, InstructionTrace>(
 				"learner.trc"));
-		registerResourceCreator(new SituatedValidationStocGradCreator<Task, LogicalExpression, Trace, Trace, InstructionTrace<LogicalExpression>>(
+		registerResourceCreator(new SituatedValidationStocGrad.Creator<Instruction, LogicalExpression, Trace, Trace, InstructionTrace>(
 				"learner.stocgrad.trc"));
-		registerResourceCreator(new OriginLexicalEntryScorerCreator<LogicalExpression>());
-		registerResourceCreator(new ExecTesterCreator<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>());
-		registerResourceCreator(new NaviSingleExecutorCreator());
-		registerResourceCreator(new LabeledInstructionSeqTraceDatasetCreator<LogicalExpression>());
-		registerResourceCreator(new InstructionSeqTraceDatasetCreator<LogicalExpression>());
-		registerResourceCreator(new RuleUsageFeatureSetCreator<IDataItem<Pair<Sentence, Task>>, LogicalExpression>());
-		registerResourceCreator(new NaviSeqExecutorCreator());
-		registerResourceCreator(new NaviNaiveSeqExecutorCreator());
-		registerResourceCreator(new ModelLoggerCreator());
-		registerResourceCreator(new NaviLearningValidatorCreator<LogicalExpression>());
-		registerResourceCreator(new NaviPairValidatorWrapperCreator<LogicalExpression>());
-		registerResourceCreator(new NaviLearningRelaxedValidatorCreator<LogicalExpression>());
-		registerResourceCreator(new NaviLearningWeakValidatorCreator<LogicalExpression>());
-		registerResourceCreator(new ChartLoggerCreator<Trace, Trace>());
-		registerResourceCreator(new ExecTesterCreator<Pair<List<Sentence>, Task>, List<Pair<LogicalExpression, Trace>>>(
+		registerResourceCreator(new OriginLexicalEntryScorer.Creator<LogicalExpression>());
+		registerResourceCreator(new ExecTester.Creator<Instruction, Pair<LogicalExpression, Trace>>());
+		registerResourceCreator(new NaviSingleExecutor.Creator());
+		registerResourceCreator(new LabeledInstructionSeqTraceDataset.Creator<LogicalExpression>());
+		registerResourceCreator(new InstructionSeqTraceDataset.Creator());
+		registerResourceCreator(new RuleUsageFeatureSet.Creator<IDataItem<Pair<Sentence, Task>>, LogicalExpression>());
+		registerResourceCreator(new NaviSeqExecutor.Creator());
+		registerResourceCreator(new NaviNaiveSeqExecutor.Creator());
+		registerResourceCreator(new ModelLogger.Creator());
+		registerResourceCreator(new NaviLearningValidator.Creator());
+		registerResourceCreator(new NaviPairValidatorWrapper.Creator<LogicalExpression>());
+		registerResourceCreator(new NaviLearningRelaxedValidator.Creator<LogicalExpression>());
+		registerResourceCreator(new NaviLearningWeakValidator.Creator<LogicalExpression>());
+		registerResourceCreator(new JointInferenceChartLogger.Creator<Trace, Trace>());
+		registerResourceCreator(new ExecTester.Creator<InstructionSeq, List<Pair<LogicalExpression, Trace>>>(
 				"tester.exec.set"));
-		registerResourceCreator(new CompositeDataCollectionCreator<ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>>(
+		registerResourceCreator(new CompositeDataCollection.Creator<ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>>(
 				"data.composite.ccgtrc"));
-		registerResourceCreator(new CompositeDataCollectionCreator<ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<LogicalExpression, Trace>>>>(
+		registerResourceCreator(new CompositeDataCollection.Creator<ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<LogicalExpression, Trace>>>>(
 				"data.composite.ccgsettrc"));
-		registerResourceCreator(new CompositeDataCollectionCreator<ILabeledDataItem<Pair<Sentence, Task>, Trace>>(
+		registerResourceCreator(new CompositeDataCollection.Creator<ILabeledDataItem<Pair<Sentence, Task>, Trace>>(
 				"data.composite.trc"));
-		registerResourceCreator(new CompositeDataCollectionCreator<ILabeledDataItem<Pair<List<Sentence>, Task>, List<Trace>>>(
+		registerResourceCreator(new CompositeDataCollection.Creator<ILabeledDataItem<Pair<List<Sentence>, Task>, List<Trace>>>(
 				"data.composite.settrc"));
 		
 	}

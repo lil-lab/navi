@@ -16,7 +16,6 @@
  ******************************************************************************/
 package edu.uw.cs.lil.navi.data;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import edu.uw.cs.lil.navi.agent.Agent;
@@ -36,28 +35,23 @@ import edu.uw.cs.utils.composites.Pair;
  * @param <MR>
  */
 public class LabeledInstructionTrace<MR> implements
-		ILabeledDataItem<Pair<Sentence, Task>, Pair<MR, Trace>> {
+		ILabeledDataItem<Instruction, Pair<MR, Trace>> {
 	
-	private static final Object			MAP_NAME_KEY	= "map";
+	private static final Object		MAP_NAME_KEY	= "map";
 	
-	private final Pair<MR, Trace>		labelPair;
+	private final Instruction		instruction;
 	
-	private final Pair<Sentence, Task>	pair;
-	private final MR					semantics;
+	private final Pair<MR, Trace>	labelPair;
 	
-	private final Sentence				sentence;
+	private final MR				semantics;
 	
-	private final Task					task;
-	
-	private final Trace					trace;
+	private final Trace				trace;
 	
 	public LabeledInstructionTrace(MR semantics, Sentence sentence, Task task,
 			Trace trace) {
+		this.instruction = new Instruction(sentence, task);
 		this.semantics = semantics;
-		this.sentence = sentence;
-		this.task = task;
 		this.trace = trace;
-		this.pair = Pair.of(sentence, task);
 		this.labelPair = Pair.of(semantics, trace);
 	}
 	
@@ -65,7 +59,8 @@ public class LabeledInstructionTrace<MR> implements
 			Map<String, NavigationMap> maps,
 			ICategoryServices<MR> categoryServices) {
 		final String[] split = string.split("\n");
-		final Map<String, String> properties = parseProperties(split[2]);
+		final Map<String, String> properties = InstructionTrace
+				.parseProperties(split[2]);
 		final NavigationMap map = maps.get(properties.get(MAP_NAME_KEY));
 		final Trace trace = Trace.parseLine(split[3], map);
 		final Task task = new Task(new Agent(trace.getStartPosition()),
@@ -78,19 +73,46 @@ public class LabeledInstructionTrace<MR> implements
 						split[0]), task, trace);
 	}
 	
-	private static Map<String, String> parseProperties(String line) {
-		final String[] split = line.split("\\s+");
-		final Map<String, String> properties = new HashMap<String, String>();
-		for (final String entry : split) {
-			final String[] entrySplit = entry.split("=", 2);
-			properties.put(entrySplit[0], entrySplit[1]);
-		}
-		return properties;
-	}
-	
 	@Override
 	public double calculateLoss(Pair<MR, Trace> label) {
 		return labelPair.equals(label) ? 0.0 : 1.0;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		@SuppressWarnings("rawtypes")
+		final LabeledInstructionTrace other = (LabeledInstructionTrace) obj;
+		if (instruction == null) {
+			if (other.instruction != null) {
+				return false;
+			}
+		} else if (!instruction.equals(other.instruction)) {
+			return false;
+		}
+		if (semantics == null) {
+			if (other.semantics != null) {
+				return false;
+			}
+		} else if (!semantics.equals(other.semantics)) {
+			return false;
+		}
+		if (trace == null) {
+			if (other.trace != null) {
+				return false;
+			}
+		} else if (!trace.equals(other.trace)) {
+			return false;
+		}
+		return true;
 	}
 	
 	@Override
@@ -99,20 +121,24 @@ public class LabeledInstructionTrace<MR> implements
 	}
 	
 	@Override
-	public Pair<Sentence, Task> getSample() {
-		return pair;
-	}
-	
-	public Sentence getSentence() {
-		return sentence;
-	}
-	
-	public Task getTask() {
-		return task;
+	public Instruction getSample() {
+		return instruction;
 	}
 	
 	public Trace getTrace() {
 		return trace;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((instruction == null) ? 0 : instruction.hashCode());
+		result = prime * result
+				+ ((semantics == null) ? 0 : semantics.hashCode());
+		result = prime * result + ((trace == null) ? 0 : trace.hashCode());
+		return result;
 	}
 	
 	@Override
@@ -132,9 +158,10 @@ public class LabeledInstructionTrace<MR> implements
 	
 	@Override
 	public String toString() {
-		return new StringBuilder().append(sentence).append('\n')
-				.append(semantics).append('\n').append(task).append('\n')
-				.append(trace).toString();
+		return new StringBuilder().append(instruction.getString()).append('\n')
+				.append(semantics).append('\n')
+				.append(instruction.getState().propertiesToString())
+				.append('\n').append(trace).toString();
 	}
 	
 }

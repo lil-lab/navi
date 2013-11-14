@@ -21,7 +21,7 @@ import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
 
 public class NaviMain {
-	private static final ILogger	LOG	= LoggerFactory.create(NaviMain.class);
+	public static final ILogger	LOG	= LoggerFactory.create(NaviMain.class);
 	
 	public static void main(String[] args) {
 		if (args.length < 1) {

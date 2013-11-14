@@ -21,11 +21,9 @@ import edu.uw.cs.lil.navi.eval.NaviEvaluationConstants.StateFlag;
 import edu.uw.cs.lil.tiny.mr.lambda.Lambda;
 import edu.uw.cs.lil.tiny.mr.lambda.Literal;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicLanguageServices;
-import edu.uw.cs.lil.tiny.mr.lambda.LogicalConstant;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.Evaluation;
 import edu.uw.cs.lil.tiny.mr.lambda.visitor.AToExists;
-import edu.uw.cs.lil.tiny.mr.lambda.visitor.LambdaWrapped;
 import edu.uw.cs.lil.tiny.mr.language.type.ComplexType;
 import edu.uw.cs.lil.tiny.mr.language.type.Type;
 
@@ -51,9 +49,8 @@ public class NaviEvaluation extends Evaluation {
 				StatefulWrapping.of(exp, services),
 				services.getExistsQuantifier(), services.getAQuantifier(),
 				services.getEqualsPredicates());
-		final LogicalExpression wrapped = LambdaWrapped.of(existsExp);
-		final NaviEvaluation visitor = new NaviEvaluation(wrapped, services);
-		visitor.visit(wrapped);
+		final NaviEvaluation visitor = new NaviEvaluation(existsExp, services);
+		visitor.visit(existsExp);
 		return visitor.result;
 	}
 	
@@ -103,14 +100,6 @@ public class NaviEvaluation extends Evaluation {
 							.get(0);
 					if (arg0 instanceof Lambda) {
 						innerLambda = (Lambda) literal.getArguments().get(0);
-					} else if (arg0 instanceof LogicalConstant) {
-						final LogicalExpression wrapped = LambdaWrapped
-								.of(arg0);
-						if (wrapped instanceof Lambda) {
-							innerLambda = (Lambda) wrapped;
-						} else {
-							innerLambda = null;
-						}
 					} else {
 						innerLambda = null;
 					}

@@ -18,11 +18,10 @@ package edu.uw.cs.lil.navi.test.stats.set;
 
 import java.util.List;
 
+import edu.uw.cs.lil.navi.data.InstructionSeq;
 import edu.uw.cs.lil.navi.data.Trace;
-import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.map.Coordinates;
 import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
-import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.test.stats.IStatistics;
 import edu.uw.cs.utils.composites.Pair;
 
@@ -40,15 +39,15 @@ public class SetGoalCoordinatesTestStatistics<MR> extends
 	public SetGoalCoordinatesTestStatistics(
 			String prefix,
 			String metricName,
-			IStatistics<ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>>> stats) {
+			IStatistics<ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>>> stats) {
 		super(prefix, metricName, stats);
 	}
 	
 	@Override
 	protected Coordinates getGoal(
-			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem) {
-		return dataItem.getSample().second().getPositionX().getAllCoordinates()
-				.iterator().next();
+			ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>> dataItem) {
+		return dataItem.getSample().getTask().getPositionX()
+				.getAllCoordinates().iterator().next();
 	}
 	
 }

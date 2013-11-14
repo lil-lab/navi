@@ -26,13 +26,19 @@ import java.util.Map.Entry;
 import java.util.PriorityQueue;
 
 import edu.uw.cs.lil.navi.agent.Agent;
+import edu.uw.cs.lil.navi.data.Instruction;
+import edu.uw.cs.lil.navi.data.InstructionSeq;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.Task;
+import edu.uw.cs.lil.navi.experiments.plat.NaviExperiment;
 import edu.uw.cs.lil.navi.map.Position;
-import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.exec.IExec;
 import edu.uw.cs.lil.tiny.exec.IExecOutput;
+import edu.uw.cs.lil.tiny.explat.IResourceRepository;
+import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
+import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
+import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.parser.joint.IJointOutput;
 import edu.uw.cs.lil.tiny.parser.joint.IJointParse;
@@ -47,42 +53,26 @@ import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
 
 public class NaviSeqExecutor implements
-		IExec<Pair<List<Sentence>, Task>, List<Pair<LogicalExpression, Trace>>> {
-	private static final ILogger																LOG	= LoggerFactory
-																											.create(NaviSeqExecutor.class);
-	private final int																			beam;
-	private final boolean																		failureRecovery;
-	private final JointModel<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace>	model;
-	private final IJointParser<Sentence, Task, LogicalExpression, Trace, Trace>					parser;
-	private final boolean																		pruneFails;
+		IExec<InstructionSeq, List<Pair<LogicalExpression, Trace>>> {
+	
+	public static final ILogger													LOG	= LoggerFactory
+																							.create(NaviSeqExecutor.class);
+	
+	private final int															beam;
+	private final boolean														failureRecovery;
+	private final JointModel<Instruction, LogicalExpression, Trace>				model;
+	private final IJointParser<Instruction, LogicalExpression, Trace, Trace>	parser;
+	private final boolean														pruneFails;
 	
 	public NaviSeqExecutor(
-			IJointParser<Sentence, Task, LogicalExpression, Trace, Trace> parser,
-			JointModel<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace> model,
-			int beam, boolean failureRecovery, boolean pruneFails) {
+			IJointParser<Instruction, LogicalExpression, Trace, Trace> parser,
+			JointModel<Instruction, LogicalExpression, Trace> model, int beam,
+			boolean failureRecovery, boolean pruneFails) {
 		this.parser = parser;
 		this.model = model;
 		this.beam = beam;
 		this.failureRecovery = failureRecovery;
 		this.pruneFails = pruneFails;
-	}
-	
-	private static IDataItem<Pair<Sentence, Task>> createSingleDataItem(
-			final Sentence sentence, final Task task) {
-		return new IDataItem<Pair<Sentence, Task>>() {
-			private final Pair<Sentence, Task>	sample	= Pair.of(sentence,
-																task);
-			
-			@Override
-			public Pair<Sentence, Task> getSample() {
-				return sample;
-			}
-			
-			@Override
-			public String toString() {
-				return sample.toString();
-			}
-		};
 	}
 	
 	private static double score(
@@ -96,13 +86,13 @@ public class NaviSeqExecutor implements
 	
 	@Override
 	public IExecOutput<List<Pair<LogicalExpression, Trace>>> execute(
-			IDataItem<Pair<List<Sentence>, Task>> dataItem) {
+			InstructionSeq dataItem) {
 		return execute(dataItem, false);
 	}
 	
 	@Override
 	public IExecOutput<List<Pair<LogicalExpression, Trace>>> execute(
-			IDataItem<Pair<List<Sentence>, Task>> dataItem, boolean sloppy) {
+			InstructionSeq dataItem, boolean sloppy) {
 		final long startTime = System.currentTimeMillis();
 		
 		final OrderInvariantBoundedPriorityQueue<Pair<PriorityQueue<List<IJointParse<LogicalExpression, Trace>>>, Task>> queue = new OrderInvariantBoundedPriorityQueue<Pair<PriorityQueue<List<IJointParse<LogicalExpression, Trace>>>, Task>>(
@@ -135,17 +125,17 @@ public class NaviSeqExecutor implements
 		final List<IJointParse<LogicalExpression, Trace>> initParseList = new ArrayList<IJointParse<LogicalExpression, Trace>>();
 		final PriorityQueue<List<IJointParse<LogicalExpression, Trace>>> initQueue = createParseQueue();
 		initQueue.add(initParseList);
-		queue.add(Pair.of(initQueue, dataItem.getSample().second()));
+		queue.add(Pair.of(initQueue, dataItem.getState()));
 		
-		for (final Sentence sentence : dataItem.getSample().first()) {
+		for (final Sentence sentence : dataItem) {
 			final Map<Task, PriorityQueue<List<IJointParse<LogicalExpression, Trace>>>> postExecTasks = new HashMap<Task, PriorityQueue<List<IJointParse<LogicalExpression, Trace>>>>();
 			for (final Pair<PriorityQueue<List<IJointParse<LogicalExpression, Trace>>>, Task> cluster : queue) {
-				final IDataItem<Pair<Sentence, Task>> singleDataItem = createSingleDataItem(
-						sentence, cluster.second());
+				final Instruction instruction = new Instruction(sentence,
+						cluster.second());
 				final IJointDataItemModel<LogicalExpression, Trace> dataItemModel = model
-						.createJointDataItemModel(singleDataItem);
+						.createJointDataItemModel(instruction);
 				final IJointOutput<LogicalExpression, Trace> parserOutput = parser
-						.parse(singleDataItem, dataItemModel, sloppy);
+						.parse(instruction, dataItemModel, sloppy);
 				for (final IJointParse<LogicalExpression, Trace> parse : parserOutput
 						.getAllParses(!pruneFails)) {
 					// Create task for the next instruction. If this one failed
@@ -236,5 +226,43 @@ public class NaviSeqExecutor implements
 								NaviSeqExecutor.score(o2));
 					}
 				});
+	}
+	
+	public static class Creator implements
+			IResourceObjectCreator<NaviSeqExecutor> {
+		
+		@SuppressWarnings("unchecked")
+		@Override
+		public NaviSeqExecutor create(Parameters params,
+				IResourceRepository repo) {
+			return new NaviSeqExecutor(
+					(IJointParser<Instruction, LogicalExpression, Trace, Trace>) repo
+							.getResource(NaviExperiment.PARSER_RESOURCE),
+					(JointModel<Instruction, LogicalExpression, Trace>) repo
+							.getResource(params.get("model")), Integer
+							.valueOf(params.get("beam")), "true".equals(params
+							.get("recover")), "true".equals(params
+							.get("pruneFails")));
+		}
+		
+		@Override
+		public String type() {
+			return "exec.set";
+		}
+		
+		@Override
+		public ResourceUsage usage() {
+			return new ResourceUsage.Builder(type(), NaviSeqExecutor.class)
+					.setDescription(
+							"Executor for sequences of instructions with beam search.")
+					.addParam("model", "id", "Joint model to use for inference")
+					.addParam("beam", "int", "Beam for executing instructions.")
+					.addParam("pruneFails", "boolean",
+							"Consider failed execution as incomplete parses. Default: false.")
+					.addParam("recover", "boolean",
+							"Recover from inference failures by skipping instructions. Default: false.")
+					.build();
+		}
+		
 	}
 }

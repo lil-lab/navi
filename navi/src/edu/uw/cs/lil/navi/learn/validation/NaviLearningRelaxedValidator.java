@@ -23,6 +23,10 @@ import edu.uw.cs.lil.navi.data.InstructionTrace;
 import edu.uw.cs.lil.navi.data.Step;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.tiny.data.utils.IValidator;
+import edu.uw.cs.lil.tiny.explat.IResourceRepository;
+import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
+import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
+import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
 import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
 
@@ -32,10 +36,10 @@ import edu.uw.cs.utils.log.LoggerFactory;
  * 
  * @author Yoav Artzi
  */
-public class NaviLearningRelaxedValidator<MR> implements
-		IValidator<InstructionTrace<MR>, Trace> {
-	private static final ILogger	LOG	= LoggerFactory
-												.create(NaviLearningRelaxedValidator.class);
+public class NaviLearningRelaxedValidator implements
+		IValidator<InstructionTrace, Trace> {
+	public static final ILogger	LOG	= LoggerFactory
+											.create(NaviLearningRelaxedValidator.class);
 	
 	public NaviLearningRelaxedValidator() {
 		LOG.info("Init: %s", NaviLearningRelaxedValidator.class.getName());
@@ -65,7 +69,32 @@ public class NaviLearningRelaxedValidator<MR> implements
 	}
 	
 	@Override
-	public boolean isValid(InstructionTrace<MR> dataItem, Trace label) {
+	public boolean isValid(InstructionTrace dataItem, Trace label) {
 		return relaxedTraceComparison(dataItem.getLabel(), label);
+	}
+	
+	public static class Creator<MR> implements
+			IResourceObjectCreator<NaviLearningRelaxedValidator> {
+		
+		@Override
+		public NaviLearningRelaxedValidator create(Parameters params,
+				IResourceRepository repo) {
+			return new NaviLearningRelaxedValidator();
+		}
+		
+		@Override
+		public String type() {
+			return "navi.validator.relaxed";
+		}
+		
+		@Override
+		public ResourceUsage usage() {
+			return new ResourceUsage.Builder(type(),
+					NaviLearningRelaxedValidator.class)
+					.setDescription(
+							"Learning validtion function that validates the complete executiont trace (without implicit markings).")
+					.build();
+		}
+		
 	}
 }

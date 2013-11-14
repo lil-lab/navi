@@ -19,12 +19,10 @@ package edu.uw.cs.lil.navi.parse;
 import java.util.Collections;
 import java.util.List;
 
+import edu.uw.cs.lil.navi.data.Instruction;
 import edu.uw.cs.lil.navi.data.Step;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.NaviSingleEvaluator;
-import edu.uw.cs.lil.navi.eval.Task;
-import edu.uw.cs.lil.tiny.data.IDataItem;
-import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.parser.joint.graph.simple.DeterministicExecResultWrapper;
 import edu.uw.cs.lil.tiny.parser.joint.model.IJointDataItemModel;
@@ -41,23 +39,22 @@ import edu.uw.cs.utils.log.thread.LoggingCallable;
 public class EvaluationJob
 		extends
 		LoggingCallable<Pair<LogicalExpression, DeterministicExecResultWrapper<Trace, Trace>>> {
+	public static final ILogger									LOG				= LoggerFactory
+																						.create(EvaluationJob.class);
+	
 	private static final List<Step>								EMPTY_STEP_LIST	= Collections
 																						.emptyList();
-	
-	private static final ILogger								LOG				= LoggerFactory
-																						.create(EvaluationJob.class);
-	private final IDataItem<Pair<Sentence, Task>>				dataItem;
 	private final NaviSingleEvaluator							evaluationWrapper;
+	private final Instruction									instruction;
 	
 	private final IJointDataItemModel<LogicalExpression, Trace>	model;
 	
 	private final LogicalExpression								semantics;
 	
-	public EvaluationJob(IDataItem<Pair<Sentence, Task>> dataItem,
-			LogicalExpression semantics,
+	public EvaluationJob(Instruction instruction, LogicalExpression semantics,
 			IJointDataItemModel<LogicalExpression, Trace> model,
 			NaviSingleEvaluator evaluationWrapper) {
-		this.dataItem = dataItem;
+		this.instruction = instruction;
 		this.semantics = semantics;
 		this.model = model;
 		this.evaluationWrapper = evaluationWrapper;
@@ -71,16 +68,16 @@ public class EvaluationJob
 	public Pair<LogicalExpression, DeterministicExecResultWrapper<Trace, Trace>> loggedCall() {
 		LOG.debug("Evaluating: %s", semantics);
 		
-		final Object result = evaluationWrapper.of(semantics, dataItem
-				.getSample().second());
+		final Object result = evaluationWrapper.of(semantics,
+				instruction.getState());
 		
 		if (result instanceof Trace) {
 			return Pair.of(semantics,
 					new DeterministicExecResultWrapper<Trace, Trace>(
 							(Trace) result, model, (Trace) result));
 		} else if (Boolean.TRUE.equals(result)) {
-			final Trace emptyTrace = new Trace(EMPTY_STEP_LIST, dataItem
-					.getSample().second().getAgent().getPosition());
+			final Trace emptyTrace = new Trace(EMPTY_STEP_LIST, instruction
+					.getState().getAgent().getPosition());
 			return Pair.of(semantics,
 					new DeterministicExecResultWrapper<Trace, Trace>(
 							emptyTrace, model, emptyTrace));

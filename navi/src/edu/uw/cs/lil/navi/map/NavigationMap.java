@@ -43,7 +43,7 @@ public class NavigationMap {
 	
 	public NavigationMap(String name, Set<MutablePosition> positions,
 			Map<Integer, Position> numberedPositions) {
-		this.name = name;
+		this.name = name.toLowerCase();
 		this.numberedPositions = numberedPositions;
 		final Map<Pose, Position> mutablePositions = new HashMap<Pose, Position>();
 		for (final MutablePosition position : positions) {

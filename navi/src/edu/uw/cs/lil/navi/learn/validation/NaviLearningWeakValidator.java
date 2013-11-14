@@ -19,6 +19,10 @@ package edu.uw.cs.lil.navi.learn.validation;
 import edu.uw.cs.lil.navi.data.InstructionTrace;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.tiny.data.utils.IValidator;
+import edu.uw.cs.lil.tiny.explat.IResourceRepository;
+import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
+import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
+import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
 import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
 
@@ -28,17 +32,17 @@ import edu.uw.cs.utils.log.LoggerFactory;
  * 
  * @author Yoav Artzi
  */
-public class NaviLearningWeakValidator<MR> implements
-		IValidator<InstructionTrace<MR>, Trace> {
-	private static final ILogger	LOG	= LoggerFactory
-												.create(NaviLearningWeakValidator.class);
+public class NaviLearningWeakValidator implements
+		IValidator<InstructionTrace, Trace> {
+	public static final ILogger	LOG	= LoggerFactory
+											.create(NaviLearningWeakValidator.class);
 	
 	public NaviLearningWeakValidator() {
 		LOG.info("Init: %s", NaviLearningWeakValidator.class.getName());
 	}
 	
 	@Override
-	public boolean isValid(InstructionTrace<MR> dataItem, Trace label) {
+	public boolean isValid(InstructionTrace dataItem, Trace label) {
 		return weakTraceComparison(dataItem.getLabel(), label);
 	}
 	
@@ -48,5 +52,30 @@ public class NaviLearningWeakValidator<MR> implements
 		} else {
 			return t1.getEndPosition().equals(t2.getEndPosition());
 		}
+	}
+	
+	public static class Creator<MR> implements
+			IResourceObjectCreator<NaviLearningWeakValidator> {
+		
+		@Override
+		public NaviLearningWeakValidator create(Parameters params,
+				IResourceRepository repo) {
+			return new NaviLearningWeakValidator();
+		}
+		
+		@Override
+		public String type() {
+			return "navi.validator.weak";
+		}
+		
+		@Override
+		public ResourceUsage usage() {
+			return new ResourceUsage.Builder(type(),
+					NaviLearningWeakValidator.class)
+					.setDescription(
+							"Learning validtion function that validates only the final state of the execution.")
+					.build();
+		}
+		
 	}
 }

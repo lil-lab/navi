@@ -39,7 +39,6 @@ import edu.uw.cs.lil.navi.map.Pose.Direction;
 import edu.uw.cs.lil.navi.map.PositionSet;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicLanguageServices;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
-import edu.uw.cs.lil.tiny.mr.lambda.visitor.LambdaWrapped;
 
 public class NaviSingleEvaluatorTest {
 	
@@ -55,11 +54,10 @@ public class NaviSingleEvaluatorTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("move:<a,t>"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("move:<a,t>");
 		
-		// final LogicalExpression exp = LambdaWrapped
+		// final LogicalExpression exp =
 		// .of(TestingConstants.CATEGORY_SERVICES
 		// .parseSemantics("move:<a,t>"));
 		
@@ -86,15 +84,14 @@ public class NaviSingleEvaluatorTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("jelly"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a[] (and:<t*,t> "
-								+ "(while:<a,<ps,t>> (i:<a[],<ind,a>> $0 0:ind) (io:<<e,t>,e> blue:<ps,t>)) "
-								+ "(move:<a,t> (i:<a[],<ind,a>> $0 0:ind)) "
-								+ "(to:<a,<ps,t>> (i:<a[],<ind,a>> $0 0:ind) (io:<<e,t>,e> chair:<ps,t>)) "
-								+ "(bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) "
-								+ "(dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) right:dir) "
-								+ "(turn:<a,t> (i:<a[],<ind,a>> $0 1:ind))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a[] (and:<t*,t> "
+						+ "(while:<a,<ps,t>> (i:<a[],<ind,a>> $0 0:ind) (io:<<e,t>,e> blue:<ps,t>)) "
+						+ "(move:<a,t> (i:<a[],<ind,a>> $0 0:ind)) "
+						+ "(to:<a,<ps,t>> (i:<a[],<ind,a>> $0 0:ind) (io:<<e,t>,e> chair:<ps,t>)) "
+						+ "(bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) "
+						+ "(dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) right:dir) "
+						+ "(turn:<a,t> (i:<a[],<ind,a>> $0 1:ind))))");
 		
 		final Object result = executor.of(exp, task);
 		
@@ -118,15 +115,14 @@ public class NaviSingleEvaluatorTest {
 				.getAllOrientations(), false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("l"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a[] (and:<t*,t> "
-								+ "(dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 0:ind) left:dir) "
-								+ "(turn:<a,t> (i:<a[],<ind,a>> $0 0:ind)) "
-								+ "(bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) "
-								+ "(len:<a,<n,t>> (i:<a[],<ind,a>> $0 1:ind) 4:n) "
-								+ "(move:<a,t> (i:<a[],<ind,a>> $0 1:ind)) "
-								+ "(dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) forward:dir)))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a[] (and:<t*,t> "
+						+ "(dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 0:ind) left:dir) "
+						+ "(turn:<a,t> (i:<a[],<ind,a>> $0 0:ind)) "
+						+ "(bef:<a,<a,t>> (i:<a[],<ind,a>> $0 0:ind) (i:<a[],<ind,a>> $0 1:ind)) "
+						+ "(len:<a,<n,t>> (i:<a[],<ind,a>> $0 1:ind) 4:n) "
+						+ "(move:<a,t> (i:<a[],<ind,a>> $0 1:ind)) "
+						+ "(dir:<a,<dir,t>> (i:<a[],<ind,a>> $0 1:ind) forward:dir)))");
 		
 		final Object result = executor.of(exp, task);
 		
@@ -151,12 +147,11 @@ public class NaviSingleEvaluatorTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("jelly"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> "
-								+ "(pass:<a,<ps,t>> $0 (a:<<e,t>,e> sofa:<ps,t>)) "
-								+ "(while:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (brick:<ps,t> $1))))) "
-								+ "(move:<a,t> $0)))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> "
+						+ "(pass:<a,<ps,t>> $0 (a:<<e,t>,e> sofa:<ps,t>)) "
+						+ "(while:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (brick:<ps,t> $1))))) "
+						+ "(move:<a,t> $0)))");
 		
 		final Object result = executor.of(exp, task);
 		
@@ -180,9 +175,8 @@ public class NaviSingleEvaluatorTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(intersect:<ps,<ps,t>> you:ps (a:<<e,t>,e> (lambda $0:e (and:<t*,t> (wood:<ps,t> $0) (hall:<ps,t> $0) (intersect:<ps,<ps,t>> (a:<<e,t>,e> lamp:<ps,t>) $0)))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(intersect:<ps,<ps,t>> you:ps (a:<<e,t>,e> (lambda $0:e (and:<t*,t> (wood:<ps,t> $0) (hall:<ps,t> $0) (intersect:<ps,<ps,t>> (a:<<e,t>,e> lamp:<ps,t>) $0)))))");
 		
 		final Object result = executor.of(exp, task);
 		
@@ -197,6 +191,7 @@ public class NaviSingleEvaluatorTest {
 	@Test
 	public void testSample30() {
 		try {
+			
 			final LabeledInstructionTraceDataset<LogicalExpression> dataset = LabeledInstructionTraceDataset
 					.readFromFile(
 							new File("..", "resources-test/sample.ccgtrc"),
@@ -210,23 +205,23 @@ public class NaviSingleEvaluatorTest {
 			
 			for (final LabeledInstructionTrace<LogicalExpression> dataItem : dataset) {
 				
-				final LogicalExpression exp = LambdaWrapped.of(dataItem
-						.getLabel().first());
+				final LogicalExpression exp = dataItem.getLabel().first();
 				final Task task = new Task(new Agent(dataItem.getTrace()
 						.getStartPosition()), new PositionSet(
 						TestingConstants.MAPS
 								.get("grid")
-								.get(Integer.valueOf(dataItem.getTask()
-										.getProperty("y")))
+								.get(Integer.valueOf(dataItem.getSample()
+										.getState().getProperty("y")))
 								.getAllOrientations(), false), new PositionSet(
 						TestingConstants.MAPS
-								.get(dataItem.getTask().getProperty("map"))
-								.get(Integer.valueOf(dataItem.getTask()
-										.getProperty("x")))
+								.get(dataItem.getSample().getState()
+										.getProperty("map"))
+								.get(Integer.valueOf(dataItem.getSample()
+										.getState().getProperty("x")))
 								.getAllOrientations(), false),
 						new HashMap<String, String>(),
-						TestingConstants.MAPS.get(dataItem.getTask()
-								.getProperty("map")));
+						TestingConstants.MAPS.get(dataItem.getSample()
+								.getState().getProperty("map")));
 				System.out.println(dataItem);
 				final long startTime = System.currentTimeMillis();
 				final Object result = executor.of(exp, task);
@@ -240,7 +235,8 @@ public class NaviSingleEvaluatorTest {
 						LogicLanguageServices.getTypeRepository()
 								.getTruthValueType())) {
 					// Case truth type statement
-					Assert.assertTrue((Boolean) result);
+					Assert.assertTrue((Boolean) result
+							&& dataItem.getTrace().getSteps().isEmpty());
 				} else {
 					// Case action instruction
 					Assert.assertEquals(dataItem.getTrace(), result);
@@ -279,7 +275,7 @@ public class NaviSingleEvaluatorTest {
 				System.out.println(lst);
 				final long startTime = System.currentTimeMillis();
 				final Object evalResult = evaluator.of(lst.getLabel().first(),
-						lst.getTask());
+						lst.getSample().getState());
 				System.out.println(String.format("Evaluation time: %.4f",
 						(System.currentTimeMillis() - startTime) / 1000.0));
 				System.out.println("Result: " + evalResult);

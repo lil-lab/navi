@@ -19,6 +19,10 @@ package edu.uw.cs.lil.navi.learn.validation;
 import edu.uw.cs.lil.navi.data.InstructionTrace;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.tiny.data.utils.IValidator;
+import edu.uw.cs.lil.tiny.explat.IResourceRepository;
+import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
+import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
+import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
 import edu.uw.cs.utils.composites.Pair;
 
 /**
@@ -28,17 +32,44 @@ import edu.uw.cs.utils.composites.Pair;
  * @author Yoav Artzi
  */
 public class NaviPairValidatorWrapper<MR> implements
-		IValidator<InstructionTrace<MR>, Pair<MR, Trace>> {
-	private final IValidator<InstructionTrace<MR>, Trace>	resultValidator;
+		IValidator<InstructionTrace, Pair<MR, Trace>> {
+	private final IValidator<InstructionTrace, Trace>	resultValidator;
 	
 	public NaviPairValidatorWrapper(
-			IValidator<InstructionTrace<MR>, Trace> resultValidator) {
+			IValidator<InstructionTrace, Trace> resultValidator) {
 		this.resultValidator = resultValidator;
 	}
 	
 	@Override
-	public boolean isValid(InstructionTrace<MR> dataItem, Pair<MR, Trace> label) {
+	public boolean isValid(InstructionTrace dataItem, Pair<MR, Trace> label) {
 		return resultValidator.isValid(dataItem, label.second());
+	}
+	
+	public static class Creator<MR> implements
+			IResourceObjectCreator<NaviPairValidatorWrapper<MR>> {
+		
+		@SuppressWarnings("unchecked")
+		@Override
+		public NaviPairValidatorWrapper<MR> create(Parameters params,
+				IResourceRepository repo) {
+			return new NaviPairValidatorWrapper<MR>(
+					(IValidator<InstructionTrace, Trace>) repo
+							.getResource(params.get("base")));
+		}
+		
+		@Override
+		public String type() {
+			return "navi.validator.wrapper";
+		}
+		
+		@Override
+		public ResourceUsage usage() {
+			return new ResourceUsage.Builder(type(),
+					NaviPairValidatorWrapper.class).addParam("base",
+					IValidator.class, "Base validator to to handle traces")
+					.build();
+		}
+		
 	}
 	
 }

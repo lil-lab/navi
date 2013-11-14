@@ -25,12 +25,11 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import edu.uw.cs.lil.navi.data.Instruction;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.NaviSingleEvaluator;
-import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.experiments.plat.NaviExperiment;
 import edu.uw.cs.lil.tiny.ccg.lexicon.ILexicon;
-import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.explat.IResourceRepository;
 import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment;
@@ -62,10 +61,10 @@ import edu.uw.cs.utils.log.LoggerFactory;
  * @author Yoav Artzi
  */
 public class NaviGraphParser extends
-		AbstractGraphParser<Sentence, LogicalExpression> implements
-		IJointGraphParser<Sentence, Task, LogicalExpression, Trace, Trace> {
+		AbstractGraphParser<Instruction, LogicalExpression> implements
+		IJointGraphParser<Instruction, LogicalExpression, Trace, Trace> {
 	
-	private static final ILogger							LOG	= LoggerFactory
+	public static final ILogger								LOG	= LoggerFactory
 																		.create(NaviGraphParser.class);
 	
 	private final IGraphParser<Sentence, LogicalExpression>	baseParser;
@@ -86,15 +85,24 @@ public class NaviGraphParser extends
 	}
 	
 	@Override
+	public IGraphParserOutput<LogicalExpression> parse(Instruction dataItem,
+			IFilter<LogicalExpression> pruningFilter,
+			IDataItemModel<LogicalExpression> model, boolean allowWordSkipping,
+			ILexicon<LogicalExpression> tempLexicon, Integer beamSize) {
+		return baseParser.parse(dataItem, pruningFilter, model,
+				allowWordSkipping, tempLexicon, beamSize);
+	}
+	
+	@Override
 	public IJointGraphParserOutput<LogicalExpression, Trace> parse(
-			IDataItem<Pair<Sentence, Task>> dataItem,
+			Instruction dataItem,
 			IJointDataItemModel<LogicalExpression, Trace> model) {
 		return parse(dataItem, model, false);
 	}
 	
 	@Override
 	public IJointGraphParserOutput<LogicalExpression, Trace> parse(
-			IDataItem<Pair<Sentence, Task>> dataItem,
+			Instruction dataItem,
 			IJointDataItemModel<LogicalExpression, Trace> model,
 			boolean allowWordSkipping) {
 		return parse(dataItem, model, allowWordSkipping, null);
@@ -102,7 +110,7 @@ public class NaviGraphParser extends
 	
 	@Override
 	public IJointGraphParserOutput<LogicalExpression, Trace> parse(
-			IDataItem<Pair<Sentence, Task>> dataItem,
+			Instruction dataItem,
 			IJointDataItemModel<LogicalExpression, Trace> model,
 			boolean allowWordSkipping, ILexicon<LogicalExpression> tempLexicon) {
 		return parse(dataItem, model, allowWordSkipping, tempLexicon, null);
@@ -110,13 +118,13 @@ public class NaviGraphParser extends
 	
 	@Override
 	public IJointGraphParserOutput<LogicalExpression, Trace> parse(
-			IDataItem<Pair<Sentence, Task>> dataItem,
+			Instruction dataItem,
 			IJointDataItemModel<LogicalExpression, Trace> model,
 			boolean allowWordSkipping, ILexicon<LogicalExpression> tempLexicon,
 			Integer beamSize) {
 		LOG.debug("Parsing: %s", dataItem);
 		final IGraphParserOutput<LogicalExpression> baseParserOutput = baseParser
-				.parse(dataItem.getSample().first(), model, allowWordSkipping,
+				.parse(dataItem.getSample(), model, allowWordSkipping,
 						tempLexicon, beamSize);
 		final long evalStartTime = System.currentTimeMillis();
 		final List<? extends IGraphParse<LogicalExpression>> allBaseParses = baseParserOutput
@@ -194,20 +202,10 @@ public class NaviGraphParser extends
 				((double) baseParserOutput.getParsingTime() / (double) totalProcessingTime),
 				baseParserOutput.getParsingTime() / 1000.0,
 				(totalProcessingTime - baseParserOutput.getParsingTime()) / 1000.0,
-				dataItem.getSample().first().getTokens().size());
+				dataItem.getSample().getTokens().size());
 		
 		return new SimpleGraphJointOutput<LogicalExpression, Trace>(
 				baseParserOutput, parses, totalProcessingTime);
-	}
-	
-	@Override
-	public IGraphParserOutput<LogicalExpression> parse(
-			IDataItem<Sentence> dataItem,
-			IFilter<LogicalExpression> pruningFilter,
-			IDataItemModel<LogicalExpression> model, boolean allowWordSkipping,
-			ILexicon<LogicalExpression> tempLexicon, Integer beamSize) {
-		return baseParser.parse(dataItem, pruningFilter, model,
-				allowWordSkipping, tempLexicon, beamSize);
 	}
 	
 	public static class Creator implements

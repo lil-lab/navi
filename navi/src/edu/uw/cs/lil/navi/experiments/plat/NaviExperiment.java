@@ -29,13 +29,14 @@ import java.util.Set;
 import org.xml.sax.SAXException;
 
 import edu.uw.cs.lil.navi.agent.Action.AgentAction;
+import edu.uw.cs.lil.navi.data.Instruction;
+import edu.uw.cs.lil.navi.data.InstructionSeq;
 import edu.uw.cs.lil.navi.data.InstructionTrace;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.navi.eval.NaviEvaluationConstants;
 import edu.uw.cs.lil.navi.eval.NaviEvaluationConstants.StateFlag;
 import edu.uw.cs.lil.navi.eval.NaviEvaluationServicesFactory;
 import edu.uw.cs.lil.navi.eval.NaviSingleEvaluator;
-import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.eval.literalevaluators.WrappedGenericEvaluator;
 import edu.uw.cs.lil.navi.eval.literalevaluators.actions.ActionDirection;
 import edu.uw.cs.lil.navi.eval.literalevaluators.actions.ActionLength;
@@ -69,7 +70,6 @@ import edu.uw.cs.lil.navi.test.stats.TraceTestStatistics;
 import edu.uw.cs.lil.navi.test.stats.set.SetFinalCoordinatesTestStatistics;
 import edu.uw.cs.lil.navi.test.stats.set.SetGoalCoordinatesTestStatistics;
 import edu.uw.cs.lil.navi.test.stats.set.SetLogicalFormTestStatistics;
-import edu.uw.cs.lil.tiny.ccg.categories.ICategoryServices;
 import edu.uw.cs.lil.tiny.ccg.lexicon.LexicalEntry;
 import edu.uw.cs.lil.tiny.ccg.lexicon.LexicalEntry.Origin;
 import edu.uw.cs.lil.tiny.ccg.lexicon.Lexicon;
@@ -96,13 +96,13 @@ import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.evaluators.ArgMin;
 import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.evaluators.Equals;
 import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.evaluators.Exists;
 import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.evaluators.Not;
+import edu.uw.cs.lil.tiny.mr.lambda.utils.ConstantsReader;
 import edu.uw.cs.lil.tiny.mr.language.type.TypeRepository;
 import edu.uw.cs.lil.tiny.parser.ccg.model.IModelImmutable;
 import edu.uw.cs.lil.tiny.parser.ccg.model.IModelInit;
 import edu.uw.cs.lil.tiny.parser.ccg.model.Model;
 import edu.uw.cs.lil.tiny.parser.ccg.model.ModelLogger;
 import edu.uw.cs.lil.tiny.parser.joint.model.JointModel;
-import edu.uw.cs.lil.tiny.storage.DecoderHelper;
 import edu.uw.cs.lil.tiny.test.exec.ExecTester;
 import edu.uw.cs.lil.tiny.test.stats.CompositeTestingStatistics;
 import edu.uw.cs.lil.tiny.test.stats.ITestingStatistics;
@@ -126,14 +126,12 @@ public class NaviExperiment extends DistributedExperiment {
 	
 	public static final String						EVAL_SERVICES_FACTORY	= "evalServicesFactory";
 	
-	public static final String						SINGLE_EVALUATOR		= "singleEval";
-	
-	private static final ILogger					LOG						= LoggerFactory
+	public static final ILogger						LOG						= LoggerFactory
 																					.create(NaviExperiment.class);
 	
-	private final LogicalExpressionCategoryServices	categoryServices;
+	public static final String						SINGLE_EVALUATOR		= "singleEval";
 	
-	private final DecoderHelper<LogicalExpression>	decoderHelper;
+	private final LogicalExpressionCategoryServices	categoryServices;
 	
 	public NaviExperiment(File initFile) throws IOException, SAXException {
 		this(initFile, Collections.<String, String> emptyMap(),
@@ -141,9 +139,9 @@ public class NaviExperiment extends DistributedExperiment {
 	}
 	
 	public NaviExperiment(File initFile, Map<String, String> envParams,
-			ResourceCreatorRepository resCreatorRepo) throws IOException,
+			ResourceCreatorRepository creatorRepo) throws IOException,
 			SAXException {
-		super(initFile, envParams);
+		super(initFile, envParams, creatorRepo);
 		
 		LogLevel.DEV.set();
 		Logger.setSkipPrefix(true);
@@ -172,10 +170,40 @@ public class NaviExperiment extends DistributedExperiment {
 		// Init typing system
 		// //////////////////////////////////////////
 		
-		// Init the logical expression type system
-		LogicLanguageServices.setInstance(new LogicLanguageServices.Builder(
-				new TypeRepository(typesFile)).setNumeralTypeName("n")
-				.setTypeComparator(new FlexibleTypeComparator()).build());
+		final List<File> ontologyFiles = new LinkedList<File>();
+		final File domainOntologyFile = globalParams.getAsFile("domain_ont");
+		ontologyFiles.add(globalParams.getAsFile("generic_ont"));
+		ontologyFiles.add(domainOntologyFile);
+		
+		try {
+			// Init the logical expression type system.
+			LogicLanguageServices
+					.setInstance(new LogicLanguageServices.Builder(
+							new TypeRepository(typesFile),
+							new FlexibleTypeComparator())
+							.setNumeralTypeName("n")
+							.addConstantsToOntology(ontologyFiles)
+							.closeOntology(true).build());
+			
+			storeResource(ONTOLOGY_RESOURCE,
+					LogicLanguageServices.getOntology());
+			
+		} catch (final IOException e) {
+			throw new RuntimeException(e);
+		}
+		
+		// //////////////////////////////////////////////////
+		// Store domain ontology as a resource.
+		// //////////////////////////////////////////////////
+		
+		try {
+			storeResource(
+					DOMAIN_ONTOLOGY_RESOURCE,
+					new Ontology(ConstantsReader
+							.readConstantsFile(domainOntologyFile), true));
+		} catch (final IOException e) {
+			throw new RuntimeException(e);
+		}
 		
 		// //////////////////////////////////////////////////
 		// Category services for logical expressions
@@ -186,43 +214,14 @@ public class NaviExperiment extends DistributedExperiment {
 		storeResource(CATEGORY_SERVICES_RESOURCE, categoryServices);
 		
 		// //////////////////////////////////////////////////
-		// Decoder helper for decoding tasks
-		// //////////////////////////////////////////////////
-		
-		this.decoderHelper = new DecoderHelper<LogicalExpression>(
-				categoryServices);
-		storeResource(DECODER_HELPER_RESOURCE, decoderHelper);
-		
-		// //////////////////////////////////////////////////
-		// Read ontology (loads all constants)
-		// //////////////////////////////////////////////////
-		
-		try {
-			final List<File> ontologyFiles = new LinkedList<File>();
-			final File domainOntologyFile = globalParams
-					.getAsFile("domain_ont");
-			ontologyFiles.add(domainOntologyFile);
-			ontologyFiles.add(globalParams.getAsFile("generic_ont"));
-			storeResource(DOMAIN_ONTOLOGY_RESOURCE, new Ontology(
-					domainOntologyFile));
-			storeResource(ONTOLOGY_RESOURCE, new Ontology(ontologyFiles));
-		} catch (final IOException e) {
-			throw new RuntimeException(e);
-		}
-		
-		// //////////////////////////////////////////////////
 		// Lexical factoring services
 		// //////////////////////////////////////////////////
 		
 		final Set<LogicalConstant> unfactoredConstants = new HashSet<LogicalConstant>();
-		unfactoredConstants.add((LogicalConstant) categoryServices
-				.parseSemantics("io:<<e,t>,e>"));
-		unfactoredConstants.add((LogicalConstant) categoryServices
-				.parseSemantics("a:<<e,t>,e>"));
-		unfactoredConstants.add((LogicalConstant) categoryServices
-				.parseSemantics("exists:<<e,t>,t>"));
-		unfactoredConstants.add((LogicalConstant) categoryServices
-				.parseSemantics("eq:<e,<e,t>>"));
+		unfactoredConstants.add(LogicalConstant.parse("io:<<e,t>,e>"));
+		unfactoredConstants.add(LogicalConstant.parse("a:<<e,t>,e>"));
+		unfactoredConstants.add(LogicalConstant.parse("exists:<<e,t>,t>"));
+		unfactoredConstants.add(LogicalConstant.parse("eq:<e,<e,t>>"));
 		FactoredLexiconServices.set(unfactoredConstants);
 		
 		// //////////////////////////////////////////////////
@@ -254,8 +253,7 @@ public class NaviExperiment extends DistributedExperiment {
 		// Navi Evaluation objects
 		// //////////////////////////////////////////////////
 		
-		final NaviSingleEvaluator singleEvaluator = createEvaluationProcedure(
-				categoryServices, maxImplicitActions);
+		final NaviSingleEvaluator singleEvaluator = createEvaluationProcedure(maxImplicitActions);
 		
 		storeResource(EVAL_SERVICES_FACTORY,
 				singleEvaluator.getServicesFactory());
@@ -268,12 +266,11 @@ public class NaviExperiment extends DistributedExperiment {
 		for (final Parameters params : resourceParams) {
 			final String type = params.get("type");
 			final String id = params.get("id");
-			if (resCreatorRepo.getCreator(type) == null) {
+			if (getCreator(type) == null) {
 				throw new IllegalArgumentException("Invalid resource type: "
 						+ type);
 			} else {
-				storeResource(id,
-						resCreatorRepo.getCreator(type).create(params, this));
+				storeResource(id, getCreator(type).create(params, this));
 			}
 		}
 		
@@ -286,32 +283,23 @@ public class NaviExperiment extends DistributedExperiment {
 		}
 	}
 	
-	private static NaviSingleEvaluator createEvaluationProcedure(
-			ICategoryServices<LogicalExpression> categoryServices,
+	public static NaviSingleEvaluator createEvaluationProcedure(
 			int maxImplicitActions) {
 		final NaviEvaluationConstants.Builder builder = new NaviEvaluationConstants.Builder(
 				LogicLanguageServices.getTypeRepository().getType("a"),
-				(LogicalConstant) categoryServices.parseSemantics("x:ps"),
-				(LogicalConstant) categoryServices.parseSemantics("y:ps"),
-				(LogicalConstant) categoryServices.parseSemantics("you:ps"),
-				(LogicalConstant) categoryServices
-						.parseSemantics("io:<<e,t>,e>"),
-				(LogicalConstant) categoryServices
-						.parseSemantics("exists:<<e,t>,t>"),
-				(LogicalConstant) categoryServices
-						.parseSemantics("a:<<e,t>,e>"),
-				(LogicalConstant) categoryServices
-						.parseSemantics("exists:<<a,t>,t>"),
-				maxImplicitActions, categoryServices, LogicLanguageServices
-						.getTypeRepository().getType("m"));
+				LogicalConstant.parse("x:ps"), LogicalConstant.parse("y:ps"),
+				LogicalConstant.parse("you:ps"),
+				LogicalConstant.parse("io:<<e,t>,e>"),
+				LogicalConstant.parse("exists:<<e,t>,t>"),
+				LogicalConstant.parse("a:<<e,t>,e>"),
+				LogicalConstant.parse("exists:<<a,t>,t>"), maxImplicitActions,
+				LogicLanguageServices.getTypeRepository().getType("m"));
 		
 		// Equals predicates
 		builder.addEquals(LogicLanguageServices.getTypeRepository()
-				.getType("e"), (LogicalConstant) categoryServices
-				.parseSemantics("eq:<e,<e,t>>"));
+				.getType("e"), LogicalConstant.parse("eq:<e,<e,t>>"));
 		builder.addEquals(LogicLanguageServices.getTypeRepository()
-				.getType("a"), (LogicalConstant) categoryServices
-				.parseSemantics("eq:<a,<a,t>>"));
+				.getType("a"), LogicalConstant.parse("eq:<a,<a,t>>"));
 		
 		// Numbers
 		for (int i = 0; i < 10; ++i) {
@@ -319,226 +307,158 @@ public class NaviExperiment extends DistributedExperiment {
 		}
 		
 		// Directions
-		builder.addDirection(categoryServices.parseSemantics("left:dir"),
+		builder.addDirection(LogicalConstant.parse("left:dir"),
 				edu.uw.cs.lil.navi.agent.Direction.LEFT);
-		builder.addDirection(categoryServices.parseSemantics("right:dir"),
+		builder.addDirection(LogicalConstant.parse("right:dir"),
 				edu.uw.cs.lil.navi.agent.Direction.RIGHT);
-		builder.addDirection(categoryServices.parseSemantics("back:dir"),
+		builder.addDirection(LogicalConstant.parse("back:dir"),
 				edu.uw.cs.lil.navi.agent.Direction.BACK);
-		builder.addDirection(categoryServices.parseSemantics("forward:dir"),
+		builder.addDirection(LogicalConstant.parse("forward:dir"),
 				edu.uw.cs.lil.navi.agent.Direction.FORWARD);
 		
 		// Literal evaluators
 		
 		// Quantifiers
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("io:<<e,t>,e>"), new DefiniteArticle());
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("exists:<<e,t>,t>"),
+		builder.addEvaluator(LogicalConstant.parse("io:<<e,t>,e>"),
+				new DefiniteArticle());
+		builder.addEvaluator(LogicalConstant.parse("exists:<<e,t>,t>"),
 				new WrappedGenericEvaluator(new Exists()));
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("exists:<<a,t>,t>"),
+		builder.addEvaluator(LogicalConstant.parse("exists:<<a,t>,t>"),
 				new WrappedGenericEvaluator(new Exists()));
 		
 		// Equals
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("eq:<e,<e,t>>"), new WrappedGenericEvaluator(
-				new Equals()));
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("eq:<a,<a,t>>"), new WrappedGenericEvaluator(
-				new Equals()));
+		builder.addEvaluator(LogicalConstant.parse("eq:<e,<e,t>>"),
+				new WrappedGenericEvaluator(new Equals()));
+		builder.addEvaluator(LogicalConstant.parse("eq:<a,<a,t>>"),
+				new WrappedGenericEvaluator(new Equals()));
 		
 		// Not
-		builder.addEvaluator(
-				(LogicalConstant) categoryServices.parseSemantics("not:<t,t>"),
+		builder.addEvaluator(LogicalConstant.parse("not:<t,t>"),
 				new WrappedGenericEvaluator(new Not()));
 		
 		// Argmax
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("argmax:<<e,t>,<<e,n>,e>>"),
+		builder.addEvaluator(LogicalConstant.parse("argmax:<<e,t>,<<e,n>,e>>"),
 				new WrappedGenericEvaluator(new ArgMax()));
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("argmin:<<e,t>,<<e,n>,e>>"),
+		builder.addEvaluator(LogicalConstant.parse("argmin:<<e,t>,<<e,n>,e>>"),
 				new WrappedGenericEvaluator(new ArgMin()));
 		
 		// Actions
 		
 		// Action types
-		builder.addEvaluator(
-				(LogicalConstant) categoryServices.parseSemantics("move:<a,t>"),
+		builder.addEvaluator(LogicalConstant.parse("move:<a,t>"),
 				new ActionType(AgentAction.FORWARD));
-		builder.addEvaluator(
-				(LogicalConstant) categoryServices.parseSemantics("turn:<a,t>"),
+		builder.addEvaluator(LogicalConstant.parse("turn:<a,t>"),
 				new ActionType(AgentAction.LEFT, AgentAction.RIGHT));
 		
 		// Action properties
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("dir:<a,<dir,t>>"), new ActionDirection());
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("len:<a,<n,t>>"), new ActionLength());
+		builder.addEvaluator(LogicalConstant.parse("dir:<a,<dir,t>>"),
+				new ActionDirection());
+		builder.addEvaluator(LogicalConstant.parse("len:<a,<n,t>>"),
+				new ActionLength());
 		
 		// Action positions
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("pass:<a,<ps,t>>"), new ActionPass());
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("to:<a,<ps,t>>"), new ActionTo());
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("while:<a,<ps,t>>"), new ActionWhile());
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("post:<a,<t,t>>"), new ActionPost());
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("pre:<a,<ps,t>>"), new ActionPrePosition());
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("pre:<a,<t,t>>"), new ActionPreState());
+		builder.addEvaluator(LogicalConstant.parse("pass:<a,<ps,t>>"),
+				new ActionPass());
+		builder.addEvaluator(LogicalConstant.parse("to:<a,<ps,t>>"),
+				new ActionTo());
+		builder.addEvaluator(LogicalConstant.parse("while:<a,<ps,t>>"),
+				new ActionWhile());
+		builder.addEvaluator(LogicalConstant.parse("post:<a,<t,t>>"),
+				new ActionPost());
+		builder.addEvaluator(LogicalConstant.parse("pre:<a,<ps,t>>"),
+				new ActionPrePosition());
+		builder.addEvaluator(LogicalConstant.parse("pre:<a,<t,t>>"),
+				new ActionPreState());
 		
 		// Positions
 		
 		// Position type
-		builder.addEvaluator(
-				(LogicalConstant) categoryServices
-						.parseSemantics("chair:<ps,t>"),
+		builder.addEvaluator(LogicalConstant.parse("chair:<ps,t>"),
 				new PositionSetType(NaviObj.CHAIR))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("easel:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("easel:<ps,t>"),
 						new PositionSetType(NaviObj.EASEL))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("sofa:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("sofa:<ps,t>"),
 						new PositionSetType(NaviObj.SOFA))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("hatrack:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("hatrack:<ps,t>"),
 						new PositionSetType(NaviObj.HATRACK))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("empty:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("empty:<ps,t>"),
 						new PositionSetType(NaviObj.EMPTY))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("lamp:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("lamp:<ps,t>"),
 						new PositionSetType(NaviObj.LAMP))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("barstool:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("barstool:<ps,t>"),
 						new PositionSetType(NaviObj.BARSTOOL))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("furniture:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("furniture:<ps,t>"),
 						new PositionSetType(NaviObj.FURNITURE))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("rose:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("rose:<ps,t>"),
 						new PositionSetType(NaviHall.ROSE))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("wood:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("wood:<ps,t>"),
 						new PositionSetType(NaviHall.WOOD))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("blue:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("blue:<ps,t>"),
 						new PositionSetType(NaviHall.BLUE))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("stone:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("stone:<ps,t>"),
 						new PositionSetType(NaviHall.STONE))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("brick:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("brick:<ps,t>"),
 						new PositionSetType(NaviHall.BRICK))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("grass:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("grass:<ps,t>"),
 						new PositionSetType(NaviHall.GRASS))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("honeycomb:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("honeycomb:<ps,t>"),
 						new PositionSetType(NaviHall.HONEYCOMB))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("cement:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("cement:<ps,t>"),
 						new PositionSetType(NaviHall.CEMENT))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("butterfly_w:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("butterfly_w:<ps,t>"),
 						new PositionSetType(NaviWall.BUTTERFLY))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("eiffel_w:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("eiffel_w:<ps,t>"),
 						new PositionSetType(NaviWall.EIFFEL))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("fish_w:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("fish_w:<ps,t>"),
 						new PositionSetType(NaviWall.FISH))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("wall:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("wall:<ps,t>"),
 						new PositionSetType(NaviHall.WALL))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("corner:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("corner:<ps,t>"),
 						new PositionSetType(NaviMetaItem.CORNER))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("deadend:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("deadend:<ps,t>"),
 						new PositionSetType(NaviMetaItem.DEADEND))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("intersection:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("intersection:<ps,t>"),
 						new PositionSetType(NaviMetaItem.INTERSECTION))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("t_intersection:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("t_intersection:<ps,t>"),
 						new PositionSetType(NaviMetaItem.T_INTERSECTION))
-				.addEvaluator(
-						(LogicalConstant) categoryServices
-								.parseSemantics("hall:<ps,t>"),
+				.addEvaluator(LogicalConstant.parse("hall:<ps,t>"),
 						new PositionSetType(NaviHall.HALL));
 		
 		// Position functions
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("orient:<ps,<dir,ps>>"),
+		builder.addEvaluator(LogicalConstant.parse("orient:<ps,<dir,ps>>"),
 				new PositionSetOrient());
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("frontdist:<ps,n>"),
+		builder.addEvaluator(LogicalConstant.parse("frontdist:<ps,n>"),
 				new PositionSetFrontDistance());
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("dist:<ps,n>"), new PositionSetAgentDistance());
+		builder.addEvaluator(LogicalConstant.parse("dist:<ps,n>"),
+				new PositionSetAgentDistance());
 		
 		// Position relations
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("intersect:<ps,<ps,t>>"),
+		builder.addEvaluator(LogicalConstant.parse("intersect:<ps,<ps,t>>"),
 				new PositionSetIntersect());
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("middle:<ps,<ps,t>>"), new PositionSetMiddle());
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("order:<<ps,t>,<<ps,n>,<n,ps>>>"),
+		builder.addEvaluator(LogicalConstant.parse("middle:<ps,<ps,t>>"),
+				new PositionSetMiddle());
+		builder.addEvaluator(
+				LogicalConstant.parse("order:<<ps,t>,<<ps,n>,<n,ps>>>"),
 				new PositionSetOrder());
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("distance:<ps,<ps,<n,t>>>"),
+		builder.addEvaluator(LogicalConstant.parse("distance:<ps,<ps,<n,t>>>"),
 				new PositionSetDistance());
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("front:<ps,<ps,t>>"), new PositionSetFront());
-		builder.addEvaluator((LogicalConstant) categoryServices
-				.parseSemantics("end:<ps,<ps,t>>"), new PositionSetEnd());
+		builder.addEvaluator(LogicalConstant.parse("front:<ps,<ps,t>>"),
+				new PositionSetFront());
+		builder.addEvaluator(LogicalConstant.parse("end:<ps,<ps,t>>"),
+				new PositionSetEnd());
 		
 		// Stateful predicates
-		builder.addStatefulPredicate(
-				categoryServices.parseSemantics("post:<a,<t,t>>"),
+		builder.addStatefulPredicate(LogicalConstant.parse("post:<a,<t,t>>"),
 				StateFlag.POST);
-		builder.addStatefulPredicate(
-				categoryServices.parseSemantics("pass:<a,<ps,t>>"),
+		builder.addStatefulPredicate(LogicalConstant.parse("pass:<a,<ps,t>>"),
 				StateFlag.POST);
-		builder.addStatefulPredicate(
-				categoryServices.parseSemantics("pre:<a,<t,t>>"), StateFlag.PRE);
-		builder.addStatefulPredicate(
-				categoryServices.parseSemantics("pre:<a,<ps,t>>"),
+		builder.addStatefulPredicate(LogicalConstant.parse("pre:<a,<t,t>>"),
 				StateFlag.PRE);
-		builder.addStatefulPredicate(
-				categoryServices.parseSemantics("while:<a,<ps,t>>"),
+		builder.addStatefulPredicate(LogicalConstant.parse("pre:<a,<ps,t>>"),
 				StateFlag.PRE);
-		builder.addStatefulPredicate(
-				categoryServices.parseSemantics("to:<a,<ps,t>>"),
+		builder.addStatefulPredicate(LogicalConstant.parse("while:<a,<ps,t>>"),
+				StateFlag.PRE);
+		builder.addStatefulPredicate(LogicalConstant.parse("to:<a,<ps,t>>"),
 				StateFlag.POST);
 		
 		final NaviEvaluationServicesFactory servicesFactory = new NaviEvaluationServicesFactory(
@@ -608,80 +528,89 @@ public class NaviExperiment extends DistributedExperiment {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private <X, Z> ITestingStatistics<X, Z> createTestingStatistics(
+	private <SAMPLE, LABEL> ITestingStatistics<SAMPLE, LABEL> createTestingStatistics(
 			String metricName, String jobId) {
 		final String expId = String.format("expId=%s", jobId);
 		final String prefix = String.format("%s:", jobId);
 		if ("exact.trace".equals(metricName)) {
-			return (ITestingStatistics<X, Z>) new TraceTestStatistics(
+			return (ITestingStatistics<SAMPLE, LABEL>) new TraceTestStatistics(
 					expId,
 					prefix + "exact.trace",
-					new SimpleStats<ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>>());
+					new SimpleStats<ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>>>(
+							prefix + "exact.trace"));
 		} else if ("exact.position".equals(metricName)) {
-			return (ITestingStatistics<X, Z>) new FinalPositionTestStatistics(
+			return (ITestingStatistics<SAMPLE, LABEL>) new FinalPositionTestStatistics(
 					expId,
 					prefix + "exact.position",
-					new SimpleStats<ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>>());
+					new SimpleStats<ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>>>(
+							prefix + "exact.position"));
 		} else if ("exact.coordinates".equals(metricName)) {
-			return (ITestingStatistics<X, Z>) new FinalCoordinatesTestStatistics(
+			return (ITestingStatistics<SAMPLE, LABEL>) new FinalCoordinatesTestStatistics(
 					expId,
 					prefix + "exact.coordinates",
-					new SimpleStats<ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>>());
+					new SimpleStats<ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>>>(
+							prefix + "exact.coordinates"));
 		} else if ("exact.lf".equals(metricName)) {
-			return (ITestingStatistics<X, Z>) new LogicalFormTestStatistics(
+			return (ITestingStatistics<SAMPLE, LABEL>) new LogicalFormTestStatistics(
 					expId,
 					prefix + "exact.lf",
-					new SimpleStats<ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>>());
+					new SimpleStats<ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>>>(
+							prefix + "exact.lf"));
 		} else if ("exact.lf.dup".equals(metricName)) {
-			return (ITestingStatistics<X, Z>) new LogicalFormTestStatistics(
+			return (ITestingStatistics<SAMPLE, LABEL>) new LogicalFormTestStatistics(
 					expId,
 					prefix + "exact.lf.dup",
-					new StatsWithDuplicates<ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>>());
+					new StatsWithDuplicates<ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>>>(
+							prefix + "exact.lf.dup"));
 		} else if ("exact.lf.dup.nl".equals(metricName)) {
-			return (ITestingStatistics<X, Z>) new LogicalFormSentenceTestStatistics(
+			return (ITestingStatistics<SAMPLE, LABEL>) new LogicalFormSentenceTestStatistics(
 					expId, prefix + "exact.lf.dup.nl",
-					new StatsWithDuplicates<Sentence>());
+					new StatsWithDuplicates<Sentence>(prefix
+							+ "exact.lf.dup.nl"));
 		} else if ("exact.set.coordinates".equals(metricName)) {
-			return (ITestingStatistics<X, Z>) new SetFinalCoordinatesTestStatistics<LogicalExpression>(
+			return (ITestingStatistics<SAMPLE, LABEL>) new SetFinalCoordinatesTestStatistics<LogicalExpression>(
 					expId,
 					prefix + "exact.set.coordinates",
-					new SimpleStats<ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<LogicalExpression, Trace>>>>());
+					new SimpleStats<ILabeledDataItem<InstructionSeq, List<Pair<LogicalExpression, Trace>>>>(
+							prefix + "exact.set.coordinates"));
 		} else if ("exact.set.xcoordinates".equals(metricName)) {
-			return (ITestingStatistics<X, Z>) new SetGoalCoordinatesTestStatistics<LogicalExpression>(
+			return (ITestingStatistics<SAMPLE, LABEL>) new SetGoalCoordinatesTestStatistics<LogicalExpression>(
 					expId,
 					prefix + "exact.set.xcoordinates",
-					new SimpleStats<ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<LogicalExpression, Trace>>>>());
+					new SimpleStats<ILabeledDataItem<InstructionSeq, List<Pair<LogicalExpression, Trace>>>>(
+							prefix + "exact.set.xcoordinates"));
 		} else if ("exact.set.lf".equals(metricName)) {
-			return (ITestingStatistics<X, Z>) new SetLogicalFormTestStatistics<LogicalExpression>(
+			return (ITestingStatistics<SAMPLE, LABEL>) new SetLogicalFormTestStatistics<LogicalExpression>(
 					expId,
 					prefix + "exact.set.lf",
-					new SimpleStats<ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<LogicalExpression, Trace>>>>());
+					new SimpleStats<ILabeledDataItem<InstructionSeq, List<Pair<LogicalExpression, Trace>>>>(
+							prefix + "exact.set.lf"));
 			
 		} else {
 			throw new RuntimeException("Unknown testing metric: " + metricName);
 		}
 	}
 	
-	private <X, Z> Job createTestJob(Parameters params)
-			throws FileNotFoundException {
+	private <DI extends IDataItem<?>, RESULT> Job createTestJob(
+			Parameters params) throws FileNotFoundException {
 		// Create test statistics
-		final List<ITestingStatistics<X, Z>> testingMetrics = new LinkedList<ITestingStatistics<X, Z>>();
+		final List<ITestingStatistics<DI, RESULT>> testingMetrics = new LinkedList<ITestingStatistics<DI, RESULT>>();
 		for (final String metricName : params.getSplit("stats")) {
-			final ITestingStatistics<X, Z> stat = createTestingStatistics(
+			final ITestingStatistics<DI, RESULT> stat = createTestingStatistics(
 					metricName, params.get("id"));
 			testingMetrics.add(stat);
 		}
-		final ITestingStatistics<X, Z> testStatistics = new CompositeTestingStatistics<X, Z>(
+		final ITestingStatistics<DI, RESULT> testStatistics = new CompositeTestingStatistics<DI, RESULT>(
 				testingMetrics);
 		
 		// Get the executor
-		final IExec<X, Z> exec = getResource(params.get("exec"));
+		final IExec<DI, RESULT> exec = getResource(params.get("exec"));
 		
 		// Get the tester
-		final ExecTester<X, Z> tester = getResource(params.get("tester"));
+		final ExecTester<DI, RESULT> tester = getResource(params.get("tester"));
 		
 		// Get the data
-		final IDataCollection<? extends ILabeledDataItem<X, Z>> data = getResource(params
+		final IDataCollection<? extends ILabeledDataItem<DI, RESULT>> data = getResource(params
 				.get("data"));
 		
 		// Create and return the job
@@ -719,11 +648,11 @@ public class NaviExperiment extends DistributedExperiment {
 	private Job createTrainJob(Parameters params) throws FileNotFoundException {
 		
 		// The model to use
-		final JointModel<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace> model = (JointModel<IDataItem<Pair<Sentence, Task>>, Task, LogicalExpression, Trace>) getResource(params
+		final JointModel<Instruction, LogicalExpression, Trace> model = (JointModel<Instruction, LogicalExpression, Trace>) getResource(params
 				.get("model"));
 		
 		// The learner
-		final AbstractSituatedLearner<Task, LogicalExpression, Trace, Trace, InstructionTrace<LogicalExpression>> learner = (AbstractSituatedLearner<Task, LogicalExpression, Trace, Trace, InstructionTrace<LogicalExpression>>) getResource(params
+		final AbstractSituatedLearner<Instruction, LogicalExpression, Trace, Trace, InstructionTrace> learner = (AbstractSituatedLearner<Instruction, LogicalExpression, Trace, Trace, InstructionTrace>) getResource(params
 				.get("learner"));
 		
 		return new Job(params.get("id"), new HashSet<String>(

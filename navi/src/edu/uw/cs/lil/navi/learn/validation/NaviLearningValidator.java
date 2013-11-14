@@ -19,6 +19,10 @@ package edu.uw.cs.lil.navi.learn.validation;
 import edu.uw.cs.lil.navi.data.InstructionTrace;
 import edu.uw.cs.lil.navi.data.Trace;
 import edu.uw.cs.lil.tiny.data.utils.IValidator;
+import edu.uw.cs.lil.tiny.explat.IResourceRepository;
+import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
+import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
+import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
 
 /**
  * Strict validation: uses all the information in the demonstration trace,
@@ -26,11 +30,36 @@ import edu.uw.cs.lil.tiny.data.utils.IValidator;
  * 
  * @author Yoav Artzi
  */
-public class NaviLearningValidator<MR> implements
-		IValidator<InstructionTrace<MR>, Trace> {
+public class NaviLearningValidator implements
+		IValidator<InstructionTrace, Trace> {
 	
 	@Override
-	public boolean isValid(InstructionTrace<MR> dataItem, Trace label) {
+	public boolean isValid(InstructionTrace dataItem, Trace label) {
 		return dataItem.getLabel().equals(label);
+	}
+	
+	public static class Creator implements
+			IResourceObjectCreator<NaviLearningValidator> {
+		
+		@Override
+		public NaviLearningValidator create(Parameters params,
+				IResourceRepository repo) {
+			return new NaviLearningValidator();
+		}
+		
+		@Override
+		public String type() {
+			return "navi.validator";
+		}
+		
+		@Override
+		public ResourceUsage usage() {
+			return new ResourceUsage.Builder(type(),
+					NaviLearningValidator.class)
+					.setDescription(
+							"Learning validtion function that validates the complete executiont trace (incl. implicit markings).")
+					.build();
+		}
+		
 	}
 }

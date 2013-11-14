@@ -19,22 +19,32 @@ package edu.uw.cs.lil.navi.learn.lexicalgen;
 import java.util.List;
 import java.util.Set;
 
+import edu.uw.cs.lil.navi.data.Instruction;
 import edu.uw.cs.lil.navi.eval.NaviEvaluationConstants;
+import edu.uw.cs.lil.navi.eval.NaviEvaluationServicesFactory;
+import edu.uw.cs.lil.navi.experiments.plat.NaviExperiment;
 import edu.uw.cs.lil.tiny.ccg.categories.syntax.ComplexSyntax;
 import edu.uw.cs.lil.tiny.ccg.categories.syntax.Syntax;
 import edu.uw.cs.lil.tiny.ccg.categories.syntax.Syntax.SimpleSyntax;
 import edu.uw.cs.lil.tiny.ccg.lexicon.factored.lambda.LexicalTemplate;
+import edu.uw.cs.lil.tiny.explat.IResourceRepository;
+import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
+import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
+import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
 import edu.uw.cs.lil.tiny.genlex.ccg.template.TemplateGenlex;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicLanguageServices;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalConstant;
+import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
+import edu.uw.cs.lil.tiny.mr.lambda.Ontology;
 import edu.uw.cs.lil.tiny.mr.language.type.ComplexType;
 import edu.uw.cs.lil.tiny.mr.language.type.Type;
+import edu.uw.cs.lil.tiny.parser.ccg.model.IModelImmutable;
 import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
 
-public class NaviTemplatedLexiconGenerator extends TemplateGenlex {
-	private static final ILogger	LOG	= LoggerFactory
-												.create(NaviTemplatedLexiconGenerator.class);
+public class NaviTemplatedLexiconGenerator extends TemplateGenlex<Instruction> {
+	public static final ILogger	LOG	= LoggerFactory
+											.create(NaviTemplatedLexiconGenerator.class);
 	
 	public NaviTemplatedLexiconGenerator(Set<LexicalTemplate> templates,
 			Set<List<LogicalConstant>> pontetialConstantSeqs, int maxTokens) {
@@ -44,7 +54,7 @@ public class NaviTemplatedLexiconGenerator extends TemplateGenlex {
 				templates.size(), pontetialConstantSeqs.size());
 	}
 	
-	public static class Builder extends TemplateGenlex.Builder {
+	public static class Builder extends TemplateGenlex.Builder<Instruction> {
 		
 		private final NaviEvaluationConstants	naviConsts;
 		
@@ -106,5 +116,41 @@ public class NaviTemplatedLexiconGenerator extends TemplateGenlex {
 									.getTruthValueType());
 		}
 		
+	}
+	
+	public static class Creator implements
+			IResourceObjectCreator<TemplateGenlex<Instruction>> {
+		
+		@SuppressWarnings("unchecked")
+		@Override
+		public TemplateGenlex<Instruction> create(Parameters parameters,
+				IResourceRepository resourceRepo) {
+			return new NaviTemplatedLexiconGenerator.Builder(
+					Integer.valueOf(parameters.get("maxTokens")),
+					((NaviEvaluationServicesFactory) resourceRepo
+							.getResource(NaviExperiment.EVAL_SERVICES_FACTORY))
+							.getNaviEvaluationConsts())
+					.addTemplatesFromModel(
+							(IModelImmutable<?, LogicalExpression>) resourceRepo
+									.getResource(parameters.get("model")))
+					.addConstants(
+							(Ontology) resourceRepo
+									.getResource(NaviExperiment.DOMAIN_ONTOLOGY_RESOURCE))
+					.build();
+		}
+		
+		@Override
+		public String type() {
+			return "genlex.templated.navi";
+		}
+		
+		@Override
+		public ResourceUsage usage() {
+			return new ResourceUsage.Builder(type(), TemplateGenlex.class)
+					.setDescription("Navi templated lexicon generator")
+					.addParam("maxTokens", "int",
+							"Maximum number of tokens in a generated lexical entry")
+					.build();
+		}
 	}
 }

@@ -32,12 +32,18 @@ import java.util.concurrent.ExecutionException;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 
+import edu.uw.cs.lil.navi.data.Instruction;
 import edu.uw.cs.lil.navi.eval.NaviSingleEvaluator;
 import edu.uw.cs.lil.navi.eval.Task;
+import edu.uw.cs.lil.navi.experiments.plat.NaviExperiment;
 import edu.uw.cs.lil.navi.map.PositionSet;
 import edu.uw.cs.lil.tiny.ccg.categories.Category;
 import edu.uw.cs.lil.tiny.data.IDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
+import edu.uw.cs.lil.tiny.explat.IResourceRepository;
+import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
+import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
+import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicLanguageServices;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.ILambdaResult;
@@ -46,7 +52,6 @@ import edu.uw.cs.lil.tiny.mr.language.type.Type;
 import edu.uw.cs.lil.tiny.parser.ccg.ILexicalParseStep;
 import edu.uw.cs.lil.tiny.parser.ccg.IParseStep;
 import edu.uw.cs.lil.tiny.parser.ccg.model.parse.IParseFeatureSet;
-import edu.uw.cs.lil.tiny.parser.joint.model.SituatedDataItemWrapper;
 import edu.uw.cs.lil.tiny.utils.hashvector.HashVectorFactory;
 import edu.uw.cs.lil.tiny.utils.hashvector.IHashVector;
 import edu.uw.cs.lil.tiny.utils.hashvector.IHashVectorImmutable;
@@ -65,10 +70,10 @@ import edu.uw.cs.utils.log.LoggerFactory;
  * @author Yoav Artzi
  */
 public class ExecutionFeatureSet implements
-		IParseFeatureSet<IDataItem<Sentence>, LogicalExpression> {
-	private static final String												FEATURE_TAG			= "LEX_EXEC";
-	private static final ILogger											LOG					= LoggerFactory
+		IParseFeatureSet<Sentence, LogicalExpression> {
+	public static final ILogger												LOG					= LoggerFactory
 																										.create(ExecutionFeatureSet.class);
+	private static final String												FEATURE_TAG			= "LEX_EXEC";
 	private static final Object												NULL_PLACEHOLDER	= new Object();
 	
 	private transient final Cache<Pair<LogicalExpression, Task>, Object>	cache;
@@ -76,6 +81,7 @@ public class ExecutionFeatureSet implements
 	private final int														cacheSize;
 	
 	private final NaviSingleEvaluator										evaluator;
+	
 	private final double													scale;
 	private final Set<Type>													validTypes;
 	
@@ -114,31 +120,22 @@ public class ExecutionFeatureSet implements
 		return true;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public double score(IParseStep<LogicalExpression> obj, IHashVector theta,
-			IDataItem<Sentence> dataItem) {
+			Sentence dataItem) {
 		if (shouldComputeFeatures(obj, dataItem)) {
-			return setFeats(
-					obj.getRoot(),
-					HashVectorFactory.create(),
-					((SituatedDataItemWrapper<IDataItem<Pair<Sentence, Task>>, Task>) dataItem)
-							.getSituatedDataItem()).vectorMultiply(theta);
+			return setFeats(obj.getRoot(), HashVectorFactory.create(),
+					(Instruction) dataItem).vectorMultiply(theta);
 		} else {
 			return 0;
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public void setFeats(IParseStep<LogicalExpression> obj, IHashVector feats,
-			IDataItem<Sentence> dataItem) {
+			Sentence dataItem) {
 		if (shouldComputeFeatures(obj, dataItem)) {
-			setFeats(
-					obj.getRoot(),
-					feats,
-					((SituatedDataItemWrapper<IDataItem<Pair<Sentence, Task>>, Task>) dataItem)
-							.getSituatedDataItem());
+			setFeats(obj.getRoot(), feats, (Instruction) dataItem);
 			
 		}
 	}
@@ -149,21 +146,21 @@ public class ExecutionFeatureSet implements
 	}
 	
 	private IHashVector setFeats(final Category<LogicalExpression> category,
-			IHashVector feats, final IDataItem<Pair<Sentence, Task>> dataItem) {
+			IHashVector feats, final Instruction dataItem) {
 		final LogicalExpression exp = category.getSem();
 		try {
-			final boolean evaluable = evaluator.isEvaluable(exp, dataItem
-					.getSample().second());
+			final boolean evaluable = evaluator.isEvaluable(exp,
+					dataItem.getState());
 			if (evaluable) {
 				// Evaluate only if result is not cached
 				final Object evalResult = cache.get(
-						Pair.of(exp, dataItem.getSample().second()),
+						Pair.of(exp, dataItem.getState()),
 						new Callable<Object>() {
 							
 							@Override
 							public Object call() throws Exception {
 								final Object result = evaluator.of(exp,
-										dataItem.getSample().second(), true);
+										dataItem.getState(), true);
 								// The cache can't handle null values, so we use
 								// a static place-holder
 								return result == null ? NULL_PLACEHOLDER
@@ -204,7 +201,7 @@ public class ExecutionFeatureSet implements
 			IDataItem<Sentence> dataItem) {
 		return obj.getRoot().getSem() != null
 				&& obj instanceof ILexicalParseStep
-				&& dataItem instanceof SituatedDataItemWrapper
+				&& dataItem instanceof Instruction
 				&& validTypes.contains(LogicLanguageServices
 						.getTypeRepository().generalizeType(
 								obj.getRoot().getSem().getType()))
@@ -216,6 +213,36 @@ public class ExecutionFeatureSet implements
 	
 	private Object writeReplace() throws ObjectStreamException {
 		return new SerializationProxy(this);
+	}
+	
+	public static class Creator implements
+			IResourceObjectCreator<ExecutionFeatureSet> {
+		
+		@Override
+		public ExecutionFeatureSet create(Parameters params,
+				IResourceRepository repo) {
+			return new ExecutionFeatureSet(
+					(NaviSingleEvaluator) repo
+							.getResource(NaviExperiment.SINGLE_EVALUATOR),
+					Integer.valueOf(params.get("cache")), params
+							.contains("scale") ? Double.valueOf(params
+							.get("scale")) : 1.0);
+		}
+		
+		@Override
+		public String type() {
+			return "feat.exec.lex";
+		}
+		
+		@Override
+		public ResourceUsage usage() {
+			return new ResourceUsage.Builder(type(), ExecutionFeatureSet.class)
+					.setDescription("Execution features")
+					.addParam("scale", "double",
+							"Feature scaling factor. Default: 1.0.")
+					.addParam("cache", "int", "Cache size").build();
+		}
+		
 	}
 	
 	private static class SerializationProxy implements Serializable {

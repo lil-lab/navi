@@ -20,13 +20,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import edu.uw.cs.lil.navi.experiments.plat.NaviExperiment;
 import edu.uw.cs.lil.navi.map.NavigationMap;
 import edu.uw.cs.lil.tiny.ccg.categories.ICategoryServices;
 import edu.uw.cs.lil.tiny.data.collection.IDataCollection;
+import edu.uw.cs.lil.tiny.explat.IResourceRepository;
+import edu.uw.cs.lil.tiny.explat.ParameterizedExperiment.Parameters;
+import edu.uw.cs.lil.tiny.explat.resources.IResourceObjectCreator;
+import edu.uw.cs.lil.tiny.explat.resources.usage.ResourceUsage;
 import edu.uw.cs.utils.collections.ListUtils;
 import edu.uw.cs.utils.io.FileUtils;
 
@@ -34,14 +40,14 @@ import edu.uw.cs.utils.io.FileUtils;
  * Data set of {@link LabeledInstructionSeqTrace}.
  * 
  * @author Yoav Artzi
- * @param <Y>
+ * @param <MR>
  */
-public class LabeledInstructionSeqTraceDataset<Y> implements
-		IDataCollection<LabeledInstructionSeqTrace<Y>> {
-	private final List<LabeledInstructionSeqTrace<Y>>	items;
+public class LabeledInstructionSeqTraceDataset<MR> implements
+		IDataCollection<LabeledInstructionSeqTrace<MR>> {
+	private final List<LabeledInstructionSeqTrace<MR>>	items;
 	
 	public LabeledInstructionSeqTraceDataset(
-			List<LabeledInstructionSeqTrace<Y>> items) {
+			List<LabeledInstructionSeqTrace<MR>> items) {
 		this.items = items;
 	}
 	
@@ -74,7 +80,7 @@ public class LabeledInstructionSeqTraceDataset<Y> implements
 	}
 	
 	@Override
-	public Iterator<LabeledInstructionSeqTrace<Y>> iterator() {
+	public Iterator<LabeledInstructionSeqTrace<MR>> iterator() {
 		return items.iterator();
 	}
 	
@@ -85,7 +91,7 @@ public class LabeledInstructionSeqTraceDataset<Y> implements
 	
 	@Override
 	public String toString() {
-		final Iterator<LabeledInstructionSeqTrace<Y>> iterator = items
+		final Iterator<LabeledInstructionSeqTrace<MR>> iterator = items
 				.iterator();
 		final StringBuilder sb = new StringBuilder();
 		while (iterator.hasNext()) {
@@ -95,6 +101,53 @@ public class LabeledInstructionSeqTraceDataset<Y> implements
 			}
 		}
 		return sb.toString();
+	}
+	
+	public static class Creator<MR> implements
+			IResourceObjectCreator<LabeledInstructionSeqTraceDataset<MR>> {
+		
+		private static Map<String, NavigationMap> toMap(List<String> ids,
+				IResourceRepository repo) {
+			final Map<String, NavigationMap> maps = new HashMap<String, NavigationMap>();
+			for (final String id : ids) {
+				final NavigationMap map = repo.getResource(id);
+				maps.put(map.getName().toLowerCase(), map);
+			}
+			return maps;
+		}
+		
+		@SuppressWarnings("unchecked")
+		@Override
+		public LabeledInstructionSeqTraceDataset<MR> create(Parameters params,
+				IResourceRepository repo) {
+			try {
+				return LabeledInstructionSeqTraceDataset
+						.readFromFile(
+								params.getAsFile("file"),
+								toMap(params.getSplit("maps"), repo),
+								(ICategoryServices<MR>) repo
+										.getResource(NaviExperiment.CATEGORY_SERVICES_RESOURCE));
+			} catch (final IOException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		
+		@Override
+		public String type() {
+			return "data.ccgsettrc";
+		}
+		
+		@Override
+		public ResourceUsage usage() {
+			return new ResourceUsage.Builder(type(),
+					LabeledInstructionSeqTraceDataset.class)
+					.setDescription(
+							"Dataset of instruction sequences paired with logical expressions and execution traces (segmented and aligned by sentences)")
+					.addParam("file", "file", "Dataset file")
+					.addParam("maps", NavigationMap.class, "Navigation maps.")
+					.addParam("genlex", "id", "Lexical generator").build();
+		}
+		
 	}
 	
 }

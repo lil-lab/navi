@@ -21,8 +21,11 @@ import java.util.Map.Entry;
 
 import edu.uw.cs.lil.navi.agent.Agent;
 import edu.uw.cs.lil.navi.map.NavigationMap;
+import edu.uw.cs.lil.navi.map.Pose;
 import edu.uw.cs.lil.navi.map.PositionSet;
 import edu.uw.cs.utils.collections.ListUtils;
+import edu.uw.cs.utils.log.ILogger;
+import edu.uw.cs.utils.log.LoggerFactory;
 
 /**
  * Describes the current task.
@@ -30,8 +33,11 @@ import edu.uw.cs.utils.collections.ListUtils;
  * @author Yoav Artzi
  */
 public class Task {
-	private final Agent					agent;
+	public static final String			ID_KEY	= "id";
+	public static final ILogger		LOG		= LoggerFactory
+														.create(Task.class);
 	
+	private final Agent					agent;
 	/** World map */
 	private final NavigationMap			map;
 	
@@ -45,6 +51,19 @@ public class Task {
 	
 	public Task(Agent agent, PositionSet start, PositionSet goal,
 			Map<String, String> properties, NavigationMap map) {
+		
+		// If the instruction set is valid but incorrect (leads to the wrong
+		// position), use the specified alternative goal
+		if ("False".equals(properties.get("correct"))
+				&& "True".equals(properties.get("valid"))) {
+			goal = new PositionSet(map
+					.get(Pose.valueOf(properties.get("xalt")))
+					.getAllOrientations(), false);
+			LOG.info("Modified goal for %s: %s -> %s", properties.get(ID_KEY),
+					map.get(Integer.valueOf(properties.get("x"))).toString(),
+					goal.toString());
+		}
+		
 		this.agent = agent;
 		this.positionX = goal;
 		this.properties = properties;
@@ -137,6 +156,17 @@ public class Task {
 		return result;
 	}
 	
+	public String propertiesToString() {
+		return ListUtils.join(ListUtils.map(properties.entrySet(),
+				new ListUtils.Mapper<Map.Entry<String, String>, String>() {
+					
+					@Override
+					public String process(Entry<String, String> obj) {
+						return obj.getKey() + "=" + obj.getValue();
+					}
+				}), "\t");
+	}
+	
 	@Override
 	public String toString() {
 		return new StringBuilder().append("agent=").append(agent)
@@ -148,17 +178,6 @@ public class Task {
 	
 	public Task updateAgent(Agent newAgent) {
 		return new Task(newAgent, positionY, positionX, properties, map);
-	}
-	
-	private String propertiesToString() {
-		return ListUtils.join(ListUtils.map(properties.entrySet(),
-				new ListUtils.Mapper<Map.Entry<String, String>, String>() {
-					
-					@Override
-					public String process(Entry<String, String> obj) {
-						return obj.getKey() + "=" + obj.getValue();
-					}
-				}), " ");
 	}
 	
 }

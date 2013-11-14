@@ -1,7 +1,0 @@
-# Include the various resources, except learning
-include=../default.include.maps.exp
-include=../default.include.parser.exp
-include=../default.include.model.exp
-include=../default.include.validation.exp
-include=../default.include.genlex.exp
-include=../default.include.data.exp

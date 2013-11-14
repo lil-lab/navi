@@ -19,11 +19,10 @@ package edu.uw.cs.lil.navi.test.stats.set;
 import java.util.List;
 import java.util.ListIterator;
 
+import edu.uw.cs.lil.navi.data.InstructionSeq;
 import edu.uw.cs.lil.navi.data.Trace;
-import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.map.Coordinates;
 import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
-import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.test.stats.AbstractTestingStatistics;
 import edu.uw.cs.lil.tiny.test.stats.IStatistics;
 import edu.uw.cs.utils.composites.Pair;
@@ -35,14 +34,13 @@ import edu.uw.cs.utils.composites.Pair;
  * @author Yoav Artzi
  * @param <MR>
  */
-public abstract class AbstractSetTestStatistics<MR>
-		extends
-		AbstractTestingStatistics<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> {
+public abstract class AbstractSetTestStatistics<MR> extends
+		AbstractTestingStatistics<InstructionSeq, List<Pair<MR, Trace>>> {
 	
 	public AbstractSetTestStatistics(
 			String prefix,
 			String metricName,
-			IStatistics<ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>>> stats) {
+			IStatistics<ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>>> stats) {
 		super(prefix, metricName, stats);
 	}
 	
@@ -68,12 +66,12 @@ public abstract class AbstractSetTestStatistics<MR>
 	 * @param result
 	 * @return
 	 */
-	protected static <Y> Coordinates getEndCoordinates(
-			List<Pair<Y, Trace>> result) {
-		final ListIterator<Pair<Y, Trace>> iterator = result
+	protected static <MR> Coordinates getEndCoordinates(
+			List<Pair<MR, Trace>> result) {
+		final ListIterator<Pair<MR, Trace>> iterator = result
 				.listIterator(result.size());
 		while (iterator.hasPrevious()) {
-			final Pair<Y, Trace> previous = iterator.previous();
+			final Pair<MR, Trace> previous = iterator.previous();
 			if (previous != null && previous.second() != null) {
 				return previous.second().getEndPosition().getPose()
 						.getCoordinates();
@@ -84,21 +82,21 @@ public abstract class AbstractSetTestStatistics<MR>
 	
 	@Override
 	public void recordNoParse(
-			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>> dataItem,
 			List<Pair<MR, Trace>> gold) {
 		stats.recordFailure(dataItem);
 	}
 	
 	@Override
 	public void recordNoParseWithSkipping(
-			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>> dataItem,
 			List<Pair<MR, Trace>> gold) {
 		stats.recordSloppyFailure(dataItem);
 	}
 	
 	@Override
 	public void recordParse(
-			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>> dataItem,
 			List<Pair<MR, Trace>> gold, List<Pair<MR, Trace>> label) {
 		final Coordinates labelEnd = getEndCoordinates(label);
 		final Coordinates goal = getGoal(dataItem);
@@ -113,7 +111,7 @@ public abstract class AbstractSetTestStatistics<MR>
 	
 	@Override
 	public void recordParses(
-			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>> dataItem,
 			List<Pair<MR, Trace>> gold, List<List<Pair<MR, Trace>>> labels) {
 		final Coordinates coordinates = clusterCoordinates(labels);
 		final Coordinates goal = getGoal(dataItem);
@@ -128,7 +126,7 @@ public abstract class AbstractSetTestStatistics<MR>
 	
 	@Override
 	public void recordParsesWithSkipping(
-			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>> dataItem,
 			List<Pair<MR, Trace>> gold, List<List<Pair<MR, Trace>>> labels) {
 		final Coordinates coordinates = clusterCoordinates(labels);
 		final Coordinates goal = getGoal(dataItem);
@@ -143,7 +141,7 @@ public abstract class AbstractSetTestStatistics<MR>
 	
 	@Override
 	public void recordParseWithSkipping(
-			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>> dataItem,
 			List<Pair<MR, Trace>> gold, List<Pair<MR, Trace>> label) {
 		final Coordinates labelEnd = getEndCoordinates(label);
 		final Coordinates goal = getGoal(dataItem);
@@ -157,6 +155,6 @@ public abstract class AbstractSetTestStatistics<MR>
 	}
 	
 	protected abstract Coordinates getGoal(
-			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem);
+			ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>> dataItem);
 	
 }

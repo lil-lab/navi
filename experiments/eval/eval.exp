@@ -1,16 +1,16 @@
-include=../default.params
-include=eval.params
+include=../params.inc
+include=params.inc
 outputDir=logs
 globalLog=logs/global.log
 
 # Resources
-include=../default.include.resources.exp
+include=../resources.inc
 ## Training and testing sets
 type=data.composite.trc id=train sets=devFold0,devFold1,devFold2,devFold3,devFold4,devTestLF
 type=data.composite.ccgtrc id=test sets=eval
 type=data.composite.ccgsettrc id=testSet sets=evalSet
 type=data.composite.ccgtrc id=testLF sets=evalLFCCG
-include=../default.include.learn.exp
+include=../learn.inc
 
 # Jobs
-include=../default.include.jobs.exp
+include=../jobs.inc

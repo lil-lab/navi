@@ -1,4 +1,5 @@
 /*******************************************************************************
+ * Navi. Copyright (C) 2013 Yoav Artzi
  * <p>
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -17,11 +18,10 @@ package edu.uw.cs.lil.navi.test.stats;
 
 import java.util.List;
 
+import edu.uw.cs.lil.navi.data.Instruction;
 import edu.uw.cs.lil.navi.data.Trace;
-import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.navi.map.Position;
 import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
-import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.test.stats.AbstractTestingStatistics;
 import edu.uw.cs.lil.tiny.test.stats.IStatistics;
@@ -33,34 +33,33 @@ import edu.uw.cs.utils.composites.Pair;
  * 
  * @author Yoav Artzi
  */
-public class FinalPositionTestStatistics
-		extends
-		AbstractTestingStatistics<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> {
+public class FinalPositionTestStatistics extends
+		AbstractTestingStatistics<Instruction, Pair<LogicalExpression, Trace>> {
 	
 	public FinalPositionTestStatistics(
 			String prefix,
 			String metricName,
-			IStatistics<ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>>> stats) {
+			IStatistics<ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>>> stats) {
 		super(prefix, metricName, stats);
 	}
 	
 	@Override
 	public void recordNoParse(
-			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
+			ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold) {
 		stats.recordFailure(dataItem);
 	}
 	
 	@Override
 	public void recordNoParseWithSkipping(
-			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
+			ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold) {
 		stats.recordSloppyFailure(dataItem);
 	}
 	
 	@Override
 	public void recordParse(
-			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
+			ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			Pair<LogicalExpression, Trace> label) {
 		if (label.second() == null) {
@@ -75,7 +74,7 @@ public class FinalPositionTestStatistics
 	
 	@Override
 	public void recordParses(
-			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
+			ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			List<Pair<LogicalExpression, Trace>> labels) {
 		final Position position = clusterPositions(labels);
@@ -90,7 +89,7 @@ public class FinalPositionTestStatistics
 	
 	@Override
 	public void recordParsesWithSkipping(
-			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
+			ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			List<Pair<LogicalExpression, Trace>> labels) {
 		final Position position = clusterPositions(labels);
@@ -105,7 +104,7 @@ public class FinalPositionTestStatistics
 	
 	@Override
 	public void recordParseWithSkipping(
-			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
+			ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			Pair<LogicalExpression, Trace> label) {
 		if (label.second() == null) {

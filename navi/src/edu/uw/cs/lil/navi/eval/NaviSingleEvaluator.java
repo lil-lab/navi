@@ -38,7 +38,7 @@ import edu.uw.cs.utils.log.ILogger;
 import edu.uw.cs.utils.log.LoggerFactory;
 
 public class NaviSingleEvaluator implements Serializable {
-	private static final ILogger				LOG	= LoggerFactory
+	public static final ILogger				LOG	= LoggerFactory
 															.create(NaviSingleEvaluator.class);
 	private final NaviEvaluationServicesFactory	servicesFactory;
 	

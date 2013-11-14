@@ -28,7 +28,6 @@ import edu.uw.cs.lil.tiny.ccg.categories.ICategoryServices;
 import edu.uw.cs.lil.tiny.mr.lambda.FlexibleTypeComparator;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicLanguageServices;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
-import edu.uw.cs.lil.tiny.mr.lambda.Ontology;
 import edu.uw.cs.lil.tiny.mr.lambda.ccg.LogicalExpressionCategoryServices;
 import edu.uw.cs.lil.tiny.mr.language.type.TypeRepository;
 import edu.uw.cs.utils.collections.ListUtils;
@@ -44,39 +43,40 @@ public class TestingConstants {
 			LogLevel.setLogLevel(LogLevel.DEV);
 			Logger.setSkipPrefix(true);
 			
-			LogicLanguageServices
-					.setInstance(new LogicLanguageServices.Builder(
-							new TypeRepository(new File("..",
-									"resources/navi.types")))
-							.setNumeralTypeName("n")
-							.setTypeComparator(new FlexibleTypeComparator())
-							.build());
-			
-			CATEGORY_SERVICES = new LogicalExpressionCategoryServices();
 			try {
-				// Ontology is currently not used, so we are just reading it,
-				// not
-				// storing
-				new Ontology(ListUtils.createList(new File("..",
-						"resources/generic.ont"), new File("..",
-						"resources/navi.ont")));
+				// Init the logical expression type system
+				LogicLanguageServices
+						.setInstance(new LogicLanguageServices.Builder(
+								new TypeRepository(new File("..",
+										"resources/navi.types")),
+								new FlexibleTypeComparator())
+								.setNumeralTypeName("n")
+								.addConstantsToOntology(
+										ListUtils.createList(new File("..",
+												"resources/generic.ont"),
+												new File("..",
+														"resources/navi.ont")))
+								.closeOntology(true).build());
+				
 			} catch (final IOException e) {
 				throw new RuntimeException(e);
 			}
+			
+			CATEGORY_SERVICES = new LogicalExpressionCategoryServices();
 			
 			// Load maps
 			final Map<String, NavigationMap> maps = new HashMap<String, NavigationMap>();
 			final NavigationMap gridMap = NavigationMapXMLReader.read(new File(
 					"..", "resources/maps/map-grid.xml"));
-			maps.put(gridMap.getName().toLowerCase(), gridMap);
+			maps.put(gridMap.getName(), gridMap);
 			
 			final NavigationMap lMap = NavigationMapXMLReader.read(new File(
 					"..", "resources/maps/map-l.xml"));
-			maps.put(lMap.getName().toLowerCase(), lMap);
+			maps.put(lMap.getName(), lMap);
 			
 			final NavigationMap jellyMap = NavigationMapXMLReader
 					.read(new File("..", "resources/maps/map-jelly.xml"));
-			maps.put(jellyMap.getName().toLowerCase(), jellyMap);
+			maps.put(jellyMap.getName(), jellyMap);
 			
 			MAPS = Collections.unmodifiableMap(maps);
 			

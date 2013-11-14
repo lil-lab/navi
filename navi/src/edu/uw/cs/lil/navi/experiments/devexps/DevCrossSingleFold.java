@@ -21,7 +21,7 @@ import edu.uw.cs.lil.navi.experiments.plat.NaviGenericExperiment;
 public class DevCrossSingleFold {
 	
 	public static void main(String[] args) {
-		NaviGenericExperiment.run("experiments/dev.cross/dev.fold0.exp");
+		NaviGenericExperiment.run("../experiments/dev.cross/dev.fold0.exp");
 	}
 	
 }

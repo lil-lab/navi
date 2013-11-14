@@ -38,7 +38,6 @@ import edu.uw.cs.lil.navi.map.PositionSet;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
 import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.ILambdaResult;
 import edu.uw.cs.lil.tiny.mr.lambda.exec.naive.Tuple;
-import edu.uw.cs.lil.tiny.mr.lambda.visitor.LambdaWrapped;
 import edu.uw.cs.utils.collections.ListUtils;
 
 public class NaviEvaluationTest {
@@ -52,9 +51,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (to:<a,<ps,t>> $0 (a:<<e,t>,e> corner:<ps,t>))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (to:<a,<ps,t>> $0 (a:<<e,t>,e> corner:<ps,t>))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -87,9 +85,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(argmax:<<e,t>,<<e,n>,e>> t_intersection:<ps,t> frontdist:<ps,n>)"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(argmax:<<e,t>,<<e,n>,e>> t_intersection:<ps,t> frontdist:<ps,n>)");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -117,9 +114,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(argmax:<<e,t>,<<e,n>,e>> hall:<ps,t> dist:<ps,n>)"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(argmax:<<e,t>,<<e,n>,e>> hall:<ps,t> dist:<ps,n>)");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -144,15 +140,14 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("jelly"));
 		
-		// final LogicalExpression exp = LambdaWrapped
+		// final LogicalExpression exp =
 		// .of(TestingConstants.CATEGORY_SERVICES
 		// .parseSemantics("(lambda $0:a (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $2:e (end:<ps,<ps,t>> $2 (io:<<e,t>,e> hall:<ps,t>))))))"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 (argmax:<<e,t>,<<e,n>,e>> (lambda $2:e (end:<ps,<ps,t>> $2 (io:<<e,t>,e> hall:<ps,t>))) dist:<ps,n>))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 (argmax:<<e,t>,<<e,n>,e>> (lambda $2:e (end:<ps,<ps,t>> $2 (io:<<e,t>,e> hall:<ps,t>))) dist:<ps,n>))))))");
 		
-		// final LogicalExpression exp = LambdaWrapped
+		// final LogicalExpression exp =
 		// .of(TestingConstants.CATEGORY_SERVICES
 		// .parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 (argmax:<<e,t>,<<e,n>,e>> (lambda $2:e (end:<ps,<ps,t>> $2 (io:<<e,t>,e> hall:<ps,t>))) dist:<ps,n>)))))))"));
 		
@@ -204,16 +199,15 @@ public class NaviEvaluationTest {
 				.getAllOrientations(), false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("l"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a "
-								+ "(post:<a,<t,t>> $0 "
-								+ "(front:<ps,<ps,t>> you:ps "
-								+ "(io:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 "
-								+ "(argmax:<<e,t>,<<e,n>,e>> (lambda $2:e (end:<ps,<ps,t>> $2 "
-								+ "(io:<<e,t>,e> (lambda $3:e (and:<t*,t> "
-								+ "(hall:<ps,t> $3) (intersect:<ps,<ps,t>> (a:<<e,t>,e> fish_w:<ps,t>) $3) (not:<t,t> (rose:<ps,t> $3))))))) "
-								+ "dist:<ps,n>)))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a "
+						+ "(post:<a,<t,t>> $0 "
+						+ "(front:<ps,<ps,t>> you:ps "
+						+ "(io:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 "
+						+ "(argmax:<<e,t>,<<e,n>,e>> (lambda $2:e (end:<ps,<ps,t>> $2 "
+						+ "(io:<<e,t>,e> (lambda $3:e (and:<t*,t> "
+						+ "(hall:<ps,t> $3) (intersect:<ps,<ps,t>> (a:<<e,t>,e> fish_w:<ps,t>) $3) (not:<t,t> (rose:<ps,t> $3))))))) "
+						+ "dist:<ps,n>)))))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -264,9 +258,8 @@ public class NaviEvaluationTest {
 				.getAllOrientations(), false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("l"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (a:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 (argmin:<<e,t>,<<e,n>,e>> deadend:<ps,t> dist:<ps,n>)))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (a:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 (argmin:<<e,t>,<<e,n>,e>> deadend:<ps,t> dist:<ps,n>)))))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -295,9 +288,8 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("jelly"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(io:<<e,t>,e> (lambda $2:e (end:<ps,<ps,t>> $2 (io:<<e,t>,e> hall:<ps,t>))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(io:<<e,t>,e> (lambda $2:e (end:<ps,<ps,t>> $2 (io:<<e,t>,e> hall:<ps,t>))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -324,9 +316,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(io:<<e,t>,e> t_intersection:<ps,t>)"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(io:<<e,t>,e> t_intersection:<ps,t>)");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -360,9 +351,8 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(intersect:<ps,<ps,t>> x:ps (io:<<e,t>,e> (lambda $0:e (end:<ps,<ps,t>> $0 (io:<<e,t>,e> hall:<ps,t>)))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(intersect:<ps,<ps,t>> x:ps (io:<<e,t>,e> (lambda $0:e (end:<ps,<ps,t>> $0 (io:<<e,t>,e> hall:<ps,t>)))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -382,9 +372,8 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:e (and:<t*,t> (furniture:<ps,t> $0) (distance:<ps,<ps,<n,t>>> $0 (a:<<e,t>,e> furniture:<ps,t>) 1:n)))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:e (and:<t*,t> (furniture:<ps,t> $0) (distance:<ps,<ps,<n,t>>> $0 (a:<<e,t>,e> furniture:<ps,t>) 1:n)))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -463,9 +452,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (end:<ps,<ps,t>> $1 (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (blue:<ps,t> $2) (hall:<ps,t> $2))))))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (end:<ps,<ps,t>> $1 (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (blue:<ps,t> $2) (hall:<ps,t> $2))))))))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -515,9 +503,8 @@ public class NaviEvaluationTest {
 				.getAllOrientations(), false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("l"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (end:<ps,<ps,t>> $1 (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (honeycomb:<ps,t> $2) (hall:<ps,t> $2))))))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (end:<ps,<ps,t>> $1 (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (honeycomb:<ps,t> $2) (hall:<ps,t> $2))))))))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -568,9 +555,8 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (end:<ps,<ps,t>> $1 (io:<<e,t>,e> hall:<ps,t>)))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (end:<ps,<ps,t>> $1 (io:<<e,t>,e> hall:<ps,t>)))))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -621,9 +607,8 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("jelly"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $2:e (eq:<e,<e,t>> (io:<<e,t>,e> (lambda $0:e (eq:<e,<e,t>> $0 (order:<<ps,t>,<<ps,n>,<n,ps>>> (lambda $1:e (middle:<ps,<ps,t>> $1 (io:<<e,t>,e> hall:<ps,t>))) frontdist:<ps,n> 1:n)))) $2))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $2:e (eq:<e,<e,t>> (io:<<e,t>,e> (lambda $0:e (eq:<e,<e,t>> $0 (order:<<ps,t>,<<ps,n>,<n,ps>>> (lambda $1:e (middle:<ps,<ps,t>> $1 (io:<<e,t>,e> hall:<ps,t>))) frontdist:<ps,n> 1:n)))) $2))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -643,12 +628,11 @@ public class NaviEvaluationTest {
 				.getAllOrientations(), false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("l"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(exists:<<e,t>,t> (lambda $0:e (eq:<e,<e,t>> $0 (a:<<e,t>,e> "
-								+ "(lambda $1:e (and:<t*,t> (sofa:<ps,t> $1) (intersect:<ps,<ps,t>> "
-								+ "(io:<<e,t>,e> (lambda $2:e (and:<t*,t> (hall:<ps,t> $2) "
-								+ "(front:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps right:dir) $2)))) $1)))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(exists:<<e,t>,t> (lambda $0:e (eq:<e,<e,t>> $0 (a:<<e,t>,e> "
+						+ "(lambda $1:e (and:<t*,t> (sofa:<ps,t> $1) (intersect:<ps,<ps,t>> "
+						+ "(io:<<e,t>,e> (lambda $2:e (and:<t*,t> (hall:<ps,t> $2) "
+						+ "(front:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps right:dir) $2)))) $1)))))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -667,10 +651,9 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (post:<a,<t,t>> $0 "
-								+ "(front:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps right:dir) (a:<<e,t>,e> easel:<ps,t>)))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (post:<a,<t,t>> $0 "
+						+ "(front:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps right:dir) (a:<<e,t>,e> easel:<ps,t>)))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -711,9 +694,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(front:<ps,<ps,t>> you:ps (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (rose:<ps,t> $1)))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(front:<ps,<ps,t>> you:ps (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (rose:<ps,t> $1)))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -732,9 +714,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(front:<ps,<ps,t>> (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (rose:<ps,t> $1)))) (a:<<e,t>,e> barstool:<ps,t>))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(front:<ps,<ps,t>> (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (rose:<ps,t> $1)))) (a:<<e,t>,e> barstool:<ps,t>))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -753,9 +734,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(front:<ps,<ps,t>> (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (rose:<ps,t> $1)))) (a:<<e,t>,e> hatrack:<ps,t>))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(front:<ps,<ps,t>> (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (rose:<ps,t> $1)))) (a:<<e,t>,e> hatrack:<ps,t>))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -774,9 +754,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(front:<ps,<ps,t>> (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (rose:<ps,t> $1)))) (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (grass:<ps,t> $1)))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(front:<ps,<ps,t>> (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (rose:<ps,t> $1)))) (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (grass:<ps,t> $1)))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -796,9 +775,8 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("jelly"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(and:<t*,t> (front:<ps,<ps,t>> (a:<<e,t>,e> lamp:<ps,t>) (orient:<ps,<dir,ps>> you:ps right:dir)) (front:<ps,<ps,t>> (a:<<e,t>,e> lamp:<ps,t>) (io:<<e,t>,e> hatrack:<ps,t>)))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(and:<t*,t> (front:<ps,<ps,t>> (a:<<e,t>,e> lamp:<ps,t>) (orient:<ps,<dir,ps>> you:ps right:dir)) (front:<ps,<ps,t>> (a:<<e,t>,e> lamp:<ps,t>) (io:<<e,t>,e> hatrack:<ps,t>)))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -817,9 +795,8 @@ public class NaviEvaluationTest {
 				.getAllOrientations(), false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("l"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(front:<ps,<ps,t>> (io:<<e,t>,e> (lambda $0:e (and:<t*,t> (intersect:<ps,<ps,t>> (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (cement:<ps,t> $1)))) $0) (sofa:<ps,t> $0)))) (orient:<ps,<dir,ps>> you:ps right:dir))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(front:<ps,<ps,t>> (io:<<e,t>,e> (lambda $0:e (and:<t*,t> (intersect:<ps,<ps,t>> (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (cement:<ps,t> $1)))) $0) (sofa:<ps,t> $0)))) (orient:<ps,<dir,ps>> you:ps right:dir))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -838,9 +815,8 @@ public class NaviEvaluationTest {
 				.getAllOrientations(), false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("l"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $0:e (and:<t*,t> (blue:<ps,t> $0) (hall:<ps,t> $0)))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $0:e (and:<t*,t> (blue:<ps,t> $0) (hall:<ps,t> $0)))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -860,9 +836,8 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("jelly"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(io:<<e,t>,e> (lambda $1:e (and:<t*,t> (wall:<ps,t> $1) (hall:<ps,t> $1))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(io:<<e,t>,e> (lambda $1:e (and:<t*,t> (wall:<ps,t> $1) (hall:<ps,t> $1))))");
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
 		System.out.println(result);
@@ -878,9 +853,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (lamp:<ps,t> $1) (intersect:<ps,<ps,t>> $1 (a:<<e,t>,e> (lambda $2:e (and:<t*,t> (hall:<ps,t> $2) (brick:<ps,t> $2)))))))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (lamp:<ps,t> $1) (intersect:<ps,<ps,t>> $1 (a:<<e,t>,e> (lambda $2:e (and:<t*,t> (hall:<ps,t> $2) (brick:<ps,t> $2)))))))))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -912,9 +886,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (to:<a,<ps,t>> $0 (a:<<e,t>,e> easel:<ps,t>))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (to:<a,<ps,t>> $0 (a:<<e,t>,e> easel:<ps,t>))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -947,11 +920,10 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) "
-								+ "(to:<a,<ps,t>> $0 (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (chair:<ps,t> $1) "
-								+ "(middle:<ps,<ps,t>> $1 (a:<<e,t>,e> (lambda $2:e (and:<t*,t> (blue:<ps,t> $2) (hall:<ps,t> $2)))))))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) "
+						+ "(to:<a,<ps,t>> $0 (a:<<e,t>,e> (lambda $1:e (and:<t*,t> (chair:<ps,t> $1) "
+						+ "(middle:<ps,<ps,t>> $1 (a:<<e,t>,e> (lambda $2:e (and:<t*,t> (blue:<ps,t> $2) (hall:<ps,t> $2)))))))))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -993,10 +965,9 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (to:<a,<ps,t>> $0 "
-								+ "(io:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 (order:<<ps,t>,<<ps,n>,<n,ps>>> t_intersection:<ps,t> frontdist:<ps,n> 1:n)))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (to:<a,<ps,t>> $0 "
+						+ "(io:<<e,t>,e> (lambda $1:e (eq:<e,<e,t>> $1 (order:<<ps,t>,<<ps,n>,<n,ps>>> t_intersection:<ps,t> frontdist:<ps,n> 1:n)))))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1037,9 +1008,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (pass:<a,<ps,t>> $0 (io:<<e,t>,e> barstool:<ps,t>))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (pass:<a,<ps,t>> $0 (io:<<e,t>,e> barstool:<ps,t>))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1080,9 +1050,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (pass:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (stone:<ps,t> $1)))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (pass:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (stone:<ps,t> $1)))))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1123,9 +1092,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(frontdist:<ps,n> (io:<<e,t>,e> chair:<ps,t>))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(frontdist:<ps,n> (io:<<e,t>,e> chair:<ps,t>))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1144,9 +1112,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(frontdist:<ps,n> (io:<<e,t>,e> corner:<ps,t>))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(frontdist:<ps,n> (io:<<e,t>,e> corner:<ps,t>))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1165,10 +1132,9 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) "
-								+ "(to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (barstool:<ps,t> $1) (intersect:<ps,<ps,t>> $1 (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (hall:<ps,t> $2) (stone:<ps,t> $2)))))))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) "
+						+ "(to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (barstool:<ps,t> $1) (intersect:<ps,<ps,t>> $1 (io:<<e,t>,e> (lambda $2:e (and:<t*,t> (hall:<ps,t> $2) (stone:<ps,t> $2)))))))))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1210,9 +1176,8 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $0:e (and:<t*,t> (intersection:<ps,t> $0) (intersect:<ps,<ps,t>> (io:<<e,t>,e> easel:<ps,t>) $0)))) x:ps)"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $0:e (and:<t*,t> (intersection:<ps,t> $0) (intersect:<ps,<ps,t>> (io:<<e,t>,e> easel:<ps,t>) $0)))) x:ps)");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1231,9 +1196,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps right:dir) (io:<<e,t>,e> wood:<ps,t>)))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps right:dir) (io:<<e,t>,e> wood:<ps,t>)))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1275,9 +1239,8 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:m (front:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps $0) (a:<<e,t>,e> chair:<ps,t>)))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:m (front:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps $0) (a:<<e,t>,e> chair:<ps,t>)))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1316,9 +1279,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> you:ps (io:<<e,t>,e> chair:<ps,t>)))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (post:<a,<t,t>> $0 (intersect:<ps,<ps,t>> you:ps (io:<<e,t>,e> chair:<ps,t>)))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1360,9 +1322,8 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir) (post:<a,<t,t>> $0 (and:<t*,t> (exists:<<e,t>,t> (lambda $1:e (and:<t*,t> (grass:<ps,t> $1) (hall:<ps,t> $1) (front:<ps,<ps,t>> you:ps $1)))) (exists:<<e,t>,t> (lambda $2:e (and:<t*,t> (honeycomb:<ps,t> $2) (hall:<ps,t> $2) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $3:e (eq:<e,<e,t>> $3 (order:<<ps,t>,<<ps,n>,<n,ps>>> intersection:<ps,t> frontdist:<ps,n> 1:n)))) $2))))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (dir:<a,<dir,t>> $0 right:dir) (post:<a,<t,t>> $0 (and:<t*,t> (exists:<<e,t>,t> (lambda $1:e (and:<t*,t> (grass:<ps,t> $1) (hall:<ps,t> $1) (front:<ps,<ps,t>> you:ps $1)))) (exists:<<e,t>,t> (lambda $2:e (and:<t*,t> (honeycomb:<ps,t> $2) (hall:<ps,t> $2) (intersect:<ps,<ps,t>> (io:<<e,t>,e> (lambda $3:e (eq:<e,<e,t>> $3 (order:<<ps,t>,<<ps,n>,<n,ps>>> intersection:<ps,t> frontdist:<ps,n> 1:n)))) $2))))))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1402,9 +1363,8 @@ public class NaviEvaluationTest {
 				.getAllOrientations(), false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("l"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (wood:<ps,t> $1)))))) (turn:<a,t> $0) (len:<a,<n,t>> $0 1:n)))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (post:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (wood:<ps,t> $1)))))) (turn:<a,t> $0) (len:<a,<n,t>> $0 1:n)))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1445,9 +1405,8 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (pre:<a,<ps,t>> $0 (io:<<e,t>,e> chair:<ps,t>))))"));
+		final LogicalExpression exp = (TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (pre:<a,<ps,t>> $0 (io:<<e,t>,e> chair:<ps,t>))))"));
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1489,9 +1448,8 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (pre:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (wood:<ps,t> $1)))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (pre:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (hall:<ps,t> $1) (wood:<ps,t> $1)))))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1532,13 +1490,12 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) "
-								+ "(dir:<a,<dir,t>> $0 forward:dir) "
-								+ "(pre:<a,<t,t>> $0 (and:<t*,t> (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> barstool:<ps,t>)) (front:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps back:dir) (io:<<e,t>,e> hatrack:<ps,t>))))"
-								+ "(post:<a,<t,t>> $0 "
-								+ "(front:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps right:dir) (a:<<e,t>,e> easel:<ps,t>)))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) "
+						+ "(dir:<a,<dir,t>> $0 forward:dir) "
+						+ "(pre:<a,<t,t>> $0 (and:<t*,t> (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> barstool:<ps,t>)) (front:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps back:dir) (io:<<e,t>,e> hatrack:<ps,t>))))"
+						+ "(post:<a,<t,t>> $0 "
+						+ "(front:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps right:dir) (a:<<e,t>,e> easel:<ps,t>)))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1579,13 +1536,12 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) "
-								+ "(dir:<a,<dir,t>> $0 forward:dir) "
-								+ "(pre:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> lamp:<ps,t>)))"
-								+ "(post:<a,<t,t>> $0 "
-								+ "(intersect:<ps,<ps,t>> you:ps (a:<<e,t>,e> honeycomb:<ps,t>)))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) "
+						+ "(dir:<a,<dir,t>> $0 forward:dir) "
+						+ "(pre:<a,<t,t>> $0 (front:<ps,<ps,t>> you:ps (io:<<e,t>,e> lamp:<ps,t>)))"
+						+ "(post:<a,<t,t>> $0 "
+						+ "(intersect:<ps,<ps,t>> you:ps (a:<<e,t>,e> honeycomb:<ps,t>)))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1627,9 +1583,11 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (len:<a,<n,t>> $0 2:n)))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> "
+						+ "(move:<a,t> $0) "
+						+ "(dir:<a,<dir,t>> $0 forward:dir) "
+						+ "(len:<a,<n,t>> $0 2:n)))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1670,9 +1628,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (to:<a,<ps,t>> $0 (io:<<e,t>,e> barstool:<ps,t>))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (to:<a,<ps,t>> $0 (io:<<e,t>,e> barstool:<ps,t>))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1714,9 +1671,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("jelly"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (rose:<ps,t> $1) (hall:<ps,t> $1)))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (to:<a,<ps,t>> $0 (io:<<e,t>,e> (lambda $1:e (and:<t*,t> (rose:<ps,t> $1) (hall:<ps,t> $1)))))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1766,9 +1722,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (to:<a,<ps,t>> $0 (a:<<e,t>,e> wall:<ps,t>))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (dir:<a,<dir,t>> $0 forward:dir) (to:<a,<ps,t>> $0 (a:<<e,t>,e> wall:<ps,t>))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1809,9 +1764,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("jelly"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (post:<a,<t,t>> $0 (and:<t*,t> (intersect:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps left:dir) (a:<<e,t>,e> wall:<ps,t>)) (intersect:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps back:dir) (a:<<e,t>,e> wall:<ps,t>))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (turn:<a,t> $0) (post:<a,<t,t>> $0 (and:<t*,t> (intersect:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps left:dir) (a:<<e,t>,e> wall:<ps,t>)) (intersect:<ps,<ps,t>> (orient:<ps,<dir,ps>> you:ps back:dir) (a:<<e,t>,e> wall:<ps,t>))))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1852,9 +1806,8 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (len:<a,<n,t>> $0 3:n) (while:<a,<ps,t>> $0 (a:<<e,t>,e> (lambda $1:e (front:<ps,<ps,t>> (a:<<e,t>,e> lamp:<ps,t>) $1))))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (len:<a,<n,t>> $0 3:n) (while:<a,<ps,t>> $0 (a:<<e,t>,e> (lambda $1:e (front:<ps,<ps,t>> (a:<<e,t>,e> lamp:<ps,t>) $1))))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1896,9 +1849,8 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (len:<a,<n,t>> $0 3:n) (while:<a,<ps,t>> $0 (a:<<e,t>,e> blue:<ps,t>))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (len:<a,<n,t>> $0 3:n) (while:<a,<ps,t>> $0 (a:<<e,t>,e> blue:<ps,t>))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1939,9 +1891,8 @@ public class NaviEvaluationTest {
 				false), new HashMap<String, String>(),
 				TestingConstants.MAPS.get("grid"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (len:<a,<n,t>> $0 3:n) (while:<a,<ps,t>> $0 (a:<<e,t>,e> wood:<ps,t>))))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> (move:<a,t> $0) (len:<a,<n,t>> $0 3:n) (while:<a,<ps,t>> $0 (a:<<e,t>,e> wood:<ps,t>))))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));
@@ -1983,12 +1934,11 @@ public class NaviEvaluationTest {
 				new HashMap<String, String>(),
 				TestingConstants.MAPS.get("jelly"));
 		
-		final LogicalExpression exp = LambdaWrapped
-				.of(TestingConstants.CATEGORY_SERVICES
-						.parseSemantics("(lambda $0:a (and:<t*,t> "
-								+ "(to:<a,<ps,t>> $0 (io:<<e,t>,e> chair:<ps,t>)) "
-								+ "(while:<a,<ps,t>> $0 (io:<<e,t>,e> blue:<ps,t>))"
-								+ "))"));
+		final LogicalExpression exp = TestingConstants.CATEGORY_SERVICES
+				.parseSemantics("(lambda $0:a (and:<t*,t> "
+						+ "(to:<a,<ps,t>> $0 (io:<<e,t>,e> chair:<ps,t>)) "
+						+ "(while:<a,<ps,t>> $0 (io:<<e,t>,e> blue:<ps,t>))"
+						+ "))");
 		
 		final Object result = NaviEvaluation.of(exp, NaviEvalTestingConstants
 				.getServicesFactory().create(task));

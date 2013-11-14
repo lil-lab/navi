@@ -1,17 +1,16 @@
-include=../default.params
-include=params
+include=../params.inc
+include=params.inc
 outputDir=logs-jelly
 globalLog=logs-jelly/global.log
 
 # Resources
-include=../default.include.resources.exp
-include=include.data.exp
+include=../resources.inc
 ## Training and testing sets
 type=data.composite.trc id=train sets=evalChenFold-grid,evalChenFold-l
 type=data.composite.ccgtrc id=test sets=evalChenFold-jellyCCG
 type=data.composite.ccgsettrc id=testSet sets=evalChenFold-jellySetCCG
 type=data.composite.ccgtrc id=testLF sets=evalLFCCG
-include=../default.include.learn.exp
+include=../learn.inc
 
 # Jobs
-include=../default.include.jobs.exp
+include=../jobs.inc

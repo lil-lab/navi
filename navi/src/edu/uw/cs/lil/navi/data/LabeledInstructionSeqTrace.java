@@ -18,7 +18,6 @@ package edu.uw.cs.lil.navi.data;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -50,18 +49,18 @@ import edu.uw.cs.utils.log.LoggerFactory;
  */
 public class LabeledInstructionSeqTrace<MR> implements
 		Iterable<LabeledInstructionTrace<MR>>,
-		ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> {
-	private static final String							ID_KEY			= "id";
-	private static final ILogger						LOG				= LoggerFactory
+		ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>> {
+	public static final ILogger							LOG				= LoggerFactory
 																				.create(LabeledInstructionSeqTrace.class);
+	private static final String							ID_KEY			= "id";
 	
 	private static final String							MAP_NAME_KEY	= "map";
 	
 	private final List<Triplet<Sentence, MR, Trace>>	instructions;
 	
-	private final List<Pair<MR, Trace>>					labelList;
+	private InstructionSeq								instructionSeq;
 	
-	private final Pair<List<Sentence>, Task>			samplePair;
+	private final List<Pair<MR, Trace>>					labelList;
 	private final List<LabeledInstructionTrace<MR>>		singleTraces;
 	private final Task									task;
 	
@@ -69,15 +68,17 @@ public class LabeledInstructionSeqTrace<MR> implements
 			List<Triplet<Sentence, MR, Trace>> instructions, final Task task) {
 		this.instructions = Collections.unmodifiableList(instructions);
 		this.task = task;
-		this.samplePair = Pair.of(Collections.unmodifiableList(ListUtils.map(
-				instructions,
-				new ListUtils.Mapper<Triplet<Sentence, MR, Trace>, Sentence>() {
-					
-					@Override
-					public Sentence process(Triplet<Sentence, MR, Trace> obj) {
-						return obj.first();
-					}
-				})), task);
+		this.instructionSeq = new InstructionSeq(
+				Collections.unmodifiableList(ListUtils
+						.map(instructions,
+								new ListUtils.Mapper<Triplet<Sentence, MR, Trace>, Sentence>() {
+									
+									@Override
+									public Sentence process(
+											Triplet<Sentence, MR, Trace> obj) {
+										return obj.first();
+									}
+								})), task);
 		this.labelList = Collections
 				.unmodifiableList(ListUtils
 						.map(instructions,
@@ -116,8 +117,8 @@ public class LabeledInstructionSeqTrace<MR> implements
 		final LinkedList<String> lines = new LinkedList<String>(
 				Arrays.asList(string.split("\n")));
 		final String id = lines.pollFirst();
-		final Map<String, String> properties = parseProperties(lines
-				.pollFirst());
+		final Map<String, String> properties = InstructionTrace
+				.parseProperties(lines.pollFirst());
 		properties.put(ID_KEY, id);
 		final NavigationMap map = maps.get(properties.get(MAP_NAME_KEY));
 		Position startPosition = null;
@@ -154,19 +155,39 @@ public class LabeledInstructionSeqTrace<MR> implements
 		return new LabeledInstructionSeqTrace<MR>(instructions, task);
 	}
 	
-	private static Map<String, String> parseProperties(String line) {
-		final String[] split = line.split("\\t+");
-		final Map<String, String> properties = new HashMap<String, String>();
-		for (final String entry : split) {
-			final String[] entrySplit = entry.split("=", 2);
-			properties.put(entrySplit[0], entrySplit[1]);
-		}
-		return properties;
-	}
-	
 	@Override
 	public double calculateLoss(List<Pair<MR, Trace>> label) {
 		return labelList.equals(label) ? 0.0 : 1.0;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		@SuppressWarnings("rawtypes")
+		final LabeledInstructionSeqTrace other = (LabeledInstructionSeqTrace) obj;
+		if (instructions == null) {
+			if (other.instructions != null) {
+				return false;
+			}
+		} else if (!instructions.equals(other.instructions)) {
+			return false;
+		}
+		if (task == null) {
+			if (other.task != null) {
+				return false;
+			}
+		} else if (!task.equals(other.task)) {
+			return false;
+		}
+		return true;
 	}
 	
 	public List<Triplet<Sentence, MR, Trace>> getInstructions() {
@@ -179,12 +200,22 @@ public class LabeledInstructionSeqTrace<MR> implements
 	}
 	
 	@Override
-	public Pair<List<Sentence>, Task> getSample() {
-		return samplePair;
+	public InstructionSeq getSample() {
+		return instructionSeq;
 	}
 	
 	public Task getTask() {
 		return task;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((instructions == null) ? 0 : instructions.hashCode());
+		result = prime * result + ((task == null) ? 0 : task.hashCode());
+		return result;
 	}
 	
 	@Override
@@ -210,12 +241,13 @@ public class LabeledInstructionSeqTrace<MR> implements
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
-		sb.append(task);
+		sb.append(task.getProperty(Task.ID_KEY)).append('\n');
+		sb.append(task.propertiesToString());
 		for (final Triplet<Sentence, MR, Trace> instruction : instructions) {
 			sb.append('\n');
 			sb.append(instruction.first()).append('\n');
-			sb.append(instruction.second()).append(" --> ")
-					.append(instruction.third());
+			sb.append(instruction.second()).append('\n');
+			sb.append(instruction.third());
 		}
 		return sb.toString();
 	}

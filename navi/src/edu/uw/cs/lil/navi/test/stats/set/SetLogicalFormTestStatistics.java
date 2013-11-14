@@ -18,10 +18,9 @@ package edu.uw.cs.lil.navi.test.stats.set;
 
 import java.util.List;
 
+import edu.uw.cs.lil.navi.data.InstructionSeq;
 import edu.uw.cs.lil.navi.data.Trace;
-import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
-import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.test.stats.AbstractTestingStatistics;
 import edu.uw.cs.lil.tiny.test.stats.IStatistics;
 import edu.uw.cs.utils.collections.ListUtils;
@@ -34,14 +33,13 @@ import edu.uw.cs.utils.composites.Pair;
  * @author Yoav Artzi
  * @param <MR>
  */
-public class SetLogicalFormTestStatistics<MR>
-		extends
-		AbstractTestingStatistics<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> {
+public class SetLogicalFormTestStatistics<MR> extends
+		AbstractTestingStatistics<InstructionSeq, List<Pair<MR, Trace>>> {
 	
 	public SetLogicalFormTestStatistics(
 			String prefix,
 			String metricName,
-			IStatistics<ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>>> stats) {
+			IStatistics<ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>>> stats) {
 		super(prefix, metricName, stats);
 	}
 	
@@ -57,21 +55,21 @@ public class SetLogicalFormTestStatistics<MR>
 	
 	@Override
 	public void recordNoParse(
-			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>> dataItem,
 			List<Pair<MR, Trace>> gold) {
 		stats.recordFailure(dataItem);
 	}
 	
 	@Override
 	public void recordNoParseWithSkipping(
-			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>> dataItem,
 			List<Pair<MR, Trace>> gold) {
 		stats.recordSloppyFailure(dataItem);
 	}
 	
 	@Override
 	public void recordParse(
-			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>> dataItem,
 			List<Pair<MR, Trace>> gold, List<Pair<MR, Trace>> label) {
 		final List<MR> labelLFs = getLogicalFormList(label);
 		final List<MR> goldLFs = getLogicalFormList(dataItem.getLabel());
@@ -84,21 +82,21 @@ public class SetLogicalFormTestStatistics<MR>
 	
 	@Override
 	public void recordParses(
-			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>> dataItem,
 			List<Pair<MR, Trace>> gold, List<List<Pair<MR, Trace>>> labels) {
 		stats.recordFailure(dataItem);
 	}
 	
 	@Override
 	public void recordParsesWithSkipping(
-			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>> dataItem,
 			List<Pair<MR, Trace>> gold, List<List<Pair<MR, Trace>>> labels) {
 		stats.recordSloppyFailure(dataItem);
 	}
 	
 	@Override
 	public void recordParseWithSkipping(
-			ILabeledDataItem<Pair<List<Sentence>, Task>, List<Pair<MR, Trace>>> dataItem,
+			ILabeledDataItem<InstructionSeq, List<Pair<MR, Trace>>> dataItem,
 			List<Pair<MR, Trace>> gold, List<Pair<MR, Trace>> label) {
 		final List<MR> labelLFs = getLogicalFormList(label);
 		final List<MR> goldLFs = getLogicalFormList(dataItem.getLabel());

@@ -25,35 +25,26 @@ import edu.uw.cs.lil.navi.map.NavigationMap;
 import edu.uw.cs.lil.navi.map.PositionSet;
 import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
-import edu.uw.cs.utils.composites.Pair;
 
 /**
  * A single sentence instruction paired with its demonstration.
  * 
  * @author Yoav Artzi
- * @param <MR>
  */
-public class InstructionTrace<MR> implements
-		ILabeledDataItem<Pair<Sentence, Task>, Trace> {
+public class InstructionTrace implements ILabeledDataItem<Instruction, Trace> {
 	
-	private static final String			MAP_NAME_KEY	= "map";
+	private static final String	MAP_NAME_KEY	= "map";
 	
-	private final Pair<Sentence, Task>	pair;
+	private final Instruction	instruction;
 	
-	private final Sentence				sentence;
-	
-	private final Task					task;
-	
-	private final Trace					trace;
+	private final Trace			trace;
 	
 	public InstructionTrace(Sentence sentence, Task task, Trace trace) {
-		this.sentence = sentence;
-		this.task = task;
+		this.instruction = new Instruction(sentence, task);
 		this.trace = trace;
-		this.pair = Pair.of(sentence, task);
 	}
 	
-	public static <MR> InstructionTrace<MR> parse(String string,
+	public static InstructionTrace parse(String string,
 			Map<String, NavigationMap> maps) {
 		final String[] split = string.split("\n");
 		final Map<String, String> properties = parseProperties(split[1]);
@@ -64,10 +55,10 @@ public class InstructionTrace<MR> implements
 						.getAllOrientations(), false), new PositionSet(map.get(
 						Integer.valueOf(properties.get("x")))
 						.getAllOrientations(), false), properties, map);
-		return new InstructionTrace<MR>(new Sentence(split[0]), task, trace);
+		return new InstructionTrace(new Sentence(split[0]), task, trace);
 	}
 	
-	private static Map<String, String> parseProperties(String line) {
+	public static Map<String, String> parseProperties(String line) {
 		final String[] split = line.split("\\t+");
 		final Map<String, String> properties = new HashMap<String, String>();
 		for (final String entry : split) {
@@ -83,21 +74,56 @@ public class InstructionTrace<MR> implements
 	}
 	
 	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final InstructionTrace other = (InstructionTrace) obj;
+		if (instruction == null) {
+			if (other.instruction != null) {
+				return false;
+			}
+		} else if (!instruction.equals(other.instruction)) {
+			return false;
+		}
+		if (trace == null) {
+			if (other.trace != null) {
+				return false;
+			}
+		} else if (!trace.equals(other.trace)) {
+			return false;
+		}
+		return true;
+	}
+	
+	@Override
 	public Trace getLabel() {
 		return trace;
 	}
 	
 	@Override
-	public Pair<Sentence, Task> getSample() {
-		return pair;
-	}
-	
-	public Sentence getSentence() {
-		return sentence;
+	public Instruction getSample() {
+		return instruction;
 	}
 	
 	public Trace getTrace() {
 		return trace;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((instruction == null) ? 0 : instruction.hashCode());
+		result = prime * result + ((trace == null) ? 0 : trace.hashCode());
+		return result;
 	}
 	
 	@Override
@@ -117,7 +143,8 @@ public class InstructionTrace<MR> implements
 	
 	@Override
 	public String toString() {
-		return new StringBuilder().append(sentence).append('\n').append(task)
+		return new StringBuilder().append(instruction.getString()).append('\n')
+				.append(instruction.getState().propertiesToString())
 				.append('\n').append(trace).toString();
 	}
 	

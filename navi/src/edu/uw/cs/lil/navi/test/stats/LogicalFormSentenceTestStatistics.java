@@ -18,8 +18,8 @@ package edu.uw.cs.lil.navi.test.stats;
 
 import java.util.List;
 
+import edu.uw.cs.lil.navi.data.Instruction;
 import edu.uw.cs.lil.navi.data.Trace;
-import edu.uw.cs.lil.navi.eval.Task;
 import edu.uw.cs.lil.tiny.data.ILabeledDataItem;
 import edu.uw.cs.lil.tiny.data.sentence.Sentence;
 import edu.uw.cs.lil.tiny.mr.lambda.LogicalExpression;
@@ -33,9 +33,8 @@ import edu.uw.cs.utils.composites.Pair;
  * 
  * @author Yoav Artzi
  */
-public class LogicalFormSentenceTestStatistics
-		implements
-		ITestingStatistics<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> {
+public class LogicalFormSentenceTestStatistics implements
+		ITestingStatistics<Instruction, Pair<LogicalExpression, Trace>> {
 	
 	private final String					metricName;
 	private final String					prefix;
@@ -50,56 +49,56 @@ public class LogicalFormSentenceTestStatistics
 	
 	@Override
 	public void recordNoParse(
-			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
+			ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold) {
-		stats.recordFailure(dataItem.getSample().first());
+		stats.recordFailure(dataItem.getSample().getSample());
 		
 	}
 	
 	@Override
 	public void recordNoParseWithSkipping(
-			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
+			ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold) {
-		stats.recordSloppyFailure(dataItem.getSample().first());
+		stats.recordSloppyFailure(dataItem.getSample().getSample());
 	}
 	
 	@Override
 	public void recordParse(
-			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
+			ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			Pair<LogicalExpression, Trace> label) {
 		if (gold.first().equals(label.second())) {
-			stats.recordCorrect(dataItem.getSample().first());
+			stats.recordCorrect(dataItem.getSample().getSample());
 		} else {
-			stats.recordIncorrect(dataItem.getSample().first());
+			stats.recordIncorrect(dataItem.getSample().getSample());
 		}
 	}
 	
 	@Override
 	public void recordParses(
-			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
+			ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			List<Pair<LogicalExpression, Trace>> labels) {
-		stats.recordFailure(dataItem.getSample().first());
+		stats.recordFailure(dataItem.getSample().getSample());
 	}
 	
 	@Override
 	public void recordParsesWithSkipping(
-			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
+			ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			List<Pair<LogicalExpression, Trace>> labels) {
-		stats.recordSloppyFailure(dataItem.getSample().first());
+		stats.recordSloppyFailure(dataItem.getSample().getSample());
 	}
 	
 	@Override
 	public void recordParseWithSkipping(
-			ILabeledDataItem<Pair<Sentence, Task>, Pair<LogicalExpression, Trace>> dataItem,
+			ILabeledDataItem<Instruction, Pair<LogicalExpression, Trace>> dataItem,
 			Pair<LogicalExpression, Trace> gold,
 			Pair<LogicalExpression, Trace> label) {
 		if (gold.first().equals(label.second())) {
-			stats.recordSloppyCorrect(dataItem.getSample().first());
+			stats.recordSloppyCorrect(dataItem.getSample().getSample());
 		} else {
-			stats.recordSloppyIncorrect(dataItem.getSample().first());
+			stats.recordSloppyIncorrect(dataItem.getSample().getSample());
 		}
 	}
 	
